@@ -15,3 +15,7 @@
 - Syntax checked with Node.
 
 This tests app behavior, not physical suitability, electrical safety, or installation approval. All technical holds remain in force.
+
+## Revision 2 — 2026-11-02
+
+Inspected the supplied screenshot of the old guide. Corrected driver-side Starlink and centerline exhaust fan from the user's clarification; no roof dimensions inferred from the screenshot. All 54 viewport/step checks pass after correction. Visually inspected the mobile diagram with FRONT/REAR and DRIVER/PASSENGER labels. Panel 2 is explicitly tentative with a fit/separation hold. All installation holds remain.

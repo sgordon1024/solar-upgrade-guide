@@ -27,3 +27,7 @@ Edit `app.js` for step content and conceptual SVGs, `style.css` for presentation
 ## Verification
 
 Browser checks cover all 18 pages at 375, 390 and 1280 px; no horizontal overflow; SVG presence; blocked-step completion; mark/undo; notes and reload/resume; browser history; reset and cancellation; overview; Escape dismissal; and unavailable-storage fallback. See `QA.md` for final verification record.
+
+## Layout correction — 2 November 2026
+
+Starlink is on the vehicle driver side; the exhaust fan is on the centerline. Roof diagrams label FRONT/REAR and DRIVER/PASSENGER. Panel 2 is now an amber tentative footprint: its separation from Starlink and clearance above the fan are unverified. No exact offsets are inferred from the supplied screenshot, which shows the prior guide rather than a measured roof. Existing notes/place remain; the previous layout-review check resets once so the corrected concept can be reviewed. All installation holds remain.
