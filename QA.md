@@ -19,3 +19,7 @@ This tests app behavior, not physical suitability, electrical safety, or install
 ## Revision 2 — 2026-11-02
 
 Inspected the supplied screenshot of the old guide. Corrected driver-side Starlink and centerline exhaust fan from the user's clarification; no roof dimensions inferred from the screenshot. All 54 viewport/step checks pass after correction. Visually inspected the mobile diagram with FRONT/REAR and DRIVER/PASSENGER labels. Panel 2 is explicitly tentative with a fit/separation hold. All installation holds remain.
+
+## Revision 3 — simple instructions
+
+All 18 pages checked at 375, 390 and 1280 px after simplification (54 combinations): one SVG per page, technical details collapsed by default and expandable, no overflow, short visible installer prerequisites and no completion controls on held work. Notes, completion, reload/resume, browser back, reset cancellation and reset passed. No JavaScript errors. Mobile disconnection page visually inspected; essential isolation/no-live-disconnection warning remains visible. Existing technical content and corrected roof orientation retained.

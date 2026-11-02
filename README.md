@@ -31,3 +31,7 @@ Browser checks cover all 18 pages at 375, 390 and 1280 px; no horizontal overflo
 ## Layout correction — 2 November 2026
 
 Starlink is on the vehicle driver side; the exhaust fan is on the centerline. Roof diagrams label FRONT/REAR and DRIVER/PASSENGER. Panel 2 is now an amber tentative footprint: its separation from Starlink and clearance above the fan are unverified. No exact offsets are inferred from the supplied screenshot, which shows the prior guide rather than a measured roof. Existing notes/place remain; the previous layout-review check resets once so the corrected concept can be reviewed. All installation holds remain.
+
+## Simple mode — 2 November 2026
+
+Each page now shows a short action, one essential sentence and one illustration. Technical specifications, measurement rationale, detailed prerequisites and illustration context are preserved in the collapsed **Details** section. Notes are under **Add a note**. Navigation comes first. Installer pages still show an explicit hold and cannot be completed. Existing step IDs, saved place, notes and preparation checks are preserved.
