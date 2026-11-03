@@ -1,0 +1,98 @@
+{
+  "schema": "rooflab",
+  "version": 1,
+  "units": "in",
+  "vehicle": "2024 Entegra Launch 19Y / 2023 Sprinter 2500 / owner-reported 144-in wheelbase",
+  "roof": {
+    "width": 60,
+    "length": 122,
+    "status": "measured",
+    "evidence": "Owner-measured track-referenced planning area; endpoints require confirmation."
+  },
+  "clearance": 0,
+  "notes": "Inventory is incomplete. Confirm existing panels, all rooftop accessories, rack geometry and required service zones. Item X/Y coordinates use the front driver-side corner; Z uses roof datum.",
+  "observations": [
+    [
+      "Planning rectangle",
+      "122 in long × 60 in wide",
+      "Owner measured; length is track-referenced. Rectangle location on body and reference endpoints need confirmation."
+    ],
+    [
+      "Starlink",
+      "Driver side; front to Starlink 29 in; behind Starlink to rear 69 in; right of Starlink to right side 34 in",
+      "Owner measured; edge/datum definitions and meaning of “right” need confirmation. Not converted into a footprint or exact coordinates."
+    ],
+    [
+      "Fan",
+      "On centerline; fully open 5 in above side-rail center; use 6 in planning allowance",
+      "Owner observation. Side-rail center elevation relative to roof is unresolved. Rendered height is a placeholder, not this measurement."
+    ],
+    [
+      "A/C",
+      "6 in above top crossbar",
+      "Owner measured; exact crossbar surface reference needs confirmation. Position, footprint and roof-datum height are placeholders."
+    ],
+    [
+      "Crossbar",
+      "2 in wide × 1 in tall; top crossbar 6.5 in from roof",
+      "Owner measured; confirm whether 6.5 in refers to top, center or bottom. No crossbar layout is preloaded."
+    ],
+    [
+      "Side rail",
+      "Slot centers 3 in apart",
+      "Owner measured; orientation, rail section and roof-datum elevation need confirmation."
+    ],
+    [
+      "Pending rail reference",
+      "4 in from center of lower side rail to bottom of top rail",
+      "Owner measured; identity of “top rail” is unresolved. Do not combine with other height datums."
+    ]
+  ],
+  "items": [
+    {
+      "id": "starlink",
+      "name": "Starlink · driver side",
+      "kind": "starlink",
+      "x": 3,
+      "y": 29,
+      "z": 3,
+      "width": 20,
+      "length": 24,
+      "height": 5,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Illustrative placeholder. Measure the complete installed envelope including mounts and movement."
+    },
+    {
+      "id": "fan",
+      "name": "Fan · centerline",
+      "kind": "fan",
+      "x": 21,
+      "y": 64,
+      "z": 0,
+      "width": 18,
+      "length": 18,
+      "height": 10,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Illustrative placeholder. Measure the complete installed envelope including mounts and movement."
+    },
+    {
+      "id": "ac",
+      "name": "Air conditioner",
+      "kind": "ac",
+      "x": 15,
+      "y": 91,
+      "z": 0,
+      "width": 30,
+      "length": 25,
+      "height": 12,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Illustrative placeholder. Measure the complete installed envelope including mounts and movement."
+    }
+  ]
+}
