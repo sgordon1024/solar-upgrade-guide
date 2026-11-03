@@ -35,3 +35,8 @@ Starlink is on the vehicle driver side; the exhaust fan is on the centerline. Ro
 ## Simple mode — 2 November 2026
 
 Each page now shows a short action, one essential sentence and one illustration. Technical specifications, measurement rationale, detailed prerequisites and illustration context are preserved in the collapsed **Details** section. Notes are under **Add a note**. Navigation comes first. Installer pages still show an explicit hold and cannot be completed. Existing step IDs, saved place, notes and preparation checks are preserved.
+
+## Rooflab 3D planner
+
+[Open Rooflab](https://sgordon1024.github.io/solar-upgrade-guide/planner/) to orbit a schematic van, edit roof equipment, compare entered box clearances, and export/import specifications. [Planner documentation](planner/README.md) and [starter specs](planner/starter-specs.json) explain measured versus estimated geometry. Equipment placements are illustrative until measured; the planner does not release the guide’s installation holds. Planner files are MIT licensed independently of the guide.
+
