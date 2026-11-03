@@ -1,22 +1,24 @@
-# Rooflab — photo-informed van planner
+# Rooflab — Sprinter shell study
 
-[Open Rooflab](https://sgordon1024.github.io/solar-upgrade-guide/planner/) · [Download starter specs](https://sgordon1024.github.io/solar-upgrade-guide/planner/starter-specs.json)
+[Open Rooflab](https://sgordon1024.github.io/solar-upgrade-guide/planner/) · [Shell specifications](shell-specs.json) · [Roof layout specifications](starter-specs.json)
 
-A browser-based modification planner for a 2024 Entegra Launch 19Y on an owner-reported 2023 Sprinter 2500, 144-inch wheelbase. Original exterior geometry is informed by four owner exterior photographs and one overhead reference, inspected in actual pixels. The images themselves, their backgrounds and identifying metadata are not distributed.
+An original browser-based reconstruction of a 144-inch-wheelbase, high-roof Sprinter cargo shell. This revision uses 33 supplied reference images, including front/rear/side/top renders and wireframe views. The archive contained image files, not an editable 3D model. Reference pixels were inspected privately; images, background information and identifying metadata are not published.
 
-## Accuracy and scope
+## Current scope and accuracy
 
-This is a manually modeled visual approximation, **not photogrammetry, factory CAD or a calibrated scan**. It is more detailed than the earlier block model, but has not achieved a near-exact photo match. Body contours, wheel/tire dimensions, suspension stance, rack, awning, ladders, windows, rear carrier and motorcycle remain estimates. Side views reproduce the observed asymmetric windows and accessory placement. Rear gear can be hidden.
+The initial view shows the **bare stock exterior**. Camper windows, aftermarket wheels, rack, awning, ladders and rear carrier are deferred. Existing roof layouts remain saved; enable **Show roof equipment** to return to editing them.
 
-Axle spacing is modeled at the owner-reported 144 inches. The approximate body envelope is 234 × 82 inches; neither this nor visual details establishes mounting locations. The roof planning rectangle is separately recorded as the owner's measured 60 × 122 inches. Its endpoints and registration to the body/rack remain unresolved. **Do not use the visually positioned rack or body as a measurement reference.** Decorative rack members, ladders, awning and rear gear are excluded from collision checks and editable JSON geometry.
+This is a manually constructed polygon mesh, **not factory CAD, photogrammetry, an exact replica or a calibrated scan**. The continuous roof/cab loft, pressed side panels, door seams, windscreen, headlights, grille, bumper, rear doors, roof ribs and stock wheels were compared with corresponding reference views. Visual review does not establish a dimensional tolerance.
 
-The updated starter includes four solar panels, Starlink, fan, A/C and a roof bag seen in the references. All their footprints, positions and heights are estimates. In particular, the illustrative panel height of 6.5 inches does not resolve the owner's crossbar reference ambiguity. No manufacturer-verified equipment geometry is preloaded. Preserve and resolve the measurement notebook before planning installation.
+The axle centers are exactly 144 inches apart in the software, using the owner's reported configuration. Body width is estimated at 79.5 inches without mirrors. The former 82-inch value described an approximate camper envelope, not a verified bare shell. The exterior length is scaled to a nominal 234 inches while preserving axle spacing; mirrors target the reference screenshot’s approximately 92.3-inch width. These are reconstruction targets, not a survey of the owner’s chassis. Tire size, suspension stance, roof shape and all surface contours remain estimates. The supplied manufacturer-page screenshot describes a 2026 vehicle and is not presented as 2023 chassis-specific verification.
+
+The separate 60 × 122-inch roof planning rectangle remains owner-measured and track-referenced. Its registration to the body is unresolved. **The visible shell is not a mounting or clearance reference.** No physical fit or safe installation is established by this renderer.
 
 ## Views and controls
 
-The lit WebGL scene uses locally hosted Three.js, with orbit, driver, passenger, rear and roof-plan views. Drag or use arrow keys to rotate; pinch or use +/- to zoom. Roof plan locks rotation and displays the planning boundary with a 12-inch grid. Equipment labels, boundary and rear gear have separate visibility controls. The displayed color/material resembles the equipment; provenance appears in the list and fine envelope outlines. Selecting an item highlights its envelope.
+Choose 3D, Front, Driver, Passenger, Rear or Top for matching-angle inspection. Drag to orbit, pinch or use +/- to zoom; right-drag to pan. Arrow keys rotate and +/- zoom when the canvas has focus. Reset camera restores the default view. Dimensions and wireframe are optional inspection overlays. Top is the whole shell; Roof plan, available with equipment enabled, isolates the measured planning rectangle.
 
-Camera preset motion respects reduced-motion preferences. Rendering happens on interaction or resize, not in a continuous idle animation loop. Pixel ratio and shadow resolution are capped for mobile devices. WebGL is required for the scene; measurement forms and export remain usable if graphics initialization fails.
+The scene uses local Three.js modules, physically lit materials and a generated studio environment. Static shell parts are batched by material for a small number of draw calls. It renders on interaction rather than an idle animation loop, caps pixel ratio and respects reduced-motion preferences. Desktop and mobile emulation checks are recorded in [QA.md](QA.md); performance on a physical phone has not been benchmarked.
 
 ## Measurements and checks
 
@@ -45,6 +47,6 @@ No accounts, analytics, remote asset requests or connection to vehicle controls.
 
 ## Run and license
 
-Serve with `python3 -m http.server 8765`, then open `/planner/`. No build step. App files are `index.html`, `style.css`, `app.js`, `render3d.js`, `starter-specs.json`, and `vendor/`.
+Serve the repository with `python3 -m http.server 8765` and open `/planner/`. No build step. `shell-model.js` contains the original parameterized mesh; `render3d.js` contains the scene and controls. `shell-specs.json` records the reconstruction's provenance and limits. Roof JSON export/import continues to transfer editable equipment, not the detailed shell mesh.
 
-Original planner code and geometry use the MIT license in LICENSE. Three.js 0.170.0 and OrbitControls are vendored under their own MIT license in `vendor/THREE-LICENSE.txt`; the OrbitControls import is changed to a local relative module path. This does not relicense the rest of the repository, supplied photographs or manufacturer trademarks.
+Original planner code and model geometry use the MIT license in LICENSE. Three.js 0.170.0 and OrbitControls use `vendor/THREE-LICENSE.txt`. This does not relicense supplied images, manufacturer trademarks or the rest of the repository. No external vehicle mesh, private imagery, VIN, credentials, analytics or vehicle-control connection is included.

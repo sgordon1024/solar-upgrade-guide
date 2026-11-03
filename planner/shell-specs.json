@@ -1,0 +1,21 @@
+{
+  "schema": "rooflab-shell",
+  "version": 1,
+  "revision": "shell-1",
+  "units": "in",
+  "subject": "Sprinter 144-inch wheelbase high-roof cargo exterior",
+  "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
+  "references": {"imagesReviewed": 33, "editableMeshesSupplied": 0, "redistributed": false},
+  "dimensions": {
+    "wheelbase": {"value": 144, "status": "owner-reported", "evidence": "Owner chassis identification; 144-inch high-roof configuration also visible in supplied manufacturer-page screenshot."},
+    "nominalBodyLength": {"value": 234, "status": "estimated", "evidence": "Scale target consistent with supplied manufacturer-page screenshot. Screenshot is model year 2026, not a chassis-specific 2023 source; front and rear overhangs are scaled to this nominal envelope while preserving axle spacing."},
+    "widthWithMirrors": {"value": 92.3, "status": "estimated", "evidence": "Scale target from the 2026 reference screenshot, not chassis-specific verification."},
+    "bodyWidthWithoutMirrors": {"value": 79.5, "status": "estimated", "evidence": "Bare cargo-shell proportion estimate; replaces the former 82-inch camper-envelope assumption."},
+    "roofToGround": {"value": 103, "status": "estimated", "evidence": "Proportions in reference render; not a verified suspension or overall-height dimension."}
+  },
+  "coordinates": {"x": "toward passenger side", "y": "toward rear", "z": "up", "centerlineX": 30, "frontAxleY": -36, "rearAxleY": 108, "roofDatumZ": 0},
+  "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
+  "scope": "Stock exterior appearance only. No camper windows, roof rack, awning, ladder, carrier or engine/interior detail.",
+  "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
+  "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed."
+}
