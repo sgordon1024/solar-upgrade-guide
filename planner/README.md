@@ -1,37 +1,50 @@
-# Rooflab — open van layout planner
+# Rooflab — photo-informed van planner
 
-[Open the planner](https://sgordon1024.github.io/solar-upgrade-guide/planner/) · [Download starter specs](https://sgordon1024.github.io/solar-upgrade-guide/planner/starter-specs.json)
+[Open Rooflab](https://sgordon1024.github.io/solar-upgrade-guide/planner/) · [Download starter specs](https://sgordon1024.github.io/solar-upgrade-guide/planner/starter-specs.json)
 
-An editable, mobile-friendly, dependency-free 3D roof concept model for a 2024 Entegra Launch 19Y on an owner-reported 2023 Sprinter 2500, 144-inch wheelbase. Rotate the view, switch to roof plan or side view, edit equipment, add solar panels/custom boxes/crossbars, and export/import JSON. Everything stays in your browser; there is no connection to vehicle controls.
+A browser-based modification planner for a 2024 Entegra Launch 19Y on an owner-reported 2023 Sprinter 2500, 144-inch wheelbase. Original exterior geometry is informed by four owner exterior photographs and one overhead reference, inspected in actual pixels. The images themselves, their backgrounds and identifying metadata are not distributed.
 
-## What is known
+## Accuracy and scope
 
-The owner measured a 122-inch track-referenced length and 60-inch width. Starlink is on the driver side and the fan is centered. The measurement notebook preserves additional owner observations without forcing inconsistent or unresolved reference points into roof-datum coordinates. The reported 4-inch lower-side-rail-center to upper-rail-bottom measurement remains unresolved.
+This is a manually modeled visual approximation, **not photogrammetry, factory CAD or a calibrated scan**. It is more detailed than the earlier block model, but has not achieved a near-exact photo match. Body contours, wheel/tire dimensions, suspension stance, rack, awning, ladders, windows, rear carrier and motorcycle remain estimates. Side views reproduce the observed asymmetric windows and accessory placement. Rear gear can be hidden.
 
-**The initial equipment footprints, elevations and exact positions are demonstration estimates.** A/C, fan and Starlink models/installed envelopes are not established. Inventory is incomplete, including existing solar panels and rack members. No manufacturer-verified geometry is preloaded. The whole van is an original low-poly Sprinter-style exterior study, not factory CAD. Axle spacing is 144 inches; overall body dimensions are an approximate 234 × 82 inches. Windows, cab contours, tires, ride height, trim and placement of the planning rectangle on the body are estimated. Aftermarket suspension may change the actual stance. No third-party mesh, VIN, private photograph, engine or interior is included.
+Axle spacing is modeled at the owner-reported 144 inches. The approximate body envelope is 234 × 82 inches; neither this nor visual details establishes mounting locations. The roof planning rectangle is separately recorded as the owner's measured 60 × 122 inches. Its endpoints and registration to the body/rack remain unresolved. **Do not use the visually positioned rack or body as a measurement reference.** Decorative rack members, ladders, awning and rear gear are excluded from collision checks and editable JSON geometry.
 
-## Coordinates and checks
+The updated starter includes four solar panels, Starlink, fan, A/C and a roof bag seen in the references. All their footprints, positions and heights are estimates. In particular, the illustrative panel height of 6.5 inches does not resolve the owner's crossbar reference ambiguity. No manufacturer-verified equipment geometry is preloaded. Preserve and resolve the measurement notebook before planning installation.
 
-All geometry uses inches. Origin is the front driver-side corner of the planning rectangle. X increases toward passenger side, Y toward rear, Z above roof datum. X/Y locate the minimum corner of an item's axis-aligned envelope; Z locates its bottom. Rotation supports 0° and 90°, swapping width/length while keeping that corner fixed.
+## Views and controls
 
-The model uses an orthographic projection of an original polygon exterior and equipment envelopes onto a Canvas 2D surface. Drag rotates the camera; arrow keys rotate; +/- and buttons zoom. Roof plan uses 12-inch grid spacing. Camera presets and zoom animate briefly; reduced-motion preferences disable animation. The forest-green, paper-and-felt interface uses original CSS textures with no external asset requests. Colors encode provenance, not equipment function: amber if either size or position is estimated; blue if neither is estimated and either is manufacturer-sourced; otherwise green. Both provenance labels are visible in the equipment list.
+The lit WebGL scene uses locally hosted Three.js, with orbit, driver, passenger, rear and roof-plan views. Drag or use arrow keys to rotate; pinch or use +/- to zoom. Roof plan locks rotation and displays the planning boundary with a 12-inch grid. Equipment labels, boundary and rear gear have separate visibility controls. The displayed color/material resembles the equipment; provenance appears in the list and fine envelope outlines. Selecting an item highlights its envelope.
 
-Checks compare axis-aligned 3D boxes and planning-rectangle edges. Touching is flagged. The optional margin expands **each** box by the entered amount on all axes, so separation between two boxes must exceed twice that margin. Margin is applied to X/Y roof-edge checks; no maximum roof height is known. No collision with the illustrative body is checked. Raising a panel above an obstacle may remove a box overlap but proves neither safe mounting nor usable clearance.
+Camera preset motion respects reduced-motion preferences. Rendering happens on interaction or resize, not in a continuous idle animation loop. Pixel ratio and shadow resolution are capped for mobile devices. WebGL is required for the scene; measurement forms and export remain usable if graphics initialization fails.
 
-Checks do not model brackets, wiring, fan sweep beyond its entered envelope, shading, Starlink view, airflow, roof curvature, waterproofing, wind loads, structural capacity or manufacturer service zones. The planning rectangle is not a certified mounting boundary. “No box conflicts” does not mean “fits.” Measure installed envelopes and use model-specific instructions before installation.
+## Measurements and checks
 
-## Editing and sharing
+Units are inches. Origin is the front driver-side corner of the planning rectangle. X increases toward passenger side, Y toward rear, Z above roof datum. X/Y specify the minimum corner of an item's axis-aligned envelope; Z its bottom. Rotation supports 0° and 90°, swapping width/length while retaining that corner.
 
-Select equipment, then change its name, size, rotation or X/Y/Z position. Numeric geometry edits reset the affected source label to estimated; after verifying, set measured/manufacturer and record the evidence. Source labels are user assertions, not independent verification. Edits save locally after changing/leaving a field. Notes save as you type. Export creates `rooflab-specs.json`; import replaces the local layout. Export a backup first. Reset asks for confirmation.
+Checks compare equipment bounding boxes and planning-rectangle edges, not the detailed visual meshes. Touching counts as a conflict. Clearance expands **each** box on X/Y/Z, so the distance between two boxes must exceed twice the entered margin. The margin also applies to X/Y boundary checks. There is no established maximum roof height.
 
-Specs use `schema: "rooflab"`, `version: 1`, `units: "in"`, roof dimensions/provenance/evidence, `clearance`, `notes`, owner observation triples, and `items`. Each item has a unique `id`, `name`, `kind`, numeric `x/y/z/width/length/height/rotation`, `dimensionStatus`, `positionStatus` and `evidence`. Inspect the starter file for a full example. Unknown fields are discarded on import; historical observations and vehicle identity are restored from this model's fixed context, so this version targets the Launch/Sprinter configuration rather than arbitrary vehicle identities. Notes and equipment evidence are portable and preserved. Import validates type, range, schema, IDs and item count before replacing state, with a 250 KB / 60 item limit. Imported text is escaped before rendering. Nothing is uploaded.
+The system does not check decorative exterior geometry, brackets, wiring, full movement sweeps, roof curvature, shading, Starlink field of view, airflow, waterproofing, wind loads, structural strength or manufacturer service zones. Raising Z may remove a box conflict without providing usable clearance or safe supports. “No box conflicts” is not a fit certification.
 
-Dimensions are editable for other owners' roof layouts. Download/fork this folder and adapt metadata for other vehicles. Review notes before sharing a file; they may contain information you do not want public.
+## Saved layouts and sharing
 
-## Run and contribute
+Edits save in local browser storage. Existing saved layouts are preserved through this upgrade: they are **not** silently replaced with the new photo-informed starter. Export a backup, then choose Reset layout to load the updated starter if desired. Reset requires confirmation.
 
-Serve the repository with `python3 -m http.server 8765`, then open `/planner/`. No build or runtime dependencies. Files: `index.html`, `style.css`, `app.js`, `starter-specs.json`. Hosting uses the existing GitHub Pages site. The original guide's installation holds are unchanged.
+Select an item to edit dimensions, rotation, X/Y/Z and evidence. Changing a dimension or position resets its affected provenance to estimated. Measured/manufacturer labels are user assertions; record supporting measurements or specific model documentation. Notes save as typed; fields save on change.
 
-Contributions should include reference endpoints, measurement provenance and model-specific source URLs, preserve import validation, and avoid uploading identifying photos, credentials or private vehicle network data.
+Export downloads `rooflab-specs.json`; import validates before replacing the saved layout. Version 1 uses `schema: "rooflab"`, `units: "in"`, roof dimensions/evidence/status, `clearance`, `notes`, observations and items. Items contain unique IDs, names, types, X/Y/Z, width/length/height, 0/90 rotation, dimension/position provenance and evidence. Limits: 250 KB, 60 items, finite bounded values. Invalid imports leave the current layout intact. Unknown fields are discarded; vehicle identity and historical observations use the fixed model context. JSON transfers planning geometry, not the decorative exterior mesh.
 
-The files in this planner directory are available under the MIT license in LICENSE. This does not relicense other repository content or grant rights to manufacturer trademarks.
+No accounts, analytics, remote asset requests or connection to vehicle controls. Review free-text notes before sharing. Other owners can fork the source and adapt the model; vehicle identity is fixed in this release.
+
+## Next measurements
+
+1. Identify the physical front driver-side reference in a marked photo; confirm both endpoints of the 122-inch length and 60-inch width.
+2. From that same reference measure each item's front edge, driver-side edge, full mounted footprint, and bottom/top height above a shared roof datum.
+3. Record rail section, rail elevation, crossbar positions and which surface the 6.5-inch measurement reaches. Identify “top rail” in the 4-inch observation.
+4. Include mounts and open fan envelope. Use independent check distances to assess model error before assigning a tolerance.
+
+## Run and license
+
+Serve with `python3 -m http.server 8765`, then open `/planner/`. No build step. App files are `index.html`, `style.css`, `app.js`, `render3d.js`, `starter-specs.json`, and `vendor/`.
+
+Original planner code and geometry use the MIT license in LICENSE. Three.js 0.170.0 and OrbitControls are vendored under their own MIT license in `vendor/THREE-LICENSE.txt`; the OrbitControls import is changed to a local relative module path. This does not relicense the rest of the repository, supplied photographs or manufacturer trademarks.

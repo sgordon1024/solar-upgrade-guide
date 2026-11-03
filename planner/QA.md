@@ -23,3 +23,13 @@ The renderer and checks use conservative boxes, not a CAD collision engine. No p
 - Mobile roof-plan toggle visibly switched the canvas and selected state; desktop 3D restored the full exterior.
 - Reduced-motion CSS and camera branches reviewed; data validation, collision checks and persistence code are unchanged from the initial tested release.
 - Syntax checked with Node. This pass is visual/manual verification, not a new physical fit validation.
+
+## Photo-informed WebGL revision
+
+- Materialized four exterior images plus overhead reference privately with the supported Library helper and Python 3.12; inspected all five as pixels. No photo files or metadata included in release.
+- Replaced the flat Canvas 2D renderer with locally hosted Three.js 0.170.0 and OrbitControls. All van/accessory geometry is original and photo-informed; no licensed third-party vehicle mesh.
+- Removed the selected-card orange inset stripe and notice-card side stripe, deployed separately, and visually verified the live selected Starlink card. Versioned stylesheet URL avoids reuse of stale CSS.
+- Node syntax checks pass. Data checks pass: eight starter items, four panels, 60 × 122 roof, JSON validation roundtrip, touching/overlap, clearance, vertical separation, boundary overrun, malformed schema, duplicate IDs and nonfinite values.
+- Desktop Chrome: WebGL rendered, 3D and driver views inspected. Roof camera framing refined during review.
+- No physical fit accuracy, scan reconstruction, CAD tolerance or mounting approval established. Earlier functional tests remain historical evidence; this revision's checks are distinguished above.
+- Current revision manual Chrome checks: 375 × 844 emulation rendered the exterior and controls with no visible horizontal overflow; console showed only an extension-origin inspector permission warning, no observed app error. Added a ninth item, reloaded and confirmed persistence; exported JSON contained nine items and 60 × 122 roof; removed the test item, imported the export and confirmed restoration to nine; removed it again to restore the eight-item local test layout.
