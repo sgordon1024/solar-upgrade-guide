@@ -108,3 +108,7 @@ Compared browser-generated screenshots with the private reference pixels: driver
 - Independent review of final front, driver and quarter views confirmed removal of the visible dip, a level attached windshield top and a seated antenna pad, with no blocking local regression. Owner and supplied reference imagery remain private.
 - Geometry checks pass for finite positions/normals and valid indices, eleven brow sections without inward slope reversal, level central windshield upper edge, rear seam continuity, 144-inch axle spacing, 234-inch nominal envelope and running-gear/flare bounds. Full model: 463,648 triangles in 20 material batches. Desktop planner side view visually checked; earlier mobile results remain historical evidence.
 - This is a visual surface correction, not a measured roof profile or CAD tolerance. Saved layouts, paint and tire dimensions are unchanged.
+
+## Additional blue adjustment — 3 November 2026 Pacific
+
+Changed the shared body/flare paint from `#779bb8` to `#709bc0` at the owner's request. Inspected the actual passenger-side WebGL rendering under the existing scene lighting. Geometry, material finish, saved layouts and dimensional inputs are unchanged. Updated exported appearance metadata and module cache versions.

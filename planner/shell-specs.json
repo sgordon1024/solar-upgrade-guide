@@ -52,8 +52,8 @@
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
     "bodyPaint": {
-      "description": "Blue-gray nudged further toward blue at owner request",
-      "baseColorSRGB": "#779bb8",
+      "description": "Blue-gray with an additional small blue shift at owner request",
+      "baseColorSRGB": "#709bc0",
       "status": "estimated",
       "evidence": "Compared actual driver/passenger WebGL views with owner photographs. Appearance estimate under studio lighting, not a calibrated color or factory paint code."
     }
