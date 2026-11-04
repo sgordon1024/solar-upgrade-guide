@@ -47,3 +47,7 @@ The renderer and checks use conservative boxes, not a CAD collision engine. No p
 - Desktop Chrome and 375 × 844 device emulation: shell renders, view buttons, wireframe and equipment visibility operate, no visible page overflow. No observed app JavaScript errors; the console contains an extension-origin inspector permission-policy warning. Physical phone frame rate was not benchmarked.
 - Exported the existing eight-item local test configuration from mobile emulation, inspected valid downloaded JSON (60 × 122-inch roof), imported that exact file successfully, reloaded, and confirmed all eight items persisted. No live user equipment was reset or replaced.
 - Remaining visual fidelity limits: glazing, fine grille/bumper relief and some panel highlights remain simplified. This release is not an exact replica and establishes no physical tolerance.
+
+## Owner paint match — 3 November 2026
+
+Reviewed owner driver/passenger photographs in actual pixels and changed the body paint to a muted blue-gray. The shared paint material covers the shell, doors, painted trim and roof ribs. Base color is an appearance estimate under the renderer's studio lighting, not a verified factory paint code. Compared local passenger and three-quarter views with the reference photos; geometry, equipment state and data controls are unchanged. Renderer and shell module URLs are versioned for the color release.

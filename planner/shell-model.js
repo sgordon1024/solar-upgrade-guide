@@ -1,11 +1,11 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-1',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33};
+export const SHELL_SPEC={revision:'shell-1-paint-1',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33};
 export function buildShell(){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name==='Tinted glass'?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
- const paint=material('Arctic white paint','#d8dcda',.28,.29),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
+ const paint=material('Blue-gray paint · photo estimate','#9aa6aa',.28,.29),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
  const V=(x,y,z)=>new T.Vector3(x,y,z);
  function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;group.add(o);return o;}
