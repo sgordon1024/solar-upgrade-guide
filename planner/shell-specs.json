@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-8-hood-rack",
+  "revision": "shell-9-installed-roof",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear, hood lip, roof rack, front light bar, motorcycle carrier and 2021 KTM 350 SX-F",
+  "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment, roof rack and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -51,8 +51,8 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "Owner 60 \u00d7 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
-  "scope": "Exterior with sleeping flares, side/rear camper windows, running gear, hood lip, open roof rack with front LED bar, estimated receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, ladders, spare-tire carrier and interior remain deferred.",
+  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Fan, roof bag, awning, ladders, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -73,12 +73,13 @@
     "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified.",
     "cabBrow": "Compared supplied side/quarter reference pixels and owner passenger photo with actual rendered before/after views and a fixed-registration 50% side overlay. Broadened longitudinal bow recovery and transverse crown blending to remove the artificial inward S curve above the windshield; no dimensional tolerance is inferred.",
     "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
-    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 \u00d7 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
+    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
     "fullSceneGeometry": {
-      "triangles": 560200,
-      "materialBatches": 41,
-      "scope": "Shell with camper glazing, flares, running gear, hood lip, rack, receiver, carrier and motorcycle; editable roof equipment not included in this count."
-    }
+      "triangles": 568467,
+      "materialBatches": 48,
+      "scope": "Default installed scene including roof equipment, carrier and motorcycle; saved editable layout is separate."
+    },
+    "installedRoof": "Six actual WebGL views reviewed against owner front, driver, passenger and overhead photos. Uniform-scale roof overlay aligned to the crossbar span; transverse width/perspective mismatch remains, so no physical tolerance is inferred. Independent review corrected panel elevation, removed invented support strips and clarified cell grids. Final review found no blocking visual regression. Exact dimensions, hidden connections and antenna heights remain estimated."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -207,7 +208,7 @@
       "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
       "nominalDiameter": 30.5,
       "nominalSectionWidth": 9.65,
-      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 \u00d7 245 \u00d7 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
       "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
       "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
     },
@@ -232,7 +233,7 @@
       "actualLiftInches": null,
       "hubToArchModel": 23,
       "modelAxleDropFromPreviousGenericShell": 4.7,
-      "evidence": "Local photo ratios give roughly 1.15\u20131.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
       "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
     },
     "verification": {
@@ -405,7 +406,7 @@
     "model": "2021 KTM 350 SX-F",
     "revision": "ktm-1",
     "source": "https://en.enduro.team/images/2/26/2021_350_sxf.pdf",
-    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139\u2013140; manufacturer-authored manual hosted by a third party.",
+    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139–140; manufacturer-authored manual hosted by a third party.",
     "manufacturer": {
       "wheelbase": 58.46456692913386,
       "wheelbaseAdjustment": 0.3937007874015748,
@@ -494,7 +495,7 @@
       "lowerSideRailCenterToTopRailBottomObservation": 4
     },
     "unresolved": [
-      "Endpoints of the 122 \u00d7 60 track reference",
+      "Endpoints of the 122 × 60 track reference",
       "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
       "Identity of top rail in the separate 4-inch observation",
       "Exact rail sections, hidden crossbars, mounting feet and light-bar model"
@@ -579,7 +580,240 @@
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof rack reference points and heights, crossbar stations, front light bar/fairing, then mounted roof equipment",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
+  },
+  "installedRoof": {
+    "revision": "installed-roof-1",
+    "status": "photo-estimated",
+    "configuration": "Existing equipment reference, not proposed upgrades",
+    "planningOrigin": [
+      0,
+      26,
+      0
+    ],
+    "solar": {
+      "count": 4,
+      "model": null,
+      "powerWatts": null,
+      "panelSize": [
+        23,
+        23,
+        1.4
+      ],
+      "panelCorners": [
+        [
+          4.5,
+          3.5,
+          5.65
+        ],
+        [
+          30,
+          3,
+          5.65
+        ],
+        [
+          4.5,
+          53.5,
+          5.65
+        ],
+        [
+          31,
+          53.5,
+          5.65
+        ]
+      ],
+      "cellPattern": "Illustrative six-column blue cell grid; electrical construction unverified",
+      "supports": "Estimated small edge brackets; concealed support structure not reconstructed"
+    },
+    "starlink": {
+      "model": null,
+      "corner": [
+        0.5,
+        29.5,
+        7.2
+      ],
+      "faceSize": [
+        22.5,
+        22.5,
+        0.7
+      ],
+      "rearwardTiltDegrees": 8,
+      "mount": "Estimated low cradle; cable routing illustrative"
+    },
+    "airConditioner": {
+      "model": null,
+      "corner": [
+        18,
+        84,
+        1
+      ],
+      "size": [
+        27,
+        37,
+        11.5
+      ],
+      "appearance": "Dark low-profile shroud, sloping front nose, transverse upper vent and rear ribs"
+    },
+    "antennas": {
+      "count": 2,
+      "model": null,
+      "mountPlate": {
+        "center": [
+          30,
+          0,
+          6.72
+        ],
+        "size": [
+          8,
+          5,
+          0.25
+        ]
+      },
+      "long": {
+        "base": [
+          28.2,
+          -0.1,
+          6.85
+        ],
+        "height": 20.5,
+        "lowerSectionHeight": 8,
+        "style": "Dark lower section and thin upper whip"
+      },
+      "short": {
+        "base": [
+          30.2,
+          1.5,
+          6.85
+        ],
+        "height": 6.8,
+        "style": "Short straight black antenna"
+      }
+    },
+    "ownerObservations": {
+      "starlink": "Driver side; front offset 29, rear gap 69 and right-side gap 34 inches, endpoints unresolved",
+      "airConditioner": "Top reported 6 inches above top crossbar; crossbar datum unresolved",
+      "antennaMount": "Two antennas on front crossbar, owner identified"
+    },
+    "unresolved": [
+      "Exact equipment model numbers and mounted envelopes",
+      "Panel dimensions, frame elevations and support brackets",
+      "Starlink tilt, face size, mount and endpoint definitions",
+      "A/C footprint and shared height datum",
+      "Both antenna heights, center offsets, diameters and mount plates"
+    ],
+    "excluded": "Fan, roof bag, awning and unidentified loose rooftop objects are deferred in this installed reference. They may exist in an independently saved planning layout.",
+    "limits": "Original visual reconstruction from owner photos, not a survey. A/C shroud top at model Z12.5 follows an illustrative 6.5-inch crossbar-top datum plus the reported 6 inches; this is not a resolved physical height. Installed reference meshes are hidden while editing a saved roof layout and are excluded from equipment box checks. No fit, shading, movement, airflow, RF or mounting validation.",
+    "units": "in",
+    "coordinateFrame": "Feature inputs and bounds use planning coordinates. Body placement adds planningOrigin. bodyBounds include that offset.",
+    "featureBounds": {
+      "Solar panel 1": {
+        "isBox3": true,
+        "min": {
+          "x": 4.349999904632568,
+          "y": 3.5,
+          "z": 5.349999904632568
+        },
+        "max": {
+          "x": 27.649999618530273,
+          "y": 26.5,
+          "z": 7.179999828338623
+        }
+      },
+      "Solar panel 2": {
+        "isBox3": true,
+        "min": {
+          "x": 29.850000381469727,
+          "y": 3,
+          "z": 5.349999904632568
+        },
+        "max": {
+          "x": 53.150001525878906,
+          "y": 26,
+          "z": 7.179999828338623
+        }
+      },
+      "Solar panel 3": {
+        "isBox3": true,
+        "min": {
+          "x": 4.349999904632568,
+          "y": 53.5,
+          "z": 5.349999904632568
+        },
+        "max": {
+          "x": 27.649999618530273,
+          "y": 76.5,
+          "z": 7.179999828338623
+        }
+      },
+      "Solar panel 4": {
+        "isBox3": true,
+        "min": {
+          "x": 30.850000381469727,
+          "y": 53.5,
+          "z": 5.349999904632568
+        },
+        "max": {
+          "x": 54.150001525878906,
+          "y": 76.5,
+          "z": 7.179999828338623
+        }
+      },
+      "Starlink": {
+        "isBox3": true,
+        "min": {
+          "x": 0.5,
+          "y": 29.402578353881836,
+          "z": 0.934634804725647
+        },
+        "max": {
+          "x": 25.108171463012695,
+          "y": 55.087764739990234,
+          "z": 11.038366317749023
+        }
+      },
+      "Air conditioner": {
+        "isBox3": true,
+        "min": {
+          "x": 18,
+          "y": 84,
+          "z": 0.11999999731779099
+        },
+        "max": {
+          "x": 45,
+          "y": 121,
+          "z": 12.609999656677246
+        }
+      },
+      "Front-crossbar antennas": {
+        "isBox3": true,
+        "min": {
+          "x": 26,
+          "y": -2.5,
+          "z": 5.227419376373291
+        },
+        "max": {
+          "x": 34,
+          "y": 4.545157432556152,
+          "z": 27.3503475189209
+        }
+      }
+    },
+    "bodyBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 0.5,
+        "y": 23.5,
+        "z": 0.11999999731779099
+      },
+      "max": {
+        "x": 54.150001525878906,
+        "y": 147,
+        "z": 27.3503475189209
+      }
+    },
+    "editableInRoofLayout": false,
+    "includedInEquipmentBoxChecks": false,
+    "geometryLicense": "Original MIT geometry; no owner photos, manufacturer images or third-party meshes redistributed."
   }
 }

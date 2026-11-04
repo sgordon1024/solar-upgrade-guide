@@ -20,11 +20,17 @@ For roof positions, first mark a front driver-side reference point **O** that ca
 | R04 | Front light bar, fairing and brackets | Measure light housing end-to-end, face height and front-to-back depth, excluding brackets; record bracket-to-bracket width separately. Measure the light's offset from the first crossbar and its top relative to that crossbar top. For the fairing, record outside width, vertical rise and forward projection from the first crossbar. A model number can substitute for housing dimensions only if the exact installed product matches. | Housing currently estimated at 49 × 2.6 × 3.1 inches. Fairing, brackets and placement are estimates. |
 | R05 | Rear fairing and rack mounts | Record rear fairing width, vertical rise and projection beyond the rear crossbar. Record each mount's center distance rearward from O and a close view showing its connection to the rail. | Partly obscured in photos; shapes, positions and hidden structure remain estimates. |
 
+## Front-crossbar antennas
+
+| ID | What to record | Clear measurement instructions | What we have now |
+| --- | --- | --- | --- |
+| R08 | Both rack antennas and their shared mount | For each antenna, measure from the **top of its mounting plate to its tip**, then record its base-center distance from the driver-side rail center and front crossbar center. Measure the thicker lower section and thin upper section separately on the tall whip. Record the mount plate width/depth/height and visible model labels. Keep the separate original cab-roof antenna out of these measurements. | Two rack antennas are owner-identified. Tall 20.5-inch and short 6.8-inch heights, central offsets, profiles and plate are photo estimates; photos do not establish precise heights. |
+
 ## Next: rooftop equipment, one item at a time
 
 | ID | What to record | Clear measurement instructions | What we have now |
 | --- | --- | --- | --- |
-| R06 | Mounted footprint and position of each accessory | For each panel, Starlink, fan, A/C and roof bag, record total mounted width/length, front edge distance rearward from O, and driver-side edge distance from O across the roof. Include brackets and protrusions. Record bottom and top heights from an identified shared reference. | Starter equipment positions/sizes are photo estimates. The existing reported offsets are preserved below. |
+| R06 | Mounted footprint and position of each accessory | For each panel, Starlink, fan, A/C and roof bag, record total mounted width/length, front edge distance rearward from O, and driver-side edge distance from O across the roof. Include brackets and protrusions. Record bottom and top heights from an identified shared reference. | The installed reference has four 23 × 23-inch panels, a 22.5 × 22.5-inch Starlink face at an 8° rear-rising tilt, and a 27 × 37-inch A/C footprint—all estimates. Saved planning layouts remain separate and may retain earlier values. The existing reported offsets are preserved below. |
 | R07 | Moving parts and service space | Record fan lid dimensions and its highest/farthest point when fully open, identifying the height reference. Record relevant product/model labels so required airflow/service clearances can be sourced. Measure nearby obstruction gaps separately. | Fan fully open reported 5 inches above side-rail center, with 6 inches as planning allowance. A/C reported 6 inches above the top crossbar. Different datums remain separate. |
 
 The earlier Starlink observations remain recorded: front to Starlink 29 inches, behind Starlink to rear 69 inches, and right of Starlink to right side 34 inches. When covering R06, mark the exact edges used rather than silently replacing these with starter coordinates. The starter positions do not certify those observations.
