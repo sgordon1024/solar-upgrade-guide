@@ -621,7 +621,7 @@
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets, Carefree awning housing/brackets and spare-basket underbody survey",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets, Carefree awning housing/brackets and spare-basket underbody survey, VP container envelope/position and ramp gaps",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
@@ -1324,5 +1324,54 @@
     },
     "includedInEquipmentBoxChecks": false,
     "underbodyView": "Hides the generic floor placeholder and ground; not a surveyed chassis."
+  },
+  "rearContainer": {
+    "revision": "vp-container-1",
+    "name": "VP Racing 3-gallon container",
+    "installationStatus": "existing-owner-identified",
+    "capacityGallons": 3,
+    "capacityStatus": "owner-reported",
+    "installedPartNumber": null,
+    "units": "in",
+    "dimensionStatus": "estimated",
+    "positionStatus": "photo-estimated",
+    "envelope": {
+      "width": 10,
+      "depth": 10,
+      "height": 16
+    },
+    "installation": {
+      "centerX": 61.3,
+      "centerY": 167.75,
+      "bottomZ": -91.85,
+      "support": "Stored loading ramp, passenger end, inboard of motorcycle",
+      "logoFaces": "passenger"
+    },
+    "source": "https://plasticproductformers.com/products/3-gallon-motorsport-container%C2%AE-square",
+    "sourceScope": "Official family reference for contoured handle, bottom grip and capped white utility container; no manufacturer dimensions or exact installed SKU established.",
+    "observations": "Cream body with rounded lower corners, sloped shoulder rising toward van, molded handle area and dark over-strap; cap partly obscured in owner photo.",
+    "unresolved": [
+      "Actual outside width, depth and total height",
+      "Ramp-relative position and footprint overhang",
+      "Cap/handle profile and exact installed part number",
+      "Strap routing, ratchet and attachment points",
+      "Nearest van, tire, fork and carrier gaps"
+    ],
+    "limits": "Original exterior estimate, not product CAD. Contents, permitted use, restraint, load capacity and physical clearances are not verified. Static existing-equipment reference, excluded from roof box checks.",
+    "geometryLicense": "Original MIT geometry; no owner or manufacturer imagery redistributed.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 56.3,
+        "y": 162.75,
+        "z": -91.85
+      },
+      "max": {
+        "x": 66.39999990463257,
+        "y": 172.75,
+        "z": -75.99999961853027
+      }
+    },
+    "includedInEquipmentBoxChecks": false
   }
 }
