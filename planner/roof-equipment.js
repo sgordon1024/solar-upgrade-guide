@@ -1,12 +1,12 @@
 import * as T from './vendor/three.module.js';
-import {RACK_SPEC} from './roof-rack.js?v=rack1';
+import {RACK_SPEC} from './roof-rack.js?v=rack2';
 
 // Installed reference only. All positions are inches from the track rectangle's
 // front driver-side corner. Display registration remains a photo estimate.
 export const INSTALLED_ROOF_SPEC={
  revision:'installed-roof-1',status:'photo-estimated',configuration:'Existing equipment reference, not proposed upgrades',
  planningOrigin:RACK_SPEC.installation.planningOrigin,
- solar:{count:4,model:null,powerWatts:null,panelSize:[23,23,1.4],panelCorners:[[4.5,3.5,5.65],[30,3,5.65],[4.5,53.5,5.65],[31,53.5,5.65]],cellPattern:'Illustrative six-column blue cell grid; electrical construction unverified',supports:'Estimated small edge brackets; concealed support structure not reconstructed'},
+ solar:{count:4,model:null,powerWatts:null,panelSize:[23,23,1.4],panelCorners:[[4.5,3.5,5.65],[30,3,5.65],[4.5,53.5,5.65],[31,53.5,5.65]],cellPattern:'Illustrative six-column blue cell grid; electrical construction unverified',supports:'Estimated edge brackets and four lower transverse supports in the rack model; partly exposed hardware guides stations, concealed construction is inferred'},
  starlink:{model:null,corner:[.5,29.5,7.2],faceSize:[22.5,22.5,.7],rearwardTiltDegrees:8,mount:'Estimated low cradle; cable routing illustrative'},
  airConditioner:{model:null,corner:[18,84,1],size:[27,37,11.5],appearance:'Dark low-profile shroud, sloping front nose, transverse upper vent and rear ribs'},
  antennas:{count:2,model:null,mountPlate:{center:[30,0,6.72],size:[8,5,.25]},long:{base:[28.2,-.1,6.85],height:20.5,lowerSectionHeight:8,style:'Dark lower section and thin upper whip'},short:{base:[30.2,1.5,6.85],height:6.8,style:'Short straight black antenna'}},

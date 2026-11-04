@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-9-installed-roof",
+  "revision": "shell-10-owl-ladder-supports",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment, roof rack and 2021 KTM 350 SX-F on carrier",
+  "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment, roof rack, Owl side ladder and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -52,7 +52,7 @@
     "roofDatumZ": 0
   },
   "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
-  "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Fan, roof bag, awning, ladders, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
+  "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, driver-side Owl ladder, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Fan, roof bag, awning, separate rear-door steps, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -75,11 +75,12 @@
     "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
     "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
     "fullSceneGeometry": {
-      "triangles": 568467,
-      "materialBatches": 48,
-      "scope": "Default installed scene including roof equipment, carrier and motorcycle; saved editable layout is separate."
+      "triangles": 580063,
+      "materialBatches": 51,
+      "scope": "Default scene including installed roof, Owl ladder, carrier and motorcycle; saved editable layout is separate."
     },
-    "installedRoof": "Six actual WebGL views reviewed against owner front, driver, passenger and overhead photos. Uniform-scale roof overlay aligned to the crossbar span; transverse width/perspective mismatch remains, so no physical tolerance is inferred. Independent review corrected panel elevation, removed invented support strips and clarified cell grids. Final review found no blocking visual regression. Exact dimensions, hidden connections and antenna heights remain estimated."
+    "installedRoof": "Six actual WebGL views reviewed against owner front, driver, passenger and overhead photos. Uniform-scale roof overlay aligned to the crossbar span; transverse width/perspective mismatch remains, so no physical tolerance is inferred. Independent review corrected panel elevation, removed invented support strips and clarified cell grids. Final review found no blocking visual regression. Exact dimensions, hidden connections and antenna heights remain estimated.",
+    "crossbarsAndLadder": "Six actual WebGL views and private overhead/driver photo overlays reviewed. Uniform scale and translation retain unresolved perspective/roof-height mismatch. Four exposed main beams plus four partly occluded lower support stations modeled separately; hidden spans inferred. Independent review refined ladder placement 2.5 inches rearward to align its front rail with the glass/flare junction. Finite geometry, seven treads, nominal rear-tire separation and preserved shell length/wheelbase checked. No physical clearance or structural adequacy established."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -481,8 +482,8 @@
     "verification": "Private front-photo/render overlay with uniform scaling and translation; close-up inspected for surface contact. Camera perspective and dimensions uncalibrated."
   },
   "roofRack": {
-    "revision": "rack-1",
-    "description": "Open two-level roof rack with sloping front/rear fairings and front LED bar",
+    "revision": "rack-2",
+    "description": "Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar",
     "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "sourceScope": "Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.",
     "ownerReported": {
@@ -536,7 +537,7 @@
         3.1
       ]
     },
-    "limits": "Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Hidden beams are not inferred. No load, mounting or equipment-clearance validation.",
+    "limits": "Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.",
     "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; units inches.",
     "modeledBounds": {
       "isBox3": true,
@@ -575,12 +576,51 @@
     ],
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false,
-    "geometryLicense": "Original MIT geometry. No photo textures, manufacturer drawings or third-party mesh redistributed."
+    "geometryLicense": "Original MIT geometry. No photo textures, manufacturer drawings or third-party mesh redistributed.",
+    "panelSupports": {
+      "status": "estimated",
+      "count": 4,
+      "bodyCenterYs": [
+        33.5,
+        49,
+        83,
+        99
+      ],
+      "centerZ": 5.15,
+      "section": [
+        1.25,
+        1
+      ],
+      "span": 60,
+      "evidence": "Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured."
+    },
+    "modeledPanelSupportCenters": [
+      [
+        30,
+        33.5,
+        5.15
+      ],
+      [
+        30,
+        49,
+        5.15
+      ],
+      [
+        30,
+        83,
+        5.15
+      ],
+      [
+        30,
+        99,
+        5.15
+      ]
+    ]
   },
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
@@ -624,7 +664,7 @@
         ]
       ],
       "cellPattern": "Illustrative six-column blue cell grid; electrical construction unverified",
-      "supports": "Estimated small edge brackets; concealed support structure not reconstructed"
+      "supports": "Estimated edge brackets and four lower transverse supports in the rack model; partly exposed hardware guides stations, concealed construction is inferred"
     },
     "starlink": {
       "model": null,
@@ -815,5 +855,100 @@
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false,
     "geometryLicense": "Original MIT geometry; no owner photos, manufacturer images or third-party meshes redistributed."
+  },
+  "sideLadder": {
+    "revision": "owl-side-ladder-1",
+    "side": "driver",
+    "brand": "Owl Vans",
+    "status": "photo-estimated",
+    "productReference": "Explorer Sprinter Side Ladder",
+    "installedProductRevision": null,
+    "sources": [
+      "https://owlvans.com/products/sprinter-side-ladder-explorer",
+      "https://ready.owlvans.com/how-to-install-the-owl-ladder-for-sprinter-vans"
+    ],
+    "sourceScope": "Black aluminum side ladder, two joined sections, slotted steps, upper roof/rack and lower pinch-weld mounts. Published 13-inch wheel-opening-to-front clearance is not ladder width. Exact installed revision and dimensions remain unverified.",
+    "installation": {
+      "frontRailY": 79,
+      "rearRailY": 92,
+      "lowerRearRailY": 89,
+      "topZ": 2,
+      "bottomZ": -92,
+      "railDiameter": 1.15,
+      "treadDepth": 3.3,
+      "treadFractions": [
+        0.045,
+        0.181,
+        0.331,
+        0.479,
+        0.632,
+        0.811,
+        0.95
+      ]
+    },
+    "observations": "Seven tread levels: four narrow upper treads, two broad slotted/notched lower plates and one low narrow tread. Rear upright sweeps forward at the bottom, immediately ahead of rear wheel. Ladder straddles driver window/flare junction.",
+    "unresolved": [
+      "Overall height and width",
+      "Tread spacing, depth and rail section",
+      "Standoff at roof, flare and sill",
+      "Position relative to rear wheel opening and body seams",
+      "Exact top/bottom brackets and installed model"
+    ],
+    "limits": "Photo-estimated visual accessory, excluded from equipment box checks. No physical fit, climbing load, mounting or structural validation. Separate rear-door steps remain deferred.",
+    "geometryLicense": "Original MIT geometry; no product mesh, photo textures or reference imagery redistributed.",
+    "units": "in",
+    "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -16.896121978759766,
+        "y": 77.69999694824219,
+        "z": -92.55000305175781
+      },
+      "max": {
+        "x": 0.20000000298023224,
+        "y": 93.30000305175781,
+        "z": 3.278898239135742
+      }
+    },
+    "modeledTreadCenters": [
+      [
+        -12.577499999999999,
+        85.5,
+        -2.2299999999999995
+      ],
+      [
+        -15.59242857142857,
+        85.5,
+        -15.014000000000001
+      ],
+      [
+        -16.527595454545455,
+        85.5,
+        -29.114
+      ],
+      [
+        -16.62245,
+        85.5,
+        -43.025999999999996
+      ],
+      [
+        -16.720509090909093,
+        85.5,
+        -57.408
+      ],
+      [
+        -16.61894,
+        85.499246091,
+        -74.23400000000001
+      ],
+      [
+        -15.443000000000001,
+        84.25339866255145,
+        -87.3
+      ]
+    ],
+    "editableInRoofLayout": false,
+    "includedInEquipmentBoxChecks": false
   }
 }
