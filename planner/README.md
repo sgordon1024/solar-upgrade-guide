@@ -135,3 +135,17 @@ Its visibility is independent of the bike, and hiding the carrier also hides the
 Both existing running boards follow the owner side photos: a short driver cab step with one perforated pad, and a long passenger step with three separated pads beneath the cab and sliding door. Original geometry includes straight charcoal oval tubes, rounded caps, clipped pad ends, round holes and sparse illustrative supports. Estimated lengths are 38 and 101 inches; the 5.2 × 3.2-inch tube section, outward projection, drop and brackets are unmeasured. Brand and model are unknown.
 
 **Running boards · estimated** controls both sides independently of other accessories. Geometry and provenance are included in shell specs; E11 requests the measurements needed to refine it. Saved roof layouts are unaffected. These static references are excluded from roof box checks and do not establish structural capacity, ground clearance or moving-door/tire clearance.
+
+
+### Launch and Entegra emblems
+
+Three photo-referenced silver **Launch** emblems sit below the aft portion of both side flares and above the driver-side rear glass. Small dark serif **ENTEGRA** marks appear on both lower cab doors and beneath the front light bar. The fairing mark replaces the earlier simple strokes; hiding the rack hides its lettering too. Original vector geometry includes the Launch slant, separated strokes and pointed H terminal, with shallow relief fitted to the modeled body surfaces. No photo textures or font assets are redistributed.
+
+Locations are photo-observed; exact outlines, dimensions and depth remain estimates. E12 records measurements to refine them. Body dimensions and saved roof layouts are unchanged. Brand names and marks identify the depicted vehicle; rights remain with their owners.
+
+
+### Rear differential scale correction
+
+The original 6.12-inch-high placeholder has been replaced by an original cast-bowl/cover/pinion reconstruction, estimated at 11.8 inches wide × 11.5 inches high. [ARB lists a 245 mm ring gear](https://www.arb.com.au/product/rd262-arb-air-locker-rear-axle-mercedes-benz-sprinter) for its Sprinter application, larger than the entire old placeholder. That supports correcting scale, but does not establish this van’s axle variant or outer dimensions. The axle center stays at Z −92.5 inches; the nominal modeled low point is −98.75 and its ground gap is 9 inches. Those are visualization values, not surveyed clearance. U07 records the missing photo and dimensions. No aftermarket differential cover or locker is represented as installed.
+
+Model visibility is now organized into Body & sides, Roof, and Rear & cargo switch groups under Model layers. Dimensions, Wireframe and Edit roof layout remain directly accessible. The switches use native keyboard-operable inputs and preserve existing visibility dependencies; they do not change saved roof geometry.

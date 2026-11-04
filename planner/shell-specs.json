@@ -1469,5 +1469,217 @@
     },
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false
+  },
+  "coachEmblems": {
+    "revision": "coach-emblems-1",
+    "units": "in",
+    "status": "photo-estimated",
+    "source": "Owner front, driver, passenger and rear photographs inspected in pixels.",
+    "instances": [
+      {
+        "id": "driver-launch",
+        "text": "LAUNCH",
+        "host": "driver body below rear flare",
+        "centerY": 129.5,
+        "centerZ": -51,
+        "width": 18.8,
+        "height": 2.6,
+        "finish": "raised silver"
+      },
+      {
+        "id": "passenger-launch",
+        "text": "LAUNCH",
+        "host": "passenger body below rear flare",
+        "centerY": 129.5,
+        "centerZ": -51,
+        "width": 18.8,
+        "height": 2.6,
+        "finish": "raised silver"
+      },
+      {
+        "id": "rear-launch",
+        "text": "LAUNCH",
+        "host": "upper driver rear door above glass",
+        "centerX": 14,
+        "centerZ": -12.5,
+        "width": 21.5,
+        "height": 2.7,
+        "finish": "raised silver"
+      },
+      {
+        "id": "driver-entegra",
+        "text": "ENTEGRA",
+        "host": "lower driver cab door",
+        "centerY": -15.5,
+        "centerZ": -66.4,
+        "width": 10.7,
+        "height": 1.15,
+        "finish": "dark lettering"
+      },
+      {
+        "id": "passenger-entegra",
+        "text": "ENTEGRA",
+        "host": "lower passenger cab door",
+        "centerY": -15.5,
+        "centerZ": -66.4,
+        "width": 10.7,
+        "height": 1.15,
+        "finish": "dark lettering"
+      },
+      {
+        "id": "rack-entegra",
+        "text": "ENTEGRA",
+        "host": "front fairing below light bar",
+        "centerX": 30,
+        "centerZ": 1.55,
+        "width": 13.4,
+        "height": 0.8,
+        "finish": "dark inset appearance"
+      }
+    ],
+    "observations": "Three slanted, split-stroke Launch wordmarks with a small upper-right flourish; two widely spaced dark serif Entegra cab marks and one dark Entegra fairing mark. No additional coach mark is established on the obscured lower rear.",
+    "dimensionBasis": "Positions and outer dimensions inferred from photos; shallow relief, letter outlines and finish are visual estimates. Body lettering is projected onto the actual modeled panels.",
+    "unresolved": [
+      "Overall width/height of each badge",
+      "Badge edge offsets to flare, door seam and rear glass",
+      "Raised depth and exact letter/bevel details",
+      "Whether fairing letters are cut through or applied"
+    ],
+    "limits": "Visual identity details only; not factory logo artwork or surveyed dimensions. Excluded from roof equipment box checks. Brand names and marks identify the depicted vehicle; trademark rights remain with their owners.",
+    "geometryLicense": "Original vector reconstruction; no photo textures or third-party font/mesh assets redistributed.",
+    "modeledBounds": {
+      "driver-launch": {
+        "isBox3": true,
+        "min": {
+          "x": -9.35634708404541,
+          "y": 120.04121398925781,
+          "z": -52.35200119018555
+        },
+        "max": {
+          "x": -8.57061767578125,
+          "y": 138.97454833984375,
+          "z": -49.64799880981445
+        }
+      },
+      "passenger-launch": {
+        "isBox3": true,
+        "min": {
+          "x": 68.87997436523438,
+          "y": 120.02545928955078,
+          "z": -52.35200119018555
+        },
+        "max": {
+          "x": 69.59481811523438,
+          "y": 138.9587860107422,
+          "z": -49.64799880981445
+        }
+      },
+      "rear-launch": {
+        "isBox3": true,
+        "min": {
+          "x": 3.1827731132507324,
+          "y": 151.2378387451172,
+          "z": -13.904000282287598
+        },
+        "max": {
+          "x": 24.835248947143555,
+          "y": 151.4591064453125,
+          "z": -11.095999717712402
+        }
+      },
+      "driver-entegra": {
+        "isBox3": true,
+        "min": {
+          "x": -9.6549072265625,
+          "y": -20.850000381469727,
+          "z": -66.9749984741211
+        },
+        "max": {
+          "x": -9.52857780456543,
+          "y": -10.15000057220459,
+          "z": -65.80029296875
+        }
+      },
+      "passenger-entegra": {
+        "isBox3": true,
+        "min": {
+          "x": 69.53306579589844,
+          "y": -20.850000381469727,
+          "z": -66.9749984741211
+        },
+        "max": {
+          "x": 69.6549072265625,
+          "y": -10.149999618530273,
+          "z": -65.80029296875
+        }
+      },
+      "rack-entegra": {
+        "isBox3": true,
+        "min": {
+          "x": 23.30000114440918,
+          "y": 19.441999435424805,
+          "z": 1.149999976158142
+        },
+        "max": {
+          "x": 36.70000076293945,
+          "y": 20.358903884887695,
+          "z": 1.9671852588653564
+        }
+      }
+    },
+    "includedInRoofBoxChecks": false
+  },
+  "rearDifferential": {
+    "revision": "rear-housing-1",
+    "units": "in",
+    "status": "estimated",
+    "installedAxleVariant": null,
+    "housingWidth": 11.8,
+    "housingHeight": 11.5,
+    "housingLength": 10.2,
+    "pinionExtension": 5.8,
+    "centerX": 30,
+    "centerY": 108,
+    "centerBelowAxle": 0.5,
+    "axleZ": -92.5,
+    "nominalLowestZ": -98.75,
+    "nominalGroundZ": -107.75,
+    "nominalGroundGap": 9,
+    "ringGearReference": {
+      "diameterMm": 245,
+      "diameterIn": 9.645669291338583,
+      "status": "manufacturer-sourced family reference; exact installed axle unverified",
+      "source": "https://www.arb.com.au/product/rd262-arb-air-locker-rear-axle-mercedes-benz-sprinter"
+    },
+    "sources": [
+      {
+        "url": "https://arbusa.com/news/sprinters-get-an-air-locker",
+        "scope": "Sprinter NCV3/VS30 rear differential family"
+      },
+      {
+        "url": "https://mbparts.mbusa.com/v-2023-mercedes-benz-sprinter-2500--base--2-0l-l4-diesel/suspension--axle-and-differential",
+        "scope": "2023 diesel axle catalogue and cover; not a matched dimensional drawing"
+      },
+      {
+        "url": "https://vancompass.com/products/hardcore-differential-cover-sprinter-2007-up",
+        "scope": "Description of stock low-hanging cover lip; aftermarket cover is not modeled as installed"
+      }
+    ],
+    "limitations": "Outer casing, cover, fasteners and pinion shape are visualization estimates. Owner rear photo is obscured by the carrier. Ground gap is calculated from the illustrative stance and nominal tire radius, not measured clearance or safe fit. Axle/wheel positions are unchanged.",
+    "measurementRequest": "U07",
+    "includedInRoofBoxChecks": false,
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 24.100000381469727,
+        "y": 97.50000001192093,
+        "z": -98.75
+      },
+      "max": {
+        "x": 35.900001525878906,
+        "y": 113.68000000655651,
+        "z": -87.25
+      }
+    }
   }
 }

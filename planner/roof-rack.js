@@ -1,4 +1,5 @@
 import * as T from './vendor/three.module.js';
+import {buildRackWordmark} from './brand-emblems.js?v=emblems1';
 
 // Inches in the same body datum as the shell. Installation is a photo estimate;
 // owner observations are retained verbatim rather than silently joining datums.
@@ -73,13 +74,12 @@ export function buildRoofRack(){
   for(const x of [7,53])for(const z of [3.7,6.1])cyl([x,21.6,z],[x,21.5,z],.13,metal,6);
   for(const z of [3.9,4.6,5.3,6])box([30,24.42,z],[46,.15,.12],frame);
   for(const x of [3,22,30,38,57]){const z=x===3||x===57?2:2.55;cyl([x,fy(z)-.13,z],[x,fy(z)-.25,z],.25,amber,12);}
-  // Simple original strokes stand in for the small ENTEGRA mark visible in photo.
-  const glyphs={E:[[1,1,0,1],[0,1,0,0],[0,.5,.8,.5],[0,0,1,0]],N:[[0,0,0,1],[0,1,1,0],[1,0,1,1]],T:[[0,1,1,1],[.5,1,.5,0]],G:[[1,1,0,1],[0,1,0,0],[0,0,1,0],[1,0,1,.5],[1,.5,.5,.5]],R:[[0,0,0,1],[0,1,1,1],[1,1,1,.5],[1,.5,0,.5],[.5,.5,1,0]],A:[[0,0,.5,1],[.5,1,1,0],[.25,.45,.75,.45]]};
-  [...'ENTEGRA'].forEach((c,j)=>{for(const [x1,z1,x2,z2] of glyphs[c]){const a=25+j*1.45+x1,b=25+j*1.45+x2,za=1.35+.75*z1,zb=1.35+.75*z2;cyl([60-a,fy(za)-.08,za],[60-b,fy(zb)-.08,zb],.06,recess,5);}});
+  // The photo-referenced serif fairing wordmark is added below as a separate mesh.
   // Rear fairing is partially obscured in the photo; retain an open center roof.
   plate([[-.8,151,1.25],[60.8,151,1.25],[60,148,5.6],[0,148,5.6]]);
   for(const x of [0,60])sidePlate(x,[[147,1.5],[151,1.25],[148,5.6],[146.8,5.6]],.2);
   for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,m);mesh.name=m.name;mesh.castShadow=true;mesh.receiveShadow=false;group.add(mesh);}
+  const wordmark=buildRackWordmark();group.add(wordmark.group);Object.assign(materials,wordmark.materials);
   group.userData={spec:RACK_SPEC,bounds:new T.Box3().setFromObject(group),crossbarCenters:i.crossbarStations.map(t=>[30,y0+(y1-y0)*t,i.crossbarCenterZ]),panelSupportCenters:RACK_SPEC.panelSupports.bodyCenterYs.map(y=>[30,y,RACK_SPEC.panelSupports.centerZ])};
   return {group,materials};
 }
