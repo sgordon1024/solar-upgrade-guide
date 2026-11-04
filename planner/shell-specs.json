@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-6-rear-carrier",
+  "revision": "shell-7-ktm",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear and motorcycle carrier",
+  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear and motorcycle carrier and 2021 KTM 350 SX-F",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -52,7 +52,7 @@
     "roofDatumZ": 0
   },
   "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Exterior with sleeping flares, side and rear camper windows, photo-informed running gear, estimated receiver and HAUL-MASTER 57720 motorcycle carrier. Ramp stored; no bike. Rack, awning, ladders, spare-tire carrier and interior remain deferred.",
+  "scope": "Exterior with sleeping flares, side and rear camper windows, photo-informed running gear, estimated receiver and HAUL-MASTER 57720 motorcycle carrier. Ramp stored; 2021 KTM 350 SX-F loaded, with photo-estimated transport stance. Rack, awning, ladders, spare-tire carrier and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -363,7 +363,7 @@
     "configuration": {
       "chockSide": "passenger",
       "ramp": "stored on vehicle side of channel",
-      "motorcycle": false
+      "motorcycle": "separate optional assembly"
     },
     "limits": "Installation coordinates, tube walls, mount brackets and fine details are estimates. Product capacity is not a vehicle/hitch load assessment. No clearance or mounting validation.",
     "identification": "Matches owner-described Harbor Freight 600 lb carrier and visible photo structure. Exact production revision is unconfirmed.",
@@ -394,5 +394,63 @@
         "z": -88.80000305175781
       }
     }
+  },
+  "motorcycle": {
+    "model": "2021 KTM 350 SX-F",
+    "revision": "ktm-1",
+    "source": "https://en.enduro.team/images/2/26/2021_350_sxf.pdf",
+    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139–140; manufacturer-authored manual hosted by a third party.",
+    "manufacturer": {
+      "wheelbase": 58.46456692913386,
+      "wheelbaseAdjustment": 0.3937007874015748,
+      "seatHeightUnloaded": 37.40157480314961,
+      "groundClearanceUnloaded": 14.566929133858268,
+      "frontTire": "80/100-21",
+      "rearTire": "110/90-19",
+      "frontRimDiameter": 21,
+      "rearRimDiameter": 19,
+      "frontDiscDiameter": 10.236220472440946,
+      "rearDiscDiameter": 8.661417322834646
+    },
+    "derived": {
+      "frontTireDiameter": 27.299212598425196,
+      "rearTireDiameter": 26.79527559055118
+    },
+    "installation": {
+      "status": "estimated",
+      "frontAxleX": 59.4,
+      "rearAxleX": 0.9354330708661394,
+      "wheelCenterY": 176.5,
+      "contactZ": -91.5,
+      "frontWheelSide": "passenger",
+      "steeringDegrees": 0,
+      "leanDegrees": 0,
+      "upperForkPhotoCalibration": {
+        "vertical": 2.25,
+        "rearward": 1,
+        "status": "estimated"
+      },
+      "measuredSuspensionCompression": null,
+      "measuredHandlebarClearance": null
+    },
+    "appearance": {
+      "status": "photo-estimated",
+      "details": "Orange/white plastics, black seat, black spoked rims, knobby tires, silver right-side silencer and front number 69 from owner photos. Fine graphics, engine, controls, tire profiles and unseen side are reconstructed."
+    },
+    "limits": "Nominal tire diameters are calculated from stock size codes, not measured knobby-tire envelopes. Installation, steering, tie-down paths and transport stance are estimates. No load, restraint, door-opening or clearance validation.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -12.462204296382396,
+        "y": 160.76104736328125,
+        "z": -91.49999999761582
+      },
+      "max": {
+        "x": 73.0496069600263,
+        "y": 192.23895263671875,
+        "z": -42.54999923706055
+      }
+    },
+    "geometryLicense": "Original MIT-licensed reconstruction. No third-party meshes, photo textures or manual pages distributed."
   }
 }

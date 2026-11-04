@@ -8,11 +8,11 @@ export const CARRIER_SPEC={
   manual:'https://manuals.harborfreight.com/manuals/57000-57999/57720-193175421548.pdf',
   manufacturer:{overallLength:83.125,overallDepth:36.25,overallHeight:15.5,platformLength:78.75,platformWidth:8,platformThickness:.109,rampLength:72,receiverSize:2,hitchPinDiameter:.625,productWeightLb:91.9,ratedLoadLb:600},
   installation:{status:'estimated',trackCenterX:30,trackCenterY:176.5,platformZ:-91.5,receiverFaceY:157.75,receiverCenterZ:-94,insertFrontY:152.25,actualExtensionLength:null,actualReceiverHeight:null},
-  configuration:{chockSide:'passenger',ramp:'stored on vehicle side of channel',motorcycle:false},
+  configuration:{chockSide:'passenger',ramp:'stored on vehicle side of channel',motorcycle:'separate optional assembly'},
   limits:'Installation coordinates, tube walls, mount brackets and fine details are estimates. Product capacity is not a vehicle/hitch load assessment. No clearance or mounting validation.'
 };
 
-export function buildRearCarrier(){
+export function buildRearCarrier({loaded=false}={}){
   const group=new T.Group(),receiver=new T.Group(),carrier=new T.Group();
   group.name='Rear receiver and motorcycle carrier';receiver.name='Estimated two-inch receiver';carrier.name='HAUL-MASTER 57720 · reference reconstruction';group.add(receiver,carrier);
   const materials={};
@@ -77,7 +77,8 @@ export function buildRearCarrier(){
   }
   tube([[63.2,cy-3.45,z+8.5],[69.6,cy-3.45,-80.545],[72.5,cy-2.6,-80.545],[73.375,cy,-80.545],[72.5,cy+2.6,-80.545],[69.6,cy+3.45,-80.545],[63.2,cy+3.45,z+8.5]],.375,steel,'Front wheel-stop hoop');
   // Adjustable rocking cradle, shown unloaded. Fine pivot positions are estimated.
-  const cradleCurve=new T.CatmullRomCurve3([V(47,0,z+8),V(50,0,z+2.2),V(53.5,0,z+1),V(57,0,z+4.5)],false,'catmullrom',.3);
+  const cradlePoints=loaded?[V(47,0,z+7.88),V(50,0,z+3.7),V(54,0,z+1.02),V(59.4,0,z-.06)]:[V(47,0,z+8),V(50,0,z+2.2),V(53.5,0,z+1),V(57,0,z+4.5)];
+  const cradleCurve=new T.CatmullRomCurve3(cradlePoints,false,'catmullrom',.3);
   const pts=cradleCurve.getPoints(28);
   for(const sign of [-1,1]){
     const pos=[],idx=[];for(let k=0;k<pts.length;k++)for(const edge of [-1,1])pos.push(pts[k].x,cy+sign*2.7+edge*.325,pts[k].z);
