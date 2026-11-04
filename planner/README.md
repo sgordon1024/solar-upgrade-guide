@@ -56,13 +56,11 @@ Export downloads `rooflab-specs.json`; import validates before replacing the sav
 
 No accounts, analytics, remote asset requests or connection to vehicle controls. Review free-text notes before sharing. Other owners can fork the source and adapt the model; vehicle identity is fixed in this release.
 
-## Next measurements
+## Running measurement checklist
 
-1. Identify the physical front driver-side reference in a marked photo; confirm both endpoints of the 122-inch length and 60-inch width.
-2. From that same reference measure each item's front edge, driver-side edge, full mounted footprint, and bottom/top height above a shared roof datum.
-3. Record rail section, rail elevation, crossbar positions and which surface the 6.5-inch measurement reaches. Identify “top rail” in the 4-inch observation.
-4. For each sleeping flare, measure its front/rear and top/bottom edges from a marked body reference, outward projection perpendicular to the original side panel, and the window opening separately.
-5. Include mounts and open fan envelope. Use independent check distances to assess model error before assigning a tolerance.
+[The prioritized measurement checklist](measurements.md) tracks the exact dimensions and reference points still needed, starting with rack datums, crossbar positions and the front light bar. Rooflab also surfaces these priorities in **Field notes → Measurements to collect later**, with a separate checklist download. Modeling continues with labeled estimates; no measurement is a prerequisite for another visual update.
+
+When adding a feature, append its unresolved measurements to this list. When evidence arrives, update the corresponding specs and request status together, keeping measured, manufacturer-sourced and estimated values separate. Preserve conflicting observations until their endpoints are reconciled. The shared checklist is separate from roof-layout JSON; personal notes retain their existing local persistence and export behavior.
 
 ## Run and license
 

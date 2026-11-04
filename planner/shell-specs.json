@@ -51,7 +51,7 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "registration": "Owner 60 \u00d7 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
   "scope": "Exterior with sleeping flares, side/rear camper windows, running gear, hood lip, open roof rack with front LED bar, estimated receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, ladders, spare-tire carrier and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
@@ -73,7 +73,7 @@
     "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified.",
     "cabBrow": "Compared supplied side/quarter reference pixels and owner passenger photo with actual rendered before/after views and a fixed-registration 50% side overlay. Broadened longitudinal bow recovery and transverse crown blending to remove the artificial inward S curve above the windshield; no dimensional tolerance is inferred.",
     "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
-    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
+    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 \u00d7 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
     "fullSceneGeometry": {
       "triangles": 560200,
       "materialBatches": 41,
@@ -207,7 +207,7 @@
       "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
       "nominalDiameter": 30.5,
       "nominalSectionWidth": 9.65,
-      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 \u00d7 245 \u00d7 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
       "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
       "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
     },
@@ -232,7 +232,7 @@
       "actualLiftInches": null,
       "hubToArchModel": 23,
       "modelAxleDropFromPreviousGenericShell": 4.7,
-      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "evidence": "Local photo ratios give roughly 1.15\u20131.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
       "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
     },
     "verification": {
@@ -405,7 +405,7 @@
     "model": "2021 KTM 350 SX-F",
     "revision": "ktm-1",
     "source": "https://en.enduro.team/images/2/26/2021_350_sxf.pdf",
-    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139–140; manufacturer-authored manual hosted by a third party.",
+    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139\u2013140; manufacturer-authored manual hosted by a third party.",
     "manufacturer": {
       "wheelbase": 58.46456692913386,
       "wheelbaseAdjustment": 0.3937007874015748,
@@ -494,7 +494,7 @@
       "lowerSideRailCenterToTopRailBottomObservation": 4
     },
     "unresolved": [
-      "Endpoints of the 122 × 60 track reference",
+      "Endpoints of the 122 \u00d7 60 track reference",
       "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
       "Identity of top rail in the separate 4-inch observation",
       "Exact rail sections, hidden crossbars, mounting feet and light-bar model"
@@ -575,5 +575,11 @@
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false,
     "geometryLicense": "Original MIT geometry. No photo textures, manufacturer drawings or third-party mesh redistributed."
+  },
+  "measurementChecklist": {
+    "file": "measurements.md",
+    "status": "open",
+    "priority": "Roof rack reference points and heights, crossbar stations, front light bar/fairing, then mounted roof equipment",
+    "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   }
 }
