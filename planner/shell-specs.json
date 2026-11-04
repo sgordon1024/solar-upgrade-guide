@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-3-side-glazing",
+  "revision": "shell-4-running-gear",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof shell with sleeping flares and camper side glazing",
+  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares and owner running gear",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -32,9 +32,9 @@
       "evidence": "Bare cargo-shell proportion estimate; replaces the former 82-inch camper-envelope assumption."
     },
     "roofToGround": {
-      "value": 103,
+      "value": 107.75,
       "status": "estimated",
-      "evidence": "Proportions in reference render; not a verified suspension or overall-height dimension."
+      "evidence": "Current model ground plane follows the photo-estimated hub position and nominal tire radius. This is not a measured overall vehicle height; rack, suspension load and terrain are unverified."
     }
   },
   "coordinates": {
@@ -47,13 +47,13 @@
     "roofDatumZ": 0
   },
   "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Stock exterior reconstruction plus rear sleeping flares, small driver-side flare window, driver-side middle camper window and passenger sliding-door window with front-positioned opening panes. Rack, awning, ladder, carriers, aftermarket wheels and interior remain deferred.",
+  "scope": "Exterior reconstruction with sleeping flares, camper side windows, photo-informed six-fork-spoke charcoal rims, KO3-style tires and Owl/Falcon-style suspension hardware. Small lower-trim reflectors removed. Rack, awning, ladder, carriers and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
     "bodyPaint": {
-      "description": "Blue-gray shifted slightly further toward blue at owner request",
-      "baseColorSRGB": "#7c9bb2",
+      "description": "Blue-gray nudged further toward blue at owner request",
+      "baseColorSRGB": "#779bb8",
       "status": "estimated",
       "evidence": "Compared actual driver/passenger WebGL views with owner photographs. Appearance estimate under studio lighting, not a calibrated color or factory paint code."
     }
@@ -65,7 +65,7 @@
     "rearBoundaryMaxMeshDistance": 0.03847,
     "windshieldTopCentralSpanZVariation": 0,
     "meaning": "Mesh continuity and software scale checks only. They do not establish physical accuracy or a manufacturing tolerance.",
-    "remainingDifferences": "Fine grille, lamps, stamped panel relief, seams, tire size and stance remain approximations. Source renders are not calibrated CAD drawings. Passenger sliding-door guide detail and rear-edge slant remain approximate."
+    "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -163,5 +163,125 @@
       }
     },
     "limits": "Placement and dimensions are visual estimates, not window-cutout measurements. Independent visibility control is separate from roof-layout JSON."
+  },
+  "runningGear": {
+    "enabledByDefault": true,
+    "parametricInputs": {
+      "status": "estimated",
+      "tireModel": "BFGoodrich All-Terrain T/A KO3",
+      "tireSize": "LT245/70R17 LR-E",
+      "tireSizeStatus": "owner-recorded",
+      "tireDiameter": 30.5,
+      "tireSectionWidth": 9.65,
+      "wheelDiameter": 17,
+      "wheelOuterLipDiameter": 18.5,
+      "wheelWidth": 7.5,
+      "wheelStyle": "six forked spokes",
+      "wheelModel": null,
+      "trackWidth": 72.2,
+      "axleZ": -92.5,
+      "referenceModelAxleZ": -87.8,
+      "modelStanceAdjustment": 4.7,
+      "actualSuspensionLift": null,
+      "hubToArch": 23,
+      "suspension": "Owl Arrow Trail 2500 / Falcon",
+      "groundZ": -107.75
+    },
+    "tires": {
+      "brandModel": "BFGoodrich All-Terrain T/A KO3",
+      "designation": "LT245/70R17 LR-E",
+      "status": "owner-recorded",
+      "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
+      "nominalDiameter": 30.5,
+      "nominalSectionWidth": 9.65,
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
+      "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
+    },
+    "wheels": {
+      "nominalBeadDiameter": 17,
+      "diameterStatus": "derived from recorded tire designation",
+      "style": "Six forked spokes in satin charcoal",
+      "styleEvidence": "Owner front/rear wheel photo crops inspected in pixels",
+      "brandModel": null,
+      "geometryStatus": "estimated",
+      "outerLipDiameter": 18.5,
+      "width": 7.5,
+      "offset": null,
+      "trackWidth": 72.2,
+      "limits": "Width, lip profile, spoke faceting, hub depth and track are visual estimates; no rim brand or exact model is asserted."
+    },
+    "suspension": {
+      "ownerBrand": "Owl",
+      "visualReference": "Arrow Trail 2500 / Falcon auxiliary shocks and rear leaf packs",
+      "manufacturerReference": "https://owlvans.com/products/arrow-suspension-trail-2500-awd-and-4x4",
+      "geometryStatus": "estimated",
+      "actualLiftInches": null,
+      "hubToArchModel": 23,
+      "modelAxleDropFromPreviousGenericShell": 4.7,
+      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
+    },
+    "verification": {
+      "wheelbase": 144,
+      "tireToVisibleRimRatio": 1.6486486486486487,
+      "hubToArchRimRatio": 1.2432432432432432,
+      "renderedTireBounds": [
+        {
+          "isBox3": true,
+          "min": {
+            "x": -10.984999656677246,
+            "y": -51.24998474121094,
+            "z": -107.75720977783203
+          },
+          "max": {
+            "x": -1.274999976158142,
+            "y": -20.750015258789062,
+            "z": -77.24038696289062
+          }
+        },
+        {
+          "isBox3": true,
+          "min": {
+            "x": -10.984999656677246,
+            "y": 92.75001525878906,
+            "z": -107.75720977783203
+          },
+          "max": {
+            "x": -1.274999976158142,
+            "y": 123.24998474121094,
+            "z": -77.24038696289062
+          }
+        },
+        {
+          "isBox3": true,
+          "min": {
+            "x": 61.275001525878906,
+            "y": -51.24998474121094,
+            "z": -107.75720977783203
+          },
+          "max": {
+            "x": 70.98500061035156,
+            "y": -20.750015258789062,
+            "z": -77.24038696289062
+          }
+        },
+        {
+          "isBox3": true,
+          "min": {
+            "x": 61.275001525878906,
+            "y": 92.75001525878906,
+            "z": -107.75720977783203
+          },
+          "max": {
+            "x": 70.98500061035156,
+            "y": 123.24998474121094,
+            "z": -77.24038696289062
+          }
+        }
+      ],
+      "modelGroundZ": -107.75,
+      "method": "Three private photo/render comparisons registered by wheel hub and visible rim diameter with uniform scaling only; perspective and uneven terrain remain unmatched."
+    }
   }
 }

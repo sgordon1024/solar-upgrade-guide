@@ -1,11 +1,11 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-3-side-glazing',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20}};
-export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
+export const SHELL_SPEC={revision:'shell-4-running-gear',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
- const paint=material('Blue-gray paint · photo estimate','#7c9bb2',.22,.38),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
+ const paint=material('Blue-gray paint · photo estimate','#779bb8',.22,.38),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23);
  const camperGlass=material('Camper glass','#36444c',.32,.20);camperGlass.clearcoat=1;camperGlass.clearcoatRoughness=.12;camperGlass.envMapIntensity=1.7;
  paint.envMapIntensity=.75;
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
@@ -52,7 +52,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
   const h=sp(7,-54,.6);box(h,[.8,8.5,2.1],plastic,.8);tube([sp(4,-53.8,1.1),sp(7,-53.5,1.4),sp(10,-53.8,1.1)],.6,plastic);
   const mount=sp(-25,-49,.3);cyl(mount,[30+sign*42.4,-22,-48],.85,plastic);
   box([30+sign*42.5,-22,-44],[7.3,6.7,12.5],plastic,1.7);box([30+sign*42.5,-18.55,-43.7],[6.5,.25,10.6],glass,.8);box([30+sign*46.05,-23,-48.3],[.17,3,1.1],light,.2);
-  for(const y of [17,86,144]){const p=sp(y,-79.1,.25);box(p,[.4,4.1,1.6],amber,.65);}
+
   // Cargo-panel seam, roof gutter, lower sill and pressed belt crease.
   seam([[20,-8],[20,-90]],.065);
   seam([[80,-7],[80,-90]],.065);
@@ -139,7 +139,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
  }
  rearSeam([[0,-2.5],[0,-85.6]],.085,.12,false);box(rp(8.2,-60.2,.4),[9.5,1,1.8],plastic,.7);emblem(rp(0,-53.7,.5),2.4,'rear');
  box(rp(-16.5,-75.6,.4),[21.5,1.1,6.1],plastic,.6);box(rp(-16.5,-75.6,1),[19.7,.3,4.8],steel,.3);box(rp(-16.5,-71.9,1),[24,1.7,1.3],plastic,.5);
- box([30,156,-88.8],[78,3,5.3],plastic,2);for(const x of [-30,30])box([30+x,157.7,-87.5],[7,.25,.8],red,.2);
+ box([30,156,-88.8],[78,3,5.3],plastic,2);
  box([30,156.3,-1.55],[13,.5,1.2],red,.4);box([30,155.4,-.2],[3.4,3,2.4],plastic,.7);
  // Seven stamped roof ribs and the two longitudinal gutters, following roof crown.
  for(const x of [-26,-18,-9,0,9,18,26]){const segments=(Math.abs(x)<10)?[[26,48],[80,146]]:[[26,146]];for(const [a,b] of segments){patch((u,v)=>{const y=a+(b-a)*u,xx=x+(v*2-1)*1.05,fade=step(a,a+4,y)*(1-step(b-4,b,y));return [30+xx,y,roof(xx,y)+Math.sin(v*Math.PI)*.25*fade];},80,8,paint,'Stamped roof rib');}}
@@ -148,6 +148,58 @@ export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
  // Recessed wheel wells fill the open arches behind the tires without altering axle/tire dimensions.
  for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>{const a=u*Math.PI,r=v*18.2;return[30+sign*31.5,axle+r*Math.cos(a),-87.8+r*Math.sin(a)];},64,2,black,'Wheel well liner');
  for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>{const a=u*Math.PI,y=axle+18.15*Math.cos(a),z=-87.8+18.15*Math.sin(a),x=T.MathUtils.lerp(31.5,sideWidth(y,z)-.35,v);return[30+sign*x,y,z];},64,4,black,'Wheel well barrel');
+ // Owner running gear. Tire designation is recorded; wheel profile, offset,
+ // hub-to-arch height and hardware geometry are photo-based estimates.
+ const wheelCenters=[];
+ if(includeRunningGear){const g=SHELL_SPEC.runningGear;
+  const alloy=material('Charcoal alloy wheels','#505458',.62,.36),suspensionBlue=material('Arrow reservoir blue','#1689aa',.7,.28);
+  const radial=(cx,cy,cz,sign,depth,r,a)=>[cx+sign*depth,cy+r*Math.cos(a),cz+r*Math.sin(a)];
+  function latheWheel(cx,cy,cz,sign,profile,mat,name,segments=96){return patch((u,v)=>{const k=v*(profile.length-1),i=Math.min(profile.length-2,Math.floor(k)),t=k-i,d=T.MathUtils.lerp(profile[i][0],profile[i+1][0],t),r=T.MathUtils.lerp(profile[i][1],profile[i+1][1],t);return radial(cx,cy,cz,sign,d,r,u*Math.PI*2);},segments,(profile.length-1)*3,mat,name);}
+  // Original angular tread blocks, mapped to the tire cylinder. No external mesh/texture.
+  function treadBlock(cx,cy,cz,angle,polygon,innerR,outerR,name){const pos=[],ids=[],n=polygon.length;for(const rad of [innerR,outerR])for(const [x,t] of polygon){const a=angle+t/(g.tireDiameter/2);pos.push(cx+x,cy+rad*Math.cos(a),cz+rad*Math.sin(a));}for(let j=1;j<n-1;j++){ids.push(0,j+1,j,n,n+j,n+j+1);}for(let j=0;j<n;j++){const k=(j+1)%n;ids.push(j,k,n+k,j,n+k,n+j);}const geo=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setIndex(ids);geo.computeVertexNormals();return add(geo,rubber,name);}
+  function sipeRibbon(points,cy,cz){const pos=[],idx=[];for(let j=0;j<points.length-1;j++){const a=V(...points[j]),b=V(...points[j+1]),mid=a.clone().add(b).multiplyScalar(.5),normal=V(0,mid.y-cy,mid.z-cz).normalize(),offset=b.clone().sub(a).normalize().cross(normal).multiplyScalar(.027),i=pos.length/3;for(const p of [a.clone().sub(offset),a.clone().add(offset),b.clone().add(offset),b.clone().sub(offset)])pos.push(...p.toArray());idx.push(i,i+1,i+2,i,i+2,i+3);}const geo=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setIndex(idx);geo.computeVertexNormals();add(geo,black,'KO3 tread sipe');}
+  for(const sign of [-1,1])for(const y of [-36,108]){
+   const x=30+sign*g.trackWidth/2,z=g.axleZ,r=g.tireDiameter/2;wheelCenters.push({x,y,z});
+   const profile=[[-3.7,8.5],[-4.25,9.4],[-4.78,11.4],[-4.825,12.7],[-4.45,14.1],[-3.7,r-.35],[-2.9,r-.45],[0,r-.43],[2.9,r-.45],[3.7,r-.35],[4.45,14.1],[4.825,12.7],[4.78,11.4],[4.25,9.4],[3.7,8.5]];
+   latheWheel(x,y,z,sign,profile,rubber,'KO3 rounded tire carcass');
+   const pitches=46;
+   for(let k=0;k<pitches;k++){
+    const angle=k*Math.PI*2/pitches;
+    for(let row=0;row<4;row++){const cx=-2.85+row*1.9,shift=(row%2?.4:-.4),slant=(row<2?1:-1)*(k%2?1:-1),shape=[[-.79,-.69],[-.2,-.86],[.79,-.48],[.84,.56],[.21,.82],[-.78,.55]].map(([u,v])=>[cx+u,v+shift+u*.22*slant]);treadBlock(x,y,z,angle,shape,r-.48,r,'KO3 interlocking tread block');
+     // Dark fine zig-zag sipes stay within the top face of the block.
+     const line=[[-.54,-.02],[-.15,.12],[.14,-.10],[.54,.03]].map(([u,v])=>{const a=angle+(v+shift+u*.22*slant)/r;return[x+cx+u,y+(r+.008)*Math.cos(a),z+(r+.008)*Math.sin(a)];});sipeRibbon(line,y,z);
+    }
+    for(const side of [-1,1]){const a=angle+(k%2?.012:0),d0=side*3.65,d1=side*4.65;const pos=[];for(const [d,rad,t] of [[d0,r-.35,-.75],[d1,r-1.3,-.55],[d1,r-1.3,.65],[d0,r-.35,.75],[d0,r+.01,-.75],[d1,r-1.06,-.55],[d1,r-1.06,.65],[d0,r+.01,.75]])pos.push(x+d,y+rad*Math.cos(a+t/r),z+rad*Math.sin(a+t/r));const geo=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setIndex([0,1,2,0,2,3,4,6,5,4,7,6,0,4,5,0,5,1,1,5,6,1,6,2,2,6,7,2,7,3,3,7,4,3,4,0]);geo.computeVertexNormals();add(geo,rubber,'KO3 serrated shoulder');}
+   }
+   // Fine molded sidewall rings; the photos show dark lettering rather than white branding.
+   for(const rad of [9.7,12.6,13.1]){const pts=[];for(let k=0;k<96;k++)pts.push(radial(x,y,z,sign,4.85-(rad<10?.4:0),rad,k*Math.PI/48));tube(pts,.035,rubber,true,'Molded sidewall ring');}
+   // Hollow barrel and annular lip retain actual openings between the six forked spokes.
+   latheWheel(x,y,z,sign,[[-3.7,8.5],[-3.7,8.9],[3.6,8.9],[3.95,9.25],[4.12,9.25],[4.12,8.78],[3.8,8.6],[-3.7,8.5]],alloy,'Alloy barrel and outer lip');
+   cyl([x-sign*3.5,y,z],[x-sign*3.3,y,z],8.55,black,64); // deep barrel shadow closes unrealistic daylight through both wheels
+   cyl([x+sign*.5,y,z],[x+sign*.7,y,z],6.3,plastic,64); // visible brake rotor, recessed
+   box([x+sign*1.8,y+4.5,z],[1.6,2.0,5.2],plastic,.4);
+   const shapePoints=[[2.5,-.70],[5.35,-.91],[8.45,-2.05],[8.75,-1.67],[6.35,0],[8.75,1.67],[8.45,2.05],[5.35,.91],[2.5,.70]];
+   for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3,shape=new T.Shape(shapePoints.map(([r,t])=>new T.Vector2(r,t*1.3))),geo=new T.ExtrudeGeometry(shape,{depth:.58,bevelEnabled:true,bevelSegments:1,steps:1,bevelSize:.10,bevelThickness:.10,curveSegments:1});const p=geo.attributes.position;for(let i=0;i<p.count;i++){const rr=p.getX(i),tt=p.getY(i),d=p.getZ(i)+2.7+.11*(rr-2.5);p.setXYZ(i,x+sign*d,y+rr*Math.cos(a)-tt*Math.sin(a),z+rr*Math.sin(a)+tt*Math.cos(a));}geo.computeVertexNormals();add(geo,alloy,'Six forked alloy spokes');}
+   cyl([x+sign*2.6,y,z],[x+sign*3.35,y,z],3.35,alloy,48);cyl([x+sign*3.35,y,z],[x+sign*3.6,y,z],1.65,plastic,48);
+   for(let k=0;k<6;k++){const a=k*Math.PI/3,yy=y+2.56*Math.cos(a),zz=z+2.56*Math.sin(a);cyl([x+sign*3.36,yy,zz],[x+sign*3.50,yy,zz],.47,black,16);cyl([x+sign*3.5,yy,zz],[x+sign*3.62,yy,zz],.30,steel,6);}
+   for(let k=0;k<24;k++){const a=k*Math.PI/12;cyl(radial(x,y,z,sign,4.13,9.05,a),radial(x,y,z,sign,4.17,9.05,a),.095,black,8);}
+   const valve=radial(x,y,z,sign,4.16,8.25,Math.PI*.72);cyl(valve,[valve[0]+sign*.55,valve[1],valve[2]+.25],.16,black,12);
+  }
+  // Continue the wheel-house backing to the sill now that the hubs sit lower.
+  for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>[30+sign*31.5,axle-18.9+u*37.8,-91.6+v*4.0],24,2,black,'Lower wheel-house backing');
+  for(const sign of [-1,1])for(const axle of [-36,108])for(const end of [-1,1])box([30+sign*35.3,axle+end*18.3,-89.4],[8.0,.6,4.4],black,.05);
+  // Approximate Owl/Falcon auxiliary shocks and rear spring packs, tucked behind the tires.
+  // Hardware dimensions/mount coordinates are illustrative, not installation references.
+  for(const sign of [-1,1])for(const y of [-36,108]){
+   const x=30+sign*32.5,front=y<0,a=V(x,y+(front?1:-8),-69),b=V(x,y+(front?-2:1),g.axleZ+1),d=b.clone().sub(a),mid=a.clone().addScaledVector(d,.62);
+   cyl(a.toArray(),mid.toArray(),1.05,crease,24);cyl(mid.toArray(),b.toArray(),.37,chrome,20);
+   const ra=a.clone().add(V(sign*2.1,0,-.8)),rb=ra.clone().add(V(0,0,-6.4));cyl(ra.toArray(),rb.toArray(),.78,suspensionBlue,20);cyl(ra.clone().add(V(0,0,.4)).toArray(),ra.toArray(),.86,steel,20);
+   box([x,y+(front?1:-8),-69.5],[3,3,1.3],plastic,.25);cyl([ra.x,ra.y-1,ra.z+.4],[ra.x,ra.y+1,ra.z+.4],.35,red,12);
+  }
+  for(const sign of [-1,1])for(let layer=0;layer<4;layer++){const half=24-layer*3.5;patch((u,v)=>{const y=108-half+u*half*2,z=g.axleZ+1.8+2.8*((y-108)/24)**2+layer*.22;return[30+sign*26+(v-.5)*2.7,y,z];},32,1,plastic,'Rear leaf spring pack');}
+  cyl([-4,108,g.axleZ],[64,108,g.axleZ],1.45,black,32);const diff=add(new T.SphereGeometry(3.6,24,16),plastic,'Rear differential');diff.position.set(30,108,g.axleZ-.5);diff.scale.set(1.1,1,.85);
+  for(const sign of [-1,1]){cyl([30+sign*17,-36,-88],[30+sign*34,-36,g.axleZ],.7,black,20);cyl([30+sign*20,-40,-87],[30+sign*33,-35,g.axleZ],1.1,plastic,20);}
+ }else{
  // Stock steel wheels: tire shoulder, barrel, perforated dish, six lug fasteners.
  for(const sign of [-1,1])for(const y of [-36,108]){
   const x=30+sign*36.1,z=-87.8,r=15.2;
@@ -159,10 +211,12 @@ export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
   for(const rad of [10.4,13.8]){const pts=[];for(let a=0;a<Math.PI*2;a+=Math.PI/48)pts.push([x+sign*4.12,y+rad*Math.cos(a),z+rad*Math.sin(a)]);tube(pts,.065,rubber,true);}
   for(let k=0;k<64;k++){const a=k*Math.PI*2/64;const pts=[];for(let s=-2.3;s<=2.3;s+=1.15){const aa=a+s*.008;pts.push([x+s,y+(r+.02)*Math.cos(aa),z+(r+.02)*Math.sin(aa)]);}tube(pts,.085,black);}
  }
- box([30,45,-91],[65,208,1.5],black);for(const y of [-36,108])cyl([-4,y,-87],[64,y,-87],1.5,black);
+ for(const y of [-36,108])cyl([-4,y,-87],[64,y,-87],1.5,black);
+ }
+ box([30,45,-91],[58,208,1.5],black);
  // Sweep the complete nose (paint, lenses and bumper together) around the front corners.
  group.traverse(o=>{if(!o.isMesh)return;const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)+o.position.x,y=a.getY(i)+o.position.y;if(y< -55 && !o.quaternion.x && !o.quaternion.y && !o.quaternion.z){const bow=11*Math.pow(Math.abs(x-30)/39.75,4)*(1-step(-76.5,-55,y));a.setY(i,a.getY(i)+bow);}}o.geometry.computeVertexNormals();});
- group.userData={...SHELL_SPEC};
+ group.userData={...SHELL_SPEC,runningGearEnabled:includeRunningGear,roofToGround:includeRunningGear?107.75:103,wheelCenters,groundZ:includeRunningGear?SHELL_SPEC.runningGear.groundZ:-103.0};
  // Preserve axle spacing and round tires while registering the two overhangs
  // to the 234-inch nominal exterior envelope. This is an estimated scale target.
  group.updateMatrixWorld(true);

@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {buildShell,SHELL_SPEC} from './shell-model.js?v=glazing-final';
+import {buildShell,SHELL_SPEC} from './shell-model.js?v=gear-final';
 import {OrbitControls} from './vendor/OrbitControls.js';
 // Original geometry traced by visual reference, not a scan or a dimensional survey.
 // World units: inches; X passengerward, Y rearward, Z upward, roof datum Z=0.
@@ -61,8 +61,8 @@ try{
  renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
  camera=new T.OrthographicCamera(-180,180,180,-180,.1,2000);camera.up.set(0,0,1);controls=new OrbitControls(camera,canvas);controls.enableDamping=false;controls.minZoom=.5;controls.maxZoom=5;controls.maxPolarAngle=Math.PI*.88;controls.enablePan=true;controls.addEventListener('change',requestRender);controls.addEventListener('start',()=>cancelAnimationFrame(anim));
  scene.add(new T.HemisphereLight(0xe3edf3,0x6b7164,1.5));const key=new T.DirectionalLight(0xfff7e9,3);key.position.set(140,-180,260);key.castShadow=true;key.shadow.mapSize.set(1536,1536);Object.assign(key.shadow.camera,{left:-200,right:200,top:200,bottom:-200,far:800});key.shadow.bias=-.00015;key.shadow.normalBias=.25;scene.add(key);const fill=new T.DirectionalLight(0xdce7f1,.9);fill.position.set(-180,160,120);scene.add(fill);studio();
- ground=mesh(new T.PlaneGeometry(1300,1300),new T.ShadowMaterial({opacity:.16}),[30,-40,-103.1],scene);ground.castShadow=false;
- shell=buildShell({includeFlares:true,includeCamperWindows:true});body.add(shell.group);dimension([-19,-36,-102],[-19,108,-102],'144 in · axle spacing',[-23,36,-107]);dimension([-9.75,166,-91],[69.75,166,-91],'79.5 in · estimated body',[30,173,-91]);
+ ground=mesh(new T.PlaneGeometry(1300,1300),new T.ShadowMaterial({opacity:.16}),[30,-40,SHELL_SPEC.runningGear.groundZ-.04],scene);ground.castShadow=false;
+ shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true});body.add(shell.group);dimension([-19,-36,-102],[-19,108,-102],'144 in · axle spacing',[-23,36,-107]);dimension([-9.75,166,-91],[69.75,166,-91],'79.5 in · estimated body',[30,173,-91]);
  window.rooflabView={update};update(window.rooflabState.state,window.rooflabState.selected);
  new ResizeObserver(resize).observe(canvas);resize();preset('orbit',true);
  for(const v of viewIds)$('#'+v).onclick=()=>{if(v==='top')$('#show-equipment').checked=true;preset(v);};$('#home').onclick=()=>preset('orbit');
