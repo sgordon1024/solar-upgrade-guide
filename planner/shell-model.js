@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-5-cab-roof',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export const SHELL_SPEC={revision:'shell-6-rear-carrier',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
 export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
@@ -137,6 +137,23 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   for(const z of [-53,-56,-64,-68,-71])tube([rp(34.6*sign,z,.43),rp(38.7*sign,z+.3,.43)],.10,red);curvedFace([[34.6*sign,-58],[36.6*sign,-58],[36.6*sign,-63],[34.6*sign,-65]],p=>rp(...p,.5),light,'Reverse lens',.1);
   for(const z of [-32,-74]){box(rp(34.6*sign,z,.55),[4.5,1.2,2.9],paint,.3);cyl(rp(35.3*sign,z-1.6,1.3),rp(35.3*sign,z+1.6,1.3),.45,steel);}
  }
+ // Owner rear glazing: two broad panes meet closely at the door seam.
+ if(includeCamperWindows){
+  buildingCamperWindow=true;
+  const outline=new T.Shape();outline.moveTo(.16,-17.4);outline.lineTo(25.8,-17.55);outline.quadraticCurveTo(31.5,-17.55,32.1,-23.2);outline.lineTo(33.2,-45.5);outline.quadraticCurveTo(33.35,-49.5,29.3,-49.5);outline.lineTo(.16,-49.5);outline.closePath();
+  const contour=outline.getSpacedPoints(96).slice(0,96);
+  for(const sign of [-1,1])for(const inset of [false,true]){
+   const ringCount=12,N=contour.length,pos=[],idx=[],center=[16.6,-35];
+   function project(x,z){if(inset){x=.32+(x-.16)*.984;z=-35+(z+35)*.982;}return[30+sign*x,156.76+.08*(1-(x/34)**2)+(inset?.045:0),z];}
+   pos.push(...project(...center));
+   for(let r=1;r<=ringCount;r++)for(let j=0;j<N;j++){
+    const p=contour[j];pos.push(...project(T.MathUtils.lerp(center[0],p.x,r/ringCount),T.MathUtils.lerp(center[1],p.y,r/ringCount)));
+    if(r===1)idx.push(0,1+j,1+(j+1)%N);else{const a=1+(r-2)*N+j,b=1+(r-1)*N+j,c=1+(r-1)*N+(j+1)%N,d=1+(r-2)*N+(j+1)%N;idx.push(a,b,c,a,c,d);}
+   }
+   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();add(g,inset?camperGlass:black,(sign<0?'Driver rear':'Passenger rear')+(inset?' glass':' window seal'));
+  }
+  buildingCamperWindow=false;
+ }
  rearSeam([[0,-2.5],[0,-85.6]],.085,.12,false);box(rp(8.2,-60.2,.4),[9.5,1,1.8],plastic,.7);emblem(rp(0,-53.7,.5),2.4,'rear');
  box(rp(-16.5,-75.6,.4),[21.5,1.1,6.1],plastic,.6);box(rp(-16.5,-75.6,1),[19.7,.3,4.8],steel,.3);box(rp(-16.5,-71.9,1),[24,1.7,1.3],plastic,.5);
  box([30,156,-88.8],[78,3,5.3],plastic,2);
@@ -240,6 +257,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  group.userData.cabRoofSections=[1,3,7,14,21,28,35,42,49,53,55].map(i=>Array.from({length:201},(_,j)=>point(roofMesh,j*57+i)).filter(p=>p.z>-19.5&&p.y<29).map(p=>({y:p.y,z:p.z})));
  group.userData.cabRoofCenterline=group.userData.cabRoofSections[5];
  const seal=group.children.find(o=>o.name==='Windscreen seal'),sa=seal.geometry.attributes.position,topZ=[];for(let i=sa.count-80;i<sa.count;i++){const p=point(seal,i);if(Math.abs(p.x-30)<25&&p.z>-25)topZ.push(p.z);}group.userData.windshieldTopVariation=Math.max(...topZ)-Math.min(...topZ);
+ group.userData.rearWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver rear glass'||o.name==='Passenger rear glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
  group.userData.camperWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver middle glass'||o.name==='Passenger sliding-door glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
  // Batch static meshes by material: the same geometry with a small number of draw calls.
  const originals=[...group.children],buckets=new Map();group.updateMatrixWorld(true);

@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-5-cab-roof",
+  "revision": "shell-6-rear-carrier",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares and owner running gear",
+  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear and motorcycle carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -35,6 +35,11 @@
       "value": 107.75,
       "status": "estimated",
       "evidence": "Current model ground plane follows the photo-estimated hub position and nominal tire radius. This is not a measured overall vehicle height; rack, suspension load and terrain are unverified."
+    },
+    "lengthWithCarrier": {
+      "value": 265,
+      "status": "estimated",
+      "evidence": "Digital combined envelope from nominal shell front to modeled rear tie-down tube. Receiver location and insertion depth are unmeasured; not an installed-vehicle measurement."
     }
   },
   "coordinates": {
@@ -47,7 +52,7 @@
     "roofDatumZ": 0
   },
   "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Exterior reconstruction with sleeping flares, camper side windows, photo-informed six-fork-spoke charcoal rims, KO3-style tires and Owl/Falcon-style suspension hardware. Small lower-trim reflectors removed. Rack, awning, ladder, carriers and interior remain deferred.",
+  "scope": "Exterior with sleeping flares, side and rear camper windows, photo-informed running gear, estimated receiver and HAUL-MASTER 57720 motorcycle carrier. Ramp stored; no bike. Rack, awning, ladders, spare-tire carrier and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -196,7 +201,7 @@
       "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
       "nominalDiameter": 30.5,
       "nominalSectionWidth": 9.65,
-      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 \u00d7 245 \u00d7 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
       "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
       "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
     },
@@ -221,7 +226,7 @@
       "actualLiftInches": null,
       "hubToArchModel": 23,
       "modelAxleDropFromPreviousGenericShell": 4.7,
-      "evidence": "Local photo ratios give roughly 1.15\u20131.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
       "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
     },
     "verification": {
@@ -284,6 +289,110 @@
       ],
       "modelGroundZ": -107.75,
       "method": "Three private photo/render comparisons registered by wheel hub and visible rim diameter with uniform scaling only; perspective and uneven terrain remain unmatched."
+    }
+  },
+  "rearWindows": {
+    "enabledWithCamperWindows": true,
+    "status": "estimated",
+    "evidence": "Owner rear photograph inspected in pixels; two broad tinted panes with rounded outer corners nearly meet at the door seam. Lower edge raised after comparing the painted gap above the rear badge. Lower outer areas are partly occluded; no cutout measurements.",
+    "parametricInputs": {
+      "status": "estimated",
+      "topZ": -17.4,
+      "bottomZ": -49.5,
+      "halfWidth": 33.2,
+      "centerGap": 0.32
+    },
+    "renderedBounds": {
+      "Driver rear glass": {
+        "isBox3": true,
+        "min": {
+          "x": -2.8269286155700684,
+          "y": 152.1720428466797,
+          "z": -49.23899841308594
+        },
+        "max": {
+          "x": 29.68000030517578,
+          "y": 154.6512451171875,
+          "z": -17.716800689697266
+        }
+      },
+      "Passenger rear glass": {
+        "isBox3": true,
+        "min": {
+          "x": 30.31999969482422,
+          "y": 152.1720428466797,
+          "z": -49.23899841308594
+        },
+        "max": {
+          "x": 62.826927185058594,
+          "y": 154.6512451171875,
+          "z": -17.716800689697266
+        }
+      }
+    }
+  },
+  "motorcycleCarrier": {
+    "product": "HAUL-MASTER 600 lb. motorcycle carrier",
+    "sku": "57720",
+    "source": "https://www.harborfreight.com/600-lb-capacity-motorcycle-carrier-57720.html",
+    "manual": "https://manuals.harborfreight.com/manuals/57000-57999/57720-193175421548.pdf",
+    "manufacturer": {
+      "overallLength": 83.125,
+      "overallDepth": 36.25,
+      "overallHeight": 15.5,
+      "platformLength": 78.75,
+      "platformWidth": 8,
+      "platformThickness": 0.109,
+      "rampLength": 72,
+      "receiverSize": 2,
+      "hitchPinDiameter": 0.625,
+      "productWeightLb": 91.9,
+      "ratedLoadLb": 600
+    },
+    "installation": {
+      "status": "estimated",
+      "trackCenterX": 30,
+      "trackCenterY": 176.5,
+      "platformZ": -91.5,
+      "receiverFaceY": 157.75,
+      "receiverCenterZ": -94,
+      "insertFrontY": 152.25,
+      "actualExtensionLength": null,
+      "actualReceiverHeight": null
+    },
+    "configuration": {
+      "chockSide": "passenger",
+      "ramp": "stored on vehicle side of channel",
+      "motorcycle": false
+    },
+    "limits": "Installation coordinates, tube walls, mount brackets and fine details are estimates. Product capacity is not a vehicle/hitch load assessment. No clearance or mounting validation.",
+    "identification": "Matches owner-described Harbor Freight 600 lb carrier and visible photo structure. Exact production revision is unconfirmed.",
+    "manufacturerStatus": "manufacturer reference; published dimensions approximate",
+    "renderedCarrierBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -9.375,
+        "y": 152.25,
+        "z": -95.66999816894531
+      },
+      "max": {
+        "x": 73.70349884033203,
+        "y": 188.5,
+        "z": -80.09806060791016
+      }
+    },
+    "renderedReceiverBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 4,
+        "y": 136.5,
+        "z": -95.5
+      },
+      "max": {
+        "x": 56,
+        "y": 157.75,
+        "z": -88.80000305175781
+      }
     }
   }
 }
