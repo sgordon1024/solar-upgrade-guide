@@ -1,16 +1,17 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-2-flares-1',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-30,length:64,height:28,cornerRadius:3.2,driverProjection:6.5,passengerProjection:4,driverWindow:{centerY:120.5,centerZ:-25.5,length:25,height:10}}};
-export function buildShell({includeFlares=false}={}){
+export const SHELL_SPEC={revision:'shell-3-side-glazing',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20}};
+export function buildShell({includeFlares=false,includeCamperWindows=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
- const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name==='Tinted glass'?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
- const paint=material('Blue-gray paint · photo estimate','#829bac',.22,.38),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
+ const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
+ const paint=material('Blue-gray paint · photo estimate','#7c9bb2',.22,.38),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
+ const camperGlass=material('Camper glass','#36444c',.32,.20);camperGlass.clearcoat=1;camperGlass.clearcoatRoughness=.12;camperGlass.envMapIntensity=1.7;
  paint.envMapIntensity=.75;
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
- let buildingFlare=false;
+ let buildingFlare=false,buildingCamperWindow=false;
  const V=(x,y,z)=>new T.Vector3(x,y,z);
- function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.sleepingFlare=buildingFlare;group.add(o);return o;}
+ function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.sleepingFlare=buildingFlare;o.userData.camperWindow=buildingCamperWindow;group.add(o);return o;}
  function patch(fn,nu,nv,mat,name){const pos=[],uv=[],idx=[];for(let j=0;j<=nv;j++)for(let i=0;i<=nu;i++){pos.push(...fn(i/nu,j/nv));uv.push(i/nu,j/nv);}for(let j=0;j<nv;j++)for(let i=0;i<nu;i++){const a=j*(nu+1)+i,b=a+nu+1;idx.push(a,b,a+1,a+1,b,b+1);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return add(g,mat,name);}
  function tube(points,r,mat=crease,closed=false,name){const curve=new T.CatmullRomCurve3(points.map(p=>V(...p)),closed,'catmullrom',0);return add(new T.TubeGeometry(curve,Math.max(8,Math.min(256,points.length*2)),r,6,closed),mat,name);}
  function cyl(a,b,r,mat,n=32,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av);const o=add(new T.CylinderGeometry(r2,r,d.length(),n),mat);o.position.copy(av.add(bv).multiplyScalar(.5));o.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());return o;}
@@ -33,14 +34,15 @@ export function buildShell({includeFlares=false}={}){
  // Shared loft joins the roof and both side panels without floating glass planes.
  patch((u,v)=>{const y=-76.5+232.5*v,x=(2*u-1)*topW(y);return [30+x,y,roof(x,y)];},56,200,paint,'Roof, hood and cowl continuous loft');
  for(const sign of [-1,1]){
-  patch((u,v)=>{const y=-76.5+232.5*u,z=T.MathUtils.lerp(wheelBottom(y),top(y)-edgeDrop(y),v);return [30+sign*sideWidth(y,z),y,z];},400,60,paint,'Body side with open wheel arches');
+  // Keep upper-panel rows level: wheel-arch sampling must not ripple the stamped-panel normals.
+  patch((u,v)=>{const y=-76.5+232.5*u,split=Math.min(-60,top(y)-edgeDrop(y)-8),z=v<1/3?T.MathUtils.lerp(wheelBottom(y),split,v*3):T.MathUtils.lerp(split,top(y)-edgeDrop(y),(v-1/3)*1.5);return [30+sign*sideWidth(y,z),y,z];},400,60,paint,'Body side with open wheel arches');
   // Molding follows the curved body and stops precisely at each arch opening.
   patch((u,v)=>{const y=-76.5+232.5*u,z=T.MathUtils.lerp(Math.max(-82,wheelBottom(y)),Math.max(-73,wheelBottom(y)),v);return [30+sign*(sideWidth(y,z)+.13),y,z];},470,4,plastic,'Side protective molding');
   const sp=(y,z,offset=.11)=>[30+sign*(sideWidth(y,z)+offset),y,z];
   const seam=(pts,r=.075,mat=crease,closed=false,offset=.16)=>{const dense=[];const pp=closed?[...pts,pts[0]]:pts;for(let k=0;k<pp.length-1;k++){const a=pp[k],b=pp[k+1],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/.65);for(let j=0;j<n;j++)dense.push(sp(a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n,offset));}dense.push(sp(...pp.at(-1),offset));return tube(dense,r,mat,closed);};
   patch((u,v)=>{const y=-76.5+38*u,upper=-65-8*step(-60,-38.5,y),bottom=wheelBottom(y),z=T.MathUtils.lerp(bottom,Math.max(bottom,upper),v);return [30+sign*(sideWidth(y,z)+.18),y,z];},90,25,plastic,'Wraparound front bumper');
   for(const axle of [-36,108]){const pts=[];for(let a=0;a<=Math.PI;a+=Math.PI/60){const y=axle+18.4*Math.cos(a),z=-87.8+18.4*Math.sin(a);pts.push(sp(y,z,.14));}tube(pts,.3,paint,false,'Rolled wheel arch lip');}
-  // Front door shut line, no additional camper glazing.
+  // Front door shut line and cab glazing.
   seam([[-26,-40],[-26,-63],[-25,-67],[-20,-72],[-16,-79],[-15,-90],[12,-90],[15,-88],[16,-82],[18,-67],[18,-17],[-1,-18],[-11,-22],[-26,-40]],.07,crease,true);
   const win=[[-32.2,-51.5],[-31,-47],[-10,-23],[-4,-20.4],[9.5,-19.9],[12,-21],[11,-40.5],[8.5,-43.1],[-22,-50.8]];
   curvedFace(win,p=>sp(p[0],p[1],.24),black,'Cab glass gasket',.12);
@@ -93,16 +95,28 @@ export function buildShell({includeFlares=false}={}){
  }
  curvedFace([[-24,-79],[-18,-78.7],[18,-78.7],[24,-79],[18,-83.6],[-18,-83.6]],p=>fp(...p,.24),black,'Lower air intake',.2);for(let z=-79.7;z>-83.5;z-=.65)tube([fp(-18,z,.35),fp(0,z,.35),fp(18,z,.35)],.09,plastic);
  box([30,-77.05,-86],[22,.6,5.1],plastic,.4);box([30,-77.45,-86],[20.3,.2,4],steel,.25);
+ // Separate camper glazing, estimated from owner side photographs. Front lower corners
+ // are broader than the rear corners; the opening panes sit forward in both windows.
+ if(includeCamperWindows){buildingCamperWindow=true;const w=SHELL_SPEC.camperWindows;
+  for(const sign of [-1,1]){
+   const points=[[w.frontY,w.topZ-2],[w.frontY+.15,w.topZ-1.24],[w.frontY+.59,w.topZ-.59],[w.frontY+1.24,w.topZ-.15],[w.frontY+2,w.topZ],[w.frontY+4,w.topZ],[w.rearY-2,w.topZ],[w.rearY,w.topZ-1],[w.rearY,w.topZ-4],[w.rearY,w.bottomZ+.8],[w.rearY-1,w.bottomZ],[w.frontY+10,w.bottomZ],[w.frontY+5,w.bottomZ+.3],[w.frontY+2,w.bottomZ+2],[w.frontY+.5,w.bottomZ+6],[w.frontY,w.bottomZ+14]];
+   const project=(p,d)=>[30+sign*(sideWidth(...p)+d),p[0],p[1]],cy=(w.frontY+w.rearY)/2,cz=(w.topZ+w.bottomZ)/2;
+   curvedFace(points,p=>project(p,.20),black,'Camper window bonded edge',.08);
+   curvedFace(points.map(p=>[cy+(p[0]-cy)*.990,cz+(p[1]-cz)*.980]),p=>project(p,.29),camperGlass,sign<0?'Driver middle glass':'Passenger sliding-door glass',.08);
+   const vent=[];const r=1.5,ventY=sign<0?w.driverVentCenterY:w.passengerVentCenterY,ventZ=sign<0?w.driverVentCenterZ:w.passengerVentCenterZ;for(const [y,z,a0] of [[ventY+w.ventLength/2-r,ventZ+w.ventHeight/2-r,0],[ventY-w.ventLength/2+r,ventZ+w.ventHeight/2-r,Math.PI/2],[ventY-w.ventLength/2+r,ventZ-w.ventHeight/2+r,Math.PI],[ventY+w.ventLength/2-r,ventZ-w.ventHeight/2+r,Math.PI*1.5]])for(let j=0;j<=6;j++){const a=a0+j*Math.PI/12;vent.push([y+r*Math.cos(a),z+r*Math.sin(a)]);}
+   curvedFace(vent,p=>project(p,.36),camperGlass,'Camper opening pane',.08);tube(vent.map(p=>project(p,.43)),.055,crease,true,'Camper opening-pane seal');
+  }buildingCamperWindow=false;
+ }
  // Rear sleeping flares: owner-photo estimates, independently removable from the stock shell.
  if(includeFlares){buildingFlare=true;const f=SHELL_SPEC.sleepingFlares;
   for(const sign of [-1,1]){
-   const depth=sign<0?f.driverProjection:f.passengerProjection;
-   const flareX=(y,z)=>{const d=roundedRectDistance(y,z,f.centerY,f.centerZ,f.length,f.height,f.cornerRadius),blend=step(0,-5,d),face=sideWidth(f.centerY,f.centerZ)+depth+.1*(1-((y-f.centerY)/(f.length/2))**2);return sideWidth(y,z)+.08+(face-sideWidth(y,z)-.08)*blend;};
+   const depth=sign<0?f.driverProjection:f.passengerProjection,frontDepth=sign<0?f.driverFrontProjection:f.passengerFrontProjection;
+   const flareX=(y,z)=>{const d=roundedRectDistance(y,z,f.centerY,f.centerZ,f.length,f.height,f.cornerRadius),blend=step(0,-5,d),t=T.MathUtils.clamp((y-(f.centerY-f.length/2+4))/(f.length-10),0,1),face=sideWidth(f.centerY,f.centerZ)+T.MathUtils.lerp(frontDepth,depth,t);return sideWidth(y,z)+.08+(face-sideWidth(y,z)-.08)*blend;};
    patch((u,v)=>{const z=f.centerZ-f.height/2+v*f.height,edge=Math.max(0,Math.abs(z-f.centerZ)-(f.height/2-f.cornerRadius)),half=f.length/2-f.cornerRadius+Math.sqrt(Math.max(0,f.cornerRadius**2-edge**2)),y=f.centerY+(2*u-1)*half;return[30+sign*flareX(y,z),y,z];},80,40,paint,sign<0?'Driver sleeping flare':'Passenger sleeping flare');
    // Thin bonded perimeter follows the body rather than floating off the flare shoulder.
    const edge=[];for(const [cy,cz,a0] of [[f.centerY+f.length/2-f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,0],[f.centerY-f.length/2+f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,Math.PI/2],[f.centerY-f.length/2+f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI],[f.centerY+f.length/2-f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16,y=cy+f.cornerRadius*Math.cos(a),z=cz+f.cornerRadius*Math.sin(a);edge.push([30+sign*(flareX(y,z)+.02),y,z]);}tube(edge,.045,crease,true,'Flare bonded perimeter');
-   if(sign<0){const w=f.driverWindow,pts=[];for(const [cy,cz,a0] of [[w.centerY+w.length/2-2.6,w.centerZ+w.height/2-2.6,0],[w.centerY-w.length/2+2.6,w.centerZ+w.height/2-2.6,Math.PI/2],[w.centerY-w.length/2+2.6,w.centerZ-w.height/2+2.6,Math.PI],[w.centerY+w.length/2-2.6,w.centerZ-w.height/2+2.6,Math.PI*1.5]])for(let j=0;j<4;j++){const a=a0+j*Math.PI/8;pts.push([cy+2.6*Math.cos(a),cz+2.6*Math.sin(a)]);}
-    const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.90,w.centerZ+(p[1]-w.centerZ)*.79]),p=>project(p,.18),glass,'Sleeping flare tinted window',.1);
+   if(sign<0){const w=f.driverWindow,pts=[],r=w.cornerRadius;for(const [cy,cz,a0] of [[w.centerY+w.length/2-r,w.centerZ+w.height/2-r,0],[w.centerY-w.length/2+r,w.centerZ+w.height/2-r,Math.PI/2],[w.centerY-w.length/2+r,w.centerZ-w.height/2+r,Math.PI],[w.centerY+w.length/2-r,w.centerZ-w.height/2+r,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16;pts.push([cy+r*Math.cos(a),cz+r*Math.sin(a)]);}
+    const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.95,w.centerZ+(p[1]-w.centerZ)*.87]),p=>project(p,.18),camperGlass,'Sleeping flare tinted window',.1);
    }
   }buildingFlare=false;
  }
@@ -165,10 +179,11 @@ export function buildShell({includeFlares=false}={}){
  for(let j=0;j<=128;j++)for(const [k,edge] of [[0,sideEdges[0]],[128,sideEdges[1]]])seamMax=Math.max(seamMax,distance(point(rearMesh,j*129+k),edge));
  group.userData.rearBoundaryMaxDistance=seamMax;
  const seal=group.children.find(o=>o.name==='Windscreen seal'),sa=seal.geometry.attributes.position,topZ=[];for(let i=sa.count-80;i<sa.count;i++){const p=point(seal,i);if(Math.abs(p.x-30)<25&&p.z>-25)topZ.push(p.z);}group.userData.windshieldTopVariation=Math.max(...topZ)-Math.min(...topZ);
+ group.userData.camperWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver middle glass'||o.name==='Passenger sliding-door glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
  // Batch static meshes by material: the same geometry with a small number of draw calls.
  const originals=[...group.children],buckets=new Map();group.updateMatrixWorld(true);
- for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare);let b=buckets.get(key);if(!b){b={material:o.material,flare:Boolean(o.userData.sleepingFlare),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
- for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.material.name);o.userData.sleepingFlare=b.flare;}
+ for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare)+'|'+Boolean(o.userData.camperWindow);let b=buckets.get(key);if(!b){b={material:o.material,flare:Boolean(o.userData.sleepingFlare),camperWindow:Boolean(o.userData.camperWindow),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
+ for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.camperWindow?'Camper window · '+b.material.name:b.material.name);o.userData.sleepingFlare=b.flare;o.userData.camperWindow=b.camperWindow;}
  group.userData.originalParts=originals.length;group.userData.drawCalls=group.children.length;
  return {group,materials:mats};
 }

@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-2-flares-1",
+  "revision": "shell-3-side-glazing",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof shell with rear sleeping flares",
+  "subject": "Sprinter 144-inch high-roof shell with sleeping flares and camper side glazing",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -47,59 +47,121 @@
     "roofDatumZ": 0
   },
   "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Stock exterior reconstruction plus rear sleeping flares: driver-side small tinted window and solid passenger-side face. Other camper windows, rack, awning, ladder, carriers, aftermarket wheels and interior remain deferred.",
+  "scope": "Stock exterior reconstruction plus rear sleeping flares, small driver-side flare window, driver-side middle camper window and passenger sliding-door window with front-positioned opening panes. Rack, awning, ladder, carriers, aftermarket wheels and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
     "bodyPaint": {
-      "description": "Blue-gray revised after owner feedback that previous paint was too pale and neutral",
-      "baseColorSRGB": "#829bac",
+      "description": "Blue-gray shifted slightly further toward blue at owner request",
+      "baseColorSRGB": "#7c9bb2",
       "status": "estimated",
-      "evidence": "Compared actual passenger-side browser render with owner photograph; increased blue chroma and reduced neutral reflections. Appearance estimate, not factory paint-code or calibrated color match."
+      "evidence": "Compared actual driver/passenger WebGL views with owner photographs. Appearance estimate under studio lighting, not a calibrated color or factory paint code."
     }
   },
   "verification": {
-    "method": "Five orthographic reference/render overlays using uniform scale and translation, plus two oblique rendered views and independent agent review. Reference imagery remains private.",
+    "method": "Five orthographic reference/render overlays using uniform scale and translation, plus two oblique rendered views and independent agent review. Reference imagery remains private. The flare/glazing revision also uses two local owner-photo/render overlays with uniform scale and translation based on body seams, rear body line and gutter. Camera perspective remains unmatched; these overlays are visual checks only.",
     "wheelbaseInRenderedMesh": 144,
     "nominalLengthInRenderedMesh": 234,
     "rearBoundaryMaxMeshDistance": 0.03847,
     "windshieldTopCentralSpanZVariation": 0,
     "meaning": "Mesh continuity and software scale checks only. They do not establish physical accuracy or a manufacturing tolerance.",
-    "remainingDifferences": "Fine grille, lamps, stamped panel relief, seams, tire size and stance remain approximations. Source renders are not calibrated CAD drawings."
+    "remainingDifferences": "Fine grille, lamps, stamped panel relief, seams, tire size and stance remain approximations. Source renders are not calibrated CAD drawings. Passenger sliding-door guide detail and rear-edge slant remain approximate."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
     "status": "estimated",
-    "evidence": "Owner driver/passenger/rear photos inspected in pixels. Rounded rear-quarter pods, small driver-side window and blank passenger-side face are visible; measurements and exact product identity are unverified.",
+    "evidence": "Owner driver/passenger/rear photos inspected in pixels and compared with rendered overlays. Passenger forward edge is adjacent to the sliding-door rear seam. Small driver window retains its fore/aft position and uses a taller rounded outline. Product photos support a rearward increase in projection; installed product identity and actual dimensions are unverified.",
     "units": "in",
     "parametricInputs": {
       "centerY": 112.5,
-      "centerZ": -30,
+      "centerZ": -32.5,
       "length": 64,
-      "height": 28,
+      "height": 27.625,
       "cornerRadius": 3.2,
-      "driverProjection": 6.5,
-      "passengerProjection": 4,
+      "driverProjection": 5.25,
+      "passengerProjection": 3.25,
+      "driverFrontProjection": 1.4,
+      "passengerFrontProjection": 0.8,
       "driverWindow": {
         "centerY": 120.5,
-        "centerZ": -25.5,
+        "centerZ": -28.5,
         "length": 25,
-        "height": 10
+        "height": 11.4,
+        "cornerRadius": 3.4
       }
     },
     "renderedBoundsAfterSharedBodyWarps": {
       "isBox3": true,
       "min": {
-        "x": -13.968981742858887,
-        "y": 80.46045684814453,
-        "z": -44.040809631347656
+        "x": -12.63223934173584,
+        "y": 80.46092224121094,
+        "z": -46.352901458740234
       },
       "max": {
-        "x": 71.28897857666016,
-        "y": 143.69813537597656,
-        "z": -15.95889663696289
+        "x": 70.63224029541016,
+        "y": 143.7402801513672,
+        "z": -18.646867752075195
       }
     },
-    "limits": "Inputs are visual reconstruction estimates; shared body contour transforms affect final bounds. Do not use them for cutting, ordering parts or mounting. Visibility toggle is a view control, not part of roof-layout JSON."
+    "limits": "Inputs are visual reconstruction estimates; shared body contour transforms affect final bounds. Do not use them for cutting, ordering parts or mounting. Visibility toggle is a view control, not part of roof-layout JSON.",
+    "manufacturerComparison": {
+      "product": "Flarespace Classic Sprinter 144",
+      "url": "https://flarespace.com/products/mercedessprinter-144flares",
+      "status": "manufacturer reference; installed product unconfirmed",
+      "publishedDimensions": {
+        "length": 64,
+        "height": 27.625,
+        "regularMaximumDepth": 3.25,
+        "extendedDriverMaximumDepth": 5.25
+      },
+      "depthDefinition": "At the deepest part, per manufacturer. Extended passenger flare is not offered because of sliding-door interference.",
+      "application": "Footprint and maximum-depth values guide this estimated reconstruction. Front depths, taper angle, placement, corner radii and window dimensions remain photo-based estimates; they are not published specifications for this van."
+    }
+  },
+  "camperWindows": {
+    "enabledByDefault": true,
+    "status": "estimated",
+    "evidence": "Driver-side middle and passenger sliding-door glass outlines inspected in owner photos. Front lower corners are broader; small opening panes sit toward the front. Driver rear edge is partly hidden by the ladder.",
+    "parametricInputs": {
+      "frontY": 24,
+      "rearY": 79.8,
+      "topZ": -18.5,
+      "bottomZ": -49,
+      "driverVentCenterY": 43,
+      "passengerVentCenterY": 41.5,
+      "driverVentCenterZ": -32.5,
+      "passengerVentCenterZ": -32,
+      "ventLength": 16,
+      "ventHeight": 20
+    },
+    "renderedGlassBounds": {
+      "Driver middle glass": {
+        "isBox3": true,
+        "min": {
+          "x": -8.720656394958496,
+          "y": 24.272253036499023,
+          "z": -48.70603561401367
+        },
+        "max": {
+          "x": -6.525252819061279,
+          "y": 79.54446411132812,
+          "z": -18.793384552001953
+        }
+      },
+      "Passenger sliding-door glass": {
+        "isBox3": true,
+        "min": {
+          "x": 66.52525329589844,
+          "y": 24.272253036499023,
+          "z": -48.70603561401367
+        },
+        "max": {
+          "x": 68.72065734863281,
+          "y": 79.54446411132812,
+          "z": -18.793384552001953
+        }
+      }
+    },
+    "limits": "Placement and dimensions are visual estimates, not window-cutout measurements. Independent visibility control is separate from roof-layout JSON."
   }
 }
