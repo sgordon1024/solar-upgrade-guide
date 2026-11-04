@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-2-overlay-1",
+  "revision": "shell-2-flares-1",
   "units": "in",
-  "subject": "Sprinter 144-inch wheelbase high-roof cargo exterior",
+  "subject": "Sprinter 144-inch high-roof shell with rear sleeping flares",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -47,7 +47,7 @@
     "roofDatumZ": 0
   },
   "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Stock exterior appearance only. No camper windows, roof rack, awning, ladder, carrier or engine/interior detail.",
+  "scope": "Stock exterior reconstruction plus rear sleeping flares: driver-side small tinted window and solid passenger-side face. Other camper windows, rack, awning, ladder, carriers, aftermarket wheels and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -66,5 +66,40 @@
     "windshieldTopCentralSpanZVariation": 0,
     "meaning": "Mesh continuity and software scale checks only. They do not establish physical accuracy or a manufacturing tolerance.",
     "remainingDifferences": "Fine grille, lamps, stamped panel relief, seams, tire size and stance remain approximations. Source renders are not calibrated CAD drawings."
+  },
+  "sleepingFlares": {
+    "enabledByDefault": true,
+    "status": "estimated",
+    "evidence": "Owner driver/passenger/rear photos inspected in pixels. Rounded rear-quarter pods, small driver-side window and blank passenger-side face are visible; measurements and exact product identity are unverified.",
+    "units": "in",
+    "parametricInputs": {
+      "centerY": 112.5,
+      "centerZ": -30,
+      "length": 64,
+      "height": 28,
+      "cornerRadius": 3.2,
+      "driverProjection": 6.5,
+      "passengerProjection": 4,
+      "driverWindow": {
+        "centerY": 120.5,
+        "centerZ": -25.5,
+        "length": 25,
+        "height": 10
+      }
+    },
+    "renderedBoundsAfterSharedBodyWarps": {
+      "isBox3": true,
+      "min": {
+        "x": -13.968981742858887,
+        "y": 80.46045684814453,
+        "z": -44.040809631347656
+      },
+      "max": {
+        "x": 71.28897857666016,
+        "y": 143.69813537597656,
+        "z": -15.95889663696289
+      }
+    },
+    "limits": "Inputs are visual reconstruction estimates; shared body contour transforms affect final bounds. Do not use them for cutting, ordering parts or mounting. Visibility toggle is a view control, not part of roof-layout JSON."
   }
 }

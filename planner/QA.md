@@ -67,3 +67,13 @@ Compared browser-generated screenshots with the private reference pixels: driver
 - Changed paint from neutral gray to bluer `#829bac`, with lower neutral environment reflection and higher roughness. Compared actual rendered passenger-side appearance with the owner photograph. This is an appearance adjustment under synthetic lighting, not a verified paint code.
 - Desktop and 375 × 844 Chrome device emulation show the revised model and working Passenger/Front controls. No visible overflow or observed app console error; a Chrome extension still emits its unrelated inspector permissions warning. Existing storage/import/export code is unchanged; earlier functional results above remain historical evidence.
 - Reference photos, overlays and image metadata remain private and excluded from publication. Remaining differences include grille/lamp fine detail, stamped-panel relief, seams, tires and suspension stance. No exact-CAD claim, physical fit validation or mounting tolerance is established.
+
+## Rear sleeping flares — 4 November 2026 UTC
+
+- Inspected owner driver/passenger and rear photos in pixels. Added original rounded flare surfaces with a small tinted window on the driver side and blank painted passenger face. Photo-estimated parameters and resulting model bounds are recorded in shell specs; no product identification or physical fit claim.
+- Kept the stock shell independently visible using the checked-by-default Sleeping flares toggle. Roof layout data, validation and storage code are unchanged.
+- Stock geometry tests remain passing. Additional checks verify finite flare vertices, rear-quarter bounds, retained 234-inch envelope, separate flare material batches and tinted window presence. With both flares the model has 401,540 triangles and 16 draw calls; hiding them restores 12 visible stock-shell batches.
+- Actual WebGL driver, passenger, rear and oblique renders compared privately against the owner photos. Desktop toggle hides/restores the flares without removing the underlying shell. New controls and geometry were also checked at 375 × 844 device emulation.
+- The stock-shell reference overlay viewer remains private and intentionally excludes the added flares because the stock reference renders do not show them. The body/flared-surface models are visual approximations, not CAD fit certification.
+
+- Independent flare review confirmed the window/blank-face side assignment and found no gross intersection. Applied its photo-based forward placement and window-width/position refinements, then softened the shoulders. Projection depth remains an unverified estimate.

@@ -1,15 +1,16 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-2-overlay-1',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33};
-export function buildShell(){
+export const SHELL_SPEC={revision:'shell-2-flares-1',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:103,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-30,length:64,height:28,cornerRadius:3.2,driverProjection:6.5,passengerProjection:4,driverWindow:{centerY:120.5,centerZ:-25.5,length:25,height:10}}};
+export function buildShell({includeFlares=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name==='Tinted glass'?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
  const paint=material('Blue-gray paint · photo estimate','#829bac',.22,.38),crease=material('Panel seam','#525957',.1,.65),plastic=material('Textured bumper','#24282a',.1,.6),black=material('Recess','#101619',0,.65),rubber=material('Tire rubber','#202426',0,.92),glass=material('Tinted glass','#52656b',.38,.21),chrome=material('Bright metal','#c9d1d3',.95,.19),steel=material('Steel wheels','#a0a8aa',.75,.35),light=material('Headlamp lens','#c6d5da',.65,.16),led=material('LED guides','#e7f2f4',.2,.2),red=material('Red lens','#9e101b',.25,.23),amber=material('Side reflectors','#d89439',.2,.28);
  paint.envMapIntensity=.75;
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
+ let buildingFlare=false;
  const V=(x,y,z)=>new T.Vector3(x,y,z);
- function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;group.add(o);return o;}
+ function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.sleepingFlare=buildingFlare;group.add(o);return o;}
  function patch(fn,nu,nv,mat,name){const pos=[],uv=[],idx=[];for(let j=0;j<=nv;j++)for(let i=0;i<=nu;i++){pos.push(...fn(i/nu,j/nv));uv.push(i/nu,j/nv);}for(let j=0;j<nv;j++)for(let i=0;i<nu;i++){const a=j*(nu+1)+i,b=a+nu+1;idx.push(a,b,a+1,a+1,b,b+1);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return add(g,mat,name);}
  function tube(points,r,mat=crease,closed=false,name){const curve=new T.CatmullRomCurve3(points.map(p=>V(...p)),closed,'catmullrom',0);return add(new T.TubeGeometry(curve,Math.max(8,Math.min(256,points.length*2)),r,6,closed),mat,name);}
  function cyl(a,b,r,mat,n=32,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av);const o=add(new T.CylinderGeometry(r2,r,d.length(),n),mat);o.position.copy(av.add(bv).multiplyScalar(.5));o.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());return o;}
@@ -92,6 +93,19 @@ export function buildShell(){
  }
  curvedFace([[-24,-79],[-18,-78.7],[18,-78.7],[24,-79],[18,-83.6],[-18,-83.6]],p=>fp(...p,.24),black,'Lower air intake',.2);for(let z=-79.7;z>-83.5;z-=.65)tube([fp(-18,z,.35),fp(0,z,.35),fp(18,z,.35)],.09,plastic);
  box([30,-77.05,-86],[22,.6,5.1],plastic,.4);box([30,-77.45,-86],[20.3,.2,4],steel,.25);
+ // Rear sleeping flares: owner-photo estimates, independently removable from the stock shell.
+ if(includeFlares){buildingFlare=true;const f=SHELL_SPEC.sleepingFlares;
+  for(const sign of [-1,1]){
+   const depth=sign<0?f.driverProjection:f.passengerProjection;
+   const flareX=(y,z)=>{const d=roundedRectDistance(y,z,f.centerY,f.centerZ,f.length,f.height,f.cornerRadius),blend=step(0,-5,d),face=sideWidth(f.centerY,f.centerZ)+depth+.1*(1-((y-f.centerY)/(f.length/2))**2);return sideWidth(y,z)+.08+(face-sideWidth(y,z)-.08)*blend;};
+   patch((u,v)=>{const z=f.centerZ-f.height/2+v*f.height,edge=Math.max(0,Math.abs(z-f.centerZ)-(f.height/2-f.cornerRadius)),half=f.length/2-f.cornerRadius+Math.sqrt(Math.max(0,f.cornerRadius**2-edge**2)),y=f.centerY+(2*u-1)*half;return[30+sign*flareX(y,z),y,z];},80,40,paint,sign<0?'Driver sleeping flare':'Passenger sleeping flare');
+   // Thin bonded perimeter follows the body rather than floating off the flare shoulder.
+   const edge=[];for(const [cy,cz,a0] of [[f.centerY+f.length/2-f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,0],[f.centerY-f.length/2+f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,Math.PI/2],[f.centerY-f.length/2+f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI],[f.centerY+f.length/2-f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16,y=cy+f.cornerRadius*Math.cos(a),z=cz+f.cornerRadius*Math.sin(a);edge.push([30+sign*(flareX(y,z)+.02),y,z]);}tube(edge,.045,crease,true,'Flare bonded perimeter');
+   if(sign<0){const w=f.driverWindow,pts=[];for(const [cy,cz,a0] of [[w.centerY+w.length/2-2.6,w.centerZ+w.height/2-2.6,0],[w.centerY-w.length/2+2.6,w.centerZ+w.height/2-2.6,Math.PI/2],[w.centerY-w.length/2+2.6,w.centerZ-w.height/2+2.6,Math.PI],[w.centerY+w.length/2-2.6,w.centerZ-w.height/2+2.6,Math.PI*1.5]])for(let j=0;j<4;j++){const a=a0+j*Math.PI/8;pts.push([cy+2.6*Math.cos(a),cz+2.6*Math.sin(a)]);}
+    const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.90,w.centerZ+(p[1]-w.centerZ)*.79]),p=>project(p,.18),glass,'Sleeping flare tinted window',.1);
+   }
+  }buildingFlare=false;
+ }
  // The rear skin shares the exact roof/side terminal section. No separate floating plate.
  const rearWidth=z=>z>top(156)-edgeDrop(156)?topW(156)*Math.pow(Math.max(0,(top(156)-z)/edgeDrop(156)),.1):sideWidth(156,z);
  const rearPress=(x,z)=>roundedRectDistance(x,z,0,-33.4,63.4,32.2,T.MathUtils.lerp(4.5,12,step(-25,-41,z)));
@@ -153,8 +167,8 @@ export function buildShell(){
  const seal=group.children.find(o=>o.name==='Windscreen seal'),sa=seal.geometry.attributes.position,topZ=[];for(let i=sa.count-80;i<sa.count;i++){const p=point(seal,i);if(Math.abs(p.x-30)<25&&p.z>-25)topZ.push(p.z);}group.userData.windshieldTopVariation=Math.max(...topZ)-Math.min(...topZ);
  // Batch static meshes by material: the same geometry with a small number of draw calls.
  const originals=[...group.children],buckets=new Map();group.updateMatrixWorld(true);
- for(const o of originals){if(!o.isMesh)continue;let b=buckets.get(o.material);if(!b){b={positions:[],normals:[],indices:[],count:0};buckets.set(o.material,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
- for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);add(g,m,m.name);}
+ for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare);let b=buckets.get(key);if(!b){b={material:o.material,flare:Boolean(o.userData.sleepingFlare),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
+ for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.material.name);o.userData.sleepingFlare=b.flare;}
  group.userData.originalParts=originals.length;group.userData.drawCalls=group.children.length;
  return {group,materials:mats};
 }

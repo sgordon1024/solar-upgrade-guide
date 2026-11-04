@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {buildShell,SHELL_SPEC} from './shell-model.js?v=overlay2';
+import {buildShell,SHELL_SPEC} from './shell-model.js?v=flares1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 // Original geometry traced by visual reference, not a scan or a dimensional survey.
 // World units: inches; X passengerward, Y rearward, Z upward, roof datum Z=0.
@@ -46,7 +46,7 @@ function update(s,id){current=s;selected=id;clear(equipment);clear(labels);clear
 }
 let ground,shell;
 const viewIds=['orbit','front','side','passenger','rear','roof','top'];
-function syncVisibility(){const show=$('#show-equipment').checked;equipment.visible=show;labels.visible=show&&$('#show-labels').checked;boundary.visible=(show&&$('#show-envelope').checked)||mode==='top';dimensions.visible=$('#show-dimensions').checked&&mode!=='top';document.body.classList.toggle('planning-mode',show);body.visible=mode!=='top';ground.visible=mode!=='top';}
+function syncVisibility(){if(shell)for(const part of shell.group.children)if(part.userData.sleepingFlare)part.visible=$('#show-flares').checked;const show=$('#show-equipment').checked;equipment.visible=show;labels.visible=show&&$('#show-labels').checked;boundary.visible=(show&&$('#show-envelope').checked)||mode==='top';dimensions.visible=$('#show-dimensions').checked&&mode!=='top';document.body.classList.toggle('planning-mode',show);body.visible=mode!=='top';ground.visible=mode!=='top';}
 function requestRender(){if(!renderer)return;camera.up.set(0,['top','roof'].includes(mode)?1:0,['top','roof'].includes(mode)?0:1);camera.lookAt(controls.target);renderer.render(scene,camera);}
 function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);const aspect=w/h;const span=mode==='top'?Math.max(current.roof.length+36,(current.roof.width+40)/aspect):['front','rear'].includes(mode)?Math.max(137,128/aspect):['side','passenger'].includes(mode)?Math.max(140,280/aspect):mode==='roof'?Math.max(265,135/aspect):Math.max(200,285/aspect);camera.left=-span*aspect/2;camera.right=-camera.left;camera.top=span/2;camera.bottom=-span/2;camera.updateProjectionMatrix();requestRender();}
 function preset(v,immediate=false){mode=v;cancelAnimationFrame(anim);for(const n of viewIds)$('#'+n).setAttribute('aria-pressed',String(n===v));
@@ -62,13 +62,13 @@ try{
  camera=new T.OrthographicCamera(-180,180,180,-180,.1,2000);camera.up.set(0,0,1);controls=new OrbitControls(camera,canvas);controls.enableDamping=false;controls.minZoom=.5;controls.maxZoom=5;controls.maxPolarAngle=Math.PI*.88;controls.enablePan=true;controls.addEventListener('change',requestRender);controls.addEventListener('start',()=>cancelAnimationFrame(anim));
  scene.add(new T.HemisphereLight(0xe3edf3,0x6b7164,1.5));const key=new T.DirectionalLight(0xfff7e9,3);key.position.set(140,-180,260);key.castShadow=true;key.shadow.mapSize.set(1536,1536);Object.assign(key.shadow.camera,{left:-200,right:200,top:200,bottom:-200,far:800});key.shadow.bias=-.00015;key.shadow.normalBias=.25;scene.add(key);const fill=new T.DirectionalLight(0xdce7f1,.9);fill.position.set(-180,160,120);scene.add(fill);studio();
  ground=mesh(new T.PlaneGeometry(1300,1300),new T.ShadowMaterial({opacity:.16}),[30,-40,-103.1],scene);ground.castShadow=false;
- shell=buildShell();body.add(shell.group);dimension([-19,-36,-102],[-19,108,-102],'144 in · axle spacing',[-23,36,-107]);dimension([-9.75,166,-91],[69.75,166,-91],'79.5 in · estimated body',[30,173,-91]);
+ shell=buildShell({includeFlares:true});body.add(shell.group);dimension([-19,-36,-102],[-19,108,-102],'144 in · axle spacing',[-23,36,-107]);dimension([-9.75,166,-91],[69.75,166,-91],'79.5 in · estimated body',[30,173,-91]);
  window.rooflabView={update};update(window.rooflabState.state,window.rooflabState.selected);
  new ResizeObserver(resize).observe(canvas);resize();preset('orbit',true);
  for(const v of viewIds)$('#'+v).onclick=()=>{if(v==='top')$('#show-equipment').checked=true;preset(v);};$('#home').onclick=()=>preset('orbit');
  for(const [id,m] of [['zoomin',1.15],['zoomout',1/1.15]])$('#'+id).onclick=()=>{camera.zoom=T.MathUtils.clamp(camera.zoom*m,.5,5);camera.updateProjectionMatrix();requestRender();};
  for(const id of ['show-envelope','show-labels','show-dimensions'])$('#'+id).onchange=()=>{syncVisibility();requestRender();};
- $('#show-equipment').onchange=()=>{if(!$('#show-equipment').checked&&mode==='top')preset('orbit');syncVisibility();resize();};
+ $('#show-flares').onchange=()=>{syncVisibility();requestRender();};$('#show-equipment').onchange=()=>{if(!$('#show-equipment').checked&&mode==='top')preset('orbit');syncVisibility();resize();};
  $('#show-wireframe').onchange=()=>{for(const m of Object.values(shell.materials))m.wireframe=$('#show-wireframe').checked;requestRender();};
  canvas.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-','='].includes(e.key))return;e.preventDefault();if(['top','roof'].includes(mode)&&e.key.startsWith('Arrow'))return;cancelAnimationFrame(anim);if(['+','-','='].includes(e.key)){camera.zoom=T.MathUtils.clamp(camera.zoom*(e.key==='-'?1/1.1:1.1),.5,5);camera.updateProjectionMatrix();}else{const offset=camera.position.clone().sub(controls.target);const spherical=new T.Spherical().setFromVector3(V(offset.x,offset.z,offset.y));if(e.key==='ArrowLeft')spherical.theta-=.12;if(e.key==='ArrowRight')spherical.theta+=.12;if(e.key==='ArrowUp')spherical.phi-=.1;if(e.key==='ArrowDown')spherical.phi+=.1;spherical.makeSafe();const p=new T.Vector3().setFromSpherical(spherical);camera.position.copy(controls.target).add(V(p.x,p.z,p.y));controls.update();}requestRender();};
  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();status.textContent='3D graphics paused. Reload to restore; your layout remains saved.';});status.textContent='Sprinter 144″ high roof · reference reconstruction · unmeasured surfaces estimated';

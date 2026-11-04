@@ -6,11 +6,13 @@ An original browser-based reconstruction of a 144-inch-wheelbase, high-roof Spri
 
 ## Current scope and accuracy
 
-The initial view shows the **bare stock exterior**. Camper windows, aftermarket wheels, rack, awning, ladders and rear carrier are deferred. Body paint is a bluer gray revised after owner feedback and checked in the actual passenger-side render against the owner photo; the factory paint code has not been verified. Existing roof layouts remain saved; enable **Show roof equipment** to return to editing them.
+The initial view shows the **Sprinter shell with rear sleeping flares**. The driver-side flare includes the small rounded tinted window visible in the owner photos; the passenger-side flare has a solid painted face. Uncheck **Sleeping flares · estimated** to inspect the stock shell. Other camper windows, aftermarket wheels, rack, awning, ladders and rear carrier are deferred. Body paint is a bluer gray revised after owner feedback and checked in the actual passenger-side render against the owner photo; the factory paint code has not been verified. Existing roof layouts remain saved; enable **Show roof equipment** to return to editing them.
 
 This is a manually constructed polygon mesh, **not factory CAD, photogrammetry, an exact replica or a calibrated scan**. The continuous roof/cab loft, pressed side panels, door seams, windscreen, headlights, grille, bumper, rear doors, roof ribs and stock wheels were compared with corresponding reference views. Five front/rear/driver/passenger/top image overlays used uniform scale and translation, with side views anchored to the wheelbase. They drove corrections to the joined rear closure, windshield elevation and plan curvature, cab seams, mirrors, antenna and wrapped headlights. Oblique views and an independent agent review checked the result. Fine grille/lamp relief, stamped panels, seams, tires and stance still differ. Visual review does not establish a dimensional tolerance.
 
 The axle centers are exactly 144 inches apart in the software, using the owner's reported configuration. Body width is estimated at 79.5 inches without mirrors. The former 82-inch value described an approximate camper envelope, not a verified bare shell. The exterior length is scaled to a nominal 234 inches while preserving axle spacing; mirrors target the reference screenshot’s approximately 92.3-inch width. These are reconstruction targets, not a survey of the owner’s chassis. Tire size, suspension stance, roof shape and all surface contours remain estimates. The supplied manufacturer-page screenshot describes a 2026 vehicle and is not presented as 2023 chassis-specific verification.
+
+Flare footprint, projection, window size and placement are photo estimates recorded in `shell-specs.json`; none is a verified measurement. The flare visibility switch is a view control and is separate from roof-layout export/import.
 
 The separate 60 × 122-inch roof planning rectangle remains owner-measured and track-referenced. Its registration to the body is unresolved. **The visible shell is not a mounting or clearance reference.** No physical fit or safe installation is established by this renderer.
 
@@ -43,7 +45,8 @@ No accounts, analytics, remote asset requests or connection to vehicle controls.
 1. Identify the physical front driver-side reference in a marked photo; confirm both endpoints of the 122-inch length and 60-inch width.
 2. From that same reference measure each item's front edge, driver-side edge, full mounted footprint, and bottom/top height above a shared roof datum.
 3. Record rail section, rail elevation, crossbar positions and which surface the 6.5-inch measurement reaches. Identify “top rail” in the 4-inch observation.
-4. Include mounts and open fan envelope. Use independent check distances to assess model error before assigning a tolerance.
+4. For each sleeping flare, measure its front/rear and top/bottom edges from a marked body reference, outward projection perpendicular to the original side panel, and the window opening separately.
+5. Include mounts and open fan envelope. Use independent check distances to assess model error before assigning a tolerance.
 
 ## Run and license
 
