@@ -621,7 +621,7 @@
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets, Carefree awning housing/brackets and spare-basket underbody survey",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
@@ -1136,5 +1136,193 @@
     "geometryLicense": "Original MIT geometry; no owner photos, identifying metadata, product textures or third-party meshes redistributed.",
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false
+  },
+  "awning": {
+    "revision": "carefree-stowed-1",
+    "brand": "Carefree",
+    "identificationStatus": "owner-identified",
+    "configuration": "Existing passenger-side armless/legless awning, stowed",
+    "installedModel": null,
+    "status": "photo-estimated",
+    "units": "in",
+    "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
+    "sourceScope": "2024 Launch lists Carefree armless patio awning with LED strip and wind sensor. Exact installed product, dimensions and mounting hardware are not established.",
+    "installation": {
+      "centerX": 65,
+      "frontY": 24,
+      "rearY": 148,
+      "centerZ": 2.75,
+      "width": 5.2,
+      "height": 7,
+      "mountStations": [
+        26,
+        54.06,
+        107.74,
+        148
+      ]
+    },
+    "observations": "Long dark rounded cassette outside passenger roof rail, aligned with rack ends; narrow outer closure seam and dark end caps.",
+    "unresolved": [
+      "Exact Carefree model and housing dimensions",
+      "Offsets to rack, gutter and front/rear crossbars",
+      "Bracket positions and profiles",
+      "Deployed fabric width/projection/pitch and folding-arm geometry"
+    ],
+    "limits": "Stowed exterior only. No fabric/arm deployment or sweep modeled; no awning-to-rack or roof-equipment clearance validation. Original estimated geometry, not product CAD.",
+    "geometryLicense": "Original MIT geometry; no reference imagery or product meshes redistributed.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 59.650001525878906,
+        "y": 24,
+        "z": -0.7950000166893005
+      },
+      "max": {
+        "x": 67.63500213623047,
+        "y": 149,
+        "z": 6.25
+      }
+    },
+    "includedInEquipmentBoxChecks": false
+  },
+  "optionalUnderbodyUpgrades": {
+    "revision": "underbody-options-1",
+    "units": "in",
+    "fitStatus": "unverified",
+    "tanks": {
+      "gocode28": {
+        "name": "GoCode · 28 gallons",
+        "model": "SP-ST-28",
+        "length": 29.75,
+        "width": 27.75,
+        "height": 10,
+        "dimensionStatus": "manufacturer-approximate",
+        "variation": "Up to 1.5% per dimension",
+        "dryWeightLb": 22,
+        "publishedFilledWeightLb": 255,
+        "source": "https://gocodeoverland.com/collections/all-tanks/products/28-gallon-sprinter-spare-tire-water-tank"
+      },
+      "sb35": {
+        "name": "S&B · 35 gallons",
+        "model": "10-3033",
+        "length": 29,
+        "width": 32,
+        "height": 11.75,
+        "dimensionStatus": "manufacturer-approximate",
+        "variation": "Dimensions can vary up to 0.5 inch",
+        "dryWeightLb": 20,
+        "source": "https://sbfilters.com/products/35-gallon-spare-tire-replacement-fresh-water-tank-07-24-mercedes-sprinter-144-170-copy"
+      }
+    },
+    "skids": {
+      "engine": {
+        "name": "Van Compass 4095 · engine",
+        "source": "https://vancompass.com/products/engine-skid-plate-sprinter-awd-2023-2500-by-van-compass",
+        "productClass": "2023+ Sprinter 2500 AWD",
+        "geometryStatus": "estimated",
+        "dimensions": [
+          30,
+          35,
+          0.25
+        ],
+        "center": [
+          30,
+          -37,
+          -87
+        ],
+        "note": "Illustrative outline and mounting height. Exact outline/bends/holes unverified. 4102 is for the Van Compass 2-inch lift; do not select from this model’s estimated stance."
+      },
+      "transmission": {
+        "name": "Van Compass 4096 · transmission / transfer case",
+        "source": "https://vancompass.com/products/transmission-and-transfer-case-skid-plate-sprinter-awd-2023-by-van-compass",
+        "productClass": "2023+ Sprinter AWD",
+        "geometryStatus": "estimated",
+        "dimensions": [
+          23,
+          34,
+          0.25
+        ],
+        "center": [
+          30,
+          -2.5,
+          -86
+        ],
+        "requires": "engine",
+        "note": "Requires Van Compass engine skid. Illustrative plate outline, bend and placement; mounting holes are not modeled."
+      }
+    },
+    "tankPlacement": {
+      "center": [
+        30,
+        129,
+        -88
+      ],
+      "positionStatus": "estimated",
+      "orientation": "Published length placed fore-aft for comparison; installed orientation unverified"
+    },
+    "installationStatus": "proposed-not-installed",
+    "limits": "Original comparison envelopes, not product CAD. OEM spare basket presence, coach equipment, fittings, exhaust, moving parts and physical fit remain unverified. Excluded from roof box checks.",
+    "selectionDefaults": {
+      "version": 1,
+      "tank": "none",
+      "engineSkid": false,
+      "transmissionSkid": false
+    },
+    "modeledBounds": {
+      "gocode28": {
+        "isBox3": true,
+        "min": {
+          "x": 16.125,
+          "y": 114.125,
+          "z": -93
+        },
+        "max": {
+          "x": 43.875,
+          "y": 143.875,
+          "z": -83
+        }
+      },
+      "sb35": {
+        "isBox3": true,
+        "min": {
+          "x": 14,
+          "y": 114.5,
+          "z": -93.875
+        },
+        "max": {
+          "x": 46,
+          "y": 143.5,
+          "z": -82.125
+        }
+      },
+      "engine": {
+        "isBox3": true,
+        "min": {
+          "x": 15,
+          "y": -54.5,
+          "z": -87
+        },
+        "max": {
+          "x": 45,
+          "y": -19.5,
+          "z": -83.75
+        }
+      },
+      "transmission": {
+        "isBox3": true,
+        "min": {
+          "x": 18.5,
+          "y": -19.5,
+          "z": -86
+        },
+        "max": {
+          "x": 41.5,
+          "y": 14.5,
+          "z": -84.54999995231628
+        }
+      }
+    },
+    "includedInEquipmentBoxChecks": false,
+    "underbodyView": "Hides the generic floor placeholder and ground; not a surveyed chassis."
   }
 }

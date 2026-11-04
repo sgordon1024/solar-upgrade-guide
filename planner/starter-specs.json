@@ -1,4 +1,10 @@
 {
+  "upgrades": {
+    "version": 1,
+    "tank": "none",
+    "engineSkid": false,
+    "transmissionSkid": false
+  },
   "schema": "rooflab",
   "version": 1,
   "units": "in",
