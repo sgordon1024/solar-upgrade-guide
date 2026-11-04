@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {buildShell,SHELL_SPEC} from './shell-model.js?v=paint2';
+import {buildShell,SHELL_SPEC} from './shell-model.js?v=overlay2';
 import {OrbitControls} from './vendor/OrbitControls.js';
 // Original geometry traced by visual reference, not a scan or a dimensional survey.
 // World units: inches; X passengerward, Y rearward, Z upward, roof datum Z=0.
