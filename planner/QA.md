@@ -100,3 +100,11 @@ Compared browser-generated screenshots with the private reference pixels: driver
 - Stock, flare/glazing and running-gear geometry checks pass: finite vertices/normals, valid indices, ground contact, actual 144-inch axle spacing, nominal 30.5-inch tire envelope, separate feature bounds and no side-reflector material. Current full model: 463,428 triangles in 20 material batches. This checks software integrity, not real-world fit or a manufacturing tolerance.
 - Roof-layout persistence and import/export code are unchanged. Images and private source records remain outside the publication allowlist.
 - Final current-version desktop and 375 × 844 Chrome device-emulation checks: bluer paint, six-fork wheels, tire/arch spacing and removed reflectors are visible; Driver/Passenger views, zoom and drag orbit operate without visible horizontal overflow. No observed app console error; only the existing extension-origin inspector permission warning. Physical-device frame rate was not benchmarked.
+
+## Windshield-to-roof transition — 3 November 2026 Pacific
+
+- Compared supplied side and quarter reference pixels and the owner's passenger photo with actual WebGL before/after renders and a fixed-registration 50% side overlay. Found an artificial inward S curve caused by two overly short blending regions above the windshield.
+- Broadened both the longitudinal cab bow recovery and transverse roof crown blend, and refined one upper profile point. Changed the antenna pad to follow the sloped surface. Existing windshield upper-edge constraints remain intact.
+- Independent review of final front, driver and quarter views confirmed removal of the visible dip, a level attached windshield top and a seated antenna pad, with no blocking local regression. Owner and supplied reference imagery remain private.
+- Geometry checks pass for finite positions/normals and valid indices, eleven brow sections without inward slope reversal, level central windshield upper edge, rear seam continuity, 144-inch axle spacing, 234-inch nominal envelope and running-gear/flare bounds. Full model: 463,648 triangles in 20 material batches. Desktop planner side view visually checked; earlier mobile results remain historical evidence.
+- This is a visual surface correction, not a measured roof profile or CAD tolerance. Saved layouts, paint and tire dimensions are unchanged.

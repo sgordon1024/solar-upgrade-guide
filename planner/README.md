@@ -57,3 +57,5 @@ No accounts, analytics, remote asset requests or connection to vehicle controls.
 Serve the repository with `python3 -m http.server 8765` and open `/planner/`. No build step. `shell-model.js` contains the original parameterized mesh; `render3d.js` contains the scene and controls. `shell-specs.json` records the reconstruction's provenance and limits. Roof JSON export/import continues to transfer editable equipment, not the detailed shell mesh.
 
 Original planner code and model geometry use the MIT license in LICENSE. Three.js 0.170.0 and OrbitControls use `vendor/THREE-LICENSE.txt`. This does not relicense supplied images, manufacturer trademarks or the rest of the repository. No external vehicle mesh, private imagery, VIN, credentials, analytics or vehicle-control connection is included.
+
+The cab brow uses a gradual windshield-to-roof blend, checked against supplied side and quarter references. Its shape remains a photo-informed estimate; no factory surface or physical tolerance is supplied.

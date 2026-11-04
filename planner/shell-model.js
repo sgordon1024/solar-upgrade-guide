@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-4-running-gear',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export const SHELL_SPEC={revision:'shell-5-cab-roof',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
 export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
@@ -17,11 +17,11 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  function cyl(a,b,r,mat,n=32,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av);const o=add(new T.CylinderGeometry(r2,r,d.length(),n),mat);o.position.copy(av.add(bv).multiplyScalar(.5));o.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());return o;}
  function box(c,size,mat,bevel=.25){const [w,l,h]=size;const shape=new T.Shape();const r=Math.min(bevel,w/2,h/2);shape.moveTo(-w/2+r,-h/2);shape.lineTo(w/2-r,-h/2);shape.quadraticCurveTo(w/2,-h/2,w/2,-h/2+r);shape.lineTo(w/2,h/2-r);shape.quadraticCurveTo(w/2,h/2,w/2-r,h/2);shape.lineTo(-w/2+r,h/2);shape.quadraticCurveTo(-w/2,h/2,-w/2,h/2-r);shape.lineTo(-w/2,-h/2+r);shape.quadraticCurveTo(-w/2,-h/2,-w/2+r,-h/2);const g=new T.ExtrudeGeometry(shape,{depth:l,bevelEnabled:false,curveSegments:6});g.rotateX(Math.PI/2);g.translate(...[c[0],c[1]+l/2,c[2]]);return add(g,mat);}
  function smooth(points,t){if(t<=points[0][0])return points[0][1];for(let i=0;i<points.length-1;i++){const[a,b]=[points[i],points[i+1]];if(t<=b[0]){const s=(t-a[0])/(b[0]-a[0]),p=points[Math.max(0,i-1)],n=points[Math.min(points.length-1,i+2)],m0=(b[1]-p[1])/(b[0]-p[0]),m1=(n[1]-a[1])/(n[0]-a[0]);return (2*s**3-3*s*s+1)*a[1]+(s**3-2*s*s+s)*(b[0]-a[0])*m0+(-2*s**3+3*s*s)*b[1]+(s**3-s*s)*(b[0]-a[0])*m1;}}return points.at(-1)[1];}
- const roofProfile=[[-76.5,-62],[-73,-58.5],[-66,-55],[-54,-51],[-42,-47.6],[-39,-45.5],[-11,-18],[0,-9.5],[10,-3],[20,-.6],[36,0],[135,0],[149,-.35],[156,-.8]];
+ const roofProfile=[[-76.5,-62],[-73,-58.5],[-66,-55],[-54,-51],[-42,-47.6],[-39,-45.5],[-11,-18],[0,-8.9],[10,-3],[20,-.6],[36,0],[135,0],[149,-.35],[156,-.8]];
  const widthProfile=[[-76.5,38.6],[-73,36.5],[-64,38.4],[-48,39],[-40,38.7],[-22,37.4],[0,36.2],[20,36],[130,36],[150,36],[156,36]];
  const top=y=>smooth(roofProfile,y),topW=y=>smooth(widthProfile,y);
  const edgeDrop=y=>y<-65?T.MathUtils.lerp(.6,4,(y+76.5)/11.5):y<-40?4:y>15?9:4+(y+40)/55*5;
- function roof(x,y){const u=x/topW(y);return top(y)-edgeDrop(y)*Math.pow(Math.abs(u),10+14*step(-49,-40,y)*(1-step(-12,-1,y)));}
+ function roof(x,y){const u=x/topW(y);return top(y)-edgeDrop(y)*Math.pow(Math.abs(u),10+14*step(-49,-40,y)*(1-step(-12,30,y)));}
  function roundedRectDistance(x,y,cx,cy,w,h,r){const dx=Math.abs(x-cx)-(w/2-r),dy=Math.abs(y-cy)-(h/2-r);return Math.min(Math.max(dx,dy),0)+Math.hypot(Math.max(dx,0),Math.max(dy,0))-r;}
  const step=(a,b,x)=>{const t=T.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
  function sideWidth(y,z,relief=true){const upper=top(y)-edgeDrop(y),v=(z-upper)/(-91-upper);let w=topW(y)+(39.75-topW(y))*Math.sin(Math.min(1,v*1.25)*Math.PI/2);w-=1.1*step(-79,-91,z); // sill taper, below belt
@@ -144,7 +144,10 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  // Seven stamped roof ribs and the two longitudinal gutters, following roof crown.
  for(const x of [-26,-18,-9,0,9,18,26]){const segments=(Math.abs(x)<10)?[[26,48],[80,146]]:[[26,146]];for(const [a,b] of segments){patch((u,v)=>{const y=a+(b-a)*u,xx=x+(v*2-1)*1.05,fade=step(a,a+4,y)*(1-step(b-4,b,y));return [30+xx,y,roof(xx,y)+Math.sin(v*Math.PI)*.25*fade];},80,8,paint,'Stamped roof rib');}}
  for(const sign of [-1,1]){const points=[];for(let y=20;y<151;y+=2){const x=sign*33.7;points.push([30+x,y,roof(x,y)+.12]);}tube(points,.15,paint);}
- box([30,-4.5,top(-4.5)+.75],[1.8,4,1.2],plastic,.6);cyl([30,-4.5,top(-4.5)+1],[30,4,6],.095,plastic,10);
+ // Antenna mounting pad follows the sloped cap rather than bridging it horizontally.
+ patch((u,v)=>{const a=u*Math.PI*2,x=.9*v*Math.cos(a),y=-4.5+2*v*Math.sin(a);return [30+x,y,roof(x,y)+.4+.25*(1-v*v)];},32,4,plastic,'Conforming antenna mounting pad');
+ patch((u,v)=>{const a=u*Math.PI*2,x=.9*Math.cos(a),y=-4.5+2*Math.sin(a);return [30+x,y,roof(x,y)+.04+.36*v];},32,1,plastic,'Antenna pad skirt');
+ cyl([30,-4.5,top(-4.5)+.65],[30,4,6],.095,plastic,10);
  // Recessed wheel wells fill the open arches behind the tires without altering axle/tire dimensions.
  for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>{const a=u*Math.PI,r=v*18.2;return[30+sign*31.5,axle+r*Math.cos(a),-87.8+r*Math.sin(a)];},64,2,black,'Wheel well liner');
  for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>{const a=u*Math.PI,y=axle+18.15*Math.cos(a),z=-87.8+18.15*Math.sin(a),x=T.MathUtils.lerp(31.5,sideWidth(y,z)-.35,v);return[30+sign*x,y,z];},64,4,black,'Wheel well barrel');
@@ -221,7 +224,8 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  // to the 234-inch nominal exterior envelope. This is an estimated scale target.
  group.updateMatrixWorld(true);
  // Shared surface warps are baked before envelope normalization; wheel geometry is outside their domains.
- for(const o of group.children){if(!o.isMesh)continue;o.geometry.applyMatrix4(o.matrixWorld);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)-30,z=a.getZ(i);let y=a.getY(i);const cabBow=4.1*Math.max(0,1-(x/35.5)**2)*step(-55,-40,y)*(1-step(-12,1,y))*step(-60,-53,z);y-=cabBow;const rearLean=5.2*step(-90,0,z)*step(140,156,y);y-=rearLean;a.setY(i,y);}o.geometry.computeVertexNormals();}group.updateMatrixWorld(true);
+ // Carry the windshield plan bow gradually into the roof: a short fade created a false concave brow.
+ for(const o of group.children){if(!o.isMesh)continue;o.geometry.applyMatrix4(o.matrixWorld);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)-30,z=a.getZ(i);let y=a.getY(i);const cabBow=4.1*Math.max(0,1-(x/35.5)**2)*step(-55,-40,y)*(1-step(-12,30,y))*step(-60,-53,z);y-=cabBow;const rearLean=5.2*step(-90,0,z)*step(140,156,y);y-=rearLean;a.setY(i,y);}o.geometry.computeVertexNormals();}group.updateMatrixWorld(true);
  const extents=new T.Box3().setFromObject(group),frontScale=(-76.5+56)/(extents.min.y+56),rearScale=(157.5-128)/(extents.max.y-128);
  for(const o of group.children){if(!o.isMesh)continue;o.geometry.applyMatrix4(o.matrixWorld);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const y=a.getY(i);if(y < -56)a.setY(i,-56+(y+56)*frontScale);else if(y >128)a.setY(i,128+(y-128)*rearScale);}o.geometry.computeVertexNormals();}group.updateMatrixWorld(true);
  // Verify the final rear mesh boundary against the terminal loft, after all warps and scale registration.
@@ -232,6 +236,9 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  let seamMax=0;for(let i=0;i<=64;i++)seamMax=Math.max(seamMax,distance(point(capMesh,8*65+i),roofEdge));
  for(let j=0;j<=128;j++)for(const [k,edge] of [[0,sideEdges[0]],[128,sideEdges[1]]])seamMax=Math.max(seamMax,distance(point(rearMesh,j*129+k),edge));
  group.userData.rearBoundaryMaxDistance=seamMax;
+ // Final mesh centerline for regression checks of the windshield-to-roof curvature.
+ group.userData.cabRoofSections=[1,3,7,14,21,28,35,42,49,53,55].map(i=>Array.from({length:201},(_,j)=>point(roofMesh,j*57+i)).filter(p=>p.z>-19.5&&p.y<29).map(p=>({y:p.y,z:p.z})));
+ group.userData.cabRoofCenterline=group.userData.cabRoofSections[5];
  const seal=group.children.find(o=>o.name==='Windscreen seal'),sa=seal.geometry.attributes.position,topZ=[];for(let i=sa.count-80;i<sa.count;i++){const p=point(seal,i);if(Math.abs(p.x-30)<25&&p.z>-25)topZ.push(p.z);}group.userData.windshieldTopVariation=Math.max(...topZ)-Math.min(...topZ);
  group.userData.camperWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver middle glass'||o.name==='Passenger sliding-door glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
  // Batch static meshes by material: the same geometry with a small number of draw calls.
