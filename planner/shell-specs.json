@@ -1,9 +1,9 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-7-ktm",
+  "revision": "shell-8-hood-rack",
   "units": "in",
-  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear and motorcycle carrier and 2021 KTM 350 SX-F",
+  "subject": "Sprinter 144-inch high-roof exterior with camper glazing, sleeping flares, running gear, hood lip, roof rack, front light bar, motorcycle carrier and 2021 KTM 350 SX-F",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
   "references": {
     "imagesReviewed": 33,
@@ -51,8 +51,8 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "The owner's 60 x 122-inch track-referenced planning rectangle remains separate. Its position on the stock roof is unverified.",
-  "scope": "Exterior with sleeping flares, side and rear camper windows, photo-informed running gear, estimated receiver and HAUL-MASTER 57720 motorcycle carrier. Ramp stored; 2021 KTM 350 SX-F loaded, with photo-estimated transport stance. Rack, awning, ladders, spare-tire carrier and interior remain deferred.",
+  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "scope": "Exterior with sleeping flares, side/rear camper windows, running gear, hood lip, open roof rack with front LED bar, estimated receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, ladders, spare-tire carrier and interior remain deferred.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
   "appearance": {
@@ -72,7 +72,13 @@
     "meaning": "Mesh continuity and software scale checks only. They do not establish physical accuracy or a manufacturing tolerance.",
     "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified.",
     "cabBrow": "Compared supplied side/quarter reference pixels and owner passenger photo with actual rendered before/after views and a fixed-registration 50% side overlay. Broadened longitudinal bow recovery and transverse crown blending to remove the artificial inward S curve above the windshield; no dimensional tolerance is inferred.",
-    "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level."
+    "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
+    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
+    "fullSceneGeometry": {
+      "triangles": 560200,
+      "materialBatches": 41,
+      "scope": "Shell with camper glazing, flares, running gear, hood lip, rack, receiver, carrier and motorcycle; editable roof equipment not included in this count."
+    }
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -452,5 +458,122 @@
       }
     },
     "geometryLicense": "Original MIT-licensed reconstruction. No third-party meshes, photo textures or manual pages distributed."
+  },
+  "hoodDeflector": {
+    "status": "photo-estimated",
+    "brand": null,
+    "measuredDimensions": null,
+    "description": "Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -0.5,
+        "y": -76.44999694824219,
+        "z": -61.77976608276367
+      },
+      "max": {
+        "x": 60.5,
+        "y": -69.8524169921875,
+        "z": -57.41475296020508
+      }
+    },
+    "verification": "Private front-photo/render overlay with uniform scaling and translation; close-up inspected for surface contact. Camera perspective and dimensions uncalibrated."
+  },
+  "roofRack": {
+    "revision": "rack-1",
+    "description": "Open two-level roof rack with sloping front/rear fairings and front LED bar",
+    "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
+    "sourceScope": "Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.",
+    "ownerReported": {
+      "planningLength": 122,
+      "planningWidth": 60,
+      "crossbarForeAftWidth": 2,
+      "crossbarHeight": 1,
+      "sideSlotCenterSpacing": 3,
+      "roofToTopCrossbarObservation": 6.5,
+      "lowerSideRailCenterToTopRailBottomObservation": 4
+    },
+    "unresolved": [
+      "Endpoints of the 122 × 60 track reference",
+      "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
+      "Identity of top rail in the separate 4-inch observation",
+      "Exact rail sections, hidden crossbars, mounting feet and light-bar model"
+    ],
+    "installation": {
+      "status": "estimated",
+      "planningOrigin": [
+        0,
+        26,
+        0
+      ],
+      "firstCrossbarY": 26,
+      "lastCrossbarY": 148,
+      "railCenterXs": [
+        0,
+        60
+      ],
+      "crossbarCenterZ": 6,
+      "crossbarStations": [
+        0,
+        0.23,
+        0.67,
+        1
+      ],
+      "sideRailCenterZs": [
+        2,
+        5
+      ],
+      "frontFairingTipY": 19,
+      "lightBarCenter": [
+        30,
+        23,
+        4.9
+      ],
+      "lightBarSize": [
+        49,
+        2.6,
+        3.1
+      ]
+    },
+    "limits": "Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Hidden beams are not inferred. No load, mounting or equipment-clearance validation.",
+    "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; units inches.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -3,
+        "y": 19,
+        "z": -2.431339979171753
+      },
+      "max": {
+        "x": 63,
+        "y": 151,
+        "z": 6.650000095367432
+      }
+    },
+    "modeledCrossbarCenters": [
+      [
+        30,
+        26,
+        6
+      ],
+      [
+        30,
+        54.06,
+        6
+      ],
+      [
+        30,
+        107.74000000000001,
+        6
+      ],
+      [
+        30,
+        148,
+        6
+      ]
+    ],
+    "editableInRoofLayout": false,
+    "includedInEquipmentBoxChecks": false,
+    "geometryLicense": "Original MIT geometry. No photo textures, manufacturer drawings or third-party mesh redistributed."
   }
 }
