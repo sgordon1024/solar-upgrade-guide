@@ -6,7 +6,7 @@ An original browser-based reconstruction of a 144-inch-wheelbase, high-roof Spri
 
 ## Current scope and accuracy
 
-The initial view shows the **bare stock exterior**. Camper windows, aftermarket wheels, rack, awning, ladders and rear carrier are deferred. Body paint is a muted blue-gray matched visually to the owner’s exterior photographs; the factory paint code has not been verified. Existing roof layouts remain saved; enable **Show roof equipment** to return to editing them.
+The initial view shows the **bare stock exterior**. Camper windows, aftermarket wheels, rack, awning, ladders and rear carrier are deferred. Body paint is a darker blue-gray checked against sampled owner-photo panels, with scene lighting adjusted to avoid the previous washed-out appearance; the factory paint code has not been verified. Existing roof layouts remain saved; enable **Show roof equipment** to return to editing them.
 
 This is a manually constructed polygon mesh, **not factory CAD, photogrammetry, an exact replica or a calibrated scan**. The continuous roof/cab loft, pressed side panels, door seams, windscreen, headlights, grille, bumper, rear doors, roof ribs and stock wheels were compared with corresponding reference views. Visual review does not establish a dimensional tolerance.
 

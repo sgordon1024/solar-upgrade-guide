@@ -51,3 +51,9 @@ The renderer and checks use conservative boxes, not a CAD collision engine. No p
 ## Owner paint match — 3 November 2026
 
 Reviewed owner driver/passenger photographs in actual pixels and changed the body paint to a muted blue-gray. The shared paint material covers the shell, doors, painted trim and roof ribs. Base color is an appearance estimate under the renderer's studio lighting, not a verified factory paint code. Compared local passenger and three-quarter views with the reference photos; geometry, equipment state and data controls are unchanged. Renderer and shell module URLs are versioned for the color release.
+
+## Paint and lighting correction — 3 November 2026
+
+The first paint update was visibly too pale and was rejected by the owner. Re-inspected both side photos and the front image, sampling painted regions instead of judging the base color alone. Changed the paint base to `#8d9499`, reduced hemisphere/fill illumination and exposure, and placed the stronger light toward the passenger side to retain a shaded driver side.
+
+Compared browser-generated screenshots with the private reference pixels: driver lower-door median RGB was 86/100/108 versus photo 82/95/104; rear-quarter median was 86/99/107 versus photo 85/99/106. This is an approximate appearance comparison under differing capture conditions, not calibrated color matching or a factory paint-code identification. Private photos and screenshot samples are not published. Shell geometry and saved configuration logic remain unchanged. New `paint2` module URLs invalidate the previous paint assets.

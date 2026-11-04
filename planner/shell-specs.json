@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-1-paint-1",
+  "revision": "shell-1-paint-2",
   "units": "in",
   "subject": "Sprinter 144-inch wheelbase high-roof cargo exterior",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
@@ -53,9 +53,9 @@
   "appearance": {
     "bodyPaint": {
       "description": "Muted blue-gray matched visually to owner exterior photographs",
-      "baseColorSRGB": "#9aa6aa",
+      "baseColorSRGB": "#8d9499",
       "status": "estimated",
-      "evidence": "Driver and passenger exterior photographs reviewed in actual pixels; not a verified factory paint code."
+      "evidence": "Driver and passenger exterior photographs reviewed in actual pixels. Rendered shaded driver-side panels compared against sampled photograph regions; scene key/fill balance adjusted. Not a verified factory paint code or colorimetric calibration."
     }
   }
 }
