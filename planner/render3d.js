@@ -3,7 +3,7 @@ import {buildShell,SHELL_SPEC} from './shell-model.js?v=hood1';
 import {buildRearCarrier,CARRIER_SPEC} from './rear-carrier.js?v=bike1';
 import {buildDirtbike,BIKE_SPEC} from './dirtbike.js?v=bike1';
 import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=rack2';
-import {buildInstalledRoof} from './roof-equipment.js?v=supports2';
+import {buildInstalledRoof} from './roof-equipment.js?v=fanboard1';
 import {buildSideLadder} from './side-ladder.js?v=ladder1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 // Original geometry traced by visual reference, not a scan or a dimensional survey.
