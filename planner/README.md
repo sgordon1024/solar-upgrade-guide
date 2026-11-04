@@ -100,3 +100,11 @@ The installed reference now includes the owner-identified Maxxair exhaust fan an
 The original soft case has irregular packed bulges, a flatter rounded tail, grey fabric, a dark underside, zipper and carrying webbing. Two distinct clamp carriers sit on the existing two rear main beams. The approximately 64-inch case and 20-inch rear-crossbar overhang are photo estimates; packing can change that shape. Clamp brand, jaw geometry, attachment and loading remain unverified. No manufacturer mesh or owner photo is published.
 
 Both additions follow **Installed roof · estimated** and hide when **Edit roof layout** is enabled. Saved fan/roof-bag entries retain their earlier values and do not automatically become these detailed meshes. R07 and R09 in the measurement checklist track their unresolved dimensions.
+
+## Rear-door spare and cassette hatch
+
+The default exterior includes a driver rear-door spare with a charcoal six-fork wheel, original all-terrain tread, hinge-mounted diagonal braces and a central retainer. A separate **Rear-door spare · estimated** checkbox hides the wheel and its mount for inspecting the rear doors. The spare's identity is unknown: the illustrative 30.5 × 9.65-inch envelope borrows nominal road-tire dimensions, without claiming the spare is the same tire. Wheel offset, center and concealed mount construction remain estimates.
+
+The closed cassette toilet access door sits on the driver side immediately ahead of the Owl ladder and above the dark molding. Its rounded bezel follows the actual modeled side surface; the inset lid has two aft-edge molded latch tabs and small forward hinges. The 14 × 16-inch outside frame and its offsets are photo estimates; no interior or cutout is modeled.
+
+Both are original geometry in `exterior-details.js`, recorded with provenance and bounds in `shell-specs.json`. Checklist E08 requests spare size, center, standoff, mount and bike gap; E09 requests hatch dimensions and body/ladder offsets. Static accessories are independent of saved roof layouts and excluded from equipment box checks. Photo overlays and independent visual review improve appearance but do not establish CAD tolerances, real clearances, door movement or mounting capacity.

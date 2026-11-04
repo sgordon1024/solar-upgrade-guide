@@ -621,7 +621,7 @@
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
@@ -1044,6 +1044,96 @@
         -87.3
       ]
     ],
+    "editableInRoofLayout": false,
+    "includedInEquipmentBoxChecks": false
+  },
+  "exteriorDetails": {
+    "revision": "spare-hatch-1",
+    "status": "photo-estimated",
+    "units": "in",
+    "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; roof datum Z=0.",
+    "spare": {
+      "side": "driver rear door",
+      "center": [
+        11,
+        164.5,
+        -54.5
+      ],
+      "outsideDiameter": 30.5,
+      "sectionWidth": 9.65,
+      "rimDiameter": 17,
+      "rimOuterLipDiameter": 18.5,
+      "wheelStyle": "Six forked charcoal spokes",
+      "tireModel": null,
+      "tireSize": null,
+      "mountModel": null,
+      "dimensionBasis": "Illustrative nominal diameter and width borrowed from the recorded road-tire size, not an identification or measurement of the spare. Position, tread, wheel profile and mounting hardware are photo estimates.",
+      "observations": "Rear-facing wheel overlaps the lower driver rear glass; its inner shoulder is near the door center seam. A round diagonal upper brace meets the driver hinge. Motorcycle obscures the central retention and lower mount.",
+      "unresolved": [
+        "Spare tire size/model and actual outside diameter/width",
+        "Wheel size, offset and model",
+        "Wheel center relative to rear-door seam and bumper",
+        "Door-to-wheel standoff and bracket details",
+        "Bike-to-spare gap and rear-door movement"
+      ],
+      "modeledBounds": {
+        "isBox3": true,
+        "min": {
+          "x": -5.900000095367432,
+          "y": 153.54150390625,
+          "z": -75.69999694824219
+        },
+        "max": {
+          "x": 26.249984741210938,
+          "y": 169.3249969482422,
+          "z": -30.299999237060547
+        }
+      },
+      "modeledHingeAnchors": [
+        [
+          -4.6,
+          153.7,
+          -32
+        ],
+        [
+          -4.6,
+          156.7,
+          -74
+        ]
+      ]
+    },
+    "cassetteHatch": {
+      "side": "driver",
+      "centerY": 71,
+      "centerZ": -64.5,
+      "outerWidth": 14,
+      "outerHeight": 16,
+      "cornerRadius": 1.25,
+      "maxFrameProjection": 0.65,
+      "model": null,
+      "observations": "Closed body-colored access door just ahead of the side ladder, above the dark molding. Rounded bezel, inset lid, two aft-edge latch bosses and two small forward hinges.",
+      "unresolved": [
+        "Outer bezel width/height and corner radius",
+        "Offsets to ladder, body seam and molding top",
+        "Visible lid dimensions and latch/hinge locations",
+        "Installed make/model and outward projection"
+      ],
+      "modeledBounds": {
+        "isBox3": true,
+        "min": {
+          "x": -10.72289752960205,
+          "y": 64,
+          "z": -72.5
+        },
+        "max": {
+          "x": -9.497706413269043,
+          "y": 78,
+          "z": -56.5
+        }
+      }
+    },
+    "limits": "Exterior visualization only. Dimensions are not surveyed; hidden mount geometry is illustrative. Excluded from roof equipment box checks. No door-opening, mounting, load, restraint or physical clearance validation.",
+    "geometryLicense": "Original MIT geometry; no owner photos, identifying metadata, product textures or third-party meshes redistributed.",
     "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false
   }
