@@ -621,7 +621,7 @@
   "measurementChecklist": {
     "file": "measurements.md",
     "status": "open",
-    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets, Carefree awning housing/brackets and spare-basket underbody survey, VP container envelope/position and ramp gaps",
+    "priority": "Roof datums, crossbar stations and front light bar, both crossbar antennas, mounted roof equipment footprints/heights, main and lower support member stations, Owl ladder geometry and mounts, fan closed/open cowl envelope, packed snowboard case and two clamp carriers, rear-door spare size/position/standoff and cassette hatch dimensions/offsets, Carefree awning housing/brackets and spare-basket underbody survey, VP container envelope/position and ramp gaps, both running board lengths/section/drop/offsets and brackets",
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
@@ -1372,6 +1372,102 @@
         "z": -75.99999961853027
       }
     },
+    "includedInEquipmentBoxChecks": false
+  },
+  "runningBoards": {
+    "revision": "running-boards-1",
+    "installationStatus": "existing-photo-observed",
+    "units": "in",
+    "dimensionStatus": "estimated",
+    "positionStatus": "photo-estimated",
+    "brand": null,
+    "installedModel": null,
+    "section": {
+      "width": 5.2,
+      "height": 3.2,
+      "centerFromVehicleCenter": 42,
+      "centerZ": -95
+    },
+    "driver": {
+      "frontY": -14,
+      "rearY": 24,
+      "length": 38,
+      "pads": [
+        {
+          "centerY": -2,
+          "length": 22
+        }
+      ],
+      "mountStations": [
+        -9,
+        17
+      ]
+    },
+    "passenger": {
+      "frontY": -14,
+      "rearY": 87,
+      "length": 101,
+      "pads": [
+        {
+          "centerY": 0,
+          "length": 22
+        },
+        {
+          "centerY": 35,
+          "length": 19
+        },
+        {
+          "centerY": 62,
+          "length": 19
+        }
+      ],
+      "mountStations": [
+        -9,
+        24,
+        54,
+        80
+      ]
+    },
+    "observations": "Short driver cab step with one pad; long passenger cab/sliding-door step with three separated pads. Straight dark oval tubes, rounded caps, clipped tread ends and round perforations. No continuous full-width deck.",
+    "evidence": "Owner driver and passenger photos; lengths and fore-aft locations estimated from axle spacing. Perspective, terrain and partly obscured brackets limit precision.",
+    "unresolved": [
+      "Both end-to-end lengths and end offsets from wheel openings",
+      "Tube width/height and outward projection from sill",
+      "Sill-to-step-top drop on each side",
+      "Pad lengths, spacing and perforation pattern",
+      "Bracket positions, connections and installed brand/model"
+    ],
+    "limits": "Static visual reference, not manufacturer CAD. Hidden brackets, tube section and tread construction are illustrative. No structural, load, ground-clearance or door/tire movement validation; excluded from roof box checks.",
+    "geometryLicense": "Original MIT geometry; no owner photos, product textures or third-party meshes redistributed.",
+    "modeledBounds": {
+      "driver": {
+        "isBox3": true,
+        "min": {
+          "x": -14.72458553314209,
+          "y": -14,
+          "z": -96.5999984741211
+        },
+        "max": {
+          "x": -5.800000190734863,
+          "y": 24,
+          "z": -90.5999984741211
+        }
+      },
+      "passenger": {
+        "isBox3": true,
+        "min": {
+          "x": 65.80000305175781,
+          "y": -14,
+          "z": -96.5999984741211
+        },
+        "max": {
+          "x": 74.7245864868164,
+          "y": 87,
+          "z": -90.5999984741211
+        }
+      }
+    },
+    "editableInRoofLayout": false,
     "includedInEquipmentBoxChecks": false
   }
 }
