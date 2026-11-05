@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import * as T from '../vendor/three.module.js';
+import '../solar-data.js';
+import '../upgrade-data.js';
+import {buildSolarUpgrade} from '../solar-upgrade.js';
+import {buildInstalledRoof} from '../roof-equipment.js';
+const S=RooflabSolar,original=S.defaults(),v=structuredClone(original);
+assert.equal(original.enabled,false);assert.equal(S.panel.model,'HQST HSP200N-64L');
+const cold=S.electrical(-40);assert(Math.abs(cold.coldVoc-109.084416)<.00001);assert(cold.coldVoc<145);assert(Math.abs(cold.hotIsc-11.6986944)<.00001);assert.equal(cold.isc,11.04);assert.equal(cold.watts,800);assert.equal(cold.topology,'4S1P');assert(cold.twoSeriesVmp<48);
+assert(S.fit(v).some(s=>s.includes('snowboard')));assert(S.fit(v).some(s=>s.includes('Rear passenger')&&s.includes('rectangle')));
+const u=buildSolarUpgrade();u.update(v);assert(!u.group.visible);assert.equal(u.group.userData.riserCount,8);
+for(const [i,b] of u.group.userData.panelBounds.entries()){const size=b.getSize(new T.Vector3());assert(Math.abs(size.x*25.4-(i===0?1175:765))<1e-8);assert(Math.abs(size.y*25.4-(i===0?765:1175))<1e-8);assert(Math.abs(size.z*25.4-30)<1e-8);}
+assert.equal(u.group.children.length,5);let triangles=0;u.group.traverse(o=>{if(!o.isMesh)return;for(const a of ['position','normal'])for(const n of o.geometry.attributes[a].array)assert(Number.isFinite(n));for(const i of o.geometry.index.array)assert(i<o.geometry.attributes.position.count);triangles+=o.geometry.index.count/3;});assert(triangles<2500);
+const geometry=u.group.children[0].geometry;let disposed=0;geometry.addEventListener('dispose',()=>disposed++);v.enabled=true;u.update(v);assert(u.group.visible);assert.equal(u.group.children[0].geometry,geometry);v.panels[3].z=20;u.update(v);assert.equal(disposed,1);assert.equal(u.group.userData.riserCount,12);
+v.panels[2].z=22;assert(!S.fit(v).some(s=>s.startsWith('3 · Rear driver')&&s.includes('snowboard')));v.panels[1]={...v.panels[0]};assert(S.fit(v).some(s=>s.includes('Panels 1 and 2')));
+const installed=buildInstalledRoof(),solar=installed.group.children.filter(m=>m.userData.installedSolar),others=installed.group.children.filter(m=>!m.userData.installedSolar);assert(solar.length>0&&others.length>0);solar.forEach(m=>m.visible=false);assert(others.every(m=>m.visible));assert(installed.group.userData.featureBounds['Air conditioner']);
+const nodes={},storage={};let updated;const c={structuredClone,crypto,localStorage:{getItem:k=>storage[k]||null,setItem:(k,v)=>storage[k]=v},document:{querySelector:s=>nodes[s]??=({style:{},classList:{add(){},remove(){}},setAttribute(){}})},window:{rooflabView:{update:s=>updated=s}},setTimeout:()=>0,clearTimeout};vm.createContext(c);
+for(const file of ['solar-data.js','upgrade-data.js','app.js'])vm.runInContext(fs.readFileSync(new URL('../'+file,import.meta.url),'utf8'),c);vm.runInContext('globalThis.api={valid,START,getState:()=>state};',c);const plain=x=>JSON.parse(JSON.stringify(x)),old=plain(c.api.START);delete old.upgrades.solar;old.items[0].x=8.25;old.notes='Keep measurements';old.upgrades.tank='sb35';const migrated=plain(c.api.valid(old));assert.equal(migrated.upgrades.solar.enabled,false);assert.deepEqual(migrated.items,old.items);assert.equal(migrated.notes,old.notes);assert.equal(migrated.upgrades.tank,'sb35');
+const items=plain(c.api.getState().items);nodes['#solar-enabled'].onchange({target:{checked:true}});let saved=JSON.parse(storage['rooflab.v1']);assert(saved.upgrades.solar.enabled);assert.deepEqual(saved.items,items);assert.deepEqual(plain(c.api.valid(saved)),saved);assert(updated.upgrades.solar.enabled);
+nodes['#solar-position-form'].onchange({target:{name:'z',dataset:{panel:'2'},value:'24',checkValidity:()=>true}});saved=JSON.parse(storage['rooflab.v1']);assert.equal(saved.upgrades.solar.panels[2].z,24);assert.deepEqual(saved.items,items);
+for(const patch of [{enabled:'yes'},{panels:[]},{minTemperatureC:-99},{panels:[{x:0,y:0,z:Infinity},...original.panels.slice(1)]}])assert.throws(()=>c.api.valid({...saved,upgrades:{...saved.upgrades,solar:{...original,...patch}}}));
+const supportCase=structuredClone(original);supportCase.panels[2].z=13;supportCase.panels[3].z=13;assert(S.fit(supportCase).some(s=>s.includes('Raised span')&&s.includes('A/C')));
+const changedRoofReport=S.report(original,{width:61,length:123});assert.equal(changedRoofReport.geometry.roofReference.width,61);assert.equal(changedRoofReport.geometry.roofReference.length,123);const report=S.report(original,{width:60,length:122});assert(report.parts.some(p=>!p.visible));assert(report.geometry.flags.length>0);assert.equal(report.parts[0].quantity,'4');fs.writeFileSync(new URL('../solar-800w-specs.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({pass:true,triangles,batches:u.group.children.length,checks:'cold Voc, hot Isc, sourced panel envelopes, supports, overlap flags, selective installed-panel hiding, bounded geometry, disposal, legacy migration, proposal persistence/roundtrip, unchanged existing layout, invalid import rejection, downloadable report'}));

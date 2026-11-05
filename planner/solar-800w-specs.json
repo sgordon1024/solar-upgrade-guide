@@ -1,0 +1,466 @@
+{
+  "schema": "rooflab-solar-mod",
+  "version": 1,
+  "selection": "800 W · four HQST HSP200N-64L · 4S1P",
+  "installationStatus": "proposed-not-installed",
+  "settings": {
+    "version": 1,
+    "enabled": false,
+    "minTemperatureC": -20,
+    "panels": [
+      {
+        "x": 6.870078740157478,
+        "y": 3,
+        "z": 6.5
+      },
+      {
+        "x": 25,
+        "y": 34.5,
+        "z": 14.5
+      },
+      {
+        "x": -0.618110236220474,
+        "y": 82,
+        "z": 14.5
+      },
+      {
+        "x": 30.5,
+        "y": 82,
+        "z": 14.5
+      }
+    ]
+  },
+  "panel": {
+    "model": "HQST HSP200N-64L",
+    "count": 4,
+    "watts": 200,
+    "length": 46.259842519685044,
+    "width": 30.118110236220474,
+    "height": 1.1811023622047245,
+    "weightKg": 9.15,
+    "voc": 22.4,
+    "isc": 11.04,
+    "vmp": 19.2,
+    "imp": 10.5,
+    "vocCoefficient": -0.0028,
+    "iscCoefficient": 0.00048,
+    "electricalTolerance": 0.03,
+    "maxSeriesFuseA": 20,
+    "leads": "14 AWG, 0.7 m",
+    "dimensionStatus": "manufacturer",
+    "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
+  },
+  "controller": {
+    "model": "Victron SmartSolar 150/35",
+    "batteryVoltage": 48,
+    "batteryEvidence": "Existing 48 V system recorded in the selected solar guide; verify actual settings and battery charge profile.",
+    "maxVoc": 150,
+    "maxOperatingVoc": 145,
+    "maxIsc": 35,
+    "maxOutputA": 35,
+    "nominalPower48V": 2000,
+    "source": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/technical-specifications.html"
+  },
+  "electrical": {
+    "topology": "4S1P",
+    "watts": 800,
+    "voc": 89.6,
+    "vmp": 76.8,
+    "imp": 10.5,
+    "isc": 11.04,
+    "coldVoc": 103.91628799999998,
+    "hotIsc": 11.69869056,
+    "nominalBatteryCurrent": 16.666666666666668,
+    "twoSeriesVmp": 38.4
+  },
+  "parts": [
+    {
+      "name": "HQST HSP200N-64L 200 W panels",
+      "quantity": "4",
+      "decision": "Selected · new",
+      "visible": true,
+      "detail": "800 W total; four in series. Each 1175 × 765 × 30 mm, 9.15 kg. Four weigh 36.6 kg / 80.7 lb before supports. Existing panels are replaced in this preview.",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
+    },
+    {
+      "name": "Raised crossbars, risers & panel clamps",
+      "quantity": "Final quantity / model TBD",
+      "decision": "Required · unresolved",
+      "visible": true,
+      "detail": "The starter preview has eight generic riser brackets on four raised spans. This is an illustration, not a selected hardware kit. Unaka 7.5-inch was a review candidate; rail interface, height datum, load rating and hardware still need confirmation. Front-panel mounts are also unresolved.",
+      "source": "https://unakagearco.com/products/unaka-high-bar-bracket-kits"
+    },
+    {
+      "name": "Victron SmartSolar 150/35",
+      "quantity": "Existing 1",
+      "decision": "Potential reuse",
+      "visible": false,
+      "detail": "800 W is within the 48 V power rating; 4S voltage/current checks are below its limits. Confirm controller label, battery profile, hot-panel startup voltage and installation condition. No larger controller selected.",
+      "source": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/technical-specifications.html"
+    },
+    {
+      "name": "Series jumpers, PV home run & matched connectors",
+      "quantity": "Lengths / quantities TBD",
+      "decision": "Inspect before reuse",
+      "visible": false,
+      "detail": "Factory leads are 14 AWG, 0.7 m. Existing wire gauge, temperature/voltage ratings, route, voltage drop and connector manufacturer/family are unknown. Generic “MC4 compatible” does not establish safe mating. New extensions may be needed.",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
+    },
+    {
+      "name": "Existing combiner / roof entry",
+      "quantity": "Existing · topology unknown",
+      "decision": "Conditional reuse or replacement",
+      "visible": false,
+      "detail": "The plan is one series string. A parallel combiner cannot be assumed to preserve 4S wiring. Internal bus connections, seals, terminals and DC ratings need inspection; reconfiguration or bypass may be needed. No replacement selected.",
+      "source": "https://sgordon1024.github.io/solar-upgrade-guide/"
+    },
+    {
+      "name": "PV isolation & overcurrent protection",
+      "quantity": "Ratings / quantity TBD",
+      "decision": "Verify or replace",
+      "visible": false,
+      "detail": "Verify DC voltage above design cold Voc, load-break capability, poles, cable protection and applicable requirements. Panel 20 A maximum series fuse is a ceiling, not a fuse recommendation. No device rating selected.",
+      "source": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/installation.html"
+    },
+    {
+      "name": "Battery cable, fuse & existing 48 V system",
+      "quantity": "Existing · inspect",
+      "decision": "Potential reuse",
+      "visible": false,
+      "detail": "Controller output remains limited to 35 A. Confirm cable ampacity, terminations, battery-side protection, BMS coordination and approved charge settings. 800 W alone does not require a battery upgrade.",
+      "source": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/technical-specifications.html"
+    },
+    {
+      "name": "Bonding, strain relief, roof seals & fasteners",
+      "quantity": "Design dependent",
+      "decision": "Required · unresolved",
+      "visible": false,
+      "detail": "Document the complete load path, corrosion isolation, panel clamp zones, rack limits, road vibration and wind uplift. Verify grounding/bonding and sealed cable supports. Fastener sizes and torque values are not selected.",
+      "source": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/installation.html"
+    }
+  ],
+  "sources": {
+    "panel": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675",
+    "product": "https://hqsolarpower.com/products/hqst-200w-16bb-n-type-high-efficiency-monocrystalline-solar-panel",
+    "controller": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/technical-specifications.html",
+    "controllerDatasheet": "https://www.victronenergy.com/upload/documents/Datasheet-SmartSolar-charge-controller-MPPT-150-35-%26-150-45-EN.pdf",
+    "installation": "https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-35__150-45/en/installation.html",
+    "unaka": "https://unakagearco.com/products/unaka-high-bar-bracket-kits",
+    "mesa": "https://desertbliss.com/desertvans/assets/docs/Desert-Vans-Mesa-Riser-Installation-Guide.pdf",
+    "plan": "https://sgordon1024.github.io/solar-upgrade-guide/"
+  },
+  "geometry": {
+    "units": "in",
+    "roofReference": {
+      "width": 60,
+      "length": 122
+    },
+    "datum": "Origin: front driver-side corner of track planning rectangle. X passengerward, Y rearward, Z above illustrative roof datum. Body registration is estimated.",
+    "supportEnvelopes": [
+      {
+        "name": "Raised span 1",
+        "x": -1,
+        "y": 41.5,
+        "z": 13.5,
+        "width": 62,
+        "length": 2,
+        "height": 1
+      },
+      {
+        "name": "Riser 1 driver",
+        "x": -0.11,
+        "y": 41,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 1 driver",
+        "x": -1.4,
+        "y": 41,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 1 driver",
+        "x": -0.8,
+        "y": 41,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 1 passenger",
+        "x": 59.89,
+        "y": 41,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 1 passenger",
+        "x": 58.6,
+        "y": 41,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 1 passenger",
+        "x": 59.2,
+        "y": 41,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Raised span 2",
+        "x": -1,
+        "y": 71.75984251968504,
+        "z": 13.5,
+        "width": 62,
+        "length": 2,
+        "height": 1
+      },
+      {
+        "name": "Riser 2 driver",
+        "x": -0.11,
+        "y": 71.25984251968504,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 2 driver",
+        "x": -1.4,
+        "y": 71.25984251968504,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 2 driver",
+        "x": -0.8,
+        "y": 71.25984251968504,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 2 passenger",
+        "x": 59.89,
+        "y": 71.25984251968504,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 2 passenger",
+        "x": 58.6,
+        "y": 71.25984251968504,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 2 passenger",
+        "x": 59.2,
+        "y": 71.25984251968504,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Raised span 3",
+        "x": -1,
+        "y": 89,
+        "z": 13.5,
+        "width": 62,
+        "length": 2,
+        "height": 1
+      },
+      {
+        "name": "Riser 3 driver",
+        "x": -0.11,
+        "y": 88.5,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 3 driver",
+        "x": -1.4,
+        "y": 88.5,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 3 driver",
+        "x": -0.8,
+        "y": 88.5,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 3 passenger",
+        "x": 59.89,
+        "y": 88.5,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 3 passenger",
+        "x": 58.6,
+        "y": 88.5,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 3 passenger",
+        "x": 59.2,
+        "y": 88.5,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Raised span 4",
+        "x": -1,
+        "y": 119.25984251968504,
+        "z": 13.5,
+        "width": 62,
+        "length": 2,
+        "height": 1
+      },
+      {
+        "name": "Riser 4 driver",
+        "x": -0.11,
+        "y": 118.75984251968504,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 4 driver",
+        "x": -1.4,
+        "y": 118.75984251968504,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 4 driver",
+        "x": -0.8,
+        "y": 118.75984251968504,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 4 passenger",
+        "x": 59.89,
+        "y": 118.75984251968504,
+        "z": 5,
+        "width": 0.22,
+        "length": 3,
+        "height": 8.5
+      },
+      {
+        "name": "Riser 4 passenger",
+        "x": 58.6,
+        "y": 118.75984251968504,
+        "z": 13.2,
+        "width": 2.8,
+        "length": 3,
+        "height": 0.3
+      },
+      {
+        "name": "Riser 4 passenger",
+        "x": 59.2,
+        "y": 118.75984251968504,
+        "z": 5,
+        "width": 1.6,
+        "length": 3,
+        "height": 0.3
+      }
+    ],
+    "dimensionStatus": "manufacturer-panel-envelope",
+    "positionStatus": "estimated",
+    "panels": [
+      {
+        "x": 6.870078740157478,
+        "y": 3,
+        "z": 6.5,
+        "name": "1 · Front landscape",
+        "width": 46.259842519685044,
+        "length": 30.118110236220474,
+        "height": 1.1811023622047245
+      },
+      {
+        "x": 25,
+        "y": 34.5,
+        "z": 14.5,
+        "name": "2 · Center fan / beside Starlink",
+        "width": 30.118110236220474,
+        "length": 46.259842519685044,
+        "height": 1.1811023622047245
+      },
+      {
+        "x": -0.618110236220474,
+        "y": 82,
+        "z": 14.5,
+        "name": "3 · Rear driver",
+        "width": 30.118110236220474,
+        "length": 46.259842519685044,
+        "height": 1.1811023622047245
+      },
+      {
+        "x": 30.5,
+        "y": 82,
+        "z": 14.5,
+        "name": "4 · Rear passenger",
+        "width": 30.118110236220474,
+        "length": 46.259842519685044,
+        "height": 1.1811023622047245
+      }
+    ],
+    "riserStatus": "generic unresolved mounting concept",
+    "flags": [
+      "1 · Front landscape: intersects the estimated Starlink tilted face envelope.",
+      "3 · Rear driver: extends beyond the track-referenced planning rectangle.",
+      "3 · Rear driver: intersects the estimated packed snowboard case envelope.",
+      "4 · Rear passenger: extends beyond the track-referenced planning rectangle.",
+      "Raised span 3: intersects the estimated packed snowboard case envelope.",
+      "Riser 3 driver: intersects the estimated packed snowboard case envelope.",
+      "Raised span 4: intersects the estimated packed snowboard case envelope.",
+      "Riser 4 driver: intersects the estimated packed snowboard case envelope."
+    ],
+    "limits": "Box screening only. Open fan, service/airflow, RF/shading, rack loading, mounts and road clearance are unverified. Preview does not modify the saved existing roof layout."
+  }
+}

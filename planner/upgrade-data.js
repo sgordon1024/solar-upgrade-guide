@@ -13,7 +13,7 @@
     tankPlacement:{center:[30,129,-88],positionStatus:'estimated',orientation:'Published length placed fore-aft for comparison; installed orientation unverified'},
     installationStatus:'proposed-not-installed',limits:'Original comparison envelopes, not product CAD. OEM spare basket presence, coach equipment, fittings, exhaust, moving parts and physical fit remain unverified. Excluded from roof box checks.'
   };
-  function defaults(){return {version:1,tank:'none',engineSkid:false,transmissionSkid:false};}
-  function validate(v){if(v===undefined)return defaults();if(!v||v.version!==1||!['none',...Object.keys(catalogue.tanks)].includes(v.tank)||typeof v.engineSkid!=='boolean'||typeof v.transmissionSkid!=='boolean')throw Error('Invalid optional upgrade settings.');if(v.transmissionSkid&&!v.engineSkid)throw Error('Transmission skid requires the engine skid.');return {version:1,tank:v.tank,engineSkid:v.engineSkid,transmissionSkid:v.transmissionSkid};}
+  function defaults(){return {version:1,tank:'none',engineSkid:false,transmissionSkid:false,solar:RooflabSolar.defaults()};}
+  function validate(v){if(v===undefined)return defaults();if(!v||v.version!==1||!['none',...Object.keys(catalogue.tanks)].includes(v.tank)||typeof v.engineSkid!=='boolean'||typeof v.transmissionSkid!=='boolean')throw Error('Invalid optional upgrade settings.');if(v.transmissionSkid&&!v.engineSkid)throw Error('Transmission skid requires the engine skid.');return {version:1,tank:v.tank,engineSkid:v.engineSkid,transmissionSkid:v.transmissionSkid,solar:RooflabSolar.validate(v.solar)};}
   root.RooflabUpgrades={catalogue,defaults,validate};
 })(globalThis);

@@ -118,3 +118,8 @@ These requests replace illustrative animation values later. Keep the van parked 
 - **M08 — Cassette access:** Open the hatch normally and photograph it square-on, then at a slight angle showing the cassette handle, cap and labels. Measure the clear opening and tank face width/height, tank-face setback from the body, hinge center and usual open angle. The current visible tank is generic, not an identified product.
 - **M09 — Cockpit equipment:** Photograph the MBUX fascia, instrument cluster, steering wheel, door cards and folded visors. The 2024 manufacturer specification lists a 10.25-inch display diagonal; modeled visible screen width/height assume a 16:9 display and remain approximate.
 - **M10 — Rope lights:** With lights on, take overlapping photos from the start left of the driver seat, up the pillar, around every ceiling corner, and to both rear endpoints. Mark the bedroom front boundary and measure the rope's reach beyond it. Current routing uses an estimated bedroom-front body Y=103 plus 24 inches to Y=127; offsets around cabinetry are unknown. Record controller/preset names only if you want the visual presets to match them.
+
+
+## S01 · 800 W solar proposal
+
+See [the solar review](solar-upgrade.md#measurements-to-gather) for the focused measurement list. Priority: rack identification/slot spacing and one common datum for rail slots, bar top, A/C and fully open fan; usable mounting span; Starlink/antenna/packed snowboard and access envelopes; existing PV cable/connector/combiner/isolator labels. Four HQST HSP200N-64L panels and 4S wiring are selected; riser SKU, mounting interfaces, fasteners, wiring lengths and protective devices remain unresolved. The preview's adjustable positions are estimates.

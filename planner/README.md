@@ -202,3 +202,12 @@ Scene choices are White, Desert, Sand dunes, Mud, Gravel back road, Paved highwa
 The sliding-door opening no longer has an opaque placeholder backing. The view through it shows existing cabin geometry and the opposite body wall; rear camper furnishings are still not reconstructed. Door geometry, travel and physical clearance remain estimates.
 
 `node planner/tests/environment.test.mjs` checks all scene types, motion synchronization, bounded geometry/particles, texture disposal, pause/restart and reduced motion. The geometry suite also casts through the open sliding-door aperture to guard against another solid obstruction.
+
+
+## Optional 800 W solar proposal
+
+Mod 01 is under Tools on phones and above the model on desktop. Four HQST HSP200N-64L panels use sourced nominal dimensions; all placement and generic riser/support geometry is estimated. Toggle between current equipment and proposed panels without modifying saved roof items. The parts list includes visible mounts and hidden electrical components, their reuse status and primary sources. See [solar review](solar-upgrade.md) and [starter proposal JSON](solar-800w-specs.json).
+
+Version-1 layouts now carry optional `upgrades.solar` (`version`, `enabled`, `minTemperatureC`, four `{x,y,z}` panel-bottom positions in inches). Missing solar fields default off; existing measurements/notes/underbody choices remain. Ordinary export/import includes it. The dedicated solar JSON is a parts/analysis report, not an importable roof layout. Panel and support checks compare against estimated installed-reference envelopes; they do not validate engineering fit or the separately edited roof boxes.
+
+`node planner/tests/solar.test.mjs` checks electrical arithmetic, manufacturer envelopes, support conflicts, geometry/disposal, selective hiding, legacy migration, persistence and malformed imports. No physical installation is authorized by the preview.

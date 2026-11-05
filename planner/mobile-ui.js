@@ -19,7 +19,7 @@ export function mountInterface() {
   function slot(selector,target){const node=$(selector);if(!node)return;const anchor=document.createComment('original control position');node.before(anchor);slots.push({node,anchor,target});}
   slot('.viewbar',panels.views);slot('.display-switches',panels.views);slot('.viewfoot',panels.views);
   slot('.motion-panel',panels.controls);slot('.environment-panel',panels.scene);
-  slot('.layer-panel',panels.tools);slot('.upgrade-panel',panels.tools);
+  slot('.solar-mod-panel',panels.tools);slot('.layer-panel',panels.tools);slot('.upgrade-panel',panels.tools);
   slot('.planning-switches',roof);slot('aside',roof);slot('.lower',roof);
   slot('.actions',files);slot('details.card',files);slot('footer',files);slot('.notice',files);slot('.motion-note',files);slot('#render-status',files);
   const folds=[];for(const field of document.querySelectorAll('.motion-groups fieldset')){const anchor=document.createComment('original fieldset position');field.before(anchor);const d=document.createElement('details');d.className='control-fold';const s=document.createElement('summary');s.textContent=field.querySelector('legend').textContent;d.append(s);folds.push({field,anchor,d});}

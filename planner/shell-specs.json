@@ -1925,5 +1925,12 @@
     "status": "illustrative scenery only; no new measured geometry",
     "motion": "Shared wheel clock; 20-second limit; pauses when hidden or editing the roof; reduced motion holds scenery still. Scene choice does not modify roof-layout export.",
     "slidingOpening": "Opaque backing removed; cabin and opposite body wall visible. Rear camper furnishings remain unmodeled."
+  },
+  "optionalSolarUpgrade": {
+    "installationStatus": "proposed-not-installed",
+    "selection": "4 \u00d7 HQST HSP200N-64L \u00b7 800 W \u00b7 4S1P",
+    "specifications": "solar-800w-specs.json",
+    "review": "solar-upgrade.md",
+    "geometry": "Panel dimensions manufacturer-sourced; placements and generic risers estimated. Existing roof geometry retained. Separate panel/support-envelope screening; not engineering fit approval."
   }
 }
