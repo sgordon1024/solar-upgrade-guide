@@ -3,7 +3,7 @@ import {buildDriverDetails} from './driver-details.js?v=driveraccess1';
 import {buildRearDifferential} from './rear-differential.js?v=housing1';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-12-front-corners-mirrors',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,shoulderWidth:2.25,aftTopInset:2,passengerAftTopInset:4.5,passengerBottomRise:1,shoulderProfile:'convex quarter-round; no inset surround',driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:118.5,centerZ:-29.3,length:25,height:10.3,cornerRadius:3}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},slidingDoorTrack:{status:'photo-estimated',side:'passenger',frontY:81,rearY:136.5,centerZ:-46.8,height:2.1,maxProjection:.95,description:'Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only',measuredDimensions:null,measurementRequest:'E13'},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20,passengerAftUpperCornerRadius:.35},frontCorners:{status:'photo-estimated',description:'Monotone hood width and shared front/side bumper boundary; no pinched corner groove',measurementRequest:'E06'},mirrors:{status:'photo-estimated',centerXFromCenterline:42.5,centerY:-21.6,centerZ:-44,housingWidth:7.8,housingHeight:13.2,housingDepth:5.1,glass:'main pane and lower convex-pane appearance',indicator:'lower outboard vertical lens',measurementRequest:'E17'},passengerDoorHandles:{status:'photo-estimated',cabCenterY:9,slidingCenterY:29,centerZ:-52.8,housingLength:9.6,housingHeight:3.6,gripLength:7.4,gripDiameter:.9,measurementRequest:'E16'},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export const SHELL_SPEC={revision:'shell-13-interactive-parts',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,shoulderWidth:2.25,aftTopInset:2,passengerAftTopInset:4.5,passengerBottomRise:1,shoulderProfile:'convex quarter-round; no inset surround',driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:118.5,centerZ:-29.3,length:25,height:10.3,cornerRadius:3}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},slidingDoorTrack:{status:'photo-estimated',side:'passenger',frontY:81,rearY:136.5,centerZ:-46.8,height:2.1,maxProjection:.95,description:'Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only',measuredDimensions:null,measurementRequest:'E13'},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20,passengerAftUpperCornerRadius:.35},frontCorners:{status:'photo-estimated',description:'Monotone hood width and shared front/side bumper boundary; no pinched corner groove',measurementRequest:'E06'},mirrors:{status:'photo-estimated',centerXFromCenterline:42.5,centerY:-21.6,centerZ:-44,housingWidth:7.8,housingHeight:13.2,housingDepth:5.1,glass:'main pane and lower convex-pane appearance',indicator:'lower outboard vertical lens',measurementRequest:'E17'},passengerDoorHandles:{status:'photo-estimated',cabCenterY:9,slidingCenterY:29,centerZ:-52.8,housingLength:9.6,housingHeight:3.6,gripLength:7.4,gripDiameter:.9,measurementRequest:'E16'},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
 export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
@@ -11,9 +11,9 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  const camperGlass=material('Camper glass','#36444c',.32,.20);camperGlass.clearcoat=1;camperGlass.clearcoatRoughness=.12;camperGlass.envMapIntensity=1.7;
  paint.envMapIntensity=.75;
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
- let buildingFlare=false,buildingCamperWindow=false,driverDetails;
+ let buildingFlare=false,buildingCamperWindow=false,driverDetails,motionPart='';
  const V=(x,y,z)=>new T.Vector3(x,y,z);
- function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.sleepingFlare=buildingFlare;o.userData.camperWindow=buildingCamperWindow;group.add(o);return o;}
+ function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.motionPart=motionPart;o.userData.sleepingFlare=buildingFlare;o.userData.camperWindow=buildingCamperWindow;group.add(o);return o;}
  function patch(fn,nu,nv,mat,name){const pos=[],uv=[],idx=[];for(let j=0;j<=nv;j++)for(let i=0;i<=nu;i++){pos.push(...fn(i/nu,j/nv));uv.push(i/nu,j/nv);}for(let j=0;j<nv;j++)for(let i=0;i<nu;i++){const a=j*(nu+1)+i,b=a+nu+1;idx.push(a,b,a+1,a+1,b,b+1);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return add(g,mat,name);}
  function tube(points,r,mat=crease,closed=false,name){const curve=new T.CatmullRomCurve3(points.map(p=>V(...p)),closed,'catmullrom',0);return add(new T.TubeGeometry(curve,Math.max(8,Math.min(256,points.length*2)),r,6,closed),mat,name);}
  function cyl(a,b,r,mat,n=32,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av);const o=add(new T.CylinderGeometry(r2,r,d.length(),n),mat);o.position.copy(av.add(bv).multiplyScalar(.5));o.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());return o;}
@@ -55,6 +55,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   const seam=(pts,r=.075,mat=crease,closed=false,offset=.16)=>{const dense=[];const pp=closed?[...pts,pts[0]]:pts;for(let k=0;k<pp.length-1;k++){const a=pp[k],b=pp[k+1],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/.65);for(let j=0;j<n;j++)dense.push(sp(a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n,offset));}dense.push(sp(...pp.at(-1),offset));return tube(dense,r,mat,closed);};
   patch((u,v)=>{const y=-76.5+38*u,upper=-65-8*step(-60,-38.5,y),bottom=wheelBottom(y),z=T.MathUtils.lerp(bottom,Math.max(bottom,upper),v);return [30+sign*(sideWidth(y,z)+.18),y-.18*(1-step(-76.5,-70,y)),z];},90,25,plastic,'Wraparound front bumper');
   for(const axle of [-36,108]){const pts=[];for(let a=0;a<=Math.PI;a+=Math.PI/60){const y=axle+18.4*Math.cos(a),z=-87.8+18.4*Math.sin(a);pts.push(sp(y,z,.14));}tube(pts,.3,paint,false,'Rolled wheel arch lip');}
+  motionPart=sign<0?'driver-door':'passenger-door';
   // Front door shut line and cab glazing.
   seam([[-26,-40],[-26,-63],[-25,-67],[-20,-72],[-16,-79],[-15,-90],[12,-90],[15,-88],[16,-82],[18,-67],[18,-17],[-1,-18],[-11,-22],[-26,-40]],.07,crease,true);
   const win=[[-32.2,-51.5],[-31,-47],[-10,-23],[-4,-20.4],[9.5,-19.9],[12,-21],[11,-40.5],[8.5,-43.1],[-22,-50.8]];
@@ -97,6 +98,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   curvedFace([[-31,-51.7],[-24,-40.5],[-21,-40],[-20,-51.6]],p=>sp(...p,.42),plastic,'Mirror triangular sail mount',.2);
   const foot=sp(-23.2,-49.5,.9);box([(foot[0]+mx-sign*2.5)/2,-21.9,-49.4],[Math.abs(mx-sign*2.5-foot[0])+1.5,3.1,2.7],plastic,1.1).name='Mirror lower mounting foot';
 
+  motionPart='';
   // Cargo-panel seam, roof gutter, lower sill and pressed belt crease.
   if(sign<0){seam([[20,-8],[20,-58.5]],.065);seam([[20,-70.5],[20,-90]],.065);}else seam([[20,-8],[20,-90]],.065);
   seam([[80,-7],[80,-90]],.065);
@@ -112,7 +114,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
    patch((u,v)=>sp(track.frontY+(track.rearY-track.frontY)*u,track.centerZ+(v-.5)*2.3,.08),60,1,black,'Sliding-door track dark bed');
    for(let k=0;k<profile.length-1;k++){const a=profile[k],b=profile[k+1];patch((u,v)=>sp(track.frontY+(track.rearY-track.frontY)*u,track.centerZ+T.MathUtils.lerp(a[1],b[1],v),T.MathUtils.lerp(a[0],b[0],v)),60,1,k===3?web:metal,'Sliding-door metal channel');}
    for(const y of [track.frontY,track.rearY])patch((u,v)=>sp(y+(u-.5)*.35,track.centerZ+(v-.5)*2.3,.48),1,1,black,'Sliding-door track end stop');
-   passengerHandle(SHELL_SPEC.passengerDoorHandles.slidingCenterY);
+   motionPart='sliding-door';passengerHandle(SHELL_SPEC.passengerDoorHandles.slidingCenterY);motionPart='';
   }else{driverDetails=buildDriverDetails((y,z,d)=>sp(y,z,d));group.add(driverDetails.group);Object.assign(mats,driverDetails.materials);}
  }
  // Surface-triangulated curved panels: each fan vertex is projected onto its host surface.
@@ -153,10 +155,12 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   // One continuous lens surface sweeps around the corner from grille to body side.
   const headPoint=(t,v,d)=>{const q=t<.5?t*2:(t-.5)*2,zt=t<.5?T.MathUtils.lerp(-62.7,-59.6,q):T.MathUtils.lerp(-59.6,-58.3,q),zb=t<.5?T.MathUtils.lerp(-69.1,-67.9,q):T.MathUtils.lerp(-67.9,-58.8,q),z=T.MathUtils.lerp(zt,zb,v);if(t<.5){const x=T.MathUtils.lerp(24,sideWidth(-76.5,z)+d,q);return [30+sign*x,frontY(x,z)-d,z];}const y=T.MathUtils.lerp(-76.5,-50.5,q),x=sideWidth(y,z)+d;return[30+sign*x,y-(.18+d)*(1-step(-76.5,-70,y)),z];};
   patch((u,v)=>headPoint(u,v,.22),80,18,black,'Continuous wrapped headlight gasket');
+  motionPart='headlights';
   patch((u,v)=>headPoint(.025+.95*u,.11+.78*v,.32),80,18,light,'Continuous wrapped headlight lens');
   tube([[25.4,-67.5],[26.5,-64.1],[36.8,-61.1],[35.8,-65.6]].map(([x,z])=>fp(x*sign,z,.64)),.19,led);
   for(let j=0;j<3;j++){const x=(28+j*3)*sign;curvedFace([[x-sign*.65,-66.4],[x+sign*.65,-66.1],[x+sign*.9,-63.4],[x-sign*.4,-63.6]],p=>fp(...p,.56),chrome,'Lamp projector');}
-  const fog=[[27,-79],[33,-78.9],[35,-82.5],[27.5,-82.7]];curvedFace(fog.map(([x,z])=>[x*sign,z]),p=>fp(...p,.22),black,'Foglight recess');const p=fp(30.7*sign,-81,.5);cyl(p,[p[0],p[1]-.25,p[2]],1.15,light);
+  motionPart='';
+  const fog=[[27,-79],[33,-78.9],[35,-82.5],[27.5,-82.7]];curvedFace(fog.map(([x,z])=>[x*sign,z]),p=>fp(...p,.22),black,'Foglight recess');const p=fp(30.7*sign,-81,.5);motionPart='foglights';cyl(p,[p[0],p[1]-.25,p[2]],1.15,light);motionPart='';
   const side=[];for(let y=-75;y<=-55;y+=2)side.push([30+sign*(sideWidth(y,-82)+.1),y,-82]);tube(side,.13,plastic);
  }
  curvedFace([[-24,-79],[-18,-78.7],[18,-78.7],[24,-79],[18,-83.6],[-18,-83.6]],p=>fp(...p,.24),black,'Lower air intake',.2);for(let z=-79.7;z>-83.5;z-=.65)tube([fp(-18,z,.35),fp(0,z,.35),fp(18,z,.35)],.09,plastic);
@@ -167,11 +171,13 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   for(const sign of [-1,1]){
    const points=[[w.frontY,w.topZ-2],[w.frontY+.15,w.topZ-1.24],[w.frontY+.59,w.topZ-.59],[w.frontY+1.24,w.topZ-.15],[w.frontY+2,w.topZ],[w.frontY+4,w.topZ],...(sign>0?[[w.rearY-w.passengerAftUpperCornerRadius,w.topZ],[w.rearY-.1,w.topZ-.1],[w.rearY,w.topZ-w.passengerAftUpperCornerRadius]]:[[w.rearY-2,w.topZ],[w.rearY,w.topZ-1]]),[w.rearY,w.topZ-4],[w.rearY,w.bottomZ+.8],[w.rearY-1,w.bottomZ],[w.frontY+10,w.bottomZ],[w.frontY+5,w.bottomZ+.3],[w.frontY+2,w.bottomZ+2],[w.frontY+.5,w.bottomZ+6],[w.frontY,w.bottomZ+14]];
    const project=(p,d)=>[30+sign*(sideWidth(...p)+d),p[0],p[1]],cy=(w.frontY+w.rearY)/2,cz=(w.topZ+w.bottomZ)/2;
+   motionPart=sign<0?'driver-middle-fixed':'sliding-door';
    curvedFace(points,p=>project(p,.20),black,'Camper window bonded edge',.08);
    curvedFace(points.map(p=>[cy+(p[0]-cy)*.990,cz+(p[1]-cz)*.980]),p=>project(p,.29),camperGlass,sign<0?'Driver middle glass':'Passenger sliding-door glass',.08);
    const vent=[];const r=1.5,ventY=sign<0?w.driverVentCenterY:w.passengerVentCenterY,ventZ=sign<0?w.driverVentCenterZ:w.passengerVentCenterZ;for(const [y,z,a0] of [[ventY+w.ventLength/2-r,ventZ+w.ventHeight/2-r,0],[ventY-w.ventLength/2+r,ventZ+w.ventHeight/2-r,Math.PI/2],[ventY-w.ventLength/2+r,ventZ-w.ventHeight/2+r,Math.PI],[ventY+w.ventLength/2-r,ventZ-w.ventHeight/2+r,Math.PI*1.5]])for(let j=0;j<=6;j++){const a=a0+j*Math.PI/12;vent.push([y+r*Math.cos(a),z+r*Math.sin(a)]);}
+   motionPart=sign<0?'driver-slider':'sliding-door';
    curvedFace(vent,p=>project(p,.36),camperGlass,'Camper opening pane',.08);tube(vent.map(p=>project(p,.43)),.055,crease,true,'Camper opening-pane seal');
-  }buildingCamperWindow=false;
+  }motionPart='';buildingCamperWindow=false;
  }
  // Rear sleeping flares: owner-photo estimates, independently removable from the stock shell.
  if(includeFlares){buildingFlare=true;const flareSpec=SHELL_SPEC.sleepingFlares;
@@ -185,7 +191,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
    // Thin bonded perimeter follows the body rather than floating off the flare shoulder.
    const edge=[];for(const [cy,cz,a0] of [[f.centerY+f.length/2-f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,0],[f.centerY-f.length/2+f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,Math.PI/2],[f.centerY-f.length/2+f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI],[f.centerY+f.length/2-f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16,z=cz+f.cornerRadius*Math.sin(a),y=flareY(cy+f.cornerRadius*Math.cos(a),z);edge.push([30+sign*(flareX(y,z)+.02),y,z]);}tube(edge,.045,crease,true,'Flare bonded perimeter');
    if(sign<0){const w=f.driverWindow,pts=[],r=w.cornerRadius;for(const [cy,cz,a0] of [[w.centerY+w.length/2-r,w.centerZ+w.height/2-r,0],[w.centerY-w.length/2+r,w.centerZ+w.height/2-r,Math.PI/2],[w.centerY-w.length/2+r,w.centerZ-w.height/2+r,Math.PI],[w.centerY+w.length/2-r,w.centerZ-w.height/2+r,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16;pts.push([cy+r*Math.cos(a),cz+r*Math.sin(a)]);}
-    const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.95,w.centerZ+(p[1]-w.centerZ)*.87]),p=>project(p,.18),camperGlass,'Sleeping flare tinted window',.1);
+    const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);motionPart='flare-window';curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.95,w.centerZ+(p[1]-w.centerZ)*.87]),p=>project(p,.18),camperGlass,'Sleeping flare tinted window',.1);motionPart='';
    }
   }buildingFlare=false;
  }
@@ -202,8 +208,10 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  for(const sign of [-1,1]){
   const pts=[[.18,-2.5],[25.8,-2.6],[28.5,-3.1],[30.5,-5],[31.7,-9],[33.6,-24],[34.8,-45],[33.5,-78],[32.3,-82],[30,-84.7],[25,-85.6],[.18,-85.6]].map(([x,z])=>[x*sign,z]);rearSeam(pts,.065,.12);
   const hi=[[.4,-9],[27.5,-9],[28,-9.5],[.4,-9.5]].map(([x,z])=>[x*sign,z]);curvedFace(hi,p=>rp(...p,.08),paint,'Rear upper swage');
+  motionPart='taillights';
   const lampShape=[[34.2,-50],[39,-49],[39,-72.5],[34,-72.5]].map(([x,z])=>[x*sign,z]);curvedFace(lampShape,p=>rp(...p,.25),red,'Tall rear tail lamp',.1);
-  for(const z of [-53,-56,-64,-68,-71])tube([rp(34.6*sign,z,.43),rp(38.7*sign,z+.3,.43)],.10,red);curvedFace([[34.6*sign,-58],[36.6*sign,-58],[36.6*sign,-63],[34.6*sign,-65]],p=>rp(...p,.5),light,'Reverse lens',.1);
+  for(const z of [-53,-56,-64,-68,-71])tube([rp(34.6*sign,z,.43),rp(38.7*sign,z+.3,.43)],.10,red);motionPart='';curvedFace([[34.6*sign,-58],[36.6*sign,-58],[36.6*sign,-63],[34.6*sign,-65]],p=>rp(...p,.5),light,'Reverse lens',.1);
+  motionPart='';
   for(const z of [-32,-74]){box(rp(34.6*sign,z,.55),[4.5,1.2,2.9],paint,.3);cyl(rp(35.3*sign,z-1.6,1.3),rp(35.3*sign,z+1.6,1.3),.45,steel);}
  }
  // Owner rear glazing: two broad panes meet closely at the door seam.
@@ -212,6 +220,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   const outline=new T.Shape();outline.moveTo(.16,-17.4);outline.lineTo(25.8,-17.55);outline.quadraticCurveTo(31.5,-17.55,32.1,-23.2);outline.lineTo(33.2,-45.5);outline.quadraticCurveTo(33.35,-49.5,29.3,-49.5);outline.lineTo(.16,-49.5);outline.closePath();
   const contour=outline.getSpacedPoints(96).slice(0,96);
   for(const sign of [-1,1])for(const inset of [false,true]){
+   motionPart=sign<0?'rear-driver-door':'rear-passenger-door';
    const ringCount=12,N=contour.length,pos=[],idx=[],center=[16.6,-35];
    function project(x,z){if(inset){x=.32+(x-.16)*.984;z=-35+(z+35)*.982;}return[30+sign*x,156.76+.08*(1-(x/34)**2)+(inset?.045:0),z];}
    pos.push(...project(...center));
@@ -221,10 +230,13 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
    }
    const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();add(g,inset?camperGlass:black,(sign<0?'Driver rear':'Passenger rear')+(inset?' glass':' window seal'));
   }
-  buildingCamperWindow=false;
+  motionPart='';buildingCamperWindow=false;
  }
+ motionPart='rear-passenger-door';
  rearSeam([[0,-2.5],[0,-85.6]],.085,.12,false);box(rp(8.2,-60.2,.4),[9.5,1,1.8],plastic,.7);emblem(rp(0,-53.7,.5),2.4,'rear');
+ motionPart='rear-driver-door';
  box(rp(-16.5,-75.6,.4),[21.5,1.1,6.1],plastic,.6);box(rp(-16.5,-75.6,1),[19.7,.3,4.8],steel,.3);box(rp(-16.5,-71.9,1),[24,1.7,1.3],plastic,.5);
+ motionPart='';
  box([30,156,-88.8],[78,3,5.3],plastic,2);
  box([30,156.3,-1.55],[13,.5,1.2],red,.4);box([30,155.4,-.2],[3.4,3,2.4],plastic,.7);
  // Seven stamped roof ribs and the two longitudinal gutters, following roof crown.
@@ -248,6 +260,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   function treadBlock(cx,cy,cz,angle,polygon,innerR,outerR,name){const pos=[],ids=[],n=polygon.length;for(const rad of [innerR,outerR])for(const [x,t] of polygon){const a=angle+t/(g.tireDiameter/2);pos.push(cx+x,cy+rad*Math.cos(a),cz+rad*Math.sin(a));}for(let j=1;j<n-1;j++){ids.push(0,j+1,j,n,n+j,n+j+1);}for(let j=0;j<n;j++){const k=(j+1)%n;ids.push(j,k,n+k,j,n+k,n+j);}const geo=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setIndex(ids);geo.computeVertexNormals();return add(geo,rubber,name);}
   function sipeRibbon(points,cy,cz){const pos=[],idx=[];for(let j=0;j<points.length-1;j++){const a=V(...points[j]),b=V(...points[j+1]),mid=a.clone().add(b).multiplyScalar(.5),normal=V(0,mid.y-cy,mid.z-cz).normalize(),offset=b.clone().sub(a).normalize().cross(normal).multiplyScalar(.027),i=pos.length/3;for(const p of [a.clone().sub(offset),a.clone().add(offset),b.clone().add(offset),b.clone().sub(offset)])pos.push(...p.toArray());idx.push(i,i+1,i+2,i,i+2,i+3);}const geo=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(pos,3));geo.setIndex(idx);geo.computeVertexNormals();add(geo,black,'KO3 tread sipe');}
   for(const sign of [-1,1])for(const y of [-36,108]){
+   motionPart='wheel-'+(sign<0?'driver':'passenger')+'-'+(y<0?'front':'rear');
    const x=30+sign*g.trackWidth/2,z=g.axleZ,r=g.tireDiameter/2;wheelCenters.push({x,y,z});
    const profile=[[-3.7,8.5],[-4.25,9.4],[-4.78,11.4],[-4.825,12.7],[-4.45,14.1],[-3.7,r-.35],[-2.9,r-.45],[0,r-.43],[2.9,r-.45],[3.7,r-.35],[4.45,14.1],[4.825,12.7],[4.78,11.4],[4.25,9.4],[3.7,8.5]];
    latheWheel(x,y,z,sign,profile,rubber,'KO3 rounded tire carcass');
@@ -266,7 +279,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
    latheWheel(x,y,z,sign,[[-3.7,8.5],[-3.7,8.9],[3.6,8.9],[3.95,9.25],[4.12,9.25],[4.12,8.78],[3.8,8.6],[-3.7,8.5]],alloy,'Alloy barrel and outer lip');
    cyl([x-sign*3.5,y,z],[x-sign*3.3,y,z],8.55,black,64); // deep barrel shadow closes unrealistic daylight through both wheels
    cyl([x+sign*.5,y,z],[x+sign*.7,y,z],6.3,plastic,64); // visible brake rotor, recessed
-   box([x+sign*1.8,y+4.5,z],[1.6,2.0,5.2],plastic,.4);
+   const spinningPart=motionPart;motionPart+='-caliper';box([x+sign*1.8,y+4.5,z],[1.6,2.0,5.2],plastic,.4);motionPart=spinningPart;
    const shapePoints=[[2.5,-.70],[5.35,-.91],[8.45,-2.05],[8.75,-1.67],[6.35,0],[8.75,1.67],[8.45,2.05],[5.35,.91],[2.5,.70]];
    for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3,shape=new T.Shape(shapePoints.map(([r,t])=>new T.Vector2(r,t*1.3))),geo=new T.ExtrudeGeometry(shape,{depth:.58,bevelEnabled:true,bevelSegments:1,steps:1,bevelSize:.10,bevelThickness:.10,curveSegments:1});const p=geo.attributes.position;for(let i=0;i<p.count;i++){const rr=p.getX(i),tt=p.getY(i),d=p.getZ(i)+2.7+.11*(rr-2.5);p.setXYZ(i,x+sign*d,y+rr*Math.cos(a)-tt*Math.sin(a),z+rr*Math.sin(a)+tt*Math.cos(a));}geo.computeVertexNormals();add(geo,alloy,'Six forked alloy spokes');}
    cyl([x+sign*2.6,y,z],[x+sign*3.35,y,z],3.35,alloy,48);cyl([x+sign*3.35,y,z],[x+sign*3.6,y,z],1.65,plastic,48);
@@ -274,21 +287,26 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
    for(let k=0;k<24;k++){const a=k*Math.PI/12;cyl(radial(x,y,z,sign,4.13,9.05,a),radial(x,y,z,sign,4.17,9.05,a),.095,black,8);}
    const valve=radial(x,y,z,sign,4.16,8.25,Math.PI*.72);cyl(valve,[valve[0]+sign*.55,valve[1],valve[2]+.25],.16,black,12);
   }
+  motionPart='';
   // Continue the wheel-house backing to the sill now that the hubs sit lower.
   for(const sign of [-1,1])for(const axle of [-36,108])patch((u,v)=>[30+sign*31.5,axle-18.9+u*37.8,-91.6+v*4.0],24,2,black,'Lower wheel-house backing');
   for(const sign of [-1,1])for(const axle of [-36,108])for(const end of [-1,1])box([30+sign*35.3,axle+end*18.3,-89.4],[8.0,.6,4.4],black,.05);
   // Approximate Owl/Falcon auxiliary shocks and rear spring packs, tucked behind the tires.
   // Hardware dimensions/mount coordinates are illustrative, not installation references.
+  motionPart='suspension';
   for(const sign of [-1,1])for(const y of [-36,108]){
    const x=30+sign*32.5,front=y<0,a=V(x,y+(front?1:-8),-69),b=V(x,y+(front?-2:1),g.axleZ+1),d=b.clone().sub(a),mid=a.clone().addScaledVector(d,.62);
    cyl(a.toArray(),mid.toArray(),1.05,crease,24);cyl(mid.toArray(),b.toArray(),.37,chrome,20);
    const ra=a.clone().add(V(sign*2.1,0,-.8)),rb=ra.clone().add(V(0,0,-6.4));cyl(ra.toArray(),rb.toArray(),.78,suspensionBlue,20);cyl(ra.clone().add(V(0,0,.4)).toArray(),ra.toArray(),.86,steel,20);
    box([x,y+(front?1:-8),-69.5],[3,3,1.3],plastic,.25);cyl([ra.x,ra.y-1,ra.z+.4],[ra.x,ra.y+1,ra.z+.4],.35,red,12);
   }
+  motionPart='rear-springs';
   for(const sign of [-1,1])for(let layer=0;layer<4;layer++){const half=24-layer*3.5;patch((u,v)=>{const y=108-half+u*half*2,z=g.axleZ+1.8+2.8*((y-108)/24)**2+layer*.22;return[30+sign*26+(v-.5)*2.7,y,z];},32,1,plastic,'Rear leaf spring pack');}
+  motionPart='suspension';
   cyl([-4,108,g.axleZ],[64,108,g.axleZ],1.45,black,32);
-  const differential=buildRearDifferential(g.axleZ);group.add(differential.group);Object.assign(mats,differential.materials);
+  const differential=buildRearDifferential(g.axleZ);differential.group.userData.motionPart='rear-axle';group.add(differential.group);Object.assign(mats,differential.materials);
   for(const sign of [-1,1]){cyl([30+sign*17,-36,-88],[30+sign*34,-36,g.axleZ],.7,black,20);cyl([30+sign*20,-40,-87],[30+sign*33,-35,g.axleZ],1.1,plastic,20);}
+ motionPart='';
  }else{
  // Stock steel wheels: tire shoulder, barrel, perforated dish, six lug fasteners.
  for(const sign of [-1,1])for(const y of [-36,108]){
@@ -340,8 +358,8 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  group.userData.mirrorBounds=[new T.Box3(),new T.Box3()];for(const o of group.children)if(o.name.startsWith('Mirror ')){const b=new T.Box3().setFromObject(o);group.userData.mirrorBounds[b.getCenter(new T.Vector3()).x<30?0:1].union(b);}
  // Batch static meshes by material: the same geometry with a small number of draw calls.
  const originals=[...group.children],buckets=new Map();group.updateMatrixWorld(true);
- for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare)+'|'+Boolean(o.userData.camperWindow)+'|'+Boolean(o.userData.underfloorPlaceholder);let b=buckets.get(key);if(!b){b={material:o.material,flare:Boolean(o.userData.sleepingFlare),camperWindow:Boolean(o.userData.camperWindow),underfloorPlaceholder:Boolean(o.userData.underfloorPlaceholder),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
- for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.camperWindow?'Camper window · '+b.material.name:b.material.name);o.userData.sleepingFlare=b.flare;o.userData.camperWindow=b.camperWindow;o.userData.underfloorPlaceholder=b.underfloorPlaceholder;}
+ for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare)+'|'+Boolean(o.userData.camperWindow)+'|'+Boolean(o.userData.underfloorPlaceholder)+'|'+(o.userData.motionPart||'');let b=buckets.get(key);if(!b){b={material:o.material,motionPart:o.userData.motionPart||'',flare:Boolean(o.userData.sleepingFlare),camperWindow:Boolean(o.userData.camperWindow),underfloorPlaceholder:Boolean(o.userData.underfloorPlaceholder),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
+ for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.camperWindow?'Camper window · '+b.material.name:b.material.name);o.userData.motionPart=b.motionPart;o.userData.sleepingFlare=b.flare;o.userData.camperWindow=b.camperWindow;o.userData.underfloorPlaceholder=b.underfloorPlaceholder;}
  group.userData.originalParts=originals.length;group.userData.drawCalls=group.children.length;
  return {group,materials:mats,driverDetails};
 }

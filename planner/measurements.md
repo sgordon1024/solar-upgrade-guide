@@ -99,3 +99,14 @@ Approximate uncertainty / load condition if relevant:
 For each new or revised feature, add unresolved dimensions here before treating them as known. Continue with photo estimates until owner measurements or an exact-product source arrive. Close a request only after recording its endpoints, value and evidence in the relevant specs; if references conflict, retain both observations and explain the unresolved difference. Update this checklist and the downloadable shell specs together when a measurement changes model geometry.
 
 This checklist is separate from the editable roof-layout JSON. Personal measurement notes still save locally and travel with roof-layout exports; downloading this file provides the shared request list.
+
+
+## Moving parts — M01–M05
+
+These requests replace illustrative animation values later. Keep the van parked and move each part only through its normal travel. A photo with a tape visible is useful; do not force a hinge, remove hardware or crawl underneath for this list.
+
+- **M01 — Cab and rear doors:** For each door, photograph it closed, halfway open and at its normal stop, with the camera level and looking straight down the hinge axis where practical. Measure hinge-center to the free edge, and the free-edge displacement between closed and open. Include the rear spare and normal carrier position so interference can be documented. Current 68° cab and 88° rear swings are illustrative.
+- **M02 — Sliding door:** Measure how far the front edge moves rearward between fully closed and fully open. Measure its outward stand-off from the body when open; photograph the top/middle/bottom guides without removing covers. Current travel is 56 inches with a 5.2-inch outward offset.
+- **M03 — Driver middle slider:** Measure the movable pane width/height, full travel, and the clear opening when fully open. Photograph it closed and fully open from square-on. Current rearward travel is 16.8 inches; the pane and screen/reveal details remain estimated.
+- **M04 — Flare awning window:** Measure pane width/height, hinge location, and the straight gap from the lower pane edge to its closed frame at each normal stay position. Photograph both support stays and their attachment points from the side. Current opening is 32°; the reconstructed stays are illustrative.
+- **M05 — Lights and suspension:** Record the lamp models if available and photograph low/high beams from the same stationary setup, with camera exposure held fixed. For suspension, record loaded hub-center-to-arch height at each wheel on level ground. Manufacturer travel/mount data can refine the demo; the animated 0–2.4-inch compression is not a measured travel limit, and the depicted beam spread is not photometric data.

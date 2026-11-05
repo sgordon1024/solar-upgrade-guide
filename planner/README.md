@@ -162,3 +162,23 @@ Passenger-side comparison refined the aft flare rake and lower edge independentl
 
 
 The front-corner revision removes the artificial nose-width dip, gives the front and side bumper a shared edge, and keeps the wrapped lamps on the same surface. Both mirrors now use original tapered convex caps, glass rims and lower panes, short mounts and vertical indicators. Owner photos and supplied exterior-render references guide these shapes; exact mirror dimensions and folding clearance remain open in E17.
+
+
+### Interactive exterior
+
+Tap a visible door, opening window pane, lamp or tire in the 3D view. The **Try your van** controls provide the same actions with native keyboard and touch buttons. Dragging and pinching keep their camera behavior. Headlights cycle **Off → Low beam → High beam**; use **Day / night preview** to see their illustrative ground illumination. Fog, tail, roof-bar and hatch lights are independent.
+
+The cab doors swing outward with their glass, mirrors and badges; the sliding door first moves outward, then rearward. The rear doors carry the spare and their door hardware. Carrier, motorcycle and container visibility are temporarily suppressed while rear doors are open, then restored to your existing layer selections. This is a demonstration, not collision detection. Openings use dark recesses; a camper or cab interior has not been reconstructed.
+
+The driver middle pane slides rearward. The flare pane hinges outward from its top edge with two telescoping support stays. A tire tap starts/stops a wheel and suspension demonstration: road wheels spin, calipers stay fixed, shocks compress and the rear spring pack flexes. It stops automatically after 20 seconds or when the tab is hidden. Reduced-motion preference uses immediate door/window changes and a static wheel/suspension pose. **Close all & reset** restores the neutral model and switches lights off.
+
+Angles, travel, support hardware, suspension response, interior reveals and beam patterns are estimates. M01–M05 in the measurement checklist record the needed observations. These poses do not establish physical clearance or load behavior. Motion state is temporary, separate from saved roof-layout data and its JSON export. Opening animation is disabled while editing the roof layout.
+
+Dependency-free checks (Node.js):
+
+```sh
+node planner/tests/geometry.test.mjs
+node planner/tests/controller.test.mjs
+```
+
+The checks cover concave panel extraction and area conservation, pose reset, rearward door travel, attached spare, independent lamps, layer visibility, fixed calipers, direct picking, drag/multitouch suppression, reduced motion and stopping on timeout/tab hiding.

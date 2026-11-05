@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-local-front-corners-mirrors",
+  "revision": "shell-13-interactive-parts",
   "units": "in",
   "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment including Maxxair fan and bagged snowboard, roof rack, Owl side ladder and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
@@ -1835,5 +1835,20 @@
     ],
     "evidence": "Owner front/side photos plus supplied render references show tapered convex caps, rear glass rims, short lower feet and vertical lower-outboard indicator lenses. Original geometry; no image textures. Overall dimensions, hidden supports, reflective optics and folding sweep are unverified.",
     "includedInRoofBoxChecks": false
+  },
+  "interactions": {
+    "revision": "interactive-1",
+    "units": "in",
+    "status": "illustrative motion",
+    "cabDoorAngle": 68,
+    "rearDoorAngle": 88,
+    "slidingDoorTravel": 56,
+    "slidingDoorOutset": 5.2,
+    "driverWindowTravel": 16.8,
+    "flareWindowAngle": 32,
+    "suspensionCompression": 2.4,
+    "source": "Owner describes rearward-sliding driver middle window and top-hinged flare window with support stays. Axes, angles, travel and hidden surfaces are estimates.",
+    "limits": "Animation is not a clearance, collision, suspension, road-load or beam-pattern simulation. Interior openings are dark placeholders. Rear cargo is temporarily hidden for rear-door demonstrations. Animation state is temporary and does not change exported roof measurements.",
+    "measurementRequest": "M01-M05"
   }
 }
