@@ -6,7 +6,7 @@ An original browser-based reconstruction of a 144-inch-wheelbase, high-roof Spri
 
 ## Opening the planner
 
-Every visit opens on a pure-white stage with the van centered, a small camera reset button and four menus: **Views**, **Controls**, **Scene** and **Tools**. This applies on desktop and phone, including returning from browser history. Choose another environment from Scene after landing. The initial scene and camera reset do not erase roof layouts, panel positions, temporary equipment visibility, notes or other saved data.
+Every visit opens on a pure-white stage with the van centered, a small camera reset button and four menus: **Views**, **Controls**, **Scene** and **Tools**. This applies on desktop and phone, including returning from browser history. Choose another environment from Scene after landing. Temporary display aids (measurement labels, wireframe, legacy boxes and fuel cutaway) also start off. The initial scene and camera reset do not erase roof layouts, panel positions, temporary equipment visibility, notes or other saved data.
 
 A lightweight van illustration stays visible while the model loads. If loading fails or takes longer than 45 seconds, **Try again** reloads the page without clearing storage; **Open layout tools** offers the saved-layout controls when they are available. Loading and error messages are announced, menus support keyboard focus and Escape, and reduced motion keeps the loading indicator still. Geometry construction still takes time on slower devices; the illustration is an activity indicator, not a percentage estimate.
 

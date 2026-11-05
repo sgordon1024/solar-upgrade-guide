@@ -17,7 +17,7 @@
    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    if(!window.rooflabState)throw Error('Layout data unavailable');
    const {mountInterface}=await import('./mobile-ui.js?v=landing1');window.rooflabInterface=mountInterface();
-   await import('./render3d.js?v=landing1');
+   await import('./render3d.js?v=landing3');
   }catch(error){console.error(error);fail();}}
  // Deferred scripts run while readyState is interactive; wait for all later
  // deferred layout scripts, not just the parsed DOM.
