@@ -3,6 +3,7 @@ import * as T from '../vendor/three.module.js';
 import {buildShell} from '../shell-model.js';
 import {buildBodyEmblems} from '../brand-emblems.js';
 import {buildExteriorDetails} from '../exterior-details.js';
+import {buildInstalledRoof} from '../roof-equipment.js';
 import {buildRoofRack} from '../roof-rack.js';
 import {installInteractions} from '../interactions.js';
 class Emitter {listeners={};addEventListener(k,fn){(this.listeners[k]??=[]).push(fn)}fire(k,e={}){for(const fn of this.listeners[k]||[])fn(e)}}
@@ -10,10 +11,10 @@ const motion=new Emitter();motion.matches=false;globalThis.matchMedia=()=>motion
 const doc=new Emitter(),note={textContent:''},ropeControls=Object.fromEntries(['rope-preset','rope-pattern','rope-speed','rope-pause'].map(id=>[id,Object.assign(new Emitter(),{value:id==='rope-preset'?'off':id==='rope-pattern'?'steady':'.7',setAttribute(k,v){this[k]=v}})]));doc.hidden=false;doc.querySelector=id=>ropeControls[id.slice(1)]||note;doc.querySelectorAll=()=>[];globalThis.document=doc;
 let token=0;const pending=new Map();globalThis.requestAnimationFrame=fn=>{pending.set(++token,fn);return token};globalThis.cancelAnimationFrame=id=>pending.delete(id);
 function advance(ms){const callbacks=[...pending.values()];pending.clear();for(const fn of callbacks)fn(ms);}
-const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true}),emblems=buildBodyEmblems(shell.group),exterior=buildExteriorDetails(shell.group),rack=buildRoofRack(),body=new T.Group();body.add(shell.group,emblems.group,exterior.group,rack.group);
+const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true}),emblems=buildBodyEmblems(shell.group),exterior=buildExteriorDetails(shell.group),rack=buildRoofRack(),installed=buildInstalledRoof(),body=new T.Group();body.add(shell.group,emblems.group,exterior.group,rack.group,installed.group);
 const canvas=new Emitter();canvas.getBoundingClientRect=()=>({left:0,top:0,width:800,height:600});
 const camera=new T.OrthographicCamera(-130,130,98,-98,.1,1000);camera.up.set(0,0,1);camera.position.set(-400,40,-40);camera.lookAt(30,40,-40);camera.updateMatrixWorld();
-let night=false;const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n});
+let night=false,bagSelections=0;const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n,onSelectSnowboard:()=>bagSelections++});
 control.activate('headlights');advance(performance.now()+20);assert.equal(control.state.headlights,1);control.activate('headlights');advance(performance.now()+40);assert.equal(control.state.headlights,2);control.activate('headlights');advance(performance.now()+60);assert.equal(control.state.headlights,0);
 control.activate('night');assert.equal(night,true);const floor=control.rig.extras.children.find(o=>o.material?.name==='Night preview ground');assert.equal(floor.visible,true);
 control.activate('wheels');advance(performance.now()+21000);assert.equal(control.target.wheels,0);assert.equal(pending.size,0);
@@ -54,3 +55,12 @@ console.log('PASS two-seat requests finish sequentially.');
 
 // Animated lighting has a bounded, accessible lifecycle independent of wheel motion.
 motion.matches=false;motion.fire('change');ropeControls['rope-preset'].value='aurora';ropeControls['rope-pattern'].value='flow';ropeControls['rope-preset'].fire('input');advance(performance.now()+20);assert(pending.size>0);control.setEnabled(false);advance(performance.now()+40);assert.equal(pending.size,0);assert.equal(ropeControls['rope-pause']['aria-pressed'],'true');control.setEnabled(true);ropeControls['rope-pause'].fire('click');advance(performance.now()+60);assert(pending.size>0);advance(performance.now()+61000);assert.equal(pending.size,0);assert.equal(ropeControls['rope-pause']['aria-pressed'],'true');motion.matches=true;motion.fire('change');assert.equal(ropeControls['rope-pause'].disabled,true);control.reset();assert.equal(control.rope.preset,'off');assert.equal(pending.size,0);console.log('PASS fixture targets/occlusion, cassette and seat actions, rope60-second stop, planning pause and reduced-motion control state.');
+
+// The real canvas bag and its clamps pick together, with visibility and occlusion respected.
+camera.position.set(8.5,120,400);camera.lookAt(8.5,120,0);camera.updateMatrixWorld();
+tapWorld([8.5,120,19]);assert.equal(bagSelections,1,'visible bag selects');
+installed.setSnowboardPosition({version:1,snowboard:{x:35,y:-30,z:4}});tapWorld([43.5,90,23]);assert.equal(bagSelections,2,'moved bag selects');
+const blocker=new T.Mesh(new T.BoxGeometry(24,70,4),new T.MeshBasicMaterial());blocker.position.set(43.5,106,40);body.add(blocker);tapWorld([43.5,90,23]);assert.equal(bagSelections,2,'occluded bag cannot select through another object');body.remove(blocker);
+installed.group.visible=false;tapWorld([43.5,90,23]);assert.equal(bagSelections,2,'hidden bag cannot select');installed.group.visible=true;
+control.setEnabled(false);control.activate('snowboard');assert.equal(bagSelections,2,'roof box mode stays distinct');control.setEnabled(true);
+console.log('PASS detailed bag picking, translated picking, hidden/occluded selection and planning-mode separation.');

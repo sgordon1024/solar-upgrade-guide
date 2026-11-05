@@ -151,6 +151,14 @@
   },
   "geometry": {
     "units": "in",
+    "installedReference": {
+      "version": 1,
+      "snowboard": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
     "roofReference": {
       "width": 60,
       "length": 122
@@ -459,7 +467,8 @@
       "Raised span 3: intersects the estimated packed snowboard case envelope.",
       "Riser 3 driver: intersects the estimated packed snowboard case envelope.",
       "Raised span 4: intersects the estimated packed snowboard case envelope.",
-      "Riser 4 driver: intersects the estimated packed snowboard case envelope."
+      "Riser 4 driver: intersects the estimated packed snowboard case envelope.",
+      "Riser 4 driver: intersects the estimated snowboard clamp 2 envelope."
     ],
     "limits": "Box screening only. Open fan, service/airflow, RF/shading, rack loading, mounts and road clearance are unverified. Preview does not modify the saved existing roof layout."
   }

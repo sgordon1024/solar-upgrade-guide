@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import './solar-data.js?v=solar1';
+import './solar-data.js?v=bag3';
 import {RACK_SPEC} from './roof-rack.js?v=rack2';
 
 // Original panel envelopes and generic supports. No product mounting CAD claimed.

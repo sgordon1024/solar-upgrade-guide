@@ -211,3 +211,13 @@ Mod 01 is under Tools on phones and above the model on desktop. Four HQST HSP200
 Version-1 layouts now carry optional `upgrades.solar` (`version`, `enabled`, `minTemperatureC`, four `{x,y,z}` panel-bottom positions in inches). Missing solar fields default off; existing measurements/notes/underbody choices remain. Ordinary export/import includes it. The dedicated solar JSON is a parts/analysis report, not an importable roof layout. Panel and support checks compare against estimated installed-reference envelopes; they do not validate engineering fit or the separately edited roof boxes.
 
 `node planner/tests/solar.test.mjs` checks electrical arithmetic, manufacturer envelopes, support conflicts, geometry/disposal, selective hiding, legacy migration, persistence and malformed imports. No physical installation is authorized by the preview.
+
+## Moving the detailed snowboard bag
+
+Tap the visible canvas bag or its clamps, or choose **Move snowboard bag** above the model (phone: **Tools → Move snowboard bag**). The highlighted bag and both clamps move together. Use the vehicle-direction buttons with ¼-inch, 1-inch or 4-inch steps, or open **Precise position & fit notes** to enter offsets. **Done** or Escape closes the editor. **Restore photo position** resets only this bag and its clamps.
+
+Offsets are saved with the version-1 layout under `installedRoof: {version: 1, snowboard: {x, y, z}}`, in inches relative to the original photo-estimated pose. X is positive toward the passenger side, Y rearward, Z upward. Older files with no `installedRoof` migrate to zero offsets. Export/import includes them; existing roof items, measurements, notes and upgrade choices are preserved. The earlier editable `roof-bag` box is explicitly labeled **layout box**, remains independent, and links to the detailed mover.
+
+The rack crossbars stay fixed. Moving clamps does not validate a new attachment location. Bag/clamp dimensions and packing shape remain estimated; measured mounting and service clearances are required. Fit notes screen conservative bag and clamp envelopes against the installed reference equipment or selected solar proposal. Solar panel/support checks and the dedicated solar report also follow the moved bag; they do not check every van surface or replace physical clearance checks.
+
+`node planner/tests/snowboard.test.mjs` verifies independent geometry transforms, geometry reuse, envelope coverage, fit/report updates, bounded inputs, legacy migration, persistence and JSON roundtrip. `node planner/tests/controller.test.mjs` includes actual raycast selection, moved/hidden/occluded bag checks and existing interaction regressions.

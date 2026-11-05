@@ -19,20 +19,20 @@ export function mountInterface() {
   function slot(selector,target){const node=$(selector);if(!node)return;const anchor=document.createComment('original control position');node.before(anchor);slots.push({node,anchor,target});}
   slot('.viewbar',panels.views);slot('.display-switches',panels.views);slot('.viewfoot',panels.views);
   slot('.motion-panel',panels.controls);slot('.environment-panel',panels.scene);
-  slot('.solar-mod-panel',panels.tools);slot('.layer-panel',panels.tools);slot('.upgrade-panel',panels.tools);
+  slot('#move-snowboard',panels.tools);slot('.solar-mod-panel',panels.tools);slot('.layer-panel',panels.tools);slot('.upgrade-panel',panels.tools);
   slot('.planning-switches',roof);slot('aside',roof);slot('.lower',roof);
   slot('.actions',files);slot('details.card',files);slot('footer',files);slot('.notice',files);slot('.motion-note',files);slot('#render-status',files);
   const folds=[];for(const field of document.querySelectorAll('.motion-groups fieldset')){const anchor=document.createComment('original fieldset position');field.before(anchor);const d=document.createElement('details');d.className='control-fold';const s=document.createElement('summary');s.textContent=field.querySelector('legend').textContent;d.append(s);folds.push({field,anchor,d});}
   document.body.append(hud,dock,renderNotice,announcement,sheet);
-  let trigger=null;
-  const close=()=>{if(sheet.open)sheet.close();};
+  let trigger=null,restoreOnClose=true;
+  const close=(restore=true)=>{restoreOnClose=restore;if(sheet.open)sheet.close();};
   function open(id,button){trigger=button;for(const [key,p] of Object.entries(panels))p.hidden=key!==id;$('#mobile-sheet-title').textContent=choices.find(v=>v[0]===id)[1];for(const b of dock.querySelectorAll('button'))b.setAttribute('aria-expanded',String(b===button));if(!sheet.open)sheet.showModal();sheet.querySelector('.sheet-content').scrollTop=0;sheet.querySelector('.sheet-close').focus();}
   for(const b of dock.querySelectorAll('button'))b.addEventListener('click',()=>open(b.dataset.panel,b));
   sheet.querySelector('.sheet-close').addEventListener('click',close);
   sheet.addEventListener('click',e=>{if(e.target===sheet){const r=sheet.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}if(e.target.closest('.viewbar button,[data-action]'))close();if(e.detail>0&&e.target.matches('[name=environment]'))close();});
-  sheet.addEventListener('close',()=>{for(const b of dock.querySelectorAll('button'))b.setAttribute('aria-expanded','false');trigger?.focus();});
+  sheet.addEventListener('close',()=>{for(const b of dock.querySelectorAll('button'))b.setAttribute('aria-expanded','false');if(restoreOnClose)trigger?.focus();});
   $('#mobile-camera-reset').addEventListener('click',()=>$('#home').click());
   function arrange(){close();const mobile=media.matches;interactionStatus.setAttribute('aria-live',mobile?'off':'polite');announcement.setAttribute('aria-live',mobile?'polite':'off');document.body.classList.toggle('immersive',mobile);for(const {node,anchor,target} of slots){if(mobile)target.append(node);else anchor.after(node);}for(const {field,anchor,d} of folds){if(mobile){anchor.after(d);d.append(field);d.open=false;}else{anchor.after(field);d.remove();}}if(mobile){panels.tools.append(roof,files);$('.motion-panel').open=true;$('.environment-panel').open=true;}else $('.environment-panel').open=false;}
-  media.addEventListener('change',arrange);arrange();
+  const bag=$('#bag-mover');function fitBagViewport(){if(media.matches&&!bag.hidden)document.documentElement.style.setProperty('--bag-canvas-height',Math.max(180,bag.getBoundingClientRect().top-8)+'px');}new ResizeObserver(fitBagViewport).observe(bag);window.addEventListener('resize',fitBagViewport);media.addEventListener('change',arrange);arrange();
   return {setView(id){const source=document.getElementById(id);$('#mobile-view-name').textContent=(source?.textContent||'3D view')+' · estimated geometry';},close};
 }

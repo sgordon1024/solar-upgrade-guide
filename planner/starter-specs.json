@@ -1,4 +1,12 @@
 {
+  "installedRoof": {
+    "version": 1,
+    "snowboard": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  },
   "upgrades": {
     "version": 1,
     "tank": "none",
