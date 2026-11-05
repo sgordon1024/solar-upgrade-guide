@@ -46,3 +46,9 @@ Panel and generic support-envelope screening flags the rear pair's overhang and 
 5. Record visible labels for existing PV wire, connectors, roof entry/combiner and isolators without opening energized equipment. A qualified installer should document internal wiring, protection and charge settings.
 
 Original geometry and calculations are MIT licensed with the planner. Source links do not transfer manufacturer CAD or photography into this repository.
+
+## Current rear 2×2 alternative · 5 November 2026
+
+The historical layout above remains documented; the new optional preset is described in [the planner guide](README.md#rear-22-roof-study--5-november-2026). Four portrait modules form a 61.24 × 93.52-inch block with 1-inch gaps, Z18 panel bottoms and four generic raised spans/eight risers. Positions, rail attachment points and bracket heights are illustrative. The owner-measured 23 × 20-inch 50 W panel is a **separate chassis circuit**, excluded from all 800 W house-string arithmetic. No new chassis controller or electrical parts have been selected.
+
+The rack is just under 52 inches across its outside rails; first/rear crossbar centers are 130 inches apart. Neither substitutes for the separate 60 × 122-inch planning reference. The outside passenger-rail awning, packed bag approximately 60 × under15 × 7 inches, clamp positions, loading path and Starlink footprint stay in screening. Bag thickness is not a riser dimension. Editable overhang allowances are planning inputs, not physical authorization. The parts list includes the chassis circuit and optional cargo support alongside existing hidden electrical components.

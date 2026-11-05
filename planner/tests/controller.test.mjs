@@ -67,3 +67,8 @@ control.setEnabled(false);control.activate('snowboard');assert.equal(bagSelectio
 console.log('PASS detailed bag picking, translated picking, hidden/occluded selection and planning-mode separation.');
 
 const proposal=buildSolarUpgrade();const layout=RooflabSolar.planningPreset();proposal.update(layout);body.add(proposal.group);installed.setSnowboardPosition({...RooflabSnowboard.defaults(),bagHidden:true,starlinkHidden:true});camera.position.set(30,80,400);camera.lookAt(30,80,0);camera.updateMatrixWorld();for(let i=0;i<4;i++){const p=RooflabSolar.envelopes(layout)[i],origin=proposal.group.position;tapWorld([origin.x+p.x+p.width/2,origin.y+p.y+p.length/2,origin.z+p.z+1]);assert.equal(panelSelections.at(-1),'proposal-'+i);}const count=panelSelections.length;proposal.group.visible=false;tapWorld([30,80,16.5]);assert.equal(panelSelections.length,count);console.log('PASS all four actual proposed panels raycast-select independently; hidden panels cannot select.');
+
+// Chassis and cargo are independent selectable meshes, not house-string panels.
+const {buildRoofExtras}=await import('../roof-extras.js');const extras=buildRoofExtras(),extraState=RooflabRoofExtras.defaults();extraState.chassis.enabled=true;extraState.cargo.enabled=true;extras.update(extraState);body.add(extras.group);installed.group.visible=false;
+for(const p of RooflabRoofExtras.envelopes(extraState)){const o=extras.group.position;tapWorld([o.x+p.x+p.width/2,o.y+p.y+p.length/2,o.z+p.z+p.height]);assert.equal(panelSelections.at(-1),p.id);}
+const extraCount=panelSelections.length;extras.group.visible=false;tapWorld([48,41,8]);assert.equal(panelSelections.length,extraCount);console.log('PASS independent chassis/cargo raycast selection and hidden-layer suppression.');

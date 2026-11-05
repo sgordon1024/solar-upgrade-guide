@@ -130,3 +130,9 @@ See [the solar review](solar-upgrade.md#measurements-to-gather) for the focused 
 - Measure open fan sweep and height above the same roof datum; the 13.5-inch screening top is only an estimate.
 - Confirm A/C airflow/service clearances and a new location for front antennas, bag and Starlink.
 - Measure viable riser/span attachment stations, panel clamp zones and total raised vehicle height. The displayed eight spans / sixteen risers are generic, not a selected mounting kit.
+
+## Latest roof measurements and remaining endpoints · 5 November 2026
+
+Recorded separately: outside side rails **just under 52 inches**; frontmost-to-rearmost crossbar **centers 130 inches**; packed bag **about 60 long × under15 wide × 7 thick**; existing 50 W chassis panel **23 × 20 inches**. The original 60 × 122 planning reference is retained. Awning attaches outside the passenger rail. The later “under6 inches” remark is ambiguous A/C context and is not used as bag data.
+
+Request these one at a time when practical: (1) mark the 122-reference origin and measure to the front/rear crossbar centers; (2) confirm whether allowed overhang is measured from roof edges or outer rails; (3) record every crossbar station and bag-clamp station from that shared origin; (4) measure bag loading/access space and the independent support path for any box; (5) record the 50 W panel thickness/model and visible mounting/circuit labels; (6) resolve common-height endpoints for bar top, A/C and fully open fan. Current Z18 panel bottom, rail section, centered registration, generic risers and 18 × 28 × 8-inch optional box remain estimates.

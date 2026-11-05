@@ -51,7 +51,7 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "Owner 60 \u00d7 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
   "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, driver-side Owl ladder, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, Maxxair fan, bagged snowboard and two rear clamp carriers, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, separate rear-door steps, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
@@ -73,7 +73,7 @@
     "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified.",
     "cabBrow": "Compared supplied side/quarter reference pixels and owner passenger photo with actual rendered before/after views and a fixed-registration 50% side overlay. Broadened longitudinal bow recovery and transverse crown blending to remove the artificial inward S curve above the windshield; no dimensional tolerance is inferred.",
     "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
-    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 \u00d7 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
+    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
     "fullSceneGeometry": {
       "triangles": 598913,
       "materialBatches": 53,
@@ -82,7 +82,7 @@
     "installedRoof": "Six actual WebGL views reviewed against owner front, driver, passenger and overhead photos. Uniform-scale roof overlay aligned to the crossbar span; transverse width/perspective mismatch remains, so no physical tolerance is inferred. Independent review corrected panel elevation, removed invented support strips and clarified cell grids. Final review found no blocking visual regression. Exact dimensions, hidden connections and antenna heights remain estimated.",
     "crossbarsAndLadder": "Six actual WebGL views and private overhead/driver photo overlays reviewed. Uniform scale and translation retain unresolved perspective/roof-height mismatch. Four exposed main beams plus four partly occluded lower support stations modeled separately; hidden spans inferred. Independent review refined ladder placement 2.5 inches rearward to align its front rail with the glass/flare junction. Finite geometry, seven treads, nominal rear-tire separation and preserved shell length/wheelbase checked. No physical clearance or structural adequacy established.",
     "maxxairAndSnowboard": "Six actual WebGL views and a private fixed-rack-span overhead overlay checked. Refined fan placement forward to match the visible rear gap before the panels, and replaced radial cap facets with a smooth grid. Bag uses an irregular soft loft, compressed sections at two rear main crossbars and a flatter overhanging tail. Photo perspective and packing variations remain unresolved; no dimensional tolerance or physical fit established.",
-    "cabinLighting": "Local geometry/controller tests and desktop/375 \u00d7 844 browser interaction checks pass. Private actual WebGL captures reviewed against supplied cockpit renderings and manufacturer layout references. Exact coach interior, swivel mechanism, cassette model, rope routing and photometry remain unverified. Owner approved publication after local review."
+    "cabinLighting": "Local geometry/controller tests and desktop/375 × 844 browser interaction checks pass. Private actual WebGL captures reviewed against supplied cockpit renderings and manufacturer layout references. Exact coach interior, swivel mechanism, cassette model, rope routing and photometry remain unverified. Owner approved publication after local review."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -219,7 +219,7 @@
       "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
       "nominalDiameter": 30.5,
       "nominalSectionWidth": 9.65,
-      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 \u00d7 245 \u00d7 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
       "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
       "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
     },
@@ -244,7 +244,7 @@
       "actualLiftInches": null,
       "hubToArchModel": 23,
       "modelAxleDropFromPreviousGenericShell": 4.7,
-      "evidence": "Local photo ratios give roughly 1.15\u20131.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
       "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
     },
     "verification": {
@@ -417,7 +417,7 @@
     "model": "2021 KTM 350 SX-F",
     "revision": "ktm-1",
     "source": "https://en.enduro.team/images/2/26/2021_350_sxf.pdf",
-    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139\u2013140; manufacturer-authored manual hosted by a third party.",
+    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139–140; manufacturer-authored manual hosted by a third party.",
     "manufacturer": {
       "wheelbase": 58.46456692913386,
       "wheelbaseAdjustment": 0.3937007874015748,
@@ -492,13 +492,16 @@
     "verification": "Private front-photo/render overlay with uniform scaling and translation; close-up inspected for surface contact. Camera perspective and dimensions uncalibrated."
   },
   "roofRack": {
-    "revision": "rack-2",
+    "revision": "rack-3-owner-span",
     "description": "Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar",
     "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "sourceScope": "Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.",
     "ownerReported": {
       "planningLength": 122,
       "planningWidth": 60,
+      "railOutsideWidthObservation": "just under 52 inches",
+      "railOutsideWidthUpperBound": 52,
+      "frontRearCrossbarCenters": 130,
       "crossbarForeAftWidth": 2,
       "crossbarHeight": 1,
       "sideSlotCenterSpacing": 3,
@@ -506,7 +509,7 @@
       "lowerSideRailCenterToTopRailBottomObservation": 4
     },
     "unresolved": [
-      "Endpoints of the 122 \u00d7 60 track reference",
+      "Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed",
       "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
       "Identity of top rail in the separate 4-inch observation",
       "Exact rail sections, hidden crossbars, mounting feet and light-bar model"
@@ -519,10 +522,10 @@
         0
       ],
       "firstCrossbarY": 26,
-      "lastCrossbarY": 148,
+      "lastCrossbarY": 156,
       "railCenterXs": [
-        0,
-        60
+        4.7,
+        55.3
       ],
       "crossbarCenterZ": 6,
       "crossbarStations": [
@@ -547,46 +550,6 @@
         3.1
       ]
     },
-    "limits": "Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.",
-    "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; units inches.",
-    "modeledBounds": {
-      "isBox3": true,
-      "min": {
-        "x": -3,
-        "y": 19,
-        "z": -2.431339979171753
-      },
-      "max": {
-        "x": 63,
-        "y": 151,
-        "z": 6.650000095367432
-      }
-    },
-    "modeledCrossbarCenters": [
-      [
-        30,
-        26,
-        6
-      ],
-      [
-        30,
-        54.06,
-        6
-      ],
-      [
-        30,
-        107.74000000000001,
-        6
-      ],
-      [
-        30,
-        148,
-        6
-      ]
-    ],
-    "editableInRoofLayout": false,
-    "includedInEquipmentBoxChecks": false,
-    "geometryLicense": "Original MIT geometry. No photo textures, manufacturer drawings or third-party mesh redistributed.",
     "panelSupports": {
       "status": "estimated",
       "count": 4,
@@ -601,29 +564,44 @@
         1.25,
         1
       ],
-      "span": 60,
+      "span": 52,
       "evidence": "Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured."
     },
-    "modeledPanelSupportCenters": [
+    "limits": "Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.",
+    "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; units inches.",
+    "modeledBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 3.450000047683716,
+        "y": 19,
+        "z": -0.673413097858429
+      },
+      "max": {
+        "x": 56.54999923706055,
+        "y": 159,
+        "z": 6.650000095367432
+      }
+    },
+    "modeledCrossbarCenters": [
       [
         30,
-        33.5,
-        5.15
+        26,
+        6
       ],
       [
         30,
-        49,
-        5.15
+        55.900000000000006,
+        6
       ],
       [
         30,
-        83,
-        5.15
+        113.10000000000001,
+        6
       ],
       [
         30,
-        99,
-        5.15
+        156,
+        6
       ]
     ]
   },
@@ -634,7 +612,7 @@
     "policy": "Continue with labeled estimates. Record values and exact endpoints before promoting geometry to measured; retain unresolved observations separately. Checklist is a separate download from roof-layout JSON."
   },
   "installedRoof": {
-    "revision": "installed-roof-2-fan-snowboard",
+    "revision": "installed-roof-3-owner-bag-envelope",
     "status": "photo-estimated",
     "configuration": "Existing equipment reference, not proposed upgrades",
     "planningOrigin": [
@@ -705,6 +683,60 @@
       ],
       "appearance": "Dark low-profile shroud, sloping front nose, transverse upper vent and rear ribs"
     },
+    "fan": {
+      "brand": "Maxxair",
+      "brandStatus": "owner-identified",
+      "model": null,
+      "referenceFamily": "MAXXFAN Deluxe smoke lid",
+      "source": "https://www.maxxair.com/products/fans/maxxfan-deluxe/",
+      "sourceScope": "Family reference confirms an integrated rain shield and 14 × 14-inch opening; installed model and external dimensions are unverified.",
+      "corner": [
+        21.8,
+        21.5,
+        0.12
+      ],
+      "size": [
+        16.4,
+        23,
+        5
+      ],
+      "displayPose": "Closed/low lid assumed for reference display; photo does not establish lid position.",
+      "openHeightObservation": "Owner reports fully open fan 5 inches above side-rail center, with 6 inches as planning allowance. Rail center and lid envelope remain unresolved.",
+      "appearance": "Smoke-colored cowl, front top-panel relief, rounded rear rain hood and rear-facing louver detail"
+    },
+    "snowboard": {
+      "contents": "Snowboard and clothes in a canvas-style case",
+      "identificationStatus": "owner-identified",
+      "caseBrand": null,
+      "boardModel": null,
+      "dimensionStatus": "owner-approximate",
+      "ownerEnvelope": "About 60 in long, under 15 in wide, 7 in cargo thickness; not a riser height",
+      "centerX": 8.5,
+      "frontY": 77.9,
+      "rearY": 137.9,
+      "maximumWidth": 14.9,
+      "maximumTopZ": 13.1,
+      "appearance": "Light gray soft case with dark lower gusset, irregular packed bulges, tapered ends, zipper seam and black carrying webbing",
+      "rack": {
+        "type": "Two closed clamp-style carriers",
+        "brand": null,
+        "crossbarIndices": [
+          2,
+          3
+        ],
+        "stationYs": [
+          81.74,
+          122
+        ],
+        "stationStatus": "Retained photo estimates; alignment with newly measured 130 in crossbar span unverified",
+        "jawSpan": 19.5,
+        "jawCenterX": 8.5,
+        "baseBottomZ": 6.5,
+        "padTopZ": 7.8,
+        "upperPadBottomZ": 9.7
+      },
+      "limits": "Bag uses approximately 60 × under15 × 7 inches; 14.9 is an upper-width proxy. Packed shape and overhang change with contents. Clamp geometry, connections and compression are illustrative; no transport-load or secure-restraint validation."
+    },
     "antennas": {
       "count": 2,
       "model": null,
@@ -758,9 +790,7 @@
     ],
     "excluded": "Awning and unidentified loose rooftop objects are deferred in this installed reference. Independently saved roof layouts may retain earlier generic fan and roof-bag estimates.",
     "limits": "Original visual reconstruction from owner photos, not a survey. A/C shroud top at model Z12.5 follows an illustrative 6.5-inch crossbar-top datum plus the reported 6 inches; this is not a resolved physical height. Installed reference meshes are hidden while editing a saved roof layout and are excluded from equipment box checks. No fit, shading, movement, airflow, RF or mounting validation.",
-    "units": "in",
-    "coordinateFrame": "Feature inputs and bounds use planning coordinates. Body placement adds planningOrigin. bodyBounds include that offset.",
-    "featureBounds": {
+    "modeledFeatureBounds": {
       "Solar panel 1": {
         "isBox3": true,
         "min": {
@@ -868,14 +898,14 @@
       "Bagged snowboard": {
         "isBox3": true,
         "min": {
-          "x": -0.6011351943016052,
-          "y": 77.92750549316406,
-          "z": 6.165558815002441
+          "x": 1.130058765411377,
+          "y": 77.92570495605469,
+          "z": 6.134766101837158
         },
         "max": {
-          "x": 17.11515998840332,
-          "y": 142.04335021972656,
-          "z": 19.243080139160156
+          "x": 15.47640609741211,
+          "y": 137.84706115722656,
+          "z": 13.069815635681152
         }
       },
       "Front-crossbar antennas": {
@@ -892,7 +922,7 @@
         }
       }
     },
-    "bodyBounds": {
+    "modeledBounds": {
       "isBox3": true,
       "min": {
         "x": -1.5999999046325684,
@@ -901,64 +931,9 @@
       },
       "max": {
         "x": 54.150001525878906,
-        "y": 168.04335021972656,
+        "y": 163.84706115722656,
         "z": 27.3503475189209
       }
-    },
-    "editableInRoofLayout": false,
-    "includedInEquipmentBoxChecks": false,
-    "geometryLicense": "Original MIT geometry; no owner photos, manufacturer images or third-party meshes redistributed.",
-    "fan": {
-      "brand": "Maxxair",
-      "brandStatus": "owner-identified",
-      "model": null,
-      "referenceFamily": "MAXXFAN Deluxe smoke lid",
-      "source": "https://www.maxxair.com/products/fans/maxxfan-deluxe/",
-      "sourceScope": "Family reference confirms an integrated rain shield and 14 \u00d7 14-inch opening; installed model and external dimensions are unverified.",
-      "corner": [
-        21.8,
-        21.5,
-        0.12
-      ],
-      "size": [
-        16.4,
-        23,
-        5
-      ],
-      "displayPose": "Closed/low lid assumed for reference display; photo does not establish lid position.",
-      "openHeightObservation": "Owner reports fully open fan 5 inches above side-rail center, with 6 inches as planning allowance. Rail center and lid envelope remain unresolved.",
-      "appearance": "Smoke-colored cowl, front top-panel relief, rounded rear rain hood and rear-facing louver detail"
-    },
-    "snowboard": {
-      "contents": "Snowboard and clothes in a canvas-style case",
-      "identificationStatus": "owner-identified",
-      "caseBrand": null,
-      "boardModel": null,
-      "dimensionStatus": "photo-estimated",
-      "centerX": 8.5,
-      "frontY": 78,
-      "rearY": 142,
-      "maximumWidth": 17.4,
-      "maximumTopZ": 19,
-      "appearance": "Light gray soft case with dark lower gusset, irregular packed bulges, tapered ends, zipper seam and black carrying webbing",
-      "rack": {
-        "type": "Two closed clamp-style carriers",
-        "brand": null,
-        "crossbarIndices": [
-          2,
-          3
-        ],
-        "stationYs": [
-          81.74000000000001,
-          122
-        ],
-        "jawSpan": 19.5,
-        "jawCenterX": 8.5,
-        "baseBottomZ": 6.5,
-        "padTopZ": 7.8,
-        "upperPadBottomZ": 9.7
-      },
-      "limits": "Packed shape and overhang change with contents. Clamp geometry, connections and compression are illustrative; no transport-load or secure-restraint validation."
     }
   },
   "sideLadder": {
@@ -1151,7 +1126,7 @@
     "includedInEquipmentBoxChecks": false
   },
   "awning": {
-    "revision": "carefree-stowed-1",
+    "revision": "carefree-stowed-rail-width-2",
     "brand": "Carefree",
     "identificationStatus": "owner-identified",
     "configuration": "Existing passenger-side armless/legless awning, stowed",
@@ -1161,7 +1136,7 @@
     "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "sourceScope": "2024 Launch lists Carefree armless patio awning with LED strip and wind sensor. Exact installed product, dimensions and mounting hardware are not established.",
     "installation": {
-      "centerX": 65,
+      "centerX": 58.8,
       "frontY": 24,
       "rearY": 148,
       "centerZ": 2.75,
@@ -1174,7 +1149,7 @@
         148
       ]
     },
-    "observations": "Long dark rounded cassette outside passenger roof rail, aligned with rack ends; narrow outer closure seam and dark end caps.",
+    "observations": "Owner confirms attachment outside passenger rail. X assumes the <52 in outside rail width centered in the 60 in planning reference; housing size and brackets remain estimates. Long dark rounded cassette outside passenger roof rail, aligned with rack ends; narrow outer closure seam and dark end caps.",
     "unresolved": [
       "Exact Carefree model and housing dimensions",
       "Offsets to rack, gutter and front/rear crossbars",
@@ -1186,17 +1161,17 @@
     "modeledBounds": {
       "isBox3": true,
       "min": {
-        "x": 59.650001525878906,
+        "x": 53.45000076293945,
         "y": 24,
         "z": -0.7950000166893005
       },
       "max": {
-        "x": 67.63500213623047,
+        "x": 61.435001373291016,
         "y": 149,
         "z": 6.25
       }
     },
-    "includedInEquipmentBoxChecks": false
+    "includedInEquipmentBoxChecks": "Conservative awning/mount estimates included in proposed roof study, arm sweep excluded"
   },
   "optionalUnderbodyUpgrades": {
     "revision": "underbody-options-1",
@@ -1204,7 +1179,7 @@
     "fitStatus": "unverified",
     "tanks": {
       "gocode28": {
-        "name": "GoCode \u00b7 28 gallons",
+        "name": "GoCode · 28 gallons",
         "model": "SP-ST-28",
         "length": 29.75,
         "width": 27.75,
@@ -1216,7 +1191,7 @@
         "source": "https://gocodeoverland.com/collections/all-tanks/products/28-gallon-sprinter-spare-tire-water-tank"
       },
       "sb35": {
-        "name": "S&B \u00b7 35 gallons",
+        "name": "S&B · 35 gallons",
         "model": "10-3033",
         "length": 29,
         "width": 32,
@@ -1229,7 +1204,7 @@
     },
     "skids": {
       "engine": {
-        "name": "Van Compass 4095 \u00b7 engine",
+        "name": "Van Compass 4095 · engine",
         "source": "https://vancompass.com/products/engine-skid-plate-sprinter-awd-2023-2500-by-van-compass",
         "productClass": "2023+ Sprinter 2500 AWD",
         "geometryStatus": "estimated",
@@ -1243,10 +1218,10 @@
           -37,
           -87
         ],
-        "note": "Illustrative outline and mounting height. Exact outline/bends/holes unverified. 4102 is for the Van Compass 2-inch lift; do not select from this model\u2019s estimated stance."
+        "note": "Illustrative outline and mounting height. Exact outline/bends/holes unverified. 4102 is for the Van Compass 2-inch lift; do not select from this model’s estimated stance."
       },
       "transmission": {
-        "name": "Van Compass 4096 \u00b7 transmission / transfer case",
+        "name": "Van Compass 4096 · transmission / transfer case",
         "source": "https://vancompass.com/products/transmission-and-transfer-case-skid-plate-sprinter-awd-2023-by-van-compass",
         "productClass": "2023+ Sprinter AWD",
         "geometryStatus": "estimated",
@@ -1866,7 +1841,7 @@
       "material": "black leather",
       "status": "owner-confirmed"
     },
-    "reference": "Owner-supplied Sprinter renderings 22\u201324: dashboard, circular vents, steering wheel, seats and door trim. These are reference renderings, not measurements of this coach.",
+    "reference": "Owner-supplied Sprinter renderings 22–24: dashboard, circular vents, steering wheel, seats and door trim. These are reference renderings, not measurements of this coach.",
     "seatCenters": [
       [
         8,
@@ -1928,7 +1903,7 @@
   },
   "optionalSolarUpgrade": {
     "installationStatus": "proposed-not-installed",
-    "selection": "4 \u00d7 HQST HSP200N-64L \u00b7 800 W \u00b7 4S1P",
+    "selection": "4 × HQST HSP200N-64L · 800 W · 4S1P",
     "specifications": "solar-800w-specs.json",
     "review": "solar-upgrade.md",
     "geometry": "Panel dimensions manufacturer-sourced; placements and generic risers estimated. Existing roof geometry retained. Separate panel/support-envelope screening; not engineering fit approval."

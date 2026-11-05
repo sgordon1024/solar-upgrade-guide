@@ -86,6 +86,34 @@
           "rotation": 90
         }
       ]
+    },
+    "roofExtras": {
+      "version": 1,
+      "overhang": {
+        "side": 4,
+        "rear": 8,
+        "front": 0
+      },
+      "chassis": {
+        "enabled": false,
+        "x": 38,
+        "y": 4,
+        "z": 6.5,
+        "width": 20,
+        "length": 23,
+        "height": 1.2,
+        "rotation": 0
+      },
+      "cargo": {
+        "enabled": false,
+        "x": 39,
+        "y": 52,
+        "z": 6.5,
+        "width": 18,
+        "length": 28,
+        "height": 8,
+        "rotation": 0
+      }
     }
   },
   "schema": "rooflab",

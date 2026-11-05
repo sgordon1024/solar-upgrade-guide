@@ -1,0 +1,290 @@
+{
+  "installedRoof": {
+    "version": 1,
+    "snowboard": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "bagHidden": false,
+    "starlinkHidden": false,
+    "offsets": {
+      "starlink": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "ac": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "fan": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "antennas": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "existing-0": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "existing-1": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "existing-2": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "existing-3": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "upgrades": {
+    "version": 1,
+    "tank": "none",
+    "engineSkid": false,
+    "transmissionSkid": false,
+    "solar": {
+      "version": 1,
+      "enabled": true,
+      "minTemperatureC": -20,
+      "panels": [
+        {
+          "x": -0.618110236220474,
+          "y": 34.740157480314956,
+          "z": 18,
+          "rotation": 0
+        },
+        {
+          "x": 30.5,
+          "y": 34.740157480314956,
+          "z": 18,
+          "rotation": 0
+        },
+        {
+          "x": -0.618110236220474,
+          "y": 82,
+          "z": 18,
+          "rotation": 0
+        },
+        {
+          "x": 30.5,
+          "y": 82,
+          "z": 18,
+          "rotation": 0
+        }
+      ]
+    },
+    "roofExtras": {
+      "version": 1,
+      "overhang": {
+        "side": 4,
+        "rear": 8,
+        "front": 0
+      },
+      "chassis": {
+        "enabled": true,
+        "x": 38,
+        "y": 4,
+        "z": 6.5,
+        "width": 20,
+        "length": 23,
+        "height": 1.2,
+        "rotation": 0
+      },
+      "cargo": {
+        "enabled": true,
+        "x": 39,
+        "y": 52,
+        "z": 6.5,
+        "width": 18,
+        "length": 28,
+        "height": 8,
+        "rotation": 0
+      }
+    }
+  },
+  "schema": "rooflab",
+  "version": 1,
+  "units": "in",
+  "vehicle": "2024 Entegra Launch 19Y / 2023 Sprinter 2500 / owner-reported 144-in wheelbase",
+  "roof": {
+    "width": 60,
+    "length": 122,
+    "status": "measured",
+    "evidence": "Owner-measured track-referenced planning area; endpoints require confirmation."
+  },
+  "clearance": 0,
+  "notes": "Screenshot-inspired rear 2×2 study. All installation, cargo access and circuit compatibility remain unverified.",
+  "observations": [
+    [
+      "Planning rectangle",
+      "122 in long × 60 in wide",
+      "Owner measured; length is track-referenced. Rectangle location on body and reference endpoints need confirmation."
+    ],
+    [
+      "Starlink",
+      "Driver side; front to Starlink 29 in; behind Starlink to rear 69 in; right of Starlink to right side 34 in",
+      "Owner measured; edge/datum definitions and meaning of “right” need confirmation. Not converted into a footprint or exact coordinates."
+    ],
+    [
+      "Fan",
+      "On centerline; fully open 5 in above side-rail center; use 6 in planning allowance",
+      "Owner observation. Side-rail center elevation relative to roof is unresolved. Rendered height is a placeholder, not this measurement."
+    ],
+    [
+      "A/C",
+      "6 in above top crossbar",
+      "Owner measured; exact crossbar surface reference needs confirmation. Position, footprint and roof-datum height are placeholders."
+    ],
+    [
+      "Crossbar",
+      "2 in wide × 1 in tall; top crossbar 6.5 in from roof",
+      "Owner measured; confirm whether 6.5 in refers to top, center or bottom. No crossbar layout is preloaded."
+    ],
+    [
+      "Side rail",
+      "Slot centers 3 in apart",
+      "Owner measured; orientation, rail section and roof-datum elevation need confirmation."
+    ],
+    [
+      "Pending rail reference",
+      "4 in from center of lower side rail to bottom of top rail",
+      "Owner measured; identity of “top rail” is unresolved. Do not combine with other height datums."
+    ]
+  ],
+  "items": [
+    {
+      "id": "solar-front-driver",
+      "name": "Solar · front driver",
+      "kind": "solar",
+      "x": 4,
+      "y": 4,
+      "z": 6.5,
+      "width": 23,
+      "length": 23,
+      "height": 1.4,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "solar-front-passenger",
+      "name": "Solar · front passenger",
+      "kind": "solar",
+      "x": 30,
+      "y": 4,
+      "z": 6.5,
+      "width": 23,
+      "length": 23,
+      "height": 1.4,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "starlink",
+      "name": "Starlink · driver side",
+      "kind": "starlink",
+      "x": 1,
+      "y": 30,
+      "z": 7,
+      "width": 21,
+      "length": 23,
+      "height": 1.6,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "fan",
+      "name": "Fan · centerline",
+      "kind": "fan",
+      "x": 24,
+      "y": 29,
+      "z": 0,
+      "width": 18,
+      "length": 18,
+      "height": 10,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "solar-rear-driver",
+      "name": "Solar · rear driver",
+      "kind": "solar",
+      "x": 4,
+      "y": 56,
+      "z": 6.5,
+      "width": 23,
+      "length": 23,
+      "height": 1.4,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "solar-rear-passenger",
+      "name": "Solar · rear passenger",
+      "kind": "solar",
+      "x": 31,
+      "y": 56,
+      "z": 6.5,
+      "width": 23,
+      "length": 23,
+      "height": 1.4,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "ac",
+      "name": "Air conditioner",
+      "kind": "ac",
+      "x": 18,
+      "y": 87,
+      "z": 0,
+      "width": 27,
+      "length": 33,
+      "height": 12,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    },
+    {
+      "id": "roof-bag",
+      "name": "Roof bag · photo estimate",
+      "kind": "custom",
+      "x": 0,
+      "y": 86,
+      "z": 7,
+      "width": 16,
+      "length": 34,
+      "height": 9,
+      "rotation": 0,
+      "dimensionStatus": "estimated",
+      "positionStatus": "estimated",
+      "evidence": "Estimated from private exterior/overhead photo references; no pixel-to-inch survey. Verify installed footprint, height, mounts and motion."
+    }
+  ]
+}

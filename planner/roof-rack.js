@@ -4,14 +4,14 @@ import {buildRackWordmark} from './brand-emblems.js?v=passengerreview1';
 // Inches in the same body datum as the shell. Installation is a photo estimate;
 // owner observations are retained verbatim rather than silently joining datums.
 export const RACK_SPEC={
-  revision:'rack-2',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
+  revision:'rack-3-owner-span',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
   source:'https://www.entegracoach.com/models/previous-model-years/2024/launch/',
   sourceScope:'Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.',
-  ownerReported:{planningLength:122,planningWidth:60,crossbarForeAftWidth:2,crossbarHeight:1,sideSlotCenterSpacing:3,roofToTopCrossbarObservation:6.5,lowerSideRailCenterToTopRailBottomObservation:4},
-  unresolved:['Endpoints of the 122 × 60 track reference','Whether the 6.5-inch observation reaches the crossbar top, center or bottom','Identity of top rail in the separate 4-inch observation','Exact rail sections, hidden crossbars, mounting feet and light-bar model'],
-  installation:{status:'estimated',planningOrigin:[0,26,0],firstCrossbarY:26,lastCrossbarY:148,railCenterXs:[0,60],crossbarCenterZ:6,crossbarStations:[0,.23,.67,1],sideRailCenterZs:[2,5],frontFairingTipY:19,lightBarCenter:[30,23,4.9],lightBarSize:[49,2.6,3.1]},
-  panelSupports:{status:'estimated',count:4,bodyCenterYs:[33.5,49,83,99],centerZ:5.15,section:[1.25,1],span:60,evidence:'Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured.'},
-  limits:'Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.'
+  ownerReported:{planningLength:122,planningWidth:60,railOutsideWidthObservation:'just under 52 inches',railOutsideWidthUpperBound:52,frontRearCrossbarCenters:130,crossbarForeAftWidth:2,crossbarHeight:1,sideSlotCenterSpacing:3,roofToTopCrossbarObservation:6.5,lowerSideRailCenterToTopRailBottomObservation:4},
+  unresolved:['Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed','Whether the 6.5-inch observation reaches the crossbar top, center or bottom','Identity of top rail in the separate 4-inch observation','Exact rail sections, hidden crossbars, mounting feet and light-bar model'],
+  installation:{status:'estimated',planningOrigin:[0,26,0],firstCrossbarY:26,lastCrossbarY:156,railCenterXs:[4.7,55.3],crossbarCenterZ:6,crossbarStations:[0,.23,.67,1],sideRailCenterZs:[2,5],frontFairingTipY:19,lightBarCenter:[30,23,4.9],lightBarSize:[49,2.6,3.1]},
+  panelSupports:{status:'estimated',count:4,bodyCenterYs:[33.5,49,83,99],centerZ:5.15,section:[1.25,1],span:52,evidence:'Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured.'},
+  limits:'Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.'
 };
 
 export function buildRoofRack(){
@@ -44,22 +44,22 @@ export function buildRoofRack(){
     }
   }
   for(const t of i.crossbarStations){const y=y0+(y1-y0)*t;
-    box([30,y,i.crossbarCenterZ],[t===0?66:61.5,2,1]);
-    box([30,y,i.crossbarCenterZ+.51],[59,.28,.035],recess);
-    for(const x of [0,60]){box([x,y,5.55],[2.2,3.5,.15]);for(const yy of [y-.6,y+.6])cyl([x,yy,6.52],[x,yy,6.65],.18,metal,6);}
+    box([30,y,i.crossbarCenterZ],[t===0?53:52,2,1]);
+    box([30,y,i.crossbarCenterZ+.51],[49.2,.28,.035],recess);
+    for(const x of i.railCenterXs){box([x,y,5.55],[2.2,3.5,.15]);for(const yy of [y-.6,y+.6])cyl([x,yy,6.52],[x,yy,6.65],.18,metal,6);}
   }
   // The photo exposes short stubs and central fasteners at four panel rows.
   // Continue those spans below the panel frames; the concealed construction is estimated.
   for(const y of RACK_SPEC.panelSupports.bodyCenterYs){
-    box([30,y,5.15],[60,1.25,1]);
-    for(const x of [0,28.6,60]){box([x,y,5.66],[1.5,2.1,.1]);cyl([x,y,5.71],[x,y,5.85],.17,metal,6);}
+    box([30,y,5.15],[52,1.25,1]);
+    for(const x of [i.railCenterXs[0],30,i.railCenterXs[1]]){box([x,y,5.66],[1.5,2.1,.1]);cyl([x,y,5.71],[x,y,5.85],.17,metal,6);}
   }
   // Front fairing: forward/lower tip, taller side cheeks and a lamp opening.
   const fy=z=>19+(z-.7)*1.1;
-  plate([[-1,fy(.7),.7],[61,fy(.7),.7],[59.5,fy(3.1),3.1],[.5,fy(3.1),3.1]]);
+  plate([[4,fy(.7),.7],[56,fy(.7),.7],[55.4,fy(3.1),3.1],[4.6,fy(3.1),3.1]]);
   for(const s of [-1,1]){
-    const x=s<0?0:60;sidePlate(x,[[19,.7],[27,1.8],[27,6.5],[24.8,6.5]],.22);
-    const a=s<0?.5:55,b=s<0?5:59.5;
+    const x=s<0?i.railCenterXs[0]:i.railCenterXs[1];sidePlate(x,[[19,.7],[27,1.8],[27,6.5],[24.8,6.5]],.22);
+    const a=s<0?4.6:54.6,b=s<0?5.4:55.4;
     plate([[a,fy(3.1),3.1],[b,fy(3.1),3.1],[b-.15*s,fy(6.5),6.5],[a+.2*s,fy(6.5),6.5]]);
   }
   // Light-bar dimensions and optic count are visual approximations, lights off.
@@ -73,11 +73,11 @@ export function buildRoofRack(){
   for(const x of [5,55]){sidePlate(x,[[21.3,2.8],[25,2.8],[25,5.5],[23,5.5]],.2);cyl([x-.25,23,4.9],[x+.25,23,4.9],.27,metal,6);}
   for(const x of [7,53])for(const z of [3.7,6.1])cyl([x,21.6,z],[x,21.5,z],.13,metal,6);
   for(const z of [3.9,4.6,5.3,6])box([30,24.42,z],[46,.15,.12],frame);
-  for(const x of [3,22,30,38,57]){const z=x===3||x===57?2:2.55;cyl([x,fy(z)-.13,z],[x,fy(z)-.25,z],.25,amber,12);}
+  for(const x of [6,22,30,38,54]){const z=x===6||x===54?2:2.55;cyl([x,fy(z)-.13,z],[x,fy(z)-.25,z],.25,amber,12);}
   // The photo-referenced serif fairing wordmark is added below as a separate mesh.
   // Rear fairing is partially obscured in the photo; retain an open center roof.
-  plate([[-.8,151,1.25],[60.8,151,1.25],[60,148,5.6],[0,148,5.6]]);
-  for(const x of [0,60])sidePlate(x,[[147,1.5],[151,1.25],[148,5.6],[146.8,5.6]],.2);
+  plate([[4,159,1.25],[56,159,1.25],[55.3,156,5.6],[4.7,156,5.6]]);
+  for(const x of i.railCenterXs)sidePlate(x,[[155,1.5],[159,1.25],[156,5.6],[154.8,5.6]],.2);
   for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,m);mesh.name=m.name;mesh.castShadow=true;mesh.receiveShadow=false;group.add(mesh);}
   const wordmark=buildRackWordmark();group.add(wordmark.group);Object.assign(materials,wordmark.materials);
   group.userData={spec:RACK_SPEC,bounds:new T.Box3().setFromObject(group),crossbarCenters:i.crossbarStations.map(t=>[30,y0+(y1-y0)*t,i.crossbarCenterZ]),panelSupportCenters:RACK_SPEC.panelSupports.bodyCenterYs.map(y=>[30,y,RACK_SPEC.panelSupports.centerZ])};

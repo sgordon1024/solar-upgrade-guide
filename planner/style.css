@@ -69,3 +69,5 @@ body:not(.planning-mode) .workspace{grid-template-columns:1fr}body:not(.planning
 @media(min-width:901px){#mobile-sheet[open]{inset:20px 20px 20px auto;width:440px;max-height:calc(100dvh - 40px);max-width:calc(100vw - 40px)}.mobile-hud{top:18px;left:24px;right:24px}.mobile-dock{bottom:20px}#mobile-sheet .viewbar>div{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.load-track i{animation:none;width:100%}.mobile-hud,.mobile-dock,.load-screen{transition:none}}
 .is-loading .mobile-render-notice{display:none!important}
+
+#roof-edit-rear-preset{width:100%;min-height:48px;margin:8px 0;background:#284f3b;color:#fff}#roof-extra-size[hidden]{display:none}#roof-overhang input,#roof-extra-dimensions input{width:100%;min-height:44px}.roof-edit-controls #roof-edit-undo{position:sticky;bottom:0;background:#f7f6ec;box-shadow:0 2px 10px #18372c25}

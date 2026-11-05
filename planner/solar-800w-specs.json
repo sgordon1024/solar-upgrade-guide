@@ -91,7 +91,7 @@
       "quantity": "Final quantity / model TBD",
       "decision": "Required · unresolved",
       "visible": true,
-      "detail": "The compact layout has sixteen generic riser brackets on eight raised spans; counts change with panel positions. This is an illustration, not a selected hardware kit. Unaka 7.5-inch was a review candidate; rail interface, height datum, load rating and hardware still need confirmation. All panel mounts are unresolved; no overhang permission is assumed.",
+      "detail": "The compact layout has sixteen generic riser brackets on eight raised spans; counts change with panel positions. This is an illustration, not a selected hardware kit. Unaka 7.5-inch was a review candidate; rail interface, height datum, load rating and hardware still need confirmation. The rear 2×2 preset instead has eight generic risers on four raised spans. User planning overhang allowances are editable; physical mounting permission remains unverified.",
       "source": "https://unakagearco.com/products/unaka-high-bar-bracket-kits"
     },
     {
@@ -152,6 +152,63 @@
     "unaka": "https://unakagearco.com/products/unaka-high-bar-bracket-kits",
     "mesa": "https://desertbliss.com/desertvans/assets/docs/Desert-Vans-Mesa-Riser-Installation-Guide.pdf",
     "plan": "https://sgordon1024.github.io/solar-upgrade-guide/"
+  },
+  "separateRoofEquipment": {
+    "schema": "rooflab-roof-extras",
+    "version": 1,
+    "settings": {
+      "version": 1,
+      "overhang": {
+        "side": 4,
+        "rear": 8,
+        "front": 0
+      },
+      "chassis": {
+        "enabled": false,
+        "x": 38,
+        "y": 4,
+        "z": 6.5,
+        "width": 20,
+        "length": 23,
+        "height": 1.2,
+        "rotation": 0
+      },
+      "cargo": {
+        "enabled": false,
+        "x": 39,
+        "y": 52,
+        "z": 6.5,
+        "width": 18,
+        "length": 28,
+        "height": 8,
+        "rotation": 0
+      }
+    },
+    "chassis": {
+      "watts": 50,
+      "circuit": "chassis-only; independent controller and wiring",
+      "model": null,
+      "dimensionStatus": "owner-measured 23 × 20 in plan; thickness estimated",
+      "electricalStatus": "unverified; excluded from house-array arithmetic"
+    },
+    "cargo": {
+      "status": "optional estimated placeholder",
+      "loadPath": "independent rack-supported tray/feet illustrated; attachment, loads and restraints unresolved"
+    },
+    "rack": {
+      "outsideWidthUpperBound": 52,
+      "crossbarCenterSpan": 130,
+      "railSectionWidthEstimate": 1.4,
+      "railCenterXs": [
+        4.7,
+        55.3
+      ],
+      "status": "Owner: just under 52 in outside rails; 130 in first-to-last crossbar centers. Drawing uses the 52 in upper bound, assumed centered on the 60 in roof reference and front crossbar at Y0. Datum alignment and rail section are unverified."
+    },
+    "parts": [],
+    "envelopes": [],
+    "supportEnvelopes": [],
+    "overhangDatum": "Allowances drawn from the roof planning reference. Rail-based meaning and physical mounting permission remain unverified."
   },
   "geometry": {
     "units": "in",
@@ -359,16 +416,16 @@
       },
       {
         "name": "Raised span 1",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 7.013779527559052,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 1 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 6.513779527559052,
         "z": 5,
         "width": 0.22,
@@ -377,7 +434,7 @@
       },
       {
         "name": "Riser 1 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 6.513779527559052,
         "z": 14.2,
         "width": 2.8,
@@ -386,7 +443,7 @@
       },
       {
         "name": "Riser 1 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 6.513779527559052,
         "z": 5,
         "width": 1.6,
@@ -395,7 +452,7 @@
       },
       {
         "name": "Riser 1 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 6.513779527559052,
         "z": 5,
         "width": 0.22,
@@ -404,7 +461,7 @@
       },
       {
         "name": "Riser 1 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 6.513779527559052,
         "z": 14.2,
         "width": 2.8,
@@ -413,7 +470,7 @@
       },
       {
         "name": "Riser 1 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 6.513779527559052,
         "z": 5,
         "width": 1.6,
@@ -422,16 +479,16 @@
       },
       {
         "name": "Raised span 2",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 21.131889763779526,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 2 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 20.631889763779526,
         "z": 5,
         "width": 0.22,
@@ -440,7 +497,7 @@
       },
       {
         "name": "Riser 2 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 20.631889763779526,
         "z": 14.2,
         "width": 2.8,
@@ -449,7 +506,7 @@
       },
       {
         "name": "Riser 2 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 20.631889763779526,
         "z": 5,
         "width": 1.6,
@@ -458,7 +515,7 @@
       },
       {
         "name": "Riser 2 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 20.631889763779526,
         "z": 5,
         "width": 0.22,
@@ -467,7 +524,7 @@
       },
       {
         "name": "Riser 2 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 20.631889763779526,
         "z": 14.2,
         "width": 2.8,
@@ -476,7 +533,7 @@
       },
       {
         "name": "Riser 2 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 20.631889763779526,
         "z": 5,
         "width": 1.6,
@@ -485,16 +542,16 @@
       },
       {
         "name": "Raised span 3",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 37.631889763779526,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 3 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 37.131889763779526,
         "z": 5,
         "width": 0.22,
@@ -503,7 +560,7 @@
       },
       {
         "name": "Riser 3 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 37.131889763779526,
         "z": 14.2,
         "width": 2.8,
@@ -512,7 +569,7 @@
       },
       {
         "name": "Riser 3 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 37.131889763779526,
         "z": 5,
         "width": 1.6,
@@ -521,7 +578,7 @@
       },
       {
         "name": "Riser 3 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 37.131889763779526,
         "z": 5,
         "width": 0.22,
@@ -530,7 +587,7 @@
       },
       {
         "name": "Riser 3 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 37.131889763779526,
         "z": 14.2,
         "width": 2.8,
@@ -539,7 +596,7 @@
       },
       {
         "name": "Riser 3 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 37.131889763779526,
         "z": 5,
         "width": 1.6,
@@ -548,16 +605,16 @@
       },
       {
         "name": "Raised span 4",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 51.75,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 4 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 51.25,
         "z": 5,
         "width": 0.22,
@@ -566,7 +623,7 @@
       },
       {
         "name": "Riser 4 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 51.25,
         "z": 14.2,
         "width": 2.8,
@@ -575,7 +632,7 @@
       },
       {
         "name": "Riser 4 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 51.25,
         "z": 5,
         "width": 1.6,
@@ -584,7 +641,7 @@
       },
       {
         "name": "Riser 4 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 51.25,
         "z": 5,
         "width": 0.22,
@@ -593,7 +650,7 @@
       },
       {
         "name": "Riser 4 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 51.25,
         "z": 14.2,
         "width": 2.8,
@@ -602,7 +659,7 @@
       },
       {
         "name": "Riser 4 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 51.25,
         "z": 5,
         "width": 1.6,
@@ -611,16 +668,16 @@
       },
       {
         "name": "Raised span 5",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 68.25,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 5 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 67.75,
         "z": 5,
         "width": 0.22,
@@ -629,7 +686,7 @@
       },
       {
         "name": "Riser 5 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 67.75,
         "z": 14.2,
         "width": 2.8,
@@ -638,7 +695,7 @@
       },
       {
         "name": "Riser 5 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 67.75,
         "z": 5,
         "width": 1.6,
@@ -647,7 +704,7 @@
       },
       {
         "name": "Riser 5 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 67.75,
         "z": 5,
         "width": 0.22,
@@ -656,7 +713,7 @@
       },
       {
         "name": "Riser 5 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 67.75,
         "z": 14.2,
         "width": 2.8,
@@ -665,7 +722,7 @@
       },
       {
         "name": "Riser 5 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 67.75,
         "z": 5,
         "width": 1.6,
@@ -674,16 +731,16 @@
       },
       {
         "name": "Raised span 6",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 82.36811023622047,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 6 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 81.86811023622047,
         "z": 5,
         "width": 0.22,
@@ -692,7 +749,7 @@
       },
       {
         "name": "Riser 6 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 81.86811023622047,
         "z": 14.2,
         "width": 2.8,
@@ -701,7 +758,7 @@
       },
       {
         "name": "Riser 6 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 81.86811023622047,
         "z": 5,
         "width": 1.6,
@@ -710,7 +767,7 @@
       },
       {
         "name": "Riser 6 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 81.86811023622047,
         "z": 5,
         "width": 0.22,
@@ -719,7 +776,7 @@
       },
       {
         "name": "Riser 6 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 81.86811023622047,
         "z": 14.2,
         "width": 2.8,
@@ -728,7 +785,7 @@
       },
       {
         "name": "Riser 6 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 81.86811023622047,
         "z": 5,
         "width": 1.6,
@@ -737,16 +794,16 @@
       },
       {
         "name": "Raised span 7",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 98.86811023622047,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 7 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 98.36811023622047,
         "z": 5,
         "width": 0.22,
@@ -755,7 +812,7 @@
       },
       {
         "name": "Riser 7 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 98.36811023622047,
         "z": 14.2,
         "width": 2.8,
@@ -764,7 +821,7 @@
       },
       {
         "name": "Riser 7 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 98.36811023622047,
         "z": 5,
         "width": 1.6,
@@ -773,7 +830,7 @@
       },
       {
         "name": "Riser 7 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 98.36811023622047,
         "z": 5,
         "width": 0.22,
@@ -782,7 +839,7 @@
       },
       {
         "name": "Riser 7 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 98.36811023622047,
         "z": 14.2,
         "width": 2.8,
@@ -791,7 +848,7 @@
       },
       {
         "name": "Riser 7 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 98.36811023622047,
         "z": 5,
         "width": 1.6,
@@ -800,16 +857,16 @@
       },
       {
         "name": "Raised span 8",
-        "x": -1,
+        "x": 3.3000000000000003,
         "y": 112.98622047244095,
         "z": 14.5,
-        "width": 62,
+        "width": 53.4,
         "length": 2,
         "height": 1
       },
       {
         "name": "Riser 8 driver",
-        "x": -0.11,
+        "x": 4.59,
         "y": 112.48622047244095,
         "z": 5,
         "width": 0.22,
@@ -818,7 +875,7 @@
       },
       {
         "name": "Riser 8 driver",
-        "x": -1.4,
+        "x": 3.3000000000000003,
         "y": 112.48622047244095,
         "z": 14.2,
         "width": 2.8,
@@ -827,7 +884,7 @@
       },
       {
         "name": "Riser 8 driver",
-        "x": -0.8,
+        "x": 3.9000000000000004,
         "y": 112.48622047244095,
         "z": 5,
         "width": 1.6,
@@ -836,7 +893,7 @@
       },
       {
         "name": "Riser 8 passenger",
-        "x": 59.89,
+        "x": 55.19,
         "y": 112.48622047244095,
         "z": 5,
         "width": 0.22,
@@ -845,7 +902,7 @@
       },
       {
         "name": "Riser 8 passenger",
-        "x": 58.6,
+        "x": 53.9,
         "y": 112.48622047244095,
         "z": 14.2,
         "width": 2.8,
@@ -854,7 +911,7 @@
       },
       {
         "name": "Riser 8 passenger",
-        "x": 59.2,
+        "x": 54.5,
         "y": 112.48622047244095,
         "z": 5,
         "width": 1.6,
@@ -909,23 +966,37 @@
     "riserStatus": "generic unresolved mounting concept",
     "flags": [
       "Panel 1: intersects the estimated Both antennas + mount envelope.",
-      "Panel 3: intersects the estimated packed snowboard case envelope.",
-      "Panel 4: intersects the estimated packed snowboard case envelope.",
-      "Panel 3 clamp: intersects the estimated packed snowboard case envelope.",
-      "Panel 4 clamp: intersects the estimated packed snowboard case envelope.",
       "Riser 3 driver: intersects the estimated Starlink + mount envelope.",
       "Riser 4 driver: intersects the estimated Starlink + mount envelope.",
-      "Raised span 6: intersects the estimated packed snowboard case envelope.",
       "Riser 6 driver: intersects the estimated packed snowboard case envelope.",
       "Riser 6 driver: intersects the estimated snowboard clamp 1 envelope.",
-      "Raised span 7: intersects the estimated packed snowboard case envelope.",
       "Riser 7 driver: intersects the estimated packed snowboard case envelope.",
-      "Raised span 8: intersects the estimated packed snowboard case envelope.",
       "Riser 8 driver: intersects the estimated packed snowboard case envelope.",
       "Mounting unresolved: raised spans are illustrative; rail attachments, clamp zones, loads and overhang permission are unverified.",
       "Panels above fan or A/C still need verified opening, airflow and service clearance; the estimated 13.5 in open-fan top is not a measured roof datum.",
       "Panel 1: less than 1 in end margin or overhang; confirm track endpoints and mounting space.",
-      "Panel 4: less than 1 in end margin or overhang; confirm track endpoints and mounting space."
+      "Panel 4: less than 1 in end margin or overhang; confirm track endpoints and mounting space.",
+      "Riser 1 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 2 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 3 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 4 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 5 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 6 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 7 passenger: intersects stowed passenger awning / mount estimate.",
+      "Riser 8 passenger: intersects stowed passenger awning / mount estimate.",
+      "Panel block overhang: 0.00 in driver / 0.00 in passenger beyond roof reference; at least 0.00 / 0.00 in beyond <52 in outside rails if centered.",
+      "House panels cover the saved Starlink footprint in plan: raising them does not establish RF/sky-view clearance, even when Starlink is hidden. Screenshot positions may differ; import the owner layout to compare.",
+      "Raised span 6: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Riser 6 driver: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Raised span 7: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Riser 7 driver: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Raised span 8: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Riser 8 driver: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
+      "Saved bag extends beyond the panel block. Its clamps, access, restraints and independent rack load path still need verification; preset does not move it.",
+      "Rack evidence: <52 in outside side rails and 130 in first-to-last crossbar centers. These are separate from the 60 × 122 roof reference; centering, origin alignment, rail section and attachment points are estimates.",
+      "Bag clamp stations remain photo estimates; they have not been aligned to measured crossbar stations. Verify all clamp-to-bar connections before treating the cargo support as usable.",
+      "Passenger awning mounts outside the rail. Cassette/mount volumes are estimates; arm sweep, service space and passenger-side cargo access are not modeled.",
+      "Raised spans and cargo feet are illustrative, not a hardware design. Verify wind/uplift, rack loads, clamps, overall height, fan opening, A/C ventilation/service and cargo restraint/access. Cargo needs its own rated rack support; do not rest it on panels or bare roof."
     ],
     "limits": "Box screening only. Open fan, service/airflow, RF/shading, rack loading, mounts and road clearance are unverified. Preview does not modify the saved existing roof layout."
   }
