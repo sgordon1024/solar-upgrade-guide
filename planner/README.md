@@ -192,3 +192,13 @@ Cockpit, Driver seat, Front seats and Ceiling lights presets use perspective cam
 Fog lamps and the entire roof-bar housing have bounded tap targets with solid-body occlusion. Low/high beams remain separate. The light bar combines modest body illumination with a broad procedural ground wash and limited side/rear spill in Night preview; it is intentionally illustrative and cannot predict lux, glare or road performance.
 
 Custom ceiling rope lights follow the owner's described route; the bed-front datum and corners around cabinets are estimates (M10). Choose Warm, Aurora, Sunset or Rainbow, with Steady, Flow or Breathing patterns and adjustable speed. Pause/Resume is available; animation stops after 60 seconds, when hidden or when roof editing begins, and reduced motion freezes the pattern. These controls affect only the local 3D visualization, never the physical van. Reset turns them off. Appearance/motion controls do not modify saved roof-layout measurements.
+
+### Phone view and simple environments
+
+At widths up to 900 CSS pixels, the model fills the viewport. **Views** chooses a camera, **Controls** groups doors, windows, lights and motion, **Scene** selects scenery, and **Tools** contains layers, optional upgrades, roof editing, files and notes. Menus start closed. Actions close the menu to reveal the model; camera reset returns to the exterior. Keyboard focus stays inside an open menu and Escape closes it. Scene arrow-key selection keeps the menu open. Existing measurement controls and saved configuration are the same original controls, moved into the menus.
+
+Scene choices are White, Desert, Sand dunes, Mud, Gravel back road, Paved highway, Rain and Snow. They are original stylized scenery, not real locations, terrain surveys or weather forecasts. Drive demo reuses the wheels' animation clock to move the ground, roadside shapes and weather. Stop it with the same control or a tire tap; it also stops after 20 seconds, on tab hiding or when roof editing starts. Reduced motion keeps scenery still. No extra animation loop or downloaded scenery assets are used. Scene selection is temporary and does not enter the exported roof specification.
+
+The sliding-door opening no longer has an opaque placeholder backing. The view through it shows existing cabin geometry and the opposite body wall; rear camper furnishings are still not reconstructed. Door geometry, travel and physical clearance remain estimates.
+
+`node planner/tests/environment.test.mjs` checks all scene types, motion synchronization, bounded geometry/particles, texture disposal, pause/restart and reduced motion. The geometry suite also casts through the open sliding-door aperture to guard against another solid obstruction.

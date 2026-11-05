@@ -81,9 +81,8 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
   attach(parts['rear-driver-door'],exterior.spare);attach(parts['cassette-door'],exterior.hatchLid);
   function panel(points,x,mat=dark,target=extras){const shape=new T.Shape(points.map(p=>new T.Vector2(...p))),g=new T.ShapeGeometry(shape,8),a=g.attributes.position;for(let i=0;i<a.count;i++)a.setXYZ(i,x,a.getX(i),a.getY(i));g.computeVertexNormals();const o=new T.Mesh(g,mat);o.name='Dark illustrative opening';target.add(o);return o;}
   function outline(points,x,target=extras,r=.16){const curve=new T.CatmullRomCurve3(points.map(p=>V(x,...p)),true,'catmullrom',0),o=new T.Mesh(new T.TubeGeometry(curve,points.length*4,r,6,true),sealMat);target.add(o);return o;}
-  const doorBacks=[];
-
-  const sb=panel(sliderOutline,57);sb.visible=false;sb.userData.action='sliding-door';doorBacks.push([sb,'sliding-door']);
+  // The sliding aperture remains open to the modeled cabin. No opaque backing
+  // plane: a former placeholder here obscured the entire doorway when open.
   const rearBack=new T.Mesh(new T.PlaneGeometry(63,79),dark);rearBack.rotation.x=Math.PI/2;rearBack.position.set(30,139,-45);rearBack.visible=false;rearBack.userData.action='rear-doors';extras.add(rearBack);
   // Use the actual glazing perimeter for the cabin apertures, preserving the
   // established exterior contour. Glazing is transparent only after skin/seal cuts.
@@ -179,13 +178,13 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
   function apply(state,phase=0){
     parts['cassette-door'].rotation.z=(state['cassette-door']||0)*100*Math.PI/180;
     for(const [id,g] of Object.entries(cabin.seats)){const t=state[id]||0,driver=id==='driver-seat',angle=smooth(Math.max(0,(t-.2)/.8))*Math.PI;g.position.y=5+CABIN_SPEC.illustrativeSeatSlide*smooth(Math.min(1,t/.25));g.position.x=(driver?8:52)+(driver?1:-1)*CABIN_SPEC.illustrativeAisleOffset*Math.sin(angle);g.rotation.z=(driver?-1:1)*angle;cabin.armrests[id].rotation.x=-CABIN_SPEC.illustrativeArmrestLiftDegrees*Math.PI/180*smooth(Math.min(1,t/.18));}
-    lightbarTarget.visible=state.layers?.rack!==false;wash.visible=!!state.night&&!!state.lightbar&&state.layers?.rack!==false;
+    lightbarTarget.visible=state.layers?.rack!==false;wash.visible=!!state.night&&!!state.lightbar&&state.layers?.rack!==false&&state.layers?.ground!==false;
     parts['driver-door'].rotation.z=state['driver-door']*68*Math.PI/180;parts['passenger-door'].rotation.z=-state['passenger-door']*68*Math.PI/180;
     const slide=state['sliding-door'];parts['sliding-door'].position.set(5.2*smooth(Math.min(1,slide/.22)),56*smooth(Math.max(0,(slide-.16)/.84)),0);
     parts['driver-slider'].position.set(-.25*state['driver-slider'],16.8*state['driver-slider'],0);
     parts['flare-window'].quaternion.setFromAxisAngle(hingeAxis,state['flare-window']*32*Math.PI/180);
     parts['rear-driver-door'].rotation.z=state['rear-doors']*88*Math.PI/180;parts['rear-passenger-door'].rotation.z=-state['rear-doors']*88*Math.PI/180;
-    for(const [o,id] of doorBacks)o.visible=state[id]>.01;rearBack.visible=state['rear-doors']>.01;
+    rearBack.visible=state['rear-doors']>.01;
     const matrix=new T.Matrix4().makeTranslation(...parts['flare-window'].position.toArray()).multiply(new T.Matrix4().makeRotationFromQuaternion(parts['flare-window'].quaternion)).multiply(new T.Matrix4().makeTranslation(...parts['flare-window'].position.clone().negate().toArray()));
     for(const s of stays){const end=s.end.clone().applyMatrix4(matrix),mid=s.base.clone().lerp(end,.58);setRod(s.bar,s.base,end);setRod(s.sleeve,s.base,mid,1.8);s.bar.visible=s.sleeve.visible=state['flare-window']>.025&&state.layers?.flares!==false;}
     const travel=state.wheels*1.2*(1-Math.cos(phase*2.3));
@@ -193,7 +192,7 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
     parts['rear-axle'].position.z=travel;
     for(const {o,base,spring} of suspensionBase){const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const z=base[i*3+2],y=base[i*3+1],weight=spring?Math.max(0,1-((y-108)/28)**2):T.MathUtils.clamp((-69-z)/22,0,1);a.setZ(i,z+travel*weight);}a.needsUpdate=true;o.geometry.computeBoundingSphere();}
     for(const [id,ms] of Object.entries(lamps)){const level=state[id]||0;for(const m of ms)m.emissiveIntensity=id==='headlights'?(level===2?3.4:level?1.5:0):level*2.2;}
-    parts['flare-window'].visible=state.layers?.flares!==false;parts['driver-slider'].visible=state.layers?.windows!==false;nightFloor.visible=!!state.night;for(const [id,g] of Object.entries(beams)){g.visible=id!=='lightbar'||state.layers?.rack!==false;for(const o of g.children){if(!o.isSpotLight)continue;const high=id==='headlights'&&state[id]===2;o.intensity=state[id]?(id==='lightbar'?(o.userData.indirect?4:8):high?1800:1100):0;if(id!=='lightbar'){o.angle=id==='foglights'?.7:high?.31:.42;o.target.position.y=o.position.y-(id==='foglights'?55:high?155:90);}}}
+    parts['flare-window'].visible=state.layers?.flares!==false;parts['driver-slider'].visible=state.layers?.windows!==false;nightFloor.visible=!!state.night&&!state.environmentGround&&state.layers?.ground!==false;for(const [id,g] of Object.entries(beams)){g.visible=id!=='lightbar'||state.layers?.rack!==false;for(const o of g.children){if(!o.isSpotLight)continue;const high=id==='headlights'&&state[id]===2;o.intensity=state[id]?(id==='lightbar'?(o.userData.indirect?4:8):high?1800:1100):0;if(id!=='lightbar'){o.angle=id==='foglights'?.7:high?.31:.42;o.target.position.y=o.position.y-(id==='foglights'?55:high?155:90);}}}
 
     root.updateMatrixWorld(true);
   }

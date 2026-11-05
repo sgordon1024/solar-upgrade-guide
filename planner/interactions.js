@@ -1,8 +1,8 @@
 import * as T from './vendor/three.module.js';
-import {buildInteractiveModel,INTERACTION_SPEC} from './interactive-model.js?v=cabin1';
+import {buildInteractiveModel,INTERACTION_SPEC} from './interactive-model.js?v=mobile1';
 export {INTERACTION_SPEC};
 
-export function installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,onState,onNight,visibility=()=>({})}) {
+export function installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,onState,onNight,environmentGround=false,visibility=()=>({})}) {
   const rig=buildInteractiveModel({shell,emblems,exterior,rack});
   const ids=['cassette-door','driver-seat','passenger-seat','driver-door','passenger-door','sliding-door','rear-doors','driver-slider','flare-window','headlights','foglights','taillights','lightbar','porchlight','wheels'];
   const state=Object.fromEntries(ids.map(id=>[id,0])),target={...state};
@@ -19,7 +19,7 @@ export function installInteractions({shell,emblems,exterior,rack,canvas,camera,b
   const canonical=id=>id?.startsWith('wheel-')?'wheels':id?.startsWith('rear-')&&id.endsWith('-door')?'rear-doors':id;
   const announce=text=>{note.textContent=text;};
   function syncButtons(){for(const b of buttons){const id=b.dataset.action;if(id==='reset')continue;const on=id==='night'?night:!!target[id];b.setAttribute('aria-pressed',String(on));b.disabled=!enabled;const value=b.querySelector('span');if(value)value.textContent=id==='headlights'?['Off','Low beam','High beam'][target[id]]:id.endsWith('-seat')?(state[id]!==target[id]?(id===movingSeat?'Turning…':'Queued'):(on?'Facing rear':'Facing front')):id==='wheels'?(on?(reduced.matches?'Posed':'Playing'):'Stopped'):id==='night'?(on?'Night':'Day'):['headlights','foglights','taillights','lightbar','porchlight'].includes(id)?(on?'On':'Off'):(on?'Open':'Closed');}}
-  function render(){rig.cabin.setRope(rope,ropeTime);rig.apply({...state,night,layers:visibility()},phase);onState({...state,night});requestRender();}
+  function render(){rig.cabin.setRope(rope,ropeTime);rig.apply({...state,night,environmentGround,layers:visibility()},phase);onState({...state,night,phase,reducedMotion:reduced.matches});requestRender();}
   function tick(now){frame=0;const dt=Math.min(.05,Math.max(0,(now-last)/1000));last=now;let active=false;const priorSeat=movingSeat;if(!movingSeat||state[movingSeat]===target[movingSeat])movingSeat=ids.find(id=>id.endsWith('-seat')&&state[id]!==target[id])||null;if(priorSeat!==movingSeat)syncButtons();for(const id of ids){if(['headlights','foglights','taillights','lightbar','porchlight','wheels'].includes(id)){state[id]=target[id];continue;}if(id.endsWith('-seat')&&state[id]!==target[id]&&(id!==movingSeat||state[id.replace('-seat','-door')]<.98)){active=true;continue;}const delta=target[id]-state[id];if(Math.abs(delta)>.002){state[id]+=Math.sign(delta)*Math.min(Math.abs(delta),dt*1.6);active=true;}else state[id]=target[id];}
     if(movingSeat&&state[movingSeat]===target[movingSeat])syncButtons();
     if(target.wheels&&!reduced.matches){phase+=dt;if(now-wheelStarted>20000){target.wheels=state.wheels=0;phase=0;syncButtons();announce('Wheel demo stopped after 20 seconds.');}else active=true;}

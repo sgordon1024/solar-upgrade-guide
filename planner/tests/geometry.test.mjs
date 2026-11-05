@@ -45,3 +45,13 @@ const rope=rig.cabin.rope.geometry.attributes.color;rig.cabin.setRope({preset:'r
 rig.cabin.setRope({preset:'off'});assert(rig.cabin.ropeGlow.every(o=>o.intensity===0));
 rig.apply(closed);console.log('PASS cassette/seat reset, broad front/rear flood, animated rope colors and light shutdown.');
 console.log('PASS sampled steering/seat animation separation',assertCabinSwivelClearance(rig,closed));
+
+// The sliding opening must actually see across the cabin, not hit an opaque
+// placeholder just behind the passenger skin. Test several heights/positions.
+const cast=new T.Raycaster();
+function firstVisibleAt(y,z){cast.set(new T.Vector3(90,y,z),new T.Vector3(-1,0,0));return cast.intersectObject(shell.group,true).find(h=>{for(let o=h.object;o;o=o.parent)if(!o.visible)return false;return !h.object.userData.hitTarget;});}
+rig.apply({...closed,'sliding-door':1});
+for(const [y,z] of [[38,-50],[50,-50],[62,-50],[50,-65]]){const hit=firstVisibleAt(y,z);assert(hit&&hit.point.x<40,`clear open doorway at ${y},${z}; first hit X=${hit?.point.x}`);}
+rig.apply(closed);assert(firstVisibleAt(50,-50).point.x>60,'closed door covers the opening');
+rig.apply({...closed,night:true,environmentGround:true});const nightPlane=rig.extras.children.find(o=>o.material?.name==='Night preview ground');assert.equal(nightPlane.visible,false,'environment owns night ground');
+console.log('PASS unobstructed sliding-door aperture and environment ground ownership.');

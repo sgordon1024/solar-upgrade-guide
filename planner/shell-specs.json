@@ -1902,5 +1902,28 @@
     },
     "manufacturerSource": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "measurementRequest": "M06-M10"
+  },
+  "viewer": {
+    "revision": "mobile-environments-1",
+    "mobileBreakpointCssPixels": 900,
+    "menus": [
+      "Views",
+      "Controls",
+      "Scene",
+      "Tools"
+    ],
+    "environments": [
+      "white",
+      "desert",
+      "sand dunes",
+      "mud",
+      "gravel back road",
+      "paved highway",
+      "rain",
+      "snow"
+    ],
+    "status": "illustrative scenery only; no new measured geometry",
+    "motion": "Shared wheel clock; 20-second limit; pauses when hidden or editing the roof; reduced motion holds scenery still. Scene choice does not modify roof-layout export.",
+    "slidingOpening": "Opaque backing removed; cabin and opposite body wall visible. Rear camper furnishings remain unmodeled."
   }
 }
