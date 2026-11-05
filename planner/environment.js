@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 
 export const ENVIRONMENTS={
-  white:{label:'White',sky:'#f3f3ee',ground:'#eeeee8'},
+  white:{label:'White',sky:'#ffffff',ground:'#ffffff'},
   desert:{label:'Desert',sky:'#e7cbb0',ground:'#bd8d67'},
   dunes:{label:'Sand dunes',sky:'#ede0bf',ground:'#d6bc86'},
   mud:{label:'Mud',sky:'#b5b4a0',ground:'#756049'},
@@ -28,7 +28,7 @@ export function buildEnvironment({groundZ=-107.82}={}){
   function terrainRows(count,seed,scaleFn){const r=random(seed);return Array.from({length:count},(_,i)=>({x:30+(i%2?1:-1)*(230+r()*420),y:-1100+r()*2200,z:groundZ,scale:scaleFn(r),rotation:r()*Math.PI}));}
   function drawMotion(){if(texture)texture.offset.y=distance/300;if(roadTexture)roadTexture.offset.y=distance/300;for(const {o,rows} of scatter){for(let i=0;i<rows.length;i++){const row=rows[i];transform.position.set(row.x,wrap(row.y-distance+1100,2200)-1100,row.z);transform.rotation.set(0,0,row.rotation||0);transform.scale.set(...row.scale);transform.updateMatrix();o.setMatrixAt(i,transform.matrix);}o.instanceMatrix.needsUpdate=true;}if(particles){const a=particles.geometry.attributes.position,points=particles.userData.points;for(let i=0;i<points.length;i++){const p=points[i],y=wrap(p.y-distance*.6+500,1000)-500,z=groundZ+wrap(p.z-distance*(selected==='rain'?2.2:.45),430);if(selected==='rain'){a.setXYZ(i*2,p.x,y,z);a.setXYZ(i*2+1,p.x+1,y-2,z-10);}else a.setXYZ(i,p.x+Math.sin(distance*.01+i)*3,y,z);}a.needsUpdate=true;}}
   function clearDetails(){detail.traverse(o=>{o.geometry?.dispose();if(o.material){for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});detail.clear();scatter=[];particles=null;roadTexture?.dispose();roadTexture=null;}
-  function setPreset(id){if(!(id in ENVIRONMENTS))id='white';selected=id;clearDetails();const c=ENVIRONMENTS[id];texture?.dispose();texture=mapTexture(c.ground,id);groundMaterial.map=texture;groundMaterial.color.set('#ffffff');groundMaterial.roughness=id==='mud'?.55:1;groundMaterial.needsUpdate=true;
+  function setPreset(id){if(!(id in ENVIRONMENTS))id='white';selected=id;ground.visible=id!=='white';clearDetails();const c=ENVIRONMENTS[id];texture?.dispose();texture=mapTexture(c.ground,id);groundMaterial.map=texture;groundMaterial.color.set('#ffffff');groundMaterial.roughness=id==='mud'?.55:1;groundMaterial.needsUpdate=true;
     if(c.road){const isGravel=id==='gravel',width=isGravel?180:330,x=isGravel?30:-55;roadTexture=mapTexture(c.road,isGravel?'gravel':'road');roadTexture.repeat.x=width/300;const m=material('#ffffff',id==='rain'?.35:.95);m.map=roadTexture;mesh(new T.PlaneGeometry(width,2600),m,[x,-40,groundZ+.015]);if(id==='highway'||id==='rain'){const line=material(id==='rain'?'#c5bf8c':'#f3d88a');instances(new T.PlaneGeometry(4,42),line,Array.from({length:25},(_,i)=>({x:-55,y:-1100+i*88,z:groundZ+.025,scale:[1,1,1]})));for(const x of [-215,105])mesh(new T.PlaneGeometry(2,2600),material('#e9e8d9'),[x,-40,groundZ+.025]);}}
     if(id==='desert'){instances(new T.DodecahedronGeometry(1,0),material('#9b6c50'),terrainRows(24,52,r=>[12+r()*18,10+r()*20,8+r()*12]));const g=new T.CylinderGeometry(4,5,36,5);g.rotateX(Math.PI/2);g.translate(0,0,18);instances(g,material('#6e8060'),terrainRows(18,83,r=>[1+r(),1+r(),1+r()*1.7]));}
     if(id==='dunes'){const g=new T.SphereGeometry(1,10,5,0,Math.PI*2,0,Math.PI/2);g.rotateX(Math.PI/2);instances(g,material('#d7bb7f'),terrainRows(14,72,r=>[130+r()*90,150+r()*130,35+r()*30]).map(row=>({...row,x:row.x+Math.sign(row.x-30)*150})));}

@@ -4,6 +4,14 @@
 
 An original browser-based reconstruction of a 144-inch-wheelbase, high-roof Sprinter cargo shell. This revision uses 33 supplied reference images, including front/rear/side/top renders and wireframe views. The archive contained image files, not an editable 3D model. Reference pixels were inspected privately; images, background information and identifying metadata are not published.
 
+## Opening the planner
+
+Every visit opens on a pure-white stage with the van centered, a small camera reset button and four menus: **Views**, **Controls**, **Scene** and **Tools**. This applies on desktop and phone, including returning from browser history. Choose another environment from Scene after landing. The initial scene and camera reset do not erase roof layouts, panel positions, temporary equipment visibility, notes or other saved data.
+
+A lightweight van illustration stays visible while the model loads. If loading fails or takes longer than 45 seconds, **Try again** reloads the page without clearing storage; **Open layout tools** offers the saved-layout controls when they are available. Loading and error messages are announced, menus support keyboard focus and Escape, and reduced motion keeps the loading indicator still. Geometry construction still takes time on slower devices; the illustration is an activity indicator, not a percentage estimate.
+
+Open **Tools → Edit roof layout** for the detailed roof editor, or **Tools → Files, notes & model information** for import/export and model documentation. Physical-fit warnings remain available inside Tools and the roof editor.
+
 ## Current scope and accuracy
 
 The initial view shows the **Sprinter exterior with sleeping flares, camper windows, off-road running gear, hood lip, roof rack with front light bar, driver-side Owl ladder, A/C, Starlink, four solar panels, two crossbar antennas, Maxxair fan, bagged snowboard on two rear clamp carriers, motorcycle carrier and 2021 KTM 350 SX-F**. The driver-side flare includes the small rounded tinted window visible in the owner photos; the passenger-side flare has a solid painted face. The driver-side middle window and passenger sliding-door glass include front-positioned opening panes. Uncheck **Sleeping flares · estimated** and **Camper windows · estimated** independently to inspect the underlying body. The six-fork-spoke charcoal rims, KO3-style tread and Owl/Falcon-style suspension hardware are reconstructed from references. The rear doors have two broad tinted panes with a narrow center seam. The separate rear-door steps remain deferred; the installed awning and rear-door spare are described below. Body paint is a bluer gray revised after owner feedback and checked in the actual passenger-side render against the owner photo; the factory paint code has not been verified. Existing roof layouts remain saved; enable **Edit roof layout** to return to editing them.
