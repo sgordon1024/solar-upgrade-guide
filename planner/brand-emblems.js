@@ -1,17 +1,17 @@
 import * as T from './vendor/three.module.js';
 
 export const EMBLEMS_SPEC={
-  revision:'coach-emblems-3-passenger-alignment',units:'in',status:'photo-estimated',
+  revision:'coach-emblems-4-mirror-finish',units:'in',status:'photo-estimated',
   source:'Owner front, driver, passenger and rear photographs inspected in pixels.',
   instances:[
-    {id:'driver-launch',text:'LAUNCH',host:'driver body directly below rear flare',centerY:129.5,centerZ:-49,width:18.8,height:2.6,finish:'raised silver'},
-    {id:'passenger-launch',text:'LAUNCH',host:'passenger body below rear flare and sliding-door metal channel',centerY:131,centerZ:-50.6,width:18.8,height:2.6,finish:'raised silver'},
-    {id:'rear-launch',text:'LAUNCH',host:'upper driver rear door above glass',centerX:14,centerZ:-12.5,width:21.5,height:2.7,finish:'raised silver'},
+    {id:'driver-launch',text:'LAUNCH',host:'driver body directly below rear flare',centerY:129.5,centerZ:-49,width:18.8,height:2.6,finish:'raised mirror chrome'},
+    {id:'passenger-launch',text:'LAUNCH',host:'passenger body below rear flare and sliding-door metal channel',centerY:131,centerZ:-50.6,width:18.8,height:2.6,finish:'raised mirror chrome'},
+    {id:'rear-launch',text:'LAUNCH',host:'upper driver rear door above glass',centerX:14,centerZ:-12.5,width:21.5,height:2.7,finish:'raised mirror chrome'},
     {id:'driver-entegra',text:'ENTEGRA',host:'lower driver cab door',centerY:-15.5,centerZ:-66.4,width:10.7,height:1.15,finish:'dark lettering'},
     {id:'passenger-entegra',text:'ENTEGRA',host:'lower passenger cab door',centerY:-15.5,centerZ:-66.4,width:10.7,height:1.15,finish:'dark lettering'},
     {id:'rack-entegra',text:'ENTEGRA',host:'front fairing below light bar',centerX:30,centerZ:1.55,width:13.4,height:.8,finish:'dark inset appearance'}
   ],
-  observations:'Three slanted, split-stroke Launch wordmarks with a small upper-right flourish; two widely spaced dark serif Entegra cab marks and one dark Entegra fairing mark. No additional coach mark is established on the obscured lower rear.',
+  observations:'Close-up owner photos confirm polished mirror-like faces and raised beveled edges. Three slanted, split-stroke Launch wordmarks with a small upper-right flourish; two widely spaced dark serif Entegra cab marks and one dark Entegra fairing mark. No additional coach mark is established on the obscured lower rear.',
   dimensionBasis:'Positions and outer dimensions inferred from photos; shallow relief, letter outlines and finish are visual estimates. Body lettering is projected onto the actual modeled panels.',
   unresolved:['Overall width/height of each badge','Badge edge offsets to flare, door seam and rear glass','Raised depth and exact letter/bevel details','Whether fairing letters are cut through or applied'],
   limits:'Visual identity details only; not factory logo artwork or surveyed dimensions. Excluded from roof equipment box checks. Brand names and marks identify the depicted vehicle; trademark rights remain with their owners.',
@@ -48,8 +48,8 @@ function entegraGlyphs(){
 
 function createMaterials(){
   return {
-    silver:new T.MeshStandardMaterial({name:'Launch satin silver lettering',color:'#eef2ef',metalness:.4,roughness:.24,side:T.DoubleSide}),
-    edge:new T.MeshStandardMaterial({name:'Launch dark relief edges',color:'#4b5153',metalness:.55,roughness:.38,side:T.DoubleSide}),
+    silver:new T.MeshPhysicalMaterial({name:'Launch mirror chrome lettering',color:'#f4f5f2',metalness:1,roughness:.075,clearcoat:.35,clearcoatRoughness:.06,envMapIntensity:2.4,side:T.DoubleSide}),
+    edge:new T.MeshStandardMaterial({name:'Launch dark relief edges',color:'#9da5a6',metalness:1,roughness:.16,side:T.DoubleSide}),
     dark:new T.MeshStandardMaterial({name:'Entegra dark lettering',color:'#080b0c',metalness:0,roughness:.8,side:T.DoubleSide})
   };
 }
@@ -91,4 +91,10 @@ export function buildRackWordmark(){
   const materials=createMaterials(),spec=EMBLEMS_SPEC.instances.find(s=>s.id==='rack-entegra');
   const group=buildMark(spec,(u,v,d)=>{const z=spec.centerZ+v;return[spec.centerX-u,19+(z-.7)*1.1-d,z];},materials);
   return {group,materials};
+}
+
+// Explicitly bind the studio map: Three's scene.environmentIntensity otherwise
+// overrides a material's envMapIntensity. Chrome needs the bright reflections.
+export function lightEmblems(emblems,environment,night=false){
+ for(const key of ['silver','edge']){const m=emblems.materials[key];m.envMap=environment;m.envMapIntensity=night?.24:2.4;m.needsUpdate=true;}
 }

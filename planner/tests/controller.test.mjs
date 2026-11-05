@@ -72,3 +72,6 @@ const proposal=buildSolarUpgrade();const layout=RooflabSolar.planningPreset();pr
 const {buildRoofExtras}=await import('../roof-extras.js');const extras=buildRoofExtras(),extraState=RooflabRoofExtras.defaults();extraState.chassis.enabled=true;extraState.cargo.enabled=true;extras.update(extraState);body.add(extras.group);installed.group.visible=false;
 for(const p of RooflabRoofExtras.envelopes(extraState)){const o=extras.group.position;tapWorld([o.x+p.x+p.width/2,o.y+p.y+p.length/2,o.z+p.z+p.height]);assert.equal(panelSelections.at(-1),p.id);}
 const extraCount=panelSelections.length;extras.group.visible=false;tapWorld([48,41,8]);assert.equal(panelSelections.length,extraCount);console.log('PASS independent chassis/cargo raycast selection and hidden-layer suppression.');
+
+// Recovery boards follow their door and can trigger it, but hidden boards cannot.
+control.reset();motion.matches=true;motion.fire('change');camera.position.set(54.9,400,-57);camera.lookAt(54.9,150,-57);camera.updateMatrixWorld();exterior.traction.visible=true;tapWorld([54.9,159,-57]);assert.equal(control.target['rear-doors'],1);control.reset();console.log('PASS actual traction board tap activates rear doors.');

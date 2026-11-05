@@ -78,7 +78,7 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
   }
   // Body-mounted Entegra marks and spare must follow their own door.
   for(const [name,key] of [['driver-entegra','driver-door'],['passenger-entegra','passenger-door'],['rear-launch','rear-driver-door']]){const badge=emblems.group.children.find(o=>o.name===name);if(badge)attach(parts[key],badge);}
-  attach(parts['rear-driver-door'],exterior.spare);attach(parts['cassette-door'],exterior.hatchLid);
+  attach(parts['rear-driver-door'],exterior.spare);if(exterior.traction)attach(parts['rear-passenger-door'],exterior.traction);attach(parts['cassette-door'],exterior.hatchLid);
   function panel(points,x,mat=dark,target=extras){const shape=new T.Shape(points.map(p=>new T.Vector2(...p))),g=new T.ShapeGeometry(shape,8),a=g.attributes.position;for(let i=0;i<a.count;i++)a.setXYZ(i,x,a.getX(i),a.getY(i));g.computeVertexNormals();const o=new T.Mesh(g,mat);o.name='Dark illustrative opening';target.add(o);return o;}
   function outline(points,x,target=extras,r=.16){const curve=new T.CatmullRomCurve3(points.map(p=>V(x,...p)),true,'catmullrom',0),o=new T.Mesh(new T.TubeGeometry(curve,points.length*4,r,6,true),sealMat);target.add(o);return o;}
   // The sliding aperture remains open to the modeled cabin. No opaque backing

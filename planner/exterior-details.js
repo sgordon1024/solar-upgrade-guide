@@ -1,3 +1,4 @@
+import {buildBodyDetails} from './body-details.js?v=close1';
 import * as T from './vendor/three.module.js';
 
 // Original geometry, inches in the shell's unmirrored body coordinates.
@@ -72,5 +73,5 @@ export function buildExteriorDetails(shell){
   for(const b of buckets.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,b.m);mesh.name=b.m.name;mesh.castShadow=true;mesh.receiveShadow=false;b.target.add(mesh);}
   spare.userData={bounds:new T.Box3().setFromObject(spare),wheelCenter:s.center,hingeAnchors:anchors};hatch.userData={bounds:new T.Box3().setFromObject(hatch),latchCenters,hostSampleCount:cache.size};
   hatchLid.userData.hinge=[bodyX(h.centerY-6.15,h.centerZ)-.42,h.centerY-6.15,h.centerZ];
-  group.userData={spec};return {group,spare,hatch,hatchLid,materials};
+  const close=buildBodyDetails(shell);group.add(close.group);Object.assign(materials,close.materials);group.userData={spec,closeupDetails:close.group.userData.spec};return {group,spare,hatch,hatchLid,traction:close.traction,closeup:close,materials};
 }

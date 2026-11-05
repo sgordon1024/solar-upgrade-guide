@@ -8,6 +8,7 @@ export const CARRIER_SPEC={
   manual:'https://manuals.harborfreight.com/manuals/57000-57999/57720-193175421548.pdf',
   manufacturer:{overallLength:83.125,overallDepth:36.25,overallHeight:15.5,platformLength:78.75,platformWidth:8,platformThickness:.109,rampLength:72,receiverSize:2,hitchPinDiameter:.625,productWeightLb:91.9,ratedLoadLb:600},
   installation:{status:'estimated',trackCenterX:30,trackCenterY:176.5,platformZ:-91.5,receiverFaceY:157.75,receiverCenterZ:-94,insertFrontY:152.25,actualExtensionLength:null,actualReceiverHeight:null},
+  closeupDetails:'Two perforated accessory/step plates inboard of the wheel channel over the stored ramp are photo-estimated; exact attachment and rated use unknown.',
   configuration:{chockSide:'passenger',ramp:'stored on vehicle side of channel',motorcycle:'separate optional assembly'},
   limits:'Installation coordinates, tube walls, mount brackets and fine details are estimates. Product capacity is not a vehicle/hitch load assessment. No clearance or mounting validation.'
 };
@@ -69,6 +70,12 @@ export function buildRearCarrier({loaded=false}={}){
     for(const y of [cy-2,cy+2])bolt(x,y,z+.12);
     cylinder([x,166.75,z-.5],[x,166.75,z+.22],.12,metal,10);
     box([x,166.75,z+.18],[1.1,.25,.15],metal,'Ramp wing fastener');
+  }
+  // Two perforated plates visible around the bike; illustrative accessory mounting.
+  for(const px of [20,43]){
+    const plate=rectShape(10,6.8);for(let row=0;row<8;row++)for(let col=0;col<12;col++){const hole=new T.Path();hole.absarc(-4.45+col*.8,-2.8+row*.8,.18,0,Math.PI*2,true);plate.holes.push(hole);}
+    const g=new T.ShapeGeometry(plate,5);g.translate(px,166.75,z+1.6);add(g,metal,'Photo-estimated perforated accessory plate');
+    for(const dy of [-3.5,3.5])box([px,166.75+dy,z+1.42],[10.4,.22,.38],steel,'Accessory plate border');for(const dx of [-5.15,5.15])box([px+dx,166.75,z+1.42],[.22,7.2,.38],steel,'Accessory plate border');
   }
   // Passenger-side front wheel stop; the published overall length includes it.
   for(const sign of [-1,1]){

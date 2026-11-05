@@ -264,3 +264,9 @@ The rear block is 61.24 × 93.52 inches, extending to Y128.26: about 0.62 inch p
 The rack uses the 52-inch upper bound and 130-inch center span; intermediate bars and registration are estimates. Bag geometry uses approximately 60 × 14.9 × 7 inches, with 14.9 a proxy for “under 15”; clamps remain estimated. Applying the preset shows bag and Starlink at their saved positions rather than moving them to match screenshot pixels. Driver-side riser interference, bag access/support, Starlink sky view, fan/A/C ventilation, awning access and structural/wind loading remain unresolved. Z18 is not a riser specification. A storage box must have an independent rated rack load path, not rest on panels or bare roof.
 
 [Download the example study](rear-roof-scenario.json). The example additionally enables the optional estimated box; importing it replaces the active layout, so export your own first. This is an editable planning study, not installation-ready CAD.
+
+## Exterior close-up details
+
+Owner close-ups now guide the driver rear power-inlet cover, passenger rear AC-outlet cover, reflective Launch emblems, rear lens/hinge/sensor details, red VP-container spout, inboard perforated carrier plates and pale MAXTRAX traction boards. Tools → Model layers → Rear includes a separate **MAXTRAX traction boards** switch. The boards move with the passenger rear door; tapping them uses the existing rear-door action. Utility covers remain closed visual details.
+
+The boards use the [manufacturer's XTREME family outline](https://www.dometic.com/en-us/product/maxtrax-xtreme) as an unconfirmed reference. Their exact model, count, location, pads/spacers and magnetic retention are estimates; opening the virtual door does not establish real clearance with the bike, carrier or mounts. No private photos, plate text or campsite textures are published. See E18–E21 in [the measurement checklist](measurements.md) and `bodyCloseupDetails` in [shell specs](shell-specs.json).

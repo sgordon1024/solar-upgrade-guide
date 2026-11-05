@@ -411,7 +411,8 @@
         "y": 157.75,
         "z": -88.80000305175781
       }
-    }
+    },
+    "closeupDetails": "Two perforated accessory/step plates inboard of the wheel channel over the stored ramp are photo-estimated; exact attachment and rated use unknown."
   },
   "motorcycle": {
     "model": "2021 KTM 350 SX-F",
@@ -1314,7 +1315,7 @@
     "underbodyView": "Hides the generic floor placeholder and ground; not a surveyed chassis."
   },
   "rearContainer": {
-    "revision": "vp-container-1",
+    "revision": "vp-container-2-closeup-spout",
     "name": "VP Racing 3-gallon container",
     "installationStatus": "existing-owner-identified",
     "capacityGallons": 3,
@@ -1326,7 +1327,7 @@
     "envelope": {
       "width": 10,
       "depth": 10,
-      "height": 16
+      "height": 19.77
     },
     "installation": {
       "centerX": 61.3,
@@ -1337,7 +1338,7 @@
     },
     "source": "https://plasticproductformers.com/products/3-gallon-motorsport-container%C2%AE-square",
     "sourceScope": "Official family reference for contoured handle, bottom grip and capped white utility container; no manufacturer dimensions or exact installed SKU established.",
-    "observations": "Cream body with rounded lower corners, sloped shoulder rising toward van, molded handle area and dark over-strap; cap partly obscured in owner photo.",
+    "observations": "Cream body with rounded lower corners, sloped shoulder rising toward van, molded handle area and dark over-strap; black ribbed cap, red upright spout and vent now visible in the closer owner photos.",
     "unresolved": [
       "Actual outside width, depth and total height",
       "Ramp-relative position and footprint overhang",
@@ -1357,7 +1358,7 @@
       "max": {
         "x": 66.39999990463257,
         "y": 172.75,
-        "z": -75.99999961853027
+        "z": -72.07999954223632
       }
     },
     "includedInEquipmentBoxChecks": false
@@ -1459,7 +1460,7 @@
     "includedInEquipmentBoxChecks": false
   },
   "coachEmblems": {
-    "revision": "coach-emblems-3-passenger-alignment",
+    "revision": "coach-emblems-4-mirror-finish",
     "units": "in",
     "status": "photo-estimated",
     "source": "Owner front, driver, passenger and rear photographs inspected in pixels.",
@@ -1472,7 +1473,7 @@
         "centerZ": -49,
         "width": 18.8,
         "height": 2.6,
-        "finish": "raised silver"
+        "finish": "raised mirror chrome"
       },
       {
         "id": "passenger-launch",
@@ -1482,7 +1483,7 @@
         "centerZ": -50.6,
         "width": 18.8,
         "height": 2.6,
-        "finish": "raised silver"
+        "finish": "raised mirror chrome"
       },
       {
         "id": "rear-launch",
@@ -1492,7 +1493,7 @@
         "centerZ": -12.5,
         "width": 21.5,
         "height": 2.7,
-        "finish": "raised silver"
+        "finish": "raised mirror chrome"
       },
       {
         "id": "driver-entegra",
@@ -1525,7 +1526,7 @@
         "finish": "dark inset appearance"
       }
     ],
-    "observations": "Three slanted, split-stroke Launch wordmarks with a small upper-right flourish; two widely spaced dark serif Entegra cab marks and one dark Entegra fairing mark. No additional coach mark is established on the obscured lower rear.",
+    "observations": "Close-up owner photos confirm polished mirror-like faces and raised beveled edges. Three slanted, split-stroke Launch wordmarks with a small upper-right flourish; two widely spaced dark serif Entegra cab marks and one dark Entegra fairing mark. No additional coach mark is established on the obscured lower rear.",
     "dimensionBasis": "Positions and outer dimensions inferred from photos; shallow relief, letter outlines and finish are visual estimates. Body lettering is projected onto the actual modeled panels.",
     "unresolved": [
       "Overall width/height of each badge",
@@ -1907,5 +1908,55 @@
     "specifications": "solar-800w-specs.json",
     "review": "solar-upgrade.md",
     "geometry": "Panel dimensions manufacturer-sourced; placements and generic risers estimated. Existing roof geometry retained. Separate panel/support-envelope screening; not engineering fit approval."
+  },
+  "bodyCloseupDetails": {
+    "revision": "owner-closeups-1",
+    "units": "in",
+    "status": "photo-estimated",
+    "powerInlet": {
+      "side": "driver rear quarter",
+      "centerY": 132,
+      "centerZ": -68.8,
+      "width": 4.6,
+      "height": 5.1,
+      "projection": 0.8,
+      "appearance": "Black round hinged inlet cover with shaped center latch and small green indicator; two warning labels above",
+      "electricalRating": "Not inferred from visual geometry"
+    },
+    "acOutlet": {
+      "side": "passenger rear quarter",
+      "centerY": 144,
+      "centerZ": -69.1,
+      "width": 4.6,
+      "height": 2.9,
+      "projection": 0.42,
+      "appearance": "Closed black rectangular cover with upper hinge and two lower grip tabs"
+    },
+    "traction": {
+      "brand": "MAXTRAX",
+      "installedModel": null,
+      "referenceFamily": "XTREME-like alloy teeth; exact model not confirmed",
+      "referenceSource": "https://www.dometic.com/en-us/product/maxtrax-xtreme",
+      "referenceDimensions": {
+        "length": 45.275590551181104,
+        "width": 12.992125984251969,
+        "stackedPairDepth": 3.346456692913386,
+        "status": "manufacturer family reference, installed product unverified"
+      },
+      "installation": {
+        "side": "passenger rear door",
+        "centerX": 54.9,
+        "centerZ": -57,
+        "doorPlaneY": 156.8,
+        "standOff": 0.9,
+        "depictedCount": 2,
+        "countStatus": "nested pair inferred; confirm"
+      },
+      "mounting": "Owner reports magnetic mounting. Four dark round contact pads, variable-length spacers and pin hardware are visual estimates, not identified/rated mounts.",
+      "appearance": "Pale olive/sand boards, sculpted ribbed face, six carry slots, alloy-colored traction teeth and dark locking pins"
+    },
+    "rearDetails": "Original hinge recesses, fasteners and parking-sensor outlines; no identifying plate text or photographic textures.",
+    "limits": "Photo references establish appearance and side assignment, not dimensions or physical clearance. Magnetic retention, load rating, door sweep and motorcycle/board gaps are not validated. Utility covers are closed visual features; no electrical operation modeled.",
+    "geometryLicense": "Original MIT geometry. No private images or identifying metadata redistributed."
   }
 }

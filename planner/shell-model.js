@@ -210,9 +210,11 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   const hi=[[.4,-9],[27.5,-9],[28,-9.5],[.4,-9.5]].map(([x,z])=>[x*sign,z]);curvedFace(hi,p=>rp(...p,.08),paint,'Rear upper swage');
   motionPart='taillights';
   const lampShape=[[34.2,-50],[39,-49],[39,-72.5],[34,-72.5]].map(([x,z])=>[x*sign,z]);curvedFace(lampShape,p=>rp(...p,.25),red,'Tall rear tail lamp',.1);
+  // Lens prisms follow the existing lamp envelope; all stay with its light action.
+  for(let z=-51;z>-72;z-=.72)tube([rp(35.25*sign,z,.46),rp(38.3*sign,z+.14,.46)],.035,red);
   for(const z of [-53,-56,-64,-68,-71])tube([rp(34.6*sign,z,.43),rp(38.7*sign,z+.3,.43)],.10,red);motionPart='';curvedFace([[34.6*sign,-58],[36.6*sign,-58],[36.6*sign,-63],[34.6*sign,-65]],p=>rp(...p,.5),light,'Reverse lens',.1);
   motionPart='';
-  for(const z of [-32,-74]){box(rp(34.6*sign,z,.55),[4.5,1.2,2.9],paint,.3);cyl(rp(35.3*sign,z-1.6,1.3),rp(35.3*sign,z+1.6,1.3),.45,steel);}
+  for(const z of [-32,-74]){box(rp(34.6*sign,z,.55),[4.5,1.2,2.9],paint,.3);cyl(rp(35.3*sign,z-1.6,1.3),rp(35.3*sign,z+1.6,1.3),.45,steel);for(const dz of [-.7,.7]){cyl(rp(34.6*sign,z+dz,1.17),rp(34.6*sign,z+dz,1.23),.24,black);cyl(rp(34.6*sign,z+dz,1.24),rp(34.6*sign,z+dz,1.27),.1,steel);}}
  }
  // Owner rear glazing: two broad panes meet closely at the door seam.
  if(includeCamperWindows){
