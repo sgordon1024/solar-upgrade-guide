@@ -149,3 +149,16 @@ Locations are photo-observed; exact outlines, dimensions and depth remain estima
 The original 6.12-inch-high placeholder has been replaced by an original cast-bowl/cover/pinion reconstruction, estimated at 11.8 inches wide × 11.5 inches high. [ARB lists a 245 mm ring gear](https://www.arb.com.au/product/rd262-arb-air-locker-rear-axle-mercedes-benz-sprinter) for its Sprinter application, larger than the entire old placeholder. That supports correcting scale, but does not establish this van’s axle variant or outer dimensions. The axle center stays at Z −92.5 inches; the nominal modeled low point is −98.75 and its ground gap is 9 inches. Those are visualization values, not surveyed clearance. U07 records the missing photo and dimensions. No aftermarket differential cover or locker is represented as installed.
 
 Model visibility is now organized into Body & sides, Roof, and Rear & cargo switch groups under Model layers. Dimensions, Wireframe and Edit roof layout remain directly accessible. The switches use native keyboard-operable inputs and preserve existing visibility dependencies; they do not change saved roof geometry.
+
+
+### Side alignment and driver access details
+
+Local grayscale photo overlays register to the nearby flare outline with uniform scale and translation, leaving perspective differences visible. Both fitted flares now have a narrow outward rollover and a photo-estimated upper aft taper; the artificial stock-panel depression around them is removed. The driver window is 2 inches farther forward, 0.8 inch lower and estimated at 25 × 10.3 inches. Driver and passenger Launch badges use separate placements: the passenger mark sits beneath the sliding-door metal channel. These refinements improve visual agreement without establishing a CAD tolerance.
+
+The closed fuel flap is on the fixed driver-side body immediately aft of the cab door, with a red cap inside. The owner's access requirement and cap color are recorded separately from estimated dimensions. **Model layers → Fuel cap cutaway** hides the flap for inspection; it is not a door-opening or interlock simulation. The small black light above the cassette hatch is shown unlit. E01/E12–E15 collect unresolved measurements. Body paint and saved roof-layout data are unchanged.
+
+
+Passenger-side comparison refined the aft flare rake and lower edge independently of the driver flare, raised the metal track and Launch badge together, reduced the sliding glass’s upper-aft chamfer and replaced rectangular passenger handles with oval pockets and raised grips. These are photo-based estimates. Color, wheelbase and running gear are unchanged; E01/E02/E12/E13/E16 record the remaining measurements.
+
+
+The front-corner revision removes the artificial nose-width dip, gives the front and side bumper a shared edge, and keeps the wrapped lamps on the same surface. Both mirrors now use original tapered convex caps, glass rims and lower panes, short mounts and vertical indicators. Owner photos and supplied exterior-render references guide these shapes; exact mirror dimensions and folding clearance remain open in E17.

@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {buildRackWordmark} from './brand-emblems.js?v=emblems1';
+import {buildRackWordmark} from './brand-emblems.js?v=passengerreview1';
 
 // Inches in the same body datum as the shell. Installation is a photo estimate;
 // owner observations are retained verbatim rather than silently joining datums.

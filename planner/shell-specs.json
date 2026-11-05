@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-11-maxxair-snowboard",
+  "revision": "shell-local-front-corners-mirrors",
   "units": "in",
   "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment including Maxxair fan and bagged snowboard, roof rack, Owl side ladder and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
@@ -86,37 +86,43 @@
   "sleepingFlares": {
     "enabledByDefault": true,
     "status": "estimated",
-    "evidence": "Owner driver/passenger/rear photos inspected in pixels and compared with rendered overlays. Passenger forward edge is adjacent to the sliding-door rear seam. Small driver window retains its fore/aft position and uses a taller rounded outline. Product photos support a rearward increase in projection; installed product identity and actual dimensions are unverified.",
+    "evidence": "Owner photo comparisons in grayscale; approximate camera registered to estimated hub/tire landmarks, without mesh distortion. Driver dimensions unchanged from prior local review. Passenger upper-aft inset4.5in and lower-edge rise1in improve visible outline; passenger top is preserved. All dimensions remain photo estimates, not installed-product specifications or calibrated CAD.",
     "units": "in",
     "parametricInputs": {
+      "status": "estimated",
       "centerY": 112.5,
       "centerZ": -32.5,
       "length": 64,
       "height": 27.625,
       "cornerRadius": 3.2,
+      "shoulderWidth": 2.25,
+      "aftTopInset": 2,
+      "passengerAftTopInset": 4.5,
+      "passengerBottomRise": 1,
+      "shoulderProfile": "convex quarter-round; no inset surround",
       "driverProjection": 5.25,
       "passengerProjection": 3.25,
       "driverFrontProjection": 1.4,
       "passengerFrontProjection": 0.8,
       "driverWindow": {
-        "centerY": 120.5,
-        "centerZ": -28.5,
+        "centerY": 118.5,
+        "centerZ": -29.3,
         "length": 25,
-        "height": 11.4,
-        "cornerRadius": 3.4
+        "height": 10.3,
+        "cornerRadius": 3
       }
     },
     "renderedBoundsAfterSharedBodyWarps": {
       "isBox3": true,
       "min": {
-        "x": -12.63223934173584,
-        "y": 80.46092224121094,
-        "z": -46.352901458740234
+        "x": -13.252239227294922,
+        "y": 80.45999908447266,
+        "z": -46.35293960571289
       },
       "max": {
-        "x": 70.63224029541016,
-        "y": 143.7402801513672,
-        "z": -18.646867752075195
+        "x": 71.21414184570312,
+        "y": 143.57298278808594,
+        "z": -18.645353317260742
       }
     },
     "limits": "Inputs are visual reconstruction estimates; shared body contour transforms affect final bounds. Do not use them for cutting, ordering parts or mounting. Visibility toggle is a view control, not part of roof-layout JSON.",
@@ -137,8 +143,9 @@
   "camperWindows": {
     "enabledByDefault": true,
     "status": "estimated",
-    "evidence": "Driver-side middle and passenger sliding-door glass outlines inspected in owner photos. Front lower corners are broader; small opening panes sit toward the front. Driver rear edge is partly hidden by the ladder.",
+    "evidence": "Owner driver and passenger photos inspected. Passenger grayscale overlay preserves main pane and vent placement; upper-aft corner reduced to an estimated0.35in round where it meets the door seam. Glass and cutout dimensions remain unmeasured.",
     "parametricInputs": {
+      "status": "estimated",
       "frontY": 24,
       "rearY": 79.8,
       "topZ": -18.5,
@@ -148,13 +155,14 @@
       "driverVentCenterZ": -32.5,
       "passengerVentCenterZ": -32,
       "ventLength": 16,
-      "ventHeight": 20
+      "ventHeight": 20,
+      "passengerAftUpperCornerRadius": 0.35
     },
     "renderedGlassBounds": {
       "Driver middle glass": {
         "isBox3": true,
         "min": {
-          "x": -8.720656394958496,
+          "x": -9.313819885253906,
           "y": 24.272253036499023,
           "z": -48.70603561401367
         },
@@ -172,9 +180,9 @@
           "z": -48.70603561401367
         },
         "max": {
-          "x": 68.72065734863281,
-          "y": 79.54446411132812,
-          "z": -18.793384552001953
+          "x": 69.3138198852539,
+          "y": 79.84322357177734,
+          "z": -18.80325698852539
         }
       }
     },
@@ -1471,7 +1479,7 @@
     "includedInEquipmentBoxChecks": false
   },
   "coachEmblems": {
-    "revision": "coach-emblems-1",
+    "revision": "coach-emblems-3-passenger-alignment",
     "units": "in",
     "status": "photo-estimated",
     "source": "Owner front, driver, passenger and rear photographs inspected in pixels.",
@@ -1479,9 +1487,9 @@
       {
         "id": "driver-launch",
         "text": "LAUNCH",
-        "host": "driver body below rear flare",
+        "host": "driver body directly below rear flare",
         "centerY": 129.5,
-        "centerZ": -51,
+        "centerZ": -49,
         "width": 18.8,
         "height": 2.6,
         "finish": "raised silver"
@@ -1489,9 +1497,9 @@
       {
         "id": "passenger-launch",
         "text": "LAUNCH",
-        "host": "passenger body below rear flare",
-        "centerY": 129.5,
-        "centerZ": -51,
+        "host": "passenger body below rear flare and sliding-door metal channel",
+        "centerY": 131,
+        "centerZ": -50.6,
         "width": 18.8,
         "height": 2.6,
         "finish": "raised silver"
@@ -1551,27 +1559,27 @@
       "driver-launch": {
         "isBox3": true,
         "min": {
-          "x": -9.35634708404541,
+          "x": -9.261399269104004,
           "y": 120.04121398925781,
-          "z": -52.35200119018555
+          "z": -50.35200119018555
         },
         "max": {
-          "x": -8.57061767578125,
+          "x": -9.0139799118042,
           "y": 138.97454833984375,
-          "z": -49.64799880981445
+          "z": -47.64799880981445
         }
       },
       "passenger-launch": {
         "isBox3": true,
         "min": {
-          "x": 68.87997436523438,
-          "y": 120.02545928955078,
-          "z": -52.35200119018555
+          "x": 69.0976333618164,
+          "y": 121.52545928955078,
+          "z": -51.95199966430664
         },
         "max": {
-          "x": 69.59481811523438,
-          "y": 138.9587860107422,
-          "z": -49.64799880981445
+          "x": 69.33786010742188,
+          "y": 140.4587860107422,
+          "z": -49.24800109863281
         }
       },
       "rear-launch": {
@@ -1681,5 +1689,151 @@
         "z": -87.25
       }
     }
+  },
+  "slidingDoorTrack": {
+    "status": "photo-estimated",
+    "side": "passenger",
+    "frontY": 81,
+    "rearY": 136.5,
+    "centerZ": -46.8,
+    "height": 2.1,
+    "maxProjection": 0.95,
+    "description": "Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only",
+    "measuredDimensions": null,
+    "measurementRequest": "E13",
+    "length": 55.5,
+    "renderedBounds": {
+      "isBox3": true,
+      "min": {
+        "x": 68.9635238647461,
+        "y": 80.82499694824219,
+        "z": -47.95000076293945
+      },
+      "max": {
+        "x": 69.86128234863281,
+        "y": 136.6750030517578,
+        "z": -45.650001525878906
+      }
+    },
+    "includedInRoofBoxChecks": false,
+    "evidence": "Passenger photo overlay supports a0.8in upward refinement of the track and badge while retaining their modeled separation. Estimated dimensions and door motion remain unverified."
+  },
+  "driverAccess": {
+    "revision": "driver-access-1",
+    "units": "in",
+    "status": "estimated",
+    "fuel": {
+      "centerY": 22.25,
+      "centerZ": -64.5,
+      "width": 5.1,
+      "height": 12,
+      "capDiameter": 2.7,
+      "capColor": "red",
+      "location": "Fixed driver-side body immediately aft of cab door",
+      "access": "Driver door must be open to access fuel flap; owner-confirmed. Cutaway hides the closed flap only, not an opening simulation.",
+      "colorSource": "Owner-confirmed red cap; interior not visible in supplied photos",
+      "dimensionsSource": "Photo-estimated outline and position; cap, recess and concealed parts illustrative",
+      "measurementRequest": "E14"
+    },
+    "hatchLight": {
+      "centerY": 71,
+      "centerZ": -52.3,
+      "width": 10.6,
+      "height": 2.3,
+      "projection": 1.4,
+      "status": "photo-estimated",
+      "description": "Small black housing with pale unlit lower lens, above cassette hatch",
+      "measurementRequest": "E15"
+    },
+    "limits": "No door travel, interlock mechanism, fuel plumbing or mounting fit validated. Excluded from roof box checks.",
+    "fuelFlapBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -9.900836944580078,
+        "y": 19.700000762939453,
+        "z": -70.5
+      },
+      "max": {
+        "x": -9.577120780944824,
+        "y": 24.799999237060547,
+        "z": -58.5
+      }
+    },
+    "hatchLightBounds": {
+      "isBox3": true,
+      "min": {
+        "x": -10.695324897766113,
+        "y": 65.69999694824219,
+        "z": -53.45000076293945
+      },
+      "max": {
+        "x": -9.211357116699219,
+        "y": 76.30000305175781,
+        "z": -51.150001525878906
+      }
+    },
+    "includedInRoofBoxChecks": false
+  },
+  "passengerDoorHandles": {
+    "status": "photo-estimated",
+    "cabCenterY": 9,
+    "slidingCenterY": 29,
+    "centerZ": -52.8,
+    "housingLength": 9.6,
+    "housingHeight": 3.6,
+    "gripLength": 7.4,
+    "gripDiameter": 0.9,
+    "measurementRequest": "E16",
+    "evidence": "Owner passenger photo shows two oval housings with raised horizontal grips. Centers,9.6x3.6in housing and7.4in grip are estimates; surface relief illustrates a pocket and is not an actual door cutout.",
+    "includedInRoofBoxChecks": false
+  },
+  "frontCorners": {
+    "status": "photo-estimated",
+    "description": "Monotone hood width and shared front/side bumper boundary; no pinched corner groove",
+    "measurementRequest": "E06",
+    "modeledBoundaryMaxDistance": 0,
+    "evidence": "Owner front/side photos and supplied exterior-render references show continuous convex corners. Removed the false width dip and joined front/side bumper samples; averaged edge normals. Model continuity is not a surveyed contour tolerance."
+  },
+  "mirrors": {
+    "status": "photo-estimated",
+    "centerXFromCenterline": 42.5,
+    "centerY": -21.6,
+    "centerZ": -44,
+    "housingWidth": 7.8,
+    "housingHeight": 13.2,
+    "housingDepth": 5.1,
+    "glass": "main pane and lower convex-pane appearance",
+    "indicator": "lower outboard vertical lens",
+    "measurementRequest": "E17",
+    "renderedBounds": [
+      {
+        "isBox3": true,
+        "min": {
+          "x": -16.563888549804688,
+          "y": -31,
+          "z": -52.220001220703125
+        },
+        "max": {
+          "x": -8.24791145324707,
+          "y": -18.33365249633789,
+          "z": -37.397830963134766
+        }
+      },
+      {
+        "isBox3": true,
+        "min": {
+          "x": 68.24790954589844,
+          "y": -31,
+          "z": -52.220001220703125
+        },
+        "max": {
+          "x": 76.56388854980469,
+          "y": -18.33365249633789,
+          "z": -37.397830963134766
+        }
+      }
+    ],
+    "evidence": "Owner front/side photos plus supplied render references show tapered convex caps, rear glass rims, short lower feet and vertical lower-outboard indicator lenses. Original geometry; no image textures. Overall dimensions, hidden supports, reflective optics and folding sweep are unverified.",
+    "includedInRoofBoxChecks": false
   }
 }

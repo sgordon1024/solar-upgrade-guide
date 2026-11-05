@@ -1,11 +1,11 @@
 import * as T from './vendor/three.module.js';
 
 export const EMBLEMS_SPEC={
-  revision:'coach-emblems-1',units:'in',status:'photo-estimated',
+  revision:'coach-emblems-3-passenger-alignment',units:'in',status:'photo-estimated',
   source:'Owner front, driver, passenger and rear photographs inspected in pixels.',
   instances:[
-    {id:'driver-launch',text:'LAUNCH',host:'driver body below rear flare',centerY:129.5,centerZ:-51,width:18.8,height:2.6,finish:'raised silver'},
-    {id:'passenger-launch',text:'LAUNCH',host:'passenger body below rear flare',centerY:129.5,centerZ:-51,width:18.8,height:2.6,finish:'raised silver'},
+    {id:'driver-launch',text:'LAUNCH',host:'driver body directly below rear flare',centerY:129.5,centerZ:-49,width:18.8,height:2.6,finish:'raised silver'},
+    {id:'passenger-launch',text:'LAUNCH',host:'passenger body below rear flare and sliding-door metal channel',centerY:131,centerZ:-50.6,width:18.8,height:2.6,finish:'raised silver'},
     {id:'rear-launch',text:'LAUNCH',host:'upper driver rear door above glass',centerX:14,centerZ:-12.5,width:21.5,height:2.7,finish:'raised silver'},
     {id:'driver-entegra',text:'ENTEGRA',host:'lower driver cab door',centerY:-15.5,centerZ:-66.4,width:10.7,height:1.15,finish:'dark lettering'},
     {id:'passenger-entegra',text:'ENTEGRA',host:'lower passenger cab door',centerY:-15.5,centerZ:-66.4,width:10.7,height:1.15,finish:'dark lettering'},

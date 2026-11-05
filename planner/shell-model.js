@@ -1,8 +1,9 @@
 import * as T from './vendor/three.module.js';
+import {buildDriverDetails} from './driver-details.js?v=driveraccess1';
 import {buildRearDifferential} from './rear-differential.js?v=housing1';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-9-rear-housing',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:120.5,centerZ:-28.5,length:25,height:11.4,cornerRadius:3.4}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export const SHELL_SPEC={revision:'shell-12-front-corners-mirrors',units:'in',wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,shoulderWidth:2.25,aftTopInset:2,passengerAftTopInset:4.5,passengerBottomRise:1,shoulderProfile:'convex quarter-round; no inset surround',driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:118.5,centerZ:-29.3,length:25,height:10.3,cornerRadius:3}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},slidingDoorTrack:{status:'photo-estimated',side:'passenger',frontY:81,rearY:136.5,centerZ:-46.8,height:2.1,maxProjection:.95,description:'Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only',measuredDimensions:null,measurementRequest:'E13'},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20,passengerAftUpperCornerRadius:.35},frontCorners:{status:'photo-estimated',description:'Monotone hood width and shared front/side bumper boundary; no pinched corner groove',measurementRequest:'E06'},mirrors:{status:'photo-estimated',centerXFromCenterline:42.5,centerY:-21.6,centerZ:-44,housingWidth:7.8,housingHeight:13.2,housingDepth:5.1,glass:'main pane and lower convex-pane appearance',indicator:'lower outboard vertical lens',measurementRequest:'E17'},passengerDoorHandles:{status:'photo-estimated',cabCenterY:9,slidingCenterY:29,centerZ:-52.8,housingLength:9.6,housingHeight:3.6,gripLength:7.4,gripDiameter:.9,measurementRequest:'E16'},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
 export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
@@ -10,7 +11,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  const camperGlass=material('Camper glass','#36444c',.32,.20);camperGlass.clearcoat=1;camperGlass.clearcoatRoughness=.12;camperGlass.envMapIntensity=1.7;
  paint.envMapIntensity=.75;
  glass.clearcoat=1;glass.clearcoatRoughness=.08;glass.envMapIntensity=1.5;
- let buildingFlare=false,buildingCamperWindow=false;
+ let buildingFlare=false,buildingCamperWindow=false,driverDetails;
  const V=(x,y,z)=>new T.Vector3(x,y,z);
  function add(geo,mat,name){const o=new T.Mesh(geo,mat);o.name=name||mat.name;o.castShadow=true;o.receiveShadow=false;o.userData.sleepingFlare=buildingFlare;o.userData.camperWindow=buildingCamperWindow;group.add(o);return o;}
  function patch(fn,nu,nv,mat,name){const pos=[],uv=[],idx=[];for(let j=0;j<=nv;j++)for(let i=0;i<=nu;i++){pos.push(...fn(i/nu,j/nv));uv.push(i/nu,j/nv);}for(let j=0;j<nv;j++)for(let i=0;i<nu;i++){const a=j*(nu+1)+i,b=a+nu+1;idx.push(a,b,a+1,a+1,b,b+1);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();return add(g,mat,name);}
@@ -19,16 +20,17 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  function box(c,size,mat,bevel=.25){const [w,l,h]=size;const shape=new T.Shape();const r=Math.min(bevel,w/2,h/2);shape.moveTo(-w/2+r,-h/2);shape.lineTo(w/2-r,-h/2);shape.quadraticCurveTo(w/2,-h/2,w/2,-h/2+r);shape.lineTo(w/2,h/2-r);shape.quadraticCurveTo(w/2,h/2,w/2-r,h/2);shape.lineTo(-w/2+r,h/2);shape.quadraticCurveTo(-w/2,h/2,-w/2,h/2-r);shape.lineTo(-w/2,-h/2+r);shape.quadraticCurveTo(-w/2,-h/2,-w/2+r,-h/2);const g=new T.ExtrudeGeometry(shape,{depth:l,bevelEnabled:false,curveSegments:6});g.rotateX(Math.PI/2);g.translate(...[c[0],c[1]+l/2,c[2]]);return add(g,mat);}
  function smooth(points,t){if(t<=points[0][0])return points[0][1];for(let i=0;i<points.length-1;i++){const[a,b]=[points[i],points[i+1]];if(t<=b[0]){const s=(t-a[0])/(b[0]-a[0]),p=points[Math.max(0,i-1)],n=points[Math.min(points.length-1,i+2)],m0=(b[1]-p[1])/(b[0]-p[0]),m1=(n[1]-a[1])/(n[0]-a[0]);return (2*s**3-3*s*s+1)*a[1]+(s**3-2*s*s+s)*(b[0]-a[0])*m0+(-2*s**3+3*s*s)*b[1]+(s**3-s*s)*(b[0]-a[0])*m1;}}return points.at(-1)[1];}
  const roofProfile=[[-76.5,-62],[-73,-58.5],[-66,-55],[-54,-51],[-42,-47.6],[-39,-45.5],[-11,-18],[0,-8.9],[10,-3],[20,-.6],[36,0],[135,0],[149,-.35],[156,-.8]];
- const widthProfile=[[-76.5,38.6],[-73,36.5],[-64,38.4],[-48,39],[-40,38.7],[-22,37.4],[0,36.2],[20,36],[130,36],[150,36],[156,36]];
- const top=y=>smooth(roofProfile,y),topW=y=>smooth(widthProfile,y);
+ const widthProfile=[[-76.5,36.2],[-73,38.0398],[-64,38.85],[-48,39],[-40,38.7],[-22,37.4],[0,36.2],[20,36],[130,36],[150,36],[156,36]];
+ const top=y=>smooth(roofProfile,y),topW=y=>y<-64?36.2+(38.85-36.2)*Math.sqrt(Math.max(0,1-((y+64)/12.5)**2)):smooth(widthProfile,y);
  const edgeDrop=y=>y<-65?T.MathUtils.lerp(.6,4,(y+76.5)/11.5):y<-40?4:y>15?9:4+(y+40)/55*5;
  function roof(x,y){const u=x/topW(y);return top(y)-edgeDrop(y)*Math.pow(Math.abs(u),10+14*step(-49,-40,y)*(1-step(-12,30,y)));}
  function roundedRectDistance(x,y,cx,cy,w,h,r){const dx=Math.abs(x-cx)-(w/2-r),dy=Math.abs(y-cy)-(h/2-r);return Math.min(Math.max(dx,dy),0)+Math.hypot(Math.max(dx,0),Math.max(dy,0))-r;}
  const step=(a,b,x)=>{const t=T.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
  function sideWidth(y,z,relief=true){const upper=top(y)-edgeDrop(y),v=(z-upper)/(-91-upper);let w=topW(y)+(39.75-topW(y))*Math.sin(Math.min(1,v*1.25)*Math.PI/2);w-=1.1*step(-79,-91,z); // sill taper, below belt
   // Pinched nose and rounded rear corner.
-  w-=3.4*(1-step(-76.5,-63,y))*step(-62,-89,z);
-  if(relief&&y>19&&y<151){const d=roundedRectDistance(y,z,85,-34,127,32,4.2);w-=.62*(1-step(-.6,1.2,d));w+=.17*Math.exp(-(((z+56.4)/.75)**2));const d2=roundedRectDistance(y,z,85,-12.5,129,3,1.3);w-=.18*(1-step(-.3,.8,d2));}
+  const noseT=T.MathUtils.clamp((y+76.5)/13.5,0,1);w-=3.4*(1-Math.sqrt(Math.max(0,1-(1-noseT)**2)))*step(-62,-89,z);
+  if(relief&&y>19&&y<151){const d=roundedRectDistance(y,z,85,-34,127,32,4.2);w-=.62*(1-step(-.6,1.2,d))*(includeFlares?1-step(75,80,y):1); // Converted rear flare surround has no stock recessed-panel trough.
+  w+=.17*Math.exp(-(((z+56.4)/.75)**2));const d2=roundedRectDistance(y,z,85,-12.5,129,3,1.3);w-=.18*(1-step(-.3,.8,d2));}
   return w;
  }
  function wheelBottom(y){let z=-91;for(const axle of [-36,108]){const d=y-axle;if(Math.abs(d)<18.3)z=Math.max(z,-87.8+Math.sqrt(18.3**2-d*d));}return z;}
@@ -36,12 +38,22 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  patch((u,v)=>{const y=-76.5+232.5*v,x=(2*u-1)*topW(y);return [30+x,y,roof(x,y)];},56,200,paint,'Roof, hood and cowl continuous loft');
  for(const sign of [-1,1]){
   // Keep upper-panel rows level: wheel-arch sampling must not ripple the stamped-panel normals.
-  patch((u,v)=>{const y=-76.5+232.5*u,split=Math.min(-60,top(y)-edgeDrop(y)-8),z=v<1/3?T.MathUtils.lerp(wheelBottom(y),split,v*3):T.MathUtils.lerp(split,top(y)-edgeDrop(y),(v-1/3)*1.5);return [30+sign*sideWidth(y,z),y,z];},400,60,paint,'Body side with open wheel arches');
+  const sideMesh=patch((u,v)=>{const y=-76.5+232.5*u,split=Math.min(-60,top(y)-edgeDrop(y)-8),z=v<1/3?T.MathUtils.lerp(wheelBottom(y),split,v*3):T.MathUtils.lerp(split,top(y)-edgeDrop(y),(v-1/3)*1.5);return [30+sign*sideWidth(y,z),y,z];},400,60,paint,'Body side with open wheel arches');
+  if(sign<0){
+   // Leave an opening behind the closed fuel flap. Conservative inner bounds
+   // keep the cut mesh edges covered by the separate recess surround.
+   const a=sideMesh.geometry.attributes.position,ind=sideMesh.geometry.index,positions=[...a.array],keep=[];
+   const planes=[[1,19.9,1],[1,24.6,-1],[2,-70.2,1],[2,-58.8,-1]];
+   function clip(poly,axis,bound,sign){const out=[];for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length],dp=(p[axis]-bound)*sign,dq=(q[axis]-bound)*sign;if(dp>=0)out.push(p);if((dp>=0)!==(dq>=0)){const t=dp/(dp-dq);out.push(p.map((v,k)=>v+(q[k]-v)*t));}}return out;}
+   function retain(poly){if(poly.length<3)return;const base=positions.length/3;for(const p of poly)positions.push(...p);for(let i=1;i<poly.length-1;i++)keep.push(base,base+i,base+i+1);}
+   for(let j=0;j<ind.count;j+=3){const ids=[ind.getX(j),ind.getX(j+1),ind.getX(j+2)],tri=ids.map(k=>[a.getX(k),a.getY(k),a.getZ(k)]);if(planes.some(([axis,bound,sign])=>tri.every(p=>(p[axis]-bound)*sign<0))){keep.push(...ids);continue;}let inside=tri;for(const [axis,bound,sign] of planes){retain(clip(inside,axis,bound,-sign));inside=clip(inside,axis,bound,sign);if(!inside.length)break;}}
+   sideMesh.geometry.setAttribute('position',new T.Float32BufferAttribute(positions,3));sideMesh.geometry.deleteAttribute('uv');sideMesh.geometry.deleteAttribute('normal');sideMesh.geometry.setIndex(keep);sideMesh.geometry.computeVertexNormals();
+  }
   // Molding follows the curved body and stops precisely at each arch opening.
   patch((u,v)=>{const y=-76.5+232.5*u,z=T.MathUtils.lerp(Math.max(-82,wheelBottom(y)),Math.max(-73,wheelBottom(y)),v);return [30+sign*(sideWidth(y,z)+.13),y,z];},470,4,plastic,'Side protective molding');
   const sp=(y,z,offset=.11)=>[30+sign*(sideWidth(y,z)+offset),y,z];
   const seam=(pts,r=.075,mat=crease,closed=false,offset=.16)=>{const dense=[];const pp=closed?[...pts,pts[0]]:pts;for(let k=0;k<pp.length-1;k++){const a=pp[k],b=pp[k+1],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/.65);for(let j=0;j<n;j++)dense.push(sp(a[0]+(b[0]-a[0])*j/n,a[1]+(b[1]-a[1])*j/n,offset));}dense.push(sp(...pp.at(-1),offset));return tube(dense,r,mat,closed);};
-  patch((u,v)=>{const y=-76.5+38*u,upper=-65-8*step(-60,-38.5,y),bottom=wheelBottom(y),z=T.MathUtils.lerp(bottom,Math.max(bottom,upper),v);return [30+sign*(sideWidth(y,z)+.18),y,z];},90,25,plastic,'Wraparound front bumper');
+  patch((u,v)=>{const y=-76.5+38*u,upper=-65-8*step(-60,-38.5,y),bottom=wheelBottom(y),z=T.MathUtils.lerp(bottom,Math.max(bottom,upper),v);return [30+sign*(sideWidth(y,z)+.18),y-.18*(1-step(-76.5,-70,y)),z];},90,25,plastic,'Wraparound front bumper');
   for(const axle of [-36,108]){const pts=[];for(let a=0;a<=Math.PI;a+=Math.PI/60){const y=axle+18.4*Math.cos(a),z=-87.8+18.4*Math.sin(a);pts.push(sp(y,z,.14));}tube(pts,.3,paint,false,'Rolled wheel arch lip');}
   // Front door shut line and cab glazing.
   seam([[-26,-40],[-26,-63],[-25,-67],[-20,-72],[-16,-79],[-15,-90],[12,-90],[15,-88],[16,-82],[18,-67],[18,-17],[-1,-18],[-11,-22],[-26,-40]],.07,crease,true);
@@ -50,21 +62,62 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   const center=[-10,-35];const inset=win.map(p=>[center[0]+(p[0]-center[0])*.952,center[1]+(p[1]-center[1])*.925]);curvedFace(inset,p=>sp(p[0],p[1],.31),glass,'Cab window');
   tube([[-10,-48.4],[-9,-23.8]].map(p=>sp(...p,.4)),.28,plastic);
   // Door handles, mirror stalk and molded mirror shell.
-  const h=sp(7,-54,.6);box(h,[.8,8.5,2.1],plastic,.8);tube([sp(4,-53.8,1.1),sp(7,-53.5,1.4),sp(10,-53.8,1.1)],.6,plastic);
-  const mount=sp(-25,-49,.3);cyl(mount,[30+sign*42.4,-22,-48],.85,plastic);
-  box([30+sign*42.5,-22,-44],[7.3,6.7,12.5],plastic,1.7);box([30+sign*42.5,-18.55,-43.7],[6.5,.25,10.6],glass,.8);box([30+sign*46.05,-23,-48.3],[.17,3,1.1],light,.2);
+  // Passenger photo shows broad oval pockets with a separate raised grip.
+  // Housing relief is illustrative; it does not establish an actual body cutout.
+  function passengerHandle(y){
+   const h=SHELL_SPEC.passengerDoorHandles,z=h.centerZ;
+   const oval=(w,height,offsetZ=0)=>Array.from({length:36},(_,i)=>{const a=i*Math.PI/18;return[y+w/2*Math.cos(a),z+offsetZ+height/2*Math.sin(a)];});
+   curvedFace(oval(h.housingLength,h.housingHeight),p=>{const r=Math.hypot((p[0]-y)/(h.housingLength/2),(p[1]-z)/(h.housingHeight/2));return sp(...p,.08+.3*Math.exp(-(((r-.84)/.18)**2)));},paint,'Passenger handle oval surround',0);
+   curvedFace(oval(h.housingLength-.7,h.housingHeight-1.15,.3),p=>sp(...p,.25),black,'Passenger handle dark pocket',0);
+   const g=new T.CapsuleGeometry(h.gripDiameter/2,h.gripLength-h.gripDiameter,6,24);g.scale(1.3,1,1);g.translate(...sp(y,z+.25,.78));add(g,plastic,'Passenger raised door grip');
+  }
+  if(sign>0)passengerHandle(SHELL_SPEC.passengerDoorHandles.cabCenterY);
+  else{const h=sp(7,-54,.6);box(h,[.8,8.5,2.1],plastic,.8);tube([sp(4,-53.8,1.1),sp(7,-53.5,1.4),sp(10,-53.8,1.1)],.6,plastic);}
+  // Original short-arm mirror reconstruction. Cross-sections taper toward the
+  // crown; the convex cap curls into a separate rear glass rim and low mounting foot.
+  const ms=SHELL_SPEC.mirrors,mx=30+sign*ms.centerXFromCenterline,mz=ms.centerZ;
+  const outline=[[-3.6,-5.8],[-3.65,2.9],[-3.25,5.3],[-2.5,6.3],[-1.2,6.6],[1.5,6.45],[2.65,5.85],[3.25,4.5],[4.05,-4.6],[3.8,-5.85],[2.8,-6.6],[-2.5,-6.6]];
+  const mirrorContour=new T.CatmullRomCurve3(outline.map(p=>V(p[0],p[1],0)),true,'catmullrom',.35).getPoints(96);
+  const rearPlane=(u,z)=>ms.centerY+2.55+.16*u+.035*z;
+  const mp=(u,z,d=0)=>[mx+sign*u,rearPlane(u,z)+d,mz+z];
+  // Rounded cap: shallow at the crown, fuller near the lower half.
+  patch((u,v)=>{const q=mirrorContour[Math.min(96,Math.round(u*96))],r=v,xx=q.x*r,zz=q.y*r,depth=ms.housingDepth*(.78+.22*(1-step(-4,5,zz)))*Math.sqrt(Math.max(0,1-r**4));return[mx+sign*xx,rearPlane(xx,zz)-depth,mz+zz];},96,24,plastic,'Mirror convex tapered cap');
+  curvedFace(outline,p=>mp(...p,.035),plastic,'Mirror rear rim',.35);
+  const mainPane=[[-3.05,-2.6],[-3.1,2.7],[-2.8,4.9],[-2.15,5.7],[-1,5.95],[1.25,5.8],[2.15,5.3],[2.7,4.0],[3.25,-2.6]];
+  const lowerPane=[[-3.05,-3.05],[3.3,-3.05],[3.5,-4.6],[3.2,-5.35],[2.4,-5.85],[-2.2,-5.85],[-2.95,-5.35]];
+  const mirrorGlass=mats['Mirror glass']||material('Mirror glass','#829498',.85,.14);
+  curvedFace(mainPane,p=>mp(...p,.10),mirrorGlass,'Mirror main reflective pane',.23);
+  curvedFace(lowerPane,p=>mp(...p,.12+.07*(1-(p[0]/3.6)**2)),mirrorGlass,'Mirror lower convex pane',.23);
+  // Indicator follows a short vertical strip on the lower outboard cap.
+  const outboardAt=z=>{let x=-Infinity;for(let k=0;k<96;k++){const a=mirrorContour[k],b=mirrorContour[k+1];if((z-a.y)*(z-b.y)<=0&&a.y!==b.y)x=Math.max(x,T.MathUtils.lerp(a.x,b.x,(z-a.y)/(b.y-a.y)));}return x;};
+  const lensPoint=(r,zz,d=.045)=>{const xx=r*outboardAt(zz/r),depth=ms.housingDepth*(.78+.22*(1-step(-4,5,zz)))*Math.sqrt(1-r**4);return[mx+sign*(xx+d),rearPlane(xx,zz)-depth-d,mz+zz];};
+  const lensOutline=[[.872,-5.3],[.966,-5.3],[.98,-5.12],[.98,-2.98],[.966,-2.8],[.872,-2.8],[.86,-2.98],[.86,-5.12]];
+  curvedFace(lensOutline,p=>lensPoint(...p),light,'Mirror lower vertical indicator',.2);
+  for(const zz of [-4.8,-4.15,-3.5])tube([.88,.90,.92,.94,.96].map(r=>lensPoint(r,zz,.058)),.035,chrome,false,'Mirror indicator prism detail');
+  curvedFace([[-31,-51.7],[-24,-40.5],[-21,-40],[-20,-51.6]],p=>sp(...p,.42),plastic,'Mirror triangular sail mount',.2);
+  const foot=sp(-23.2,-49.5,.9);box([(foot[0]+mx-sign*2.5)/2,-21.9,-49.4],[Math.abs(mx-sign*2.5-foot[0])+1.5,3.1,2.7],plastic,1.1).name='Mirror lower mounting foot';
 
   // Cargo-panel seam, roof gutter, lower sill and pressed belt crease.
-  seam([[20,-8],[20,-90]],.065);
+  if(sign<0){seam([[20,-8],[20,-58.5]],.065);seam([[20,-70.5],[20,-90]],.065);}else seam([[20,-8],[20,-90]],.065);
   seam([[80,-7],[80,-90]],.065);
   const gutter=[];for(let y=18;y<151;y+=3)gutter.push(sp(y,-8.8,.06));tube(gutter,.13,paint);
   const sill=[];for(let y=-15;y<88;y+=3)sill.push(sp(y,-89.5,.05));tube(sill,.22,paint);
   // Passenger sliding door aperture and its rearward external guide rail.
-  if(sign===1){seam([[20,-9],[78,-9],[80,-14],[80,-89],[20,-89]],.075,crease,true);tube([[80,-50],[116,-50],[149,-50]].map(p=>sp(...p,.21)),.38,paint);tube([[81,-50.4],[149,-50.4]].map(p=>sp(...p,.23)),.09,crease);box(sp(25,-54,.55),[.8,7.5,2.1],plastic,.7);}else{tube([[16,-58],[18,-58],[18,-70],[13,-70],[13,-59],[16,-58]].map(p=>sp(...p)),.08,crease,true);}
+  if(sign===1){
+   seam([[20,-9],[78,-9],[80,-14],[80,-89],[20,-89]],.075,crease,true);
+   const track=SHELL_SPEC.slidingDoorTrack,metal=material('Sliding-door brushed metal','#c0c5c5',.65,.4),web=material('Sliding-door channel web','#737c7d',.5,.5);
+   // Original channel cross-section: two proud bright lips around a recessed web.
+   // Longitudinal strips conform to the host panel; no guessed roller mechanism.
+   const profile=[[.14,1.05],[.95,1.05],[.95,.70],[.31,.55],[.31,-.55],[.83,-.70],[.83,-1.05],[.14,-1.05]];
+   patch((u,v)=>sp(track.frontY+(track.rearY-track.frontY)*u,track.centerZ+(v-.5)*2.3,.08),60,1,black,'Sliding-door track dark bed');
+   for(let k=0;k<profile.length-1;k++){const a=profile[k],b=profile[k+1];patch((u,v)=>sp(track.frontY+(track.rearY-track.frontY)*u,track.centerZ+T.MathUtils.lerp(a[1],b[1],v),T.MathUtils.lerp(a[0],b[0],v)),60,1,k===3?web:metal,'Sliding-door metal channel');}
+   for(const y of [track.frontY,track.rearY])patch((u,v)=>sp(y+(u-.5)*.35,track.centerZ+(v-.5)*2.3,.48),1,1,black,'Sliding-door track end stop');
+   passengerHandle(SHELL_SPEC.passengerDoorHandles.slidingCenterY);
+  }else{driverDetails=buildDriverDetails((y,z,d)=>sp(y,z,d));group.add(driverDetails.group);Object.assign(mats,driverDetails.materials);}
  }
  // Surface-triangulated curved panels: each fan vertex is projected onto its host surface.
  function curvedFace(points,project,mat,name,tension=.15){
-  const curve=new T.CatmullRomCurve3(points.map(p=>V(p[0],p[1],0)),true,'catmullrom',tension),N=Math.max(32,points.length*6),pts=curve.getPoints(N),cx=points.reduce((s,p)=>s+p[0],0)/points.length,cy=points.reduce((s,p)=>s+p[1],0)/points.length,rings=name==='Rear body closure'?48:16,pos=[...project([cx,cy])],idx=[];
+  const curve=new T.CatmullRomCurve3(points.map(p=>V(p[0],p[1],0)),true,'catmullrom',tension),N=Math.max(32,points.length*6),pts=curve.getPoints(N),cx=points.reduce((s,p)=>s+p[0],0)/points.length,cy=points.reduce((s,p)=>s+p[1],0)/points.length,rings=name==='Rear body closure'?48:name.startsWith('Passenger handle')?6:16,pos=[...project([cx,cy])],idx=[];
   for(let r=1;r<=rings;r++)for(let j=0;j<N;j++){const x=cx+(pts[j].x-cx)*r/rings,y=cy+(pts[j].y-cy)*r/rings;pos.push(...project([x,y]));if(r===1)idx.push(0,1+j,1+(j+1)%N);else{const a=1+(r-2)*N+j,b=1+(r-1)*N+j,c=1+(r-1)*N+(j+1)%N,d=1+(r-2)*N+(j+1)%N;idx.push(a,b,c,a,c,d);}}
   const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();return add(g,mat,name);
  }
@@ -84,9 +137,13 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  patch((u,v)=>{const p=lipEdge[Math.min(112,Math.round(u*112))];return [30+p.x,p.y,roof(p.x,p.y)+.05+v*(lipHeight(p.x,p.y)-.05)];},112,1,plastic,'Deflector thin molded edge');
  const lipRidge=[];for(let x=-25.2;x<=25.2;x+=.4){const y=-72.3+.06*(x/25.2)**2;lipRidge.push([30+x,y,roof(x,y)+lipHeight(x,y)+.06]);}tube(lipRidge,.09,black,false,'Deflector raised rear ridge');
  // Rounded bumper and nose. Grille and lights are projected onto its actual surface.
- const frontY=(x,z)=>-76.5+.2*Math.pow(Math.abs(x)/40,3)+.8*Math.exp(-(((z+77)/4)**2))+1.8*step(-86,-93,z)+1.1*(1-step(-.5,1.2,roundedRectDistance(x,z,0,-68.5,44,15,4)))-.5*Math.exp(-(((z+86)/1.8)**2));
+ const frontWidth=z=>sideWidth(-76.5,z)+.18;
+ const noseRelief=(x,z)=>.2*Math.pow(Math.abs(x)/40,3)+.8*Math.exp(-(((z+77)/4)**2))+1.8*step(-86,-93,z)+1.1*(1-step(-.5,1.2,roundedRectDistance(x,z,0,-68.5,44,15,4)))-.5*Math.exp(-(((z+86)/1.8)**2));
+ // Both bumper patches terminate at the same station and width. Fade the
+ // central intake relief out at that join instead of leaving a floating edge.
+ const frontY=(x,z)=>-76.68+noseRelief(x,z)-noseRelief(x,z)*step(24,frontWidth(z),Math.abs(x));
  const fp=(x,z,d=.1)=>[30+x,frontY(x,z)-d,z];
- patch((u,v)=>{const x=(u*2-1)*38.6,z=-92+29*v;return fp(x,z,0);},80,50,plastic,'Rounded front bumper');
+ patch((u,v)=>{const j=v*27,z=j<=25?-91+26*j/25:-65+(j-25),x=(u*2-1)*frontWidth(z);return fp(x,z,0);},80,27,plastic,'Rounded front bumper');
  const grille=[[-23,-61.6],[-21.5,-60.8],[21.5,-60.8],[23,-62.2],[21,-71],[18,-75.7],[0,-76.9],[-18,-75.7],[-21,-71]];
  curvedFace(grille,p=>fp(...p,.18),black,'Grille recess',.18);tube([...grille,grille[0]].map(p=>fp(...p,.22)),.35,plastic,false,'Grille surround');
  for(const z of [-64,-68.4,-72.7]){const w=z<-71?19.7:22;const pts=[];for(let x=-w;x<=w;x+=1)pts.push(fp(x,z+.65*(x/w)**2,.75));tube(pts,.52,plastic);const low=pts.map(p=>[p[0],p[1]-.04,p[2]-.35]);tube(low,.1,steel);}
@@ -94,7 +151,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  function emblem(c,r,face){const tor=new T.TorusGeometry(r,.19,8,64);tor.rotateX(Math.PI/2);tor.translate(...c);add(tor,chrome,'Three-point emblem ring');const dir=face==='front'?-1:1;for(let k=0;k<3;k++){const a=k*Math.PI*2/3+Math.PI/2,p=[[c[0]+Math.cos(a)*r*.91,c[1]+dir*.12,c[2]+Math.sin(a)*r*.91],[c[0]+Math.cos(a+1.55)*r*.19,c[1]+dir*.25,c[2]+Math.sin(a+1.55)*r*.19],[c[0]+Math.cos(a-1.55)*r*.19,c[1]+dir*.25,c[2]+Math.sin(a-1.55)*r*.19]];const g=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(p.flat(),3));g.computeVertexNormals();add(g,chrome);}}
  for(const sign of [-1,1]){
   // One continuous lens surface sweeps around the corner from grille to body side.
-  const headPoint=(t,v,d)=>{const q=t<.5?t*2:(t-.5)*2,zt=t<.5?T.MathUtils.lerp(-62.7,-59.6,q):T.MathUtils.lerp(-59.6,-58.3,q),zb=t<.5?T.MathUtils.lerp(-69.1,-67.9,q):T.MathUtils.lerp(-67.9,-58.8,q),z=T.MathUtils.lerp(zt,zb,v);if(t<.5){const x=T.MathUtils.lerp(24,sideWidth(-76.3,z),q);return [30+sign*x,frontY(x,z)-d,z];}const y=T.MathUtils.lerp(-76.3,-50.5,q),x=sideWidth(y,z)+d;return[30+sign*x,y,z];};
+  const headPoint=(t,v,d)=>{const q=t<.5?t*2:(t-.5)*2,zt=t<.5?T.MathUtils.lerp(-62.7,-59.6,q):T.MathUtils.lerp(-59.6,-58.3,q),zb=t<.5?T.MathUtils.lerp(-69.1,-67.9,q):T.MathUtils.lerp(-67.9,-58.8,q),z=T.MathUtils.lerp(zt,zb,v);if(t<.5){const x=T.MathUtils.lerp(24,sideWidth(-76.5,z)+d,q);return [30+sign*x,frontY(x,z)-d,z];}const y=T.MathUtils.lerp(-76.5,-50.5,q),x=sideWidth(y,z)+d;return[30+sign*x,y-(.18+d)*(1-step(-76.5,-70,y)),z];};
   patch((u,v)=>headPoint(u,v,.22),80,18,black,'Continuous wrapped headlight gasket');
   patch((u,v)=>headPoint(.025+.95*u,.11+.78*v,.32),80,18,light,'Continuous wrapped headlight lens');
   tube([[25.4,-67.5],[26.5,-64.1],[36.8,-61.1],[35.8,-65.6]].map(([x,z])=>fp(x*sign,z,.64)),.19,led);
@@ -108,7 +165,7 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  // are broader than the rear corners; the opening panes sit forward in both windows.
  if(includeCamperWindows){buildingCamperWindow=true;const w=SHELL_SPEC.camperWindows;
   for(const sign of [-1,1]){
-   const points=[[w.frontY,w.topZ-2],[w.frontY+.15,w.topZ-1.24],[w.frontY+.59,w.topZ-.59],[w.frontY+1.24,w.topZ-.15],[w.frontY+2,w.topZ],[w.frontY+4,w.topZ],[w.rearY-2,w.topZ],[w.rearY,w.topZ-1],[w.rearY,w.topZ-4],[w.rearY,w.bottomZ+.8],[w.rearY-1,w.bottomZ],[w.frontY+10,w.bottomZ],[w.frontY+5,w.bottomZ+.3],[w.frontY+2,w.bottomZ+2],[w.frontY+.5,w.bottomZ+6],[w.frontY,w.bottomZ+14]];
+   const points=[[w.frontY,w.topZ-2],[w.frontY+.15,w.topZ-1.24],[w.frontY+.59,w.topZ-.59],[w.frontY+1.24,w.topZ-.15],[w.frontY+2,w.topZ],[w.frontY+4,w.topZ],...(sign>0?[[w.rearY-w.passengerAftUpperCornerRadius,w.topZ],[w.rearY-.1,w.topZ-.1],[w.rearY,w.topZ-w.passengerAftUpperCornerRadius]]:[[w.rearY-2,w.topZ],[w.rearY,w.topZ-1]]),[w.rearY,w.topZ-4],[w.rearY,w.bottomZ+.8],[w.rearY-1,w.bottomZ],[w.frontY+10,w.bottomZ],[w.frontY+5,w.bottomZ+.3],[w.frontY+2,w.bottomZ+2],[w.frontY+.5,w.bottomZ+6],[w.frontY,w.bottomZ+14]];
    const project=(p,d)=>[30+sign*(sideWidth(...p)+d),p[0],p[1]],cy=(w.frontY+w.rearY)/2,cz=(w.topZ+w.bottomZ)/2;
    curvedFace(points,p=>project(p,.20),black,'Camper window bonded edge',.08);
    curvedFace(points.map(p=>[cy+(p[0]-cy)*.990,cz+(p[1]-cz)*.980]),p=>project(p,.29),camperGlass,sign<0?'Driver middle glass':'Passenger sliding-door glass',.08);
@@ -117,13 +174,16 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
   }buildingCamperWindow=false;
  }
  // Rear sleeping flares: owner-photo estimates, independently removable from the stock shell.
- if(includeFlares){buildingFlare=true;const f=SHELL_SPEC.sleepingFlares;
+ if(includeFlares){buildingFlare=true;const flareSpec=SHELL_SPEC.sleepingFlares;
   for(const sign of [-1,1]){
+   const f=sign<0?flareSpec:{...flareSpec,centerZ:flareSpec.centerZ+flareSpec.passengerBottomRise/2,height:flareSpec.height-flareSpec.passengerBottomRise,aftTopInset:flareSpec.passengerAftTopInset};
    const depth=sign<0?f.driverProjection:f.passengerProjection,frontDepth=sign<0?f.driverFrontProjection:f.passengerFrontProjection;
-   const flareX=(y,z)=>{const d=roundedRectDistance(y,z,f.centerY,f.centerZ,f.length,f.height,f.cornerRadius),blend=step(0,-5,d),t=T.MathUtils.clamp((y-(f.centerY-f.length/2+4))/(f.length-10),0,1),face=sideWidth(f.centerY,f.centerZ)+T.MathUtils.lerp(frontDepth,depth,t);return sideWidth(y,z)+.08+(face-sideWidth(y,z)-.08)*blend;};
-   patch((u,v)=>{const z=f.centerZ-f.height/2+v*f.height,edge=Math.max(0,Math.abs(z-f.centerZ)-(f.height/2-f.cornerRadius)),half=f.length/2-f.cornerRadius+Math.sqrt(Math.max(0,f.cornerRadius**2-edge**2)),y=f.centerY+(2*u-1)*half;return[30+sign*flareX(y,z),y,z];},80,40,paint,sign<0?'Driver sleeping flare':'Passenger sleeping flare');
+   const flareY=(y,z)=>y-f.aftTopInset*step(f.centerY+f.length/2-12,f.centerY+f.length/2,y)*T.MathUtils.clamp((z-(f.centerZ-f.height/2))/f.height,0,1);
+   const unskew=(y,z)=>{let base=y;for(let k=0;k<8;k++)base+=y-flareY(base,z);return base;};
+   const flareX=(y,z)=>{const d=roundedRectDistance(unskew(y,z),z,f.centerY,f.centerZ,f.length,f.height,f.cornerRadius),inset=T.MathUtils.clamp(-d/f.shoulderWidth,0,1),blend=Math.sqrt(Math.max(0,1-(1-inset)**2)),t=T.MathUtils.clamp((y-(f.centerY-f.length/2+4))/(f.length-10),0,1),base=sideWidth(y,z)+.08,face=sideWidth(f.centerY,f.centerZ)+T.MathUtils.lerp(frontDepth,depth,t);return base+Math.max(0,face-base)*blend;};
+   patch((u,v)=>{const z=f.centerZ-f.height/2+v*f.height,edge=Math.max(0,Math.abs(z-f.centerZ)-(f.height/2-f.cornerRadius)),half=f.length/2-f.cornerRadius+Math.sqrt(Math.max(0,f.cornerRadius**2-edge**2)),y=flareY(f.centerY+(2*u-1)*half,z);return[30+sign*flareX(y,z),y,z];},128,80,paint,sign<0?'Driver sleeping flare':'Passenger sleeping flare');
    // Thin bonded perimeter follows the body rather than floating off the flare shoulder.
-   const edge=[];for(const [cy,cz,a0] of [[f.centerY+f.length/2-f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,0],[f.centerY-f.length/2+f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,Math.PI/2],[f.centerY-f.length/2+f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI],[f.centerY+f.length/2-f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16,y=cy+f.cornerRadius*Math.cos(a),z=cz+f.cornerRadius*Math.sin(a);edge.push([30+sign*(flareX(y,z)+.02),y,z]);}tube(edge,.045,crease,true,'Flare bonded perimeter');
+   const edge=[];for(const [cy,cz,a0] of [[f.centerY+f.length/2-f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,0],[f.centerY-f.length/2+f.cornerRadius,f.centerZ+f.height/2-f.cornerRadius,Math.PI/2],[f.centerY-f.length/2+f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI],[f.centerY+f.length/2-f.cornerRadius,f.centerZ-f.height/2+f.cornerRadius,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16,z=cz+f.cornerRadius*Math.sin(a),y=flareY(cy+f.cornerRadius*Math.cos(a),z);edge.push([30+sign*(flareX(y,z)+.02),y,z]);}tube(edge,.045,crease,true,'Flare bonded perimeter');
    if(sign<0){const w=f.driverWindow,pts=[],r=w.cornerRadius;for(const [cy,cz,a0] of [[w.centerY+w.length/2-r,w.centerZ+w.height/2-r,0],[w.centerY-w.length/2+r,w.centerZ+w.height/2-r,Math.PI/2],[w.centerY-w.length/2+r,w.centerZ-w.height/2+r,Math.PI],[w.centerY+w.length/2-r,w.centerZ-w.height/2+r,Math.PI*1.5]])for(let j=0;j<=8;j++){const a=a0+j*Math.PI/16;pts.push([cy+r*Math.cos(a),cz+r*Math.sin(a)]);}
     const project=(p,d)=>[30+sign*(flareX(...p)+d),p[0],p[1]];curvedFace(pts,p=>project(p,.13),plastic,'Sleeping flare window seal',.1);curvedFace(pts.map(p=>[w.centerY+(p[0]-w.centerY)*.95,w.centerZ+(p[1]-w.centerZ)*.87]),p=>project(p,.18),camperGlass,'Sleeping flare tinted window',.1);
    }
@@ -244,8 +304,9 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  for(const y of [-36,108])cyl([-4,y,-87],[64,y,-87],1.5,black);
  }
  box([30,45,-91],[58,208,1.5],black).userData.underfloorPlaceholder=true;
- // Sweep the complete nose (paint, lenses and bumper together) around the front corners.
- group.traverse(o=>{if(!o.isMesh)return;const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)+o.position.x,y=a.getY(i)+o.position.y;if(y< -55 && !o.quaternion.x && !o.quaternion.y && !o.quaternion.z){const bow=11*Math.pow(Math.abs(x-30)/39.75,4)*(1-step(-76.5,-55,y));a.setY(i,a.getY(i)+bow);}}o.geometry.computeVertexNormals();});
+ // Bake local transforms before sweeping the complete nose. Rotated fog lenses
+ // must follow the same deformation as their recesses and bumper.
+ group.traverse(o=>{if(!o.isMesh)return;o.updateMatrix();o.geometry.applyMatrix4(o.matrix);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i),y=a.getY(i);if(y< -55){const bow=11*Math.pow(Math.abs(x-30)/39.75,4)*(1-step(-76.5,-55,y));a.setY(i,a.getY(i)+bow);}}o.geometry.computeVertexNormals();});
  group.userData={...SHELL_SPEC,runningGearEnabled:includeRunningGear,roofToGround:includeRunningGear?107.75:103,wheelCenters,groundZ:includeRunningGear?SHELL_SPEC.runningGear.groundZ:-103.0};
  // Preserve axle spacing and round tires while registering the two overhangs
  // to the 234-inch nominal exterior envelope. This is an estimated scale target.
@@ -255,6 +316,11 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  for(const o of group.children){if(!o.isMesh)continue;o.geometry.applyMatrix4(o.matrixWorld);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i)-30,z=a.getZ(i);let y=a.getY(i);const cabBow=4.1*Math.max(0,1-(x/35.5)**2)*step(-55,-40,y)*(1-step(-12,30,y))*step(-60,-53,z);y-=cabBow;const rearLean=5.2*step(-90,0,z)*step(140,156,y);y-=rearLean;a.setY(i,y);}o.geometry.computeVertexNormals();}group.updateMatrixWorld(true);
  const extents=new T.Box3().setFromObject(group),frontScale=(-76.5+56)/(extents.min.y+56),rearScale=(157.5-128)/(extents.max.y-128);
  for(const o of group.children){if(!o.isMesh)continue;o.geometry.applyMatrix4(o.matrixWorld);o.position.set(0,0,0);o.quaternion.identity();o.scale.set(1,1,1);const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const y=a.getY(i);if(y < -56)a.setY(i,-56+(y+56)*frontScale);else if(y >128)a.setY(i,128+(y-128)*rearScale);}o.geometry.computeVertexNormals();}group.updateMatrixWorld(true);
+ // Exact shared samples close the bumper seam. Average corresponding normals
+ // with winding accounted for, so both corners have continuous shading too.
+ const nose=group.children.find(o=>o.name==='Rounded front bumper'),returns=group.children.filter(o=>o.name==='Wraparound front bumper');
+ let cornerJoinMax=0;const cornerEdges=[[],[]];for(let k=0;k<2;k++){const side=returns[k],np=nose.geometry.attributes.position,sp=side.geometry.attributes.position,nn=nose.geometry.attributes.normal,sn=side.geometry.attributes.normal;for(let j=0;j<=25;j++){const ni=j*81+(k===0?0:80),si=j*91,p=new T.Vector3().fromBufferAttribute(np,ni),q=new T.Vector3().fromBufferAttribute(sp,si);cornerJoinMax=Math.max(cornerJoinMax,p.distanceTo(q));const n=new T.Vector3().fromBufferAttribute(nn,ni).add(new T.Vector3().fromBufferAttribute(sn,si).multiplyScalar(k===0?-1:1)).normalize();cornerEdges[k].push({point:p.toArray(),outward:n.clone().negate().toArray()});nn.setXYZ(ni,n.x,n.y,n.z);sn.setXYZ(si,n.x*(k===0?-1:1),n.y*(k===0?-1:1),n.z*(k===0?-1:1));}}
+ group.userData.frontCornerBoundaryMaxDistance=cornerJoinMax;group.userData.frontCornerEdges=cornerEdges;
  // Verify the final rear mesh boundary against the terminal loft, after all warps and scale registration.
  const roofMesh=group.children.find(o=>o.name==='Roof, hood and cowl continuous loft'),sideMeshes=group.children.filter(o=>o.name==='Body side with open wheel arches'),rearMesh=group.children.find(o=>o.name==='Joined rear body closure'),capMesh=group.children.find(o=>o.name==='Joined rear roof cap');
  const point=(o,i)=>new T.Vector3().fromBufferAttribute(o.geometry.attributes.position,i),roofEdge=Array.from({length:57},(_,i)=>point(roofMesh,200*57+i));
@@ -269,11 +335,13 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  const seal=group.children.find(o=>o.name==='Windscreen seal'),sa=seal.geometry.attributes.position,topZ=[];for(let i=sa.count-80;i<sa.count;i++){const p=point(seal,i);if(Math.abs(p.x-30)<25&&p.z>-25)topZ.push(p.z);}group.userData.windshieldTopVariation=Math.max(...topZ)-Math.min(...topZ);
  group.userData.rearWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver rear glass'||o.name==='Passenger rear glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
  group.userData.camperWindowBounds=Object.fromEntries(group.children.filter(o=>o.name==='Driver middle glass'||o.name==='Passenger sliding-door glass').map(o=>[o.name,new T.Box3().setFromObject(o)]));
+ group.userData.slidingDoorTrackBounds=new T.Box3();for(const o of group.children)if(o.name.startsWith('Sliding-door track')||o.name==='Sliding-door metal channel')group.userData.slidingDoorTrackBounds.expandByObject(o);
  group.userData.hoodDeflectorBounds=new T.Box3().setFromObject(group.children.find(o=>o.name==='Hood leading-edge deflector'));
+ group.userData.mirrorBounds=[new T.Box3(),new T.Box3()];for(const o of group.children)if(o.name.startsWith('Mirror ')){const b=new T.Box3().setFromObject(o);group.userData.mirrorBounds[b.getCenter(new T.Vector3()).x<30?0:1].union(b);}
  // Batch static meshes by material: the same geometry with a small number of draw calls.
  const originals=[...group.children],buckets=new Map();group.updateMatrixWorld(true);
  for(const o of originals){if(!o.isMesh)continue;const key=o.material.name+'|'+Boolean(o.userData.sleepingFlare)+'|'+Boolean(o.userData.camperWindow)+'|'+Boolean(o.userData.underfloorPlaceholder);let b=buckets.get(key);if(!b){b={material:o.material,flare:Boolean(o.userData.sleepingFlare),camperWindow:Boolean(o.userData.camperWindow),underfloorPlaceholder:Boolean(o.userData.underfloorPlaceholder),positions:[],normals:[],indices:[],count:0};buckets.set(key,b);}const geom=o.geometry.clone().applyMatrix4(o.matrixWorld),p=geom.attributes.position,n=geom.attributes.normal;for(let i=0;i<p.count;i++){b.positions.push(p.getX(i),p.getY(i),p.getZ(i));b.normals.push(n.getX(i),n.getY(i),n.getZ(i));}if(geom.index){for(let i=0;i<geom.index.count;i++)b.indices.push(b.count+geom.index.getX(i));}else{for(let i=0;i<p.count;i++)b.indices.push(b.count+i);}b.count+=p.count;geom.dispose();group.remove(o);o.geometry.dispose();}
  for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.positions,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.normals,3));g.setIndex(b.indices);const o=add(g,b.material,b.flare?'Sleeping flare · '+b.material.name:b.camperWindow?'Camper window · '+b.material.name:b.material.name);o.userData.sleepingFlare=b.flare;o.userData.camperWindow=b.camperWindow;o.userData.underfloorPlaceholder=b.underfloorPlaceholder;}
  group.userData.originalParts=originals.length;group.userData.drawCalls=group.children.length;
- return {group,materials:mats};
+ return {group,materials:mats,driverDetails};
 }
