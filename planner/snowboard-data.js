@@ -1,9 +1,10 @@
 // Position of the detailed installed-reference bag, separate from editable roof boxes.
 (function(root){
  const limits={x:[-60,100],y:[-150,100],z:[-6,40]};
- function defaults(){return {version:1,snowboard:{x:0,y:0,z:0}};}
- function validate(v){if(v===undefined)return defaults();if(!v||v.version!==1||!v.snowboard||Object.entries(limits).some(([k,[a,b]])=>typeof v.snowboard[k]!=='number'||!Number.isFinite(v.snowboard[k])||v.snowboard[k]<a||v.snowboard[k]>b))throw Error('Invalid detailed snowboard-bag position.');return {version:1,snowboard:Object.fromEntries(Object.keys(limits).map(k=>[k,v.snowboard[k]]))};}
+ const keys=["starlink","ac","fan","antennas","existing-0","existing-1","existing-2","existing-3"];
+ function defaults(){return {version:1,snowboard:{x:0,y:0,z:0},bagHidden:false,offsets:Object.fromEntries(keys.map(k=>[k,{x:0,y:0,z:0}]))};}
+ function validate(v){if(v===undefined)return defaults();if(!v||v.version!==1||!v.snowboard||Object.entries(limits).some(([k,[a,b]])=>typeof v.snowboard[k]!=='number'||!Number.isFinite(v.snowboard[k])||v.snowboard[k]<a||v.snowboard[k]>b))throw Error('Invalid detailed snowboard-bag position.');const d=defaults();if(v.bagHidden!==undefined&&typeof v.bagHidden!=='boolean')throw Error('Invalid bag visibility.');d.bagHidden=v.bagHidden??false;if(v.offsets!==undefined&&(!v.offsets||typeof v.offsets!=='object'||Array.isArray(v.offsets)))throw Error('Invalid roof offsets.');for(const k of keys){const p=v.offsets?.[k];if(p===undefined)continue;if(!p||Object.entries(limits).some(([a,[lo,hi]])=>typeof p[a]!=='number'||!Number.isFinite(p[a])||p[a]<lo||p[a]>hi))throw Error('Invalid roof position.');d.offsets[k]={x:p.x,y:p.y,z:p.z};}d.snowboard={x:v.snowboard.x,y:v.snowboard.y,z:v.snowboard.z};return d;}
  function envelopes(value){const p=validate(value).snowboard;return [{name:'packed snowboard case',x:-.7,y:77.9,z:6.1,width:18.4,length:64.2,height:13.2},...[81.74,122].map((y,i)=>({name:'snowboard clamp '+(i+1),x:-1.6,y:y-1.225,z:6.31,width:20.25,length:2.45,height:4.49}))].map(b=>({...b,x:b.x+p.x,y:b.y+p.y,z:b.z+p.z}));}
  function nudge(value,axis,distance){const v=validate(value);if(!Object.hasOwn(limits,axis)||!Number.isFinite(distance))throw Error('Invalid bag movement.');const [a,b]=limits[axis];v.snowboard[axis]=Math.min(b,Math.max(a,Math.round((v.snowboard[axis]+distance)*100)/100));return v;}
- root.RooflabSnowboard={defaults,validate,envelopes,nudge,limits};
+ root.RooflabSnowboard={defaults,validate,envelopes,nudge,limits,keys};
 })(globalThis);

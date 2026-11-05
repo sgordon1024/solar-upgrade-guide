@@ -157,6 +157,49 @@
         "x": 0,
         "y": 0,
         "z": 0
+      },
+      "bagHidden": false,
+      "offsets": {
+        "starlink": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "ac": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "fan": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "antennas": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "existing-0": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "existing-1": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "existing-2": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "existing-3": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
       }
     },
     "roofReference": {
@@ -460,10 +503,12 @@
     ],
     "riserStatus": "generic unresolved mounting concept",
     "flags": [
-      "1 · Front landscape: intersects the estimated Starlink tilted face envelope.",
+      "1 · Front landscape: intersects the estimated Starlink + mount envelope.",
+      "1 · Front landscape: intersects the estimated Both antennas + mount envelope.",
       "3 · Rear driver: extends beyond the track-referenced planning rectangle.",
       "3 · Rear driver: intersects the estimated packed snowboard case envelope.",
       "4 · Rear passenger: extends beyond the track-referenced planning rectangle.",
+      "Riser 1 driver: intersects the estimated Starlink + mount envelope.",
       "Raised span 3: intersects the estimated packed snowboard case envelope.",
       "Riser 3 driver: intersects the estimated packed snowboard case envelope.",
       "Raised span 4: intersects the estimated packed snowboard case envelope.",

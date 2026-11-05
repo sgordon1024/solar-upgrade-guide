@@ -1,7 +1,7 @@
-import {buildSolarUpgrade} from './solar-upgrade.js?v=bag3';
-import {mountInterface} from './mobile-ui.js?v=bag3';
+import {buildSolarUpgrade} from './solar-upgrade.js?v=edit5';
+import {mountInterface} from './mobile-ui.js?v=edit5';
 import {buildEnvironment} from './environment.js?v=mobile1';
-import {installInteractions} from './interactions.js?v=bag3';
+import {installInteractions} from './interactions.js?v=edit5';
 import * as T from './vendor/three.module.js';
 import {buildBodyEmblems} from './brand-emblems.js?v=passengerreview1';
 import {buildRunningBoards} from './running-boards.js?v=boards1';
@@ -12,7 +12,7 @@ import {buildShell,SHELL_SPEC} from './shell-model.js?v=mobile1';
 import {buildRearCarrier,CARRIER_SPEC} from './rear-carrier.js?v=bike1';
 import {buildDirtbike,BIKE_SPEC} from './dirtbike.js?v=bike1';
 import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=flarerail1';
-import {buildInstalledRoof} from './roof-equipment.js?v=bag3';
+import {buildInstalledRoof} from './roof-equipment.js?v=edit5';
 import {buildExteriorDetails} from './exterior-details.js?v=mobile1';
 import {buildSideLadder} from './side-ladder.js?v=ladder1';
 import {OrbitControls} from './vendor/OrbitControls.js';
@@ -88,7 +88,7 @@ try{
  shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true});exterior=buildExteriorDetails(shell.group);body.add(shell.group,exterior.group);emblems=buildBodyEmblems(shell.group);body.add(emblems.group);rearAssembly=buildRearCarrier({loaded:true});body.add(rearAssembly.group);bike=buildDirtbike();body.add(bike.group);rack=buildRoofRack();body.add(rack.group);installedRoof=buildInstalledRoof();body.add(installedRoof.group);solarUpgrade=buildSolarUpgrade();body.add(solarUpgrade.group);ladder=buildSideLadder();body.add(ladder.group);upgrades=buildUnderbodyUpgrades(RooflabUpgrades.catalogue);body.add(upgrades.group);awning=buildAwning();body.add(awning.group);rearContainer=buildRearContainer();body.add(rearContainer.group);runningBoards=buildRunningBoards();body.add(runningBoards.group);dimension([-19,-36,-102],[-19,108,-102],'144 in · axle spacing',[-23,36,-107]);dimension([-9.75,166,-91],[69.75,166,-91],'79.5 in · estimated body',[30,173,-91]);
  interaction=installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,environmentGround:true,onSelectSnowboard:()=>window.rooflabSelectSnowboard(),visibility:()=>({flares:$('#show-flares').checked,windows:$('#show-windows').checked,rack:$('#show-rack').checked,ground:mode!=='top'&&mode!=='underbody'}),onState:s=>{interactionState=s;environment.update(s);syncInteractiveCargo();},onNight:night=>{ambient.intensity=night?.18:1.5;key.intensity=night?.25:3;fill.intensity=night?.15:.9;scene.environmentIntensity=night?.16:.65;environment.update({...interactionState,night});const palette=environment.palette();scene.background=palette.background;scene.fog=palette.fog;}});
  for(const input of document.querySelectorAll('[name=environment]'))input.addEventListener('change',()=>{const palette=environment.setPreset(input.value);scene.background=palette.background;scene.fog=palette.fog;requestRender();});
- window.rooflabView={update,selectSnowboard(value){mobileUI.close(false);installedRoof.selection.visible=value;if(value){preset('roof',true);cancelAnimationFrame(anim);const p=current.installedRoof.snowboard;controls.target.set(30+p.x,-101-p.y,0);camera.position.set(30+p.x,-101.001-p.y,400);camera.zoom=2;camera.updateProjectionMatrix();controls.update();}syncVisibility();resize();requestRender();},showSolar(){if(mode==='top')preset('roof');}};update(window.rooflabState.state,window.rooflabState.selected);
+ window.rooflabView={update,prepareRoofEdit(){mobileUI.close(false);installedRoof.selection.visible=false;preset('roof',true);cancelAnimationFrame(anim);controls.target.set(30,-101,0);camera.position.set(30,-101.001,400);camera.zoom=1.5;controls.update();syncVisibility();resize();requestRender();},selectSnowboard(value){mobileUI.close(false);installedRoof.selection.visible=value;if(value){preset('roof',true);cancelAnimationFrame(anim);const p=current.installedRoof.snowboard;controls.target.set(30+p.x,-101-p.y,0);camera.position.set(30+p.x,-101.001-p.y,400);camera.zoom=2;camera.updateProjectionMatrix();controls.update();}syncVisibility();resize();requestRender();},showSolar(){if(mode==='top')preset('roof');}};update(window.rooflabState.state,window.rooflabState.selected);
  new ResizeObserver(resize).observe(canvas);resize();preset('orbit',true);
  for(const v of viewIds)$('#'+v).onclick=()=>{if(v==='top')$('#show-equipment').checked=true;else if(mode==='top')$('#show-equipment').checked=false;if(cockpitViews[v])$('#show-equipment').checked=false;preset(v);};$('#home').onclick=()=>{if(mode==='top')$('#show-equipment').checked=false;preset('orbit');};$('#inspect-upgrades').onclick=()=>{preset('underbody');canvas.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
  $('#inspect-solar').onclick=()=>{$('#show-equipment').checked=false;$('#show-installed-roof').checked=true;preset('roof');mobileUI.close();};

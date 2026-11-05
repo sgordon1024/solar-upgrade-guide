@@ -1,4 +1,4 @@
-import './snowboard-data.js?v=bag3';
+import './snowboard-data.js?v=edit5';
 import * as T from './vendor/three.module.js';
 import {RACK_SPEC} from './roof-rack.js?v=rack2';
 
@@ -22,11 +22,12 @@ export const INSTALLED_ROOF_SPEC={
 export function buildInstalledRoof(){
  const group=new T.Group();group.name='Installed roof equipment · photo estimates';group.position.set(...INSTALLED_ROOF_SPEC.planningOrigin);
  const snowboard=new T.Group();snowboard.name='Detailed snowboard bag and both clamps';snowboard.userData.selectable='snowboard';group.add(snowboard);
+ const parts={snowboard};const featureIds={'Starlink':'starlink','Air conditioner':'ac','Maxxair exhaust fan':'fan','Front-crossbar antennas':'antennas',...Object.fromEntries([0,1,2,3].map(i=>['Solar panel '+(i+1),'existing-'+i]))};for(const id of Object.values(featureIds)){const part=new T.Group();part.userData.roofId=id;part.userData.installedSolar=id.startsWith('existing-');parts[id]=part;group.add(part);}
  const materials={},buckets=new Map(),V=(...p)=>new T.Vector3(...p);
  function material(name,color,metalness=0,roughness=.5){return materials[name]=new T.MeshStandardMaterial({name,color,metalness,roughness,side:T.DoubleSide});}
  const black=material('Roof equipment dark plastic','#24282b',.12,.6),seal=material('Roof equipment seals','#11191c',.04,.8),silver=material('Solar aluminum frames','#aeb9bb',.78,.32),blue=material('Blue solar cells','#173652',.42,.29),grid=material('Solar cell grid','#7795a8',.45,.4),white=material('Starlink white face','#e6e9e5',.1,.54),dishEdge=material('Starlink pale edge','#b8c0bf',.18,.57),canvas=material('Snowboard case woven canvas','#9ca7ae',0,.98),gusset=material('Snowboard case lower gusset','#4b565f',0,.98);
  let feature='';const featureBounds={};
- function add(g,m){if(!g.attributes.normal)g.computeVertexNormals();g.computeBoundingBox();(featureBounds[feature]??=new T.Box3()).union(g.boundingBox);const isSolar=feature.startsWith('Solar panel');const isSnowboard=feature==='Bagged snowboard'||feature==='Snowboard clamp rack';const key=(isSolar?'solar:':isSnowboard?'snowboard:':'other:')+m.name;let b=buckets.get(key);if(!b){b={p:[],n:[],i:[],count:0,m,feature,isSolar,isSnowboard};buckets.set(key,b);}const p=g.attributes.position,n=g.attributes.normal;for(const v of p.array)b.p.push(v);for(const v of n.array)b.n.push(v);if(g.index)for(const v of g.index.array)b.i.push(v+b.count);else for(let j=0;j<p.count;j++)b.i.push(j+b.count);b.count+=p.count;g.dispose();}
+ function add(g,m){if(!g.attributes.normal)g.computeVertexNormals();g.computeBoundingBox();(featureBounds[feature]??=new T.Box3()).union(g.boundingBox);const isSolar=feature.startsWith('Solar panel');const isSnowboard=feature==='Bagged snowboard'||feature==='Snowboard clamp rack';const key=(isSnowboard?'snowboard':feature)+':'+m.name;let b=buckets.get(key);if(!b){b={p:[],n:[],i:[],count:0,m,feature,isSolar,isSnowboard};buckets.set(key,b);}const p=g.attributes.position,n=g.attributes.normal;for(const v of p.array)b.p.push(v);for(const v of n.array)b.n.push(v);if(g.index)for(const v of g.index.array)b.i.push(v+b.count);else for(let j=0;j<p.count;j++)b.i.push(j+b.count);b.count+=p.count;g.dispose();}
  function box(c,s,m=black){const g=new T.BoxGeometry(...s);g.translate(...c);add(g,m);}
  function cyl(a,b,r,m=black,n=12,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av),g=new T.CylinderGeometry(r2,r,d.length(),n);g.applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,1,0),d.normalize()));g.translate(...av.add(bv).multiplyScalar(.5).toArray());add(g,m);}
  function tube(points,r,m=black,segments){const g=new T.TubeGeometry(new T.CatmullRomCurve3(points.map(p=>V(...p))),segments??Math.max(12,points.length*6),r,8,false);add(g,m);}
@@ -127,8 +128,8 @@ export function buildInstalledRoof(){
  cyl([lb[0],lb[1],lb[2]+ant.long.lowerSectionHeight],[lb[0]-.13,lb[1],lb[2]+ant.long.height],.065,silver,10,.035);
  cyl(sb,[sb[0],sb[1],sb[2]+.55],.32,seal,14);cyl([sb[0],sb[1],sb[2]+.4],[sb[0],sb[1],sb[2]+ant.short.height],.14,black,12,.10);
  for(const p of [lb,sb])tube([[p[0],p[1],6.7],[p[0]+1,p[1]+1,6.3],[p[0]+2,p[1]+3,5.3]],.08,seal);
- for(const b of buckets.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,b.m);mesh.name='Installed roof · '+b.m.name;mesh.userData.installedRoof=true;mesh.userData.installedSolar=b.isSolar;mesh.castShadow=true;mesh.receiveShadow=true;(b.isSnowboard?snowboard:group).add(mesh);}
+ for(const b of buckets.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,b.m);mesh.name='Installed roof · '+b.m.name;mesh.userData.installedRoof=true;mesh.userData.installedSolar=b.isSolar;mesh.castShadow=true;mesh.receiveShadow=true;(b.isSnowboard?snowboard:parts[featureIds[b.feature]]).add(mesh);}
  group.userData={spec:INSTALLED_ROOF_SPEC,featureBounds,modelBounds:new T.Box3().setFromObject(group)};
  const bagBounds=new T.Box3().copy(featureBounds['Bagged snowboard']).union(featureBounds['Snowboard clamp rack']);const selection=new T.Box3Helper(bagBounds,0xf4d195);selection.userData.ignorePick=true;selection.visible=false;snowboard.add(selection);
- return {group,materials,snowboard,selection,setSnowboardPosition(value){const p=globalThis.RooflabSnowboard.validate(value).snowboard;snowboard.position.set(p.x,p.y,p.z);}};
+ return {group,materials,snowboard,parts,selection,setSnowboardPosition(value){const v=globalThis.RooflabSnowboard.validate(value),p=v.snowboard;snowboard.position.set(p.x,p.y,p.z);snowboard.visible=!v.bagHidden;for(const [id,o]of Object.entries(v.offsets))parts[id].position.set(o.x,o.y,o.z);}};
 }
