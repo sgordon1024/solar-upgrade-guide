@@ -3,6 +3,7 @@ import * as T from '../vendor/three.module.js';
 import {buildShell} from '../shell-model.js';
 import {buildBodyEmblems} from '../brand-emblems.js';
 import {buildExteriorDetails} from '../exterior-details.js';
+import {buildSolarUpgrade} from '../solar-upgrade.js';
 import {buildInstalledRoof} from '../roof-equipment.js';
 import {buildRoofRack} from '../roof-rack.js';
 import {installInteractions} from '../interactions.js';
@@ -14,7 +15,7 @@ function advance(ms){const callbacks=[...pending.values()];pending.clear();for(c
 const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true}),emblems=buildBodyEmblems(shell.group),exterior=buildExteriorDetails(shell.group),rack=buildRoofRack(),installed=buildInstalledRoof(),body=new T.Group();body.add(shell.group,emblems.group,exterior.group,rack.group,installed.group);
 const canvas=new Emitter();canvas.getBoundingClientRect=()=>({left:0,top:0,width:800,height:600});
 const camera=new T.OrthographicCamera(-130,130,98,-98,.1,1000);camera.up.set(0,0,1);camera.position.set(-400,40,-40);camera.lookAt(30,40,-40);camera.updateMatrixWorld();
-let night=false,bagSelections=0;const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n,onSelectSnowboard:()=>bagSelections++});
+let night=false,bagSelections=0,panelSelections=[];const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n,onSelectSnowboard:()=>bagSelections++,onSelectPanel:id=>panelSelections.push(id)});
 control.activate('headlights');advance(performance.now()+20);assert.equal(control.state.headlights,1);control.activate('headlights');advance(performance.now()+40);assert.equal(control.state.headlights,2);control.activate('headlights');advance(performance.now()+60);assert.equal(control.state.headlights,0);
 control.activate('night');assert.equal(night,true);const floor=control.rig.extras.children.find(o=>o.material?.name==='Night preview ground');assert.equal(floor.visible,true);
 control.activate('wheels');advance(performance.now()+21000);assert.equal(control.target.wheels,0);assert.equal(pending.size,0);
@@ -64,3 +65,5 @@ const blocker=new T.Mesh(new T.BoxGeometry(24,70,4),new T.MeshBasicMaterial());b
 installed.group.visible=false;tapWorld([43.5,90,23]);assert.equal(bagSelections,2,'hidden bag cannot select');installed.group.visible=true;
 control.setEnabled(false);control.activate('snowboard');assert.equal(bagSelections,2,'roof box mode stays distinct');control.setEnabled(true);
 console.log('PASS detailed bag picking, translated picking, hidden/occluded selection and planning-mode separation.');
+
+const proposal=buildSolarUpgrade();const layout=RooflabSolar.planningPreset();proposal.update(layout);body.add(proposal.group);installed.setSnowboardPosition({...RooflabSnowboard.defaults(),bagHidden:true,starlinkHidden:true});camera.position.set(30,80,400);camera.lookAt(30,80,0);camera.updateMatrixWorld();for(let i=0;i<4;i++){const p=RooflabSolar.envelopes(layout)[i],origin=proposal.group.position;tapWorld([origin.x+p.x+p.width/2,origin.y+p.y+p.length/2,origin.z+p.z+1]);assert.equal(panelSelections.at(-1),'proposal-'+i);}const count=panelSelections.length;proposal.group.visible=false;tapWorld([30,80,16.5]);assert.equal(panelSelections.length,count);console.log('PASS all four actual proposed panels raycast-select independently; hidden panels cannot select.');

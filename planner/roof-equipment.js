@@ -1,4 +1,4 @@
-import './snowboard-data.js?v=edit5';
+import './snowboard-data.js?v=layout1';
 import * as T from './vendor/three.module.js';
 import {RACK_SPEC} from './roof-rack.js?v=rack2';
 
@@ -131,5 +131,5 @@ export function buildInstalledRoof(){
  for(const b of buckets.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,b.m);mesh.name='Installed roof · '+b.m.name;mesh.userData.installedRoof=true;mesh.userData.installedSolar=b.isSolar;mesh.castShadow=true;mesh.receiveShadow=true;(b.isSnowboard?snowboard:parts[featureIds[b.feature]]).add(mesh);}
  group.userData={spec:INSTALLED_ROOF_SPEC,featureBounds,modelBounds:new T.Box3().setFromObject(group)};
  const bagBounds=new T.Box3().copy(featureBounds['Bagged snowboard']).union(featureBounds['Snowboard clamp rack']);const selection=new T.Box3Helper(bagBounds,0xf4d195);selection.userData.ignorePick=true;selection.visible=false;snowboard.add(selection);
- return {group,materials,snowboard,parts,selection,setSnowboardPosition(value){const v=globalThis.RooflabSnowboard.validate(value),p=v.snowboard;snowboard.position.set(p.x,p.y,p.z);snowboard.visible=!v.bagHidden;for(const [id,o]of Object.entries(v.offsets))parts[id].position.set(o.x,o.y,o.z);}};
+ return {group,materials,snowboard,parts,selection,setSnowboardPosition(value){const v=globalThis.RooflabSnowboard.validate(value),p=v.snowboard;snowboard.position.set(p.x,p.y,p.z);snowboard.visible=!v.bagHidden;parts.starlink.visible=!v.starlinkHidden;for(const [id,o]of Object.entries(v.offsets))parts[id].position.set(o.x,o.y,o.z);}};
 }

@@ -2,7 +2,7 @@ import * as T from './vendor/three.module.js';
 import {buildInteractiveModel,INTERACTION_SPEC} from './interactive-model.js?v=mobile1';
 export {INTERACTION_SPEC};
 
-export function installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,onState,onNight,environmentGround=false,onSelectSnowboard=()=>{},visibility=()=>({})}) {
+export function installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,onState,onNight,environmentGround=false,onSelectSnowboard=()=>{},onSelectPanel=()=>{},visibility=()=>({})}) {
   const rig=buildInteractiveModel({shell,emblems,exterior,rack});
   const ids=['cassette-door','driver-seat','passenger-seat','driver-door','passenger-door','sliding-door','rear-doors','driver-slider','flare-window','headlights','foglights','taillights','lightbar','porchlight','wheels'];
   const state=Object.fromEntries(ids.map(id=>[id,0])),target={...state};
@@ -28,7 +28,7 @@ export function installInteractions({shell,emblems,exterior,rack,canvas,camera,b
   }
   function start(){if(frame)cancelAnimationFrame(frame);if(reduced.matches){Object.assign(state,target);render();syncButtons();return;}last=performance.now();frame=requestAnimationFrame(tick);}
   function reset(){cancelAnimationFrame(frame);frame=0;movingSeat=null;for(const id of ids)state[id]=target[id]=0;phase=0;night=false;ropeTime=0;rope.preset='off';ropePaused=false;if(ropeSelect)ropeSelect.value='off';ropeUI();onNight(false);render();syncButtons();announce('Doors and windows closed. Lights and wheel demo off.');}
-  function activate(raw){const id=canonical(raw);if(id==='reset'){reset();return;}if(!enabled)return;if(id==='snowboard'){onSelectSnowboard();return;}if(id==='night'){night=!night;onNight(night);render();syncButtons();announce(night?'Night preview on. Choose low or high beams to compare their appearance.':'Day preview on.');return;}if(!(id in target))return;
+  function activate(raw){const id=canonical(raw);if(id==='reset'){reset();return;}if(!enabled)return;if(id?.startsWith('proposal-')){onSelectPanel(id);return;}if(id==='snowboard'){onSelectSnowboard();return;}if(id==='night'){night=!night;onNight(night);render();syncButtons();announce(night?'Night preview on. Choose low or high beams to compare their appearance.':'Day preview on.');return;}if(!(id in target))return;
     if(['driver-door','passenger-door'].includes(id)&&target[id]&&Math.abs(state[id.replace('-door','-seat')]-target[id.replace('-door','-seat')])>.002){announce('The cab door stays open while the seat demonstration finishes.');return;}
     if(id.endsWith('-seat')){target[id.replace('-seat','-door')]=1;if(!movingSeat||state[movingSeat]===target[movingSeat])movingSeat=id;}
     target[id]=id==='headlights'?(target[id]+1)%3:target[id]?0:1;
@@ -39,7 +39,7 @@ export function installInteractions({shell,emblems,exterior,rack,canvas,camera,b
   for(const b of buttons)b.addEventListener('click',()=>activate(b.dataset.action));
   const ray=new T.Raycaster(),point=new T.Vector2(),pointers=new Map();let gesture=null;
   function visible(o){for(let p=o;p;p=p.parent)if(!p.visible)return false;return true;}
-  function pick(x,y){const rect=canvas.getBoundingClientRect();point.set((x-rect.left)/rect.width*2-1,-(y-rect.top)/rect.height*2+1);ray.setFromCamera(point,camera);body.updateMatrixWorld(true);const hits=ray.intersectObject(body,true).filter(h=>visible(h.object)&&!h.object.userData.ignorePick);const solid=hits.find(h=>!h.object.userData.hitTarget);const fixture=hits.find(h=>h.object.userData.hitTarget&&(!solid||h.distance<=solid.distance+3));const first=fixture||solid;if(!first)return null;for(let p=first.object;p;p=p.parent){if(p.userData.selectable==='snowboard')return 'snowboard';const id=canonical(p.userData.action||p.userData.motionPart);if(id&&id in target)return id;}return null;}
+  function pick(x,y){const rect=canvas.getBoundingClientRect();point.set((x-rect.left)/rect.width*2-1,-(y-rect.top)/rect.height*2+1);ray.setFromCamera(point,camera);body.updateMatrixWorld(true);const hits=ray.intersectObject(body,true).filter(h=>visible(h.object)&&!h.object.userData.ignorePick);const solid=hits.find(h=>!h.object.userData.hitTarget);const fixture=hits.find(h=>h.object.userData.hitTarget&&(!solid||h.distance<=solid.distance+3));const first=fixture||solid;if(!first)return null;for(let p=first.object;p;p=p.parent){if(p.userData.selectable?.startsWith('proposal-'))return p.userData.selectable;if(p.userData.selectable==='snowboard')return 'snowboard';const id=canonical(p.userData.action||p.userData.motionPart);if(id&&id in target)return id;}return null;}
   rig.extras.traverse(o=>{if(o.material?.transparent&&!o.userData.hitTarget)o.userData.ignorePick=true;});
   canvas.addEventListener('pointerdown',e=>{pointers.set(e.pointerId,true);if(pointers.size>1){if(gesture)gesture.cancelled=true;return;}gesture={id:e.pointerId,x:e.clientX,y:e.clientY,button:e.button,cancelled:e.button!==0};});
   canvas.addEventListener('pointermove',e=>{if(gesture&&Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)>7)gesture.cancelled=true;});

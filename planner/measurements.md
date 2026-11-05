@@ -123,3 +123,10 @@ These requests replace illustrative animation values later. Keep the van parked 
 ## S01 · 800 W solar proposal
 
 See [the solar review](solar-upgrade.md#measurements-to-gather) for the focused measurement list. Priority: rack identification/slot spacing and one common datum for rail slots, bar top, A/C and fully open fan; usable mounting span; Starlink/antenna/packed snowboard and access envelopes; existing PV cable/connector/combiner/isolator labels. Four HQST HSP200N-64L panels and 4S wiring are selected; riser SKU, mounting interfaces, fasteners, wiring lengths and protective devices remain unresolved. The preview's adjustable positions are estimates.
+
+
+### Compact 800 W solar planning follow-up
+- Confirm the exact front/rear ends of the 122-inch track reference and any permitted panel overhang; the four-landscape concept leaves essentially no end margin.
+- Measure open fan sweep and height above the same roof datum; the 13.5-inch screening top is only an estimate.
+- Confirm A/C airflow/service clearances and a new location for front antennas, bag and Starlink.
+- Measure viable riser/span attachment stations, panel clamp zones and total raised vehicle height. The displayed eight spans / sixteen risers are generic, not a selected mounting kit.

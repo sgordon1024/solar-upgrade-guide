@@ -6,7 +6,8 @@
       "y": 0,
       "z": 0
     },
-    "bagHidden": false,
+    "bagHidden": true,
+    "starlinkHidden": true,
     "offsets": {
       "starlink": {
         "x": 0,
@@ -57,28 +58,32 @@
     "transmissionSkid": false,
     "solar": {
       "version": 1,
-      "enabled": false,
+      "enabled": true,
       "minTemperatureC": -20,
       "panels": [
         {
           "x": 6.870078740157478,
-          "y": 3,
-          "z": 6.5
+          "y": 0.013779527559051985,
+          "z": 15.5,
+          "rotation": 90
         },
         {
-          "x": 25,
-          "y": 34.5,
-          "z": 14.5
+          "x": 6.870078740157478,
+          "y": 30.631889763779526,
+          "z": 15.5,
+          "rotation": 90
         },
         {
-          "x": -0.618110236220474,
-          "y": 82,
-          "z": 14.5
+          "x": 6.870078740157478,
+          "y": 61.25,
+          "z": 15.5,
+          "rotation": 90
         },
         {
-          "x": 30.5,
-          "y": 82,
-          "z": 14.5
+          "x": 6.870078740157478,
+          "y": 91.86811023622047,
+          "z": 15.5,
+          "rotation": 90
         }
       ]
     }
