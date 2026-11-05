@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-13-interactive-parts",
+  "revision": "shell-14-cabin-lighting",
   "units": "in",
   "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment including Maxxair fan and bagged snowboard, roof rack, Owl side ladder and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
@@ -51,7 +51,7 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "registration": "Owner 60 \u00d7 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
   "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, driver-side Owl ladder, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, Maxxair fan, bagged snowboard and two rear clamp carriers, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, separate rear-door steps, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
@@ -73,7 +73,7 @@
     "remainingDifferences": "Fine grille and lamp relief, body contours, suspension mounts, rim brand/profile, tread and sidewall details remain approximate. Actual suspension lift and physical tolerances are unverified.",
     "cabBrow": "Compared supplied side/quarter reference pixels and owner passenger photo with actual rendered before/after views and a fixed-registration 50% side overlay. Broadened longitudinal bow recovery and transverse crown blending to remove the artificial inward S curve above the windshield; no dimensional tolerance is inferred.",
     "cabBrowMeshCheck": "Eleven longitudinal sections across the rendered roof brow have no inward slope reversal through the transition immediately above the windshield. The central windshield upper-edge elevation remains level.",
-    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 × 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
+    "roofRackAndHood": "Actual front, side, oblique, overhead and close-up renders compared with owner photos. Private front hood/light-bar overlays use local scale and translation; no calibrated physical tolerance. Independent reviewer confirmed lowered front crown, legible front mark and seated hood lip; no blocking visual regression. Mobile Chrome emulation at 375 \u00d7 844 checked 3D, Front and Top views; desktop rack visibility and roof planning remain operational.",
     "fullSceneGeometry": {
       "triangles": 598913,
       "materialBatches": 53,
@@ -81,7 +81,8 @@
     },
     "installedRoof": "Six actual WebGL views reviewed against owner front, driver, passenger and overhead photos. Uniform-scale roof overlay aligned to the crossbar span; transverse width/perspective mismatch remains, so no physical tolerance is inferred. Independent review corrected panel elevation, removed invented support strips and clarified cell grids. Final review found no blocking visual regression. Exact dimensions, hidden connections and antenna heights remain estimated.",
     "crossbarsAndLadder": "Six actual WebGL views and private overhead/driver photo overlays reviewed. Uniform scale and translation retain unresolved perspective/roof-height mismatch. Four exposed main beams plus four partly occluded lower support stations modeled separately; hidden spans inferred. Independent review refined ladder placement 2.5 inches rearward to align its front rail with the glass/flare junction. Finite geometry, seven treads, nominal rear-tire separation and preserved shell length/wheelbase checked. No physical clearance or structural adequacy established.",
-    "maxxairAndSnowboard": "Six actual WebGL views and a private fixed-rack-span overhead overlay checked. Refined fan placement forward to match the visible rear gap before the panels, and replaced radial cap facets with a smooth grid. Bag uses an irregular soft loft, compressed sections at two rear main crossbars and a flatter overhanging tail. Photo perspective and packing variations remain unresolved; no dimensional tolerance or physical fit established."
+    "maxxairAndSnowboard": "Six actual WebGL views and a private fixed-rack-span overhead overlay checked. Refined fan placement forward to match the visible rear gap before the panels, and replaced radial cap facets with a smooth grid. Bag uses an irregular soft loft, compressed sections at two rear main crossbars and a flatter overhanging tail. Photo perspective and packing variations remain unresolved; no dimensional tolerance or physical fit established.",
+    "cabinLighting": "Local geometry/controller tests and desktop/375 \u00d7 844 browser interaction checks pass. Private actual WebGL captures reviewed against supplied cockpit renderings and manufacturer layout references. Exact coach interior, swivel mechanism, cassette model, rope routing and photometry remain unverified. Owner approved publication after local review."
   },
   "sleepingFlares": {
     "enabledByDefault": true,
@@ -218,7 +219,7 @@
       "evidence": "Owner-maintained vehicle specification identifies this as the installed set. The 265/70R17 option in the record is a future possibility, not current fitment.",
       "nominalDiameter": 30.5,
       "nominalSectionWidth": 9.65,
-      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 × 245 × 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
+      "dimensionMethod": "Designation arithmetic rounded to 0.1 in: 17 + 2 \u00d7 245 \u00d7 0.70 / 25.4. Actual mounted, inflated and loaded dimensions have not been measured.",
       "geometryStatus": "KO3-informed original tread and shoulder approximation; not an exact product mesh",
       "manufacturerReference": "https://www.bfgoodrichtires.com/auto/tires/bfgoodrich-all-terrain-t-a-ko3"
     },
@@ -243,7 +244,7 @@
       "actualLiftInches": null,
       "hubToArchModel": 23,
       "modelAxleDropFromPreviousGenericShell": 4.7,
-      "evidence": "Local photo ratios give roughly 1.15–1.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
+      "evidence": "Local photo ratios give roughly 1.15\u20131.33 visible rim diameters from hub to arch; the model uses 1.243. Photos cannot separate kit lift from factory AWD stance, loading, terrain and prior model error.",
       "limits": "4.7 in is solely a correction to the previous generic rendering, NOT a measured or manufacturer-specified suspension lift. Shock dimensions, mounts, springs and axle hardware are illustrative; this is not a suspension travel or interference model."
     },
     "verification": {
@@ -416,7 +417,7 @@
     "model": "2021 KTM 350 SX-F",
     "revision": "ktm-1",
     "source": "https://en.enduro.team/images/2/26/2021_350_sxf.pdf",
-    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139–140; manufacturer-authored manual hosted by a third party.",
+    "sourceDescription": "KTM owner manual 3214215en, 07/2020, printed pages 139\u2013140; manufacturer-authored manual hosted by a third party.",
     "manufacturer": {
       "wheelbase": 58.46456692913386,
       "wheelbaseAdjustment": 0.3937007874015748,
@@ -505,7 +506,7 @@
       "lowerSideRailCenterToTopRailBottomObservation": 4
     },
     "unresolved": [
-      "Endpoints of the 122 × 60 track reference",
+      "Endpoints of the 122 \u00d7 60 track reference",
       "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
       "Identity of top rail in the separate 4-inch observation",
       "Exact rail sections, hidden crossbars, mounting feet and light-bar model"
@@ -913,7 +914,7 @@
       "model": null,
       "referenceFamily": "MAXXFAN Deluxe smoke lid",
       "source": "https://www.maxxair.com/products/fans/maxxfan-deluxe/",
-      "sourceScope": "Family reference confirms an integrated rain shield and 14 × 14-inch opening; installed model and external dimensions are unverified.",
+      "sourceScope": "Family reference confirms an integrated rain shield and 14 \u00d7 14-inch opening; installed model and external dimensions are unverified.",
       "corner": [
         21.8,
         21.5,
@@ -1138,7 +1139,11 @@
           "y": 78,
           "z": -56.5
         }
-      }
+      },
+      "openingAngle": 100,
+      "openingStatus": "estimated",
+      "tankModel": null,
+      "tankStatus": "generic illustrative shape; need open-hatch reference"
     },
     "limits": "Exterior visualization only. Dimensions are not surveyed; hidden mount geometry is illustrative. Excluded from roof equipment box checks. No door-opening, mounting, load, restraint or physical clearance validation.",
     "geometryLicense": "Original MIT geometry; no owner photos, identifying metadata, product textures or third-party meshes redistributed.",
@@ -1199,7 +1204,7 @@
     "fitStatus": "unverified",
     "tanks": {
       "gocode28": {
-        "name": "GoCode · 28 gallons",
+        "name": "GoCode \u00b7 28 gallons",
         "model": "SP-ST-28",
         "length": 29.75,
         "width": 27.75,
@@ -1211,7 +1216,7 @@
         "source": "https://gocodeoverland.com/collections/all-tanks/products/28-gallon-sprinter-spare-tire-water-tank"
       },
       "sb35": {
-        "name": "S&B · 35 gallons",
+        "name": "S&B \u00b7 35 gallons",
         "model": "10-3033",
         "length": 29,
         "width": 32,
@@ -1224,7 +1229,7 @@
     },
     "skids": {
       "engine": {
-        "name": "Van Compass 4095 · engine",
+        "name": "Van Compass 4095 \u00b7 engine",
         "source": "https://vancompass.com/products/engine-skid-plate-sprinter-awd-2023-2500-by-van-compass",
         "productClass": "2023+ Sprinter 2500 AWD",
         "geometryStatus": "estimated",
@@ -1238,10 +1243,10 @@
           -37,
           -87
         ],
-        "note": "Illustrative outline and mounting height. Exact outline/bends/holes unverified. 4102 is for the Van Compass 2-inch lift; do not select from this model’s estimated stance."
+        "note": "Illustrative outline and mounting height. Exact outline/bends/holes unverified. 4102 is for the Van Compass 2-inch lift; do not select from this model\u2019s estimated stance."
       },
       "transmission": {
-        "name": "Van Compass 4096 · transmission / transfer case",
+        "name": "Van Compass 4096 \u00b7 transmission / transfer case",
         "source": "https://vancompass.com/products/transmission-and-transfer-case-skid-plate-sprinter-awd-2023-by-van-compass",
         "productClass": "2023+ Sprinter AWD",
         "geometryStatus": "estimated",
@@ -1837,7 +1842,7 @@
     "includedInRoofBoxChecks": false
   },
   "interactions": {
-    "revision": "interactive-1",
+    "revision": "interactive-2-cabin",
     "units": "in",
     "status": "illustrative motion",
     "cabDoorAngle": 68,
@@ -1847,8 +1852,55 @@
     "driverWindowTravel": 16.8,
     "flareWindowAngle": 32,
     "suspensionCompression": 2.4,
+    "cassetteDoorAngle": 100,
+    "seatSwivelAngle": 180,
     "source": "Owner describes rearward-sliding driver middle window and top-hinged flare window with support stays. Axes, angles, travel and hidden surfaces are estimates.",
-    "limits": "Animation is not a clearance, collision, suspension, road-load or beam-pattern simulation. Interior openings are dark placeholders. Rear cargo is temporarily hidden for rear-door demonstrations. Animation state is temporary and does not change exported roof measurements.",
-    "measurementRequest": "M01-M05"
+    "limits": "Animation is not a clearance, collision, suspension, road-load or beam-pattern simulation. Front cabin uses reference-estimated geometry; rear interior openings remain placeholders. Light-bar side/rear spill is an illustrative indirect wash, not a measured beam pattern. Rear cargo is temporarily hidden for rear-door demonstrations. Animation state is temporary and does not change exported roof measurements.",
+    "measurementRequest": "M01-M09"
+  },
+  "frontCabin": {
+    "revision": "cabin-1",
+    "units": "in",
+    "status": "reference-estimated",
+    "upholstery": {
+      "material": "black leather",
+      "status": "owner-confirmed"
+    },
+    "reference": "Owner-supplied Sprinter renderings 22\u201324: dashboard, circular vents, steering wheel, seats and door trim. These are reference renderings, not measurements of this coach.",
+    "seatCenters": [
+      [
+        8,
+        5,
+        -73.6
+      ],
+      [
+        52,
+        5,
+        -73.6
+      ]
+    ],
+    "seatWidth": 21,
+    "seatDepth": 21,
+    "swivelDegrees": 180,
+    "illustrativeSeatSlide": 11,
+    "illustrativeArmrestLiftDegrees": 90,
+    "illustrativeAisleOffset": 5.5,
+    "display": {
+      "diagonal": 10.25,
+      "diagonalStatus": "manufacturer-sourced",
+      "width": 8.94,
+      "height": 5.03,
+      "faceSizeStatus": "estimated from an assumed 16:9 aspect ratio"
+    },
+    "limits": "Cabin dimensions, seat rails, swivel axis and clearance are estimated. The demo opens the corresponding cab door, raises its inner armrest and slides the upper seat an illustrative 11 inches rearward. During the turn it moves up to 5.5 inches toward the aisle, returning to its original lateral position at either end. Seats turn one at a time. This display clearance path does not model the real swivel hardware, measured rail travel or a safe operating sequence. Screen graphics are illustrative. Camper furnishings behind the front seats are not modeled.",
+    "ropeLights": {
+      "estimatedBedroomFrontY": 103,
+      "estimatedRearReachY": 127,
+      "requestedBedroomReach": 24,
+      "status": "owner-described, route estimated",
+      "description": "Starts left of driver seat, rises up wall and follows ceiling corners approximately two feet into rear bedroom. Routing around furniture and exact termination are unverified."
+    },
+    "manufacturerSource": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
+    "measurementRequest": "M06-M10"
   }
 }

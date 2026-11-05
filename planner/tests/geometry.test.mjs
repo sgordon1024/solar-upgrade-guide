@@ -4,11 +4,12 @@ import {buildBodyEmblems} from '../brand-emblems.js';
 import {buildExteriorDetails} from '../exterior-details.js';
 import {buildRoofRack} from '../roof-rack.js';
 import {buildInteractiveModel} from '../interactive-model.js';
+import {assertCabinSwivelClearance} from './cabin-clearance.mjs';
 import assert from 'node:assert/strict';
 const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true});
 const emblems=buildBodyEmblems(shell.group),exterior=buildExteriorDetails(shell.group),rack=buildRoofRack();
 console.time('rig');const rig=buildInteractiveModel({shell,emblems,exterior,rack});console.timeEnd('rig');
-const ids=['driver-door','passenger-door','sliding-door','rear-doors','driver-slider','flare-window','headlights','foglights','taillights','lightbar','porchlight','wheels'];
+const ids=['cassette-door','driver-seat','passenger-seat','driver-door','passenger-door','sliding-door','rear-doors','driver-slider','flare-window','headlights','foglights','taillights','lightbar','porchlight','wheels'];
 const closed=Object.fromEntries(ids.map(id=>[id,0]));rig.apply(closed);
 const meshes=[];shell.group.traverse(o=>{if(o.isMesh)meshes.push(o)});
 for(const o of meshes){for(const attr of ['position','normal'])assert([...o.geometry.attributes[attr].array].every(Number.isFinite),o.name+attr);}
@@ -35,3 +36,12 @@ rig.apply(closed);assert.equal(rig.parts['flare-window'].visible,true);
 rig.apply({...closed,headlights:2});assert(rig.lamps.headlights.every(m=>m.emissiveIntensity===3.4));assert(rig.lamps.foglights.every(m=>m.emissiveIntensity===0));
 rig.apply({...closed,wheels:1},.72);assert(rig.parts['wheel-driver-front'].position.z>-92.5);assert.equal(rig.parts['wheel-driver-front-caliper'].rotation.x,0);assert(rig.parts['wheel-driver-front'].rotation.x>0);
 rig.apply(closed);console.log('PASS concave clipping area, rearward opening, spare attachment, layer gates, independent lamps, wheel/caliper rig.');
+
+rig.apply({...closed,lightbar:1,night:true});
+assert(rig.beams.lightbar.children.filter(o=>o.isSpotLight&&o.intensity>0).length===5);
+assert(rig.beams.lightbar.children.some(o=>o.isSpotLight&&o.target.position.y>50),'rear spill');
+assert(rig.beams.lightbar.children.filter(o=>o.isSpotLight).every(o=>o.angle>.8),'wide flood');
+const rope=rig.cabin.rope.geometry.attributes.color;rig.cabin.setRope({preset:'rainbow',pattern:'flow',speed:1},0);const first=rope.array.slice();rig.cabin.setRope({preset:'rainbow',pattern:'flow',speed:1},1);assert(rope.array.some((v,i)=>Math.abs(v-first[i])>.01));
+rig.cabin.setRope({preset:'off'});assert(rig.cabin.ropeGlow.every(o=>o.intensity===0));
+rig.apply(closed);console.log('PASS cassette/seat reset, broad front/rear flood, animated rope colors and light shutdown.');
+console.log('PASS sampled steering/seat animation separation',assertCabinSwivelClearance(rig,closed));

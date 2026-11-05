@@ -1,12 +1,13 @@
 import * as T from './vendor/three.module.js';
+import {buildCabin,CABIN_SPEC} from './cabin-model.js?v=cabin1';
 
 export const INTERACTION_SPEC = {
-  revision: 'interactive-1', units: 'in', status: 'illustrative motion',
+  revision: 'interactive-2-cabin', units: 'in', status: 'illustrative motion',
   cabDoorAngle: 68, rearDoorAngle: 88, slidingDoorTravel: 56, slidingDoorOutset: 5.2,
-  driverWindowTravel: 16.8, flareWindowAngle: 32, suspensionCompression: 2.4,
+  driverWindowTravel: 16.8, flareWindowAngle: 32, suspensionCompression: 2.4, cassetteDoorAngle:100, seatSwivelAngle:180,
   source: 'Owner describes rearward-sliding driver middle window and top-hinged flare window with support stays. Axes, angles, travel and hidden surfaces are estimates.',
-  limits: 'Animation is not a clearance, collision, suspension, road-load or beam-pattern simulation. Interior openings are dark placeholders. Rear cargo is temporarily hidden for rear-door demonstrations. Animation state is temporary and does not change exported roof measurements.',
-  measurementRequest: 'M01-M05'
+  limits: 'Animation is not a clearance, collision, suspension, road-load or beam-pattern simulation. Front cabin uses reference-estimated geometry; rear interior openings remain placeholders. Light-bar side/rear spill is an illustrative indirect wash, not a measured beam pattern. Rear cargo is temporarily hidden for rear-door demonstrations. Animation state is temporary and does not change exported roof measurements.',
+  measurementRequest: 'M01-M09'
 };
 const V = (...p) => new T.Vector3(...p);
 const smooth = x => x*x*(3-2*x);
@@ -56,7 +57,7 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
     const x=30+(side==='driver'?-1:1)*36.1,y=axle==='front'?-36:108;
     makePart(`wheel-${side}-${axle}`,[x,y,-92.5]);makePart(`wheel-${side}-${axle}-caliper`);
   }
-  makePart('suspension');makePart('rear-springs');makePart('rear-axle');makePart('driver-middle-fixed');
+  makePart('windshield');makePart('cassette-door',exterior.hatchLid.userData.hinge);makePart('suspension');makePart('rear-springs');makePart('rear-axle');makePart('driver-middle-fixed');
   for(const id of ['headlights','foglights','taillights'])makePart(id);
   function attach(g,o){o.position.sub(g.position);g.add(o);}
   for(const o of [...root.children]){if(o===extras||Object.values(parts).includes(o))continue;const key=o.userData.motionPart;if(parts[key])attach(parts[key],o);}
@@ -77,13 +78,46 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
   }
   // Body-mounted Entegra marks and spare must follow their own door.
   for(const [name,key] of [['driver-entegra','driver-door'],['passenger-entegra','passenger-door'],['rear-launch','rear-driver-door']]){const badge=emblems.group.children.find(o=>o.name===name);if(badge)attach(parts[key],badge);}
-  attach(parts['rear-driver-door'],exterior.spare);
+  attach(parts['rear-driver-door'],exterior.spare);attach(parts['cassette-door'],exterior.hatchLid);
   function panel(points,x,mat=dark,target=extras){const shape=new T.Shape(points.map(p=>new T.Vector2(...p))),g=new T.ShapeGeometry(shape,8),a=g.attributes.position;for(let i=0;i<a.count;i++)a.setXYZ(i,x,a.getX(i),a.getY(i));g.computeVertexNormals();const o=new T.Mesh(g,mat);o.name='Dark illustrative opening';target.add(o);return o;}
   function outline(points,x,target=extras,r=.16){const curve=new T.CatmullRomCurve3(points.map(p=>V(x,...p)),true,'catmullrom',0),o=new T.Mesh(new T.TubeGeometry(curve,points.length*4,r,6,true),sealMat);target.add(o);return o;}
   const doorBacks=[];
-  for(const sign of [-1,1]){const o=panel(cabOutline,30+sign*25);o.visible=false;o.userData.action=sign<0?'driver-door':'passenger-door';doorBacks.push([o,sign<0?'driver-door':'passenger-door']);}
+
   const sb=panel(sliderOutline,57);sb.visible=false;sb.userData.action='sliding-door';doorBacks.push([sb,'sliding-door']);
   const rearBack=new T.Mesh(new T.PlaneGeometry(63,79),dark);rearBack.rotation.x=Math.PI/2;rearBack.position.set(30,139,-45);rearBack.visible=false;rearBack.userData.action='rear-doors';extras.add(rearBack);
+  // Use the actual glazing perimeter for the cabin apertures, preserving the
+  // established exterior contour. Glazing is transparent only after skin/seal cuts.
+  function boundary(g){const a=g.attributes.position,ix=g.index,counts=new Map();for(let i=0;i<ix.count;i+=3){const t=[ix.getX(i),ix.getX(i+1),ix.getX(i+2)];for(let j=0;j<3;j++){const u=t[j],v=t[(j+1)%3],k=[Math.min(u,v),Math.max(u,v)].join(',');counts.set(k,(counts.get(k)||0)+1);}}const edges=[...counts].filter(([,n])=>n===1).map(([k])=>k.split(',').map(Number));if(!edges.length)return[];const ring=[edges[0][0]];let end=edges[0][1];edges.splice(0,1);while(edges.length){ring.push(end);const i=edges.findIndex(e=>e.includes(end));if(i<0)break;const e=edges.splice(i,1)[0];end=e[0]===end?e[1]:e[0];}return ring.map(i=>V().fromBufferAttribute(a,i));}
+  const cabGlass=materials.cabGlass=new T.MeshPhysicalMaterial({name:'Transparent cab glazing',color:'#a1b5bc',roughness:.12,metalness:.08,transparent:true,opacity:.22,depthWrite:false,side:T.DoubleSide});
+  for(const id of ['windshield','driver-door','passenger-door']){
+    const pane=parts[id].children.find(o=>o.isMesh&&o.material.name==='Tinted glass');if(!pane)continue;
+    const edge=boundary(pane.geometry),axes=id==='windshield'?[0,1]:[1,2],poly=edge.map(v=>axes.map(k=>v.getComponent(k)));
+    const hosts=id==='windshield'?stationary:parts[id].children.filter(o=>o.isMesh&&o!==pane);
+    for(const o of hosts)if(o.material.name.startsWith('Blue-gray paint')||o.material.name==='Recess')extract(o,poly,axes,tri=>id==='windshield'?tri.every(p=>p[2]>-53):tri.every(p=>id==='driver-door'?p[0]<0:p[0]>60),parts[id],true);
+    pane.material=cabGlass;pane.castShadow=false;
+  }
+  const cabin=buildCabin();root.add(cabin.group);Object.assign(materials,cabin.materials);
+  for(const [id,g] of Object.entries(cabin.doorTrims))attach(parts[id],g);
+  for(const [id,g] of Object.entries(cabin.seats))parts[id]=g;
+  // The cassette behind the hatch is a generic removable tank, not an identified
+  // product. Its housing and clearance remain estimates until an open-door photo.
+  const hatchPoly=rounded(71,-64.5,10.5,12.5,.5);
+  for(const o of stationary)if(o.material.name.startsWith('Blue-gray paint'))extract(o,hatchPoly,[1,2],tri=>tri.every(p=>p[0]<0),parts['cassette-door'],true);
+  const cassette=new T.Group();cassette.name='Illustrative cassette compartment';cassette.userData.action='cassette-door';extras.add(cassette);
+  function cuboid(c,size,m,target=cassette){const o=new T.Mesh(new T.BoxGeometry(...size),m);o.position.set(...c);target.add(o);return o;}
+  const tankMat=materials.cassette=new T.MeshStandardMaterial({name:'Cassette tank · model unverified',color:'#a2a7a5',roughness:.65});
+  const capMat=materials.cassetteCap=new T.MeshStandardMaterial({name:'Cassette fittings · estimated',color:'#c6a044',roughness:.5});
+  cuboid([1,71,-64.5],[1,10.5,12.5],dark);cuboid([-4,65.8,-64.5],[10,.4,12.5],dark);cuboid([-4,76.2,-64.5],[10,.4,12.5],dark);cuboid([-4,71,-70.6],[10,10.5,.4],dark);cuboid([-4,71,-58.4],[10,10.5,.4],dark);
+  const tank=cuboid([-3.3,71,-65],[8.4,9.3,9.2],tankMat);tank.name='Removable cassette tank';
+  cuboid([-7.6,71,-64.1],[.6,5.8,2.2],dark);cuboid([-8,71,-64.1],[.4,4.1,.8],tankMat);
+  const cap=new T.Mesh(new T.CylinderGeometry(.95,.95,.5,20),capMat);cap.rotation.z=Math.PI/2;cap.position.set(-7.8,74.2,-61.5);cassette.add(cap);
+  const paintedLid=exterior.hatchLid.children.find(o=>o.material?.name==='Hatch painted lid');
+  const lidBack=new T.Mesh(paintedLid.geometry.clone().translate(.16,0,0),sealMat);attach(parts['cassette-door'],lidBack);
+  // Full fixture targets cover bezels as well as individual optical faces.
+  const hitTargets=[];const hitMat=new T.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,colorWrite:false});
+  function hitBox(id,c,size){const o=new T.Mesh(new T.BoxGeometry(...size),hitMat);o.position.set(...c);o.userData={action:id,hitTarget:true};extras.add(o);hitTargets.push(o);return o;}
+  for(const x of [-.7,60.7])hitBox('foglights',[x,-76.5,-81],[9,5.5,6.5]);
+  const lightbarTarget=hitBox('lightbar',[30,22,4.9],[51,5.2,6]);
   // Cut the opening behind the moving middle pane out of BOTH the glazing and
   // the original metal skin. A fixed insect-screen recess remains behind it.
   const vent=rounded(43,-32.5,15.4,19.4,1.3),flare=rounded(118.5,-29.3,23.75,8.95,2.6);
@@ -123,10 +157,29 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
   // Real spot lights illuminate the optional night-preview floor. Distances,
   // spread and intensity are illustrative, not a certified headlamp pattern.
   const beams={};
-  for(const id of ['headlights','foglights','lightbar']){const group=new T.Group();extras.add(group);beams[id]=group;const starts=id==='lightbar'?[[30,20,4.9]]:id==='foglights'?[[.5,-74,-81],[59.5,-74,-81]]:[[1,-71,-64],[59,-71,-64]];for(const p of starts){const light=new T.SpotLight('#f2f5e4',0,480,.34,.65,1);light.position.set(...p);light.target.position.set(p[0],p[1]-170,-107.7);group.add(light,light.target);}}
+  for(const id of ['headlights','foglights','lightbar']){
+    const group=new T.Group();extras.add(group);beams[id]=group;
+    const starts=id==='lightbar'?[[6,19,5],[30,19,5],[54,19,5]]:id==='foglights'?[[-.7,-77.5,-81],[60.7,-77.5,-81]]:[[1,-78,-64],[59,-78,-64]];
+    for(const [i,p] of starts.entries()){
+      const light=new T.SpotLight(id==='lightbar'?'#eaf5ff':'#f2f5e4',0,id==='lightbar'?650:480,id==='lightbar'?.84:.42,.8,1);
+      light.position.set(...p);light.target.position.set(id==='lightbar'?30+(i-1)*105:p[0],id==='lightbar'?-195:p[1]-90,-107.7);group.add(light,light.target);
+    }
+    if(id==='lightbar')for(const sign of [-1,1]){
+      const spill=new T.SpotLight('#d8e8ff',0,350,1.04,1,1);spill.name='Illustrative indirect side/rear spill';spill.userData.indirect=true;spill.position.set(30+sign*42,18,8);spill.target.position.set(30+sign*110,100,-107.7);group.add(spill,spill.target);
+    }
+  }
   const nightFloor=new T.Mesh(new T.PlaneGeometry(1200,1200),new T.MeshStandardMaterial({name:'Night preview ground',color:'#39444a',roughness:1}));nightFloor.position.set(30,30,-107.8);nightFloor.userData.ignorePick=true;nightFloor.visible=false;extras.add(nightFloor);
+  // A soft ground projection illustrates the bar's broad flood without directing
+  // several high-intensity point cones into the roof brow. This is deliberately
+  // a visualization, not an optical/photometric simulation.
+  const washData=new Uint8Array(128*128*4);for(let j=0;j<128;j++)for(let i=0;i<128;i++){const x=(i/127-.5)*700,y=-80+(j/127-.5)*900,front=Math.exp(-((x/180)**2)-(((y+170)/220)**2)),spill=.27*Math.exp(-((x/155)**2)-(((y-90)/155)**2)),k=(j*128+i)*4;washData[k]=219;washData[k+1]=234;washData[k+2]=247;washData[k+3]=Math.round(Math.min(.92,(front+spill)*.84)*255);}
+  const washTexture=new T.DataTexture(washData,128,128,T.RGBAFormat);washTexture.needsUpdate=true;washTexture.magFilter=washTexture.minFilter=T.LinearFilter;
+  const wash=new T.Mesh(new T.PlaneGeometry(700,900),new T.MeshBasicMaterial({name:'Illustrative light-bar ground wash',map:washTexture,transparent:true,depthWrite:false,toneMapped:false}));wash.position.set(30,-80,-107.72);wash.userData.ignorePick=true;extras.add(wash);
   const suspensionBase=[];for(const key of ['suspension','rear-springs'])parts[key].traverse(o=>{if(o.isMesh)suspensionBase.push({o,spring:key==='rear-springs',base:o.geometry.attributes.position.array.slice()});});
   function apply(state,phase=0){
+    parts['cassette-door'].rotation.z=(state['cassette-door']||0)*100*Math.PI/180;
+    for(const [id,g] of Object.entries(cabin.seats)){const t=state[id]||0,driver=id==='driver-seat',angle=smooth(Math.max(0,(t-.2)/.8))*Math.PI;g.position.y=5+CABIN_SPEC.illustrativeSeatSlide*smooth(Math.min(1,t/.25));g.position.x=(driver?8:52)+(driver?1:-1)*CABIN_SPEC.illustrativeAisleOffset*Math.sin(angle);g.rotation.z=(driver?-1:1)*angle;cabin.armrests[id].rotation.x=-CABIN_SPEC.illustrativeArmrestLiftDegrees*Math.PI/180*smooth(Math.min(1,t/.18));}
+    lightbarTarget.visible=state.layers?.rack!==false;wash.visible=!!state.night&&!!state.lightbar&&state.layers?.rack!==false;
     parts['driver-door'].rotation.z=state['driver-door']*68*Math.PI/180;parts['passenger-door'].rotation.z=-state['passenger-door']*68*Math.PI/180;
     const slide=state['sliding-door'];parts['sliding-door'].position.set(5.2*smooth(Math.min(1,slide/.22)),56*smooth(Math.max(0,(slide-.16)/.84)),0);
     parts['driver-slider'].position.set(-.25*state['driver-slider'],16.8*state['driver-slider'],0);
@@ -140,8 +193,9 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
     parts['rear-axle'].position.z=travel;
     for(const {o,base,spring} of suspensionBase){const a=o.geometry.attributes.position;for(let i=0;i<a.count;i++){const z=base[i*3+2],y=base[i*3+1],weight=spring?Math.max(0,1-((y-108)/28)**2):T.MathUtils.clamp((-69-z)/22,0,1);a.setZ(i,z+travel*weight);}a.needsUpdate=true;o.geometry.computeBoundingSphere();}
     for(const [id,ms] of Object.entries(lamps)){const level=state[id]||0;for(const m of ms)m.emissiveIntensity=id==='headlights'?(level===2?3.4:level?1.5:0):level*2.2;}
-    parts['flare-window'].visible=state.layers?.flares!==false;parts['driver-slider'].visible=state.layers?.windows!==false;nightFloor.visible=!!state.night;for(const [id,g] of Object.entries(beams)){g.visible=id!=='lightbar'||state.layers?.rack!==false;for(const o of g.children){if(!o.isSpotLight)continue;const high=id==='headlights'&&state[id]===2;o.intensity=state[id]?(high?1800:1100):0;o.angle=high?.31:.42;o.target.position.y=o.position.y-(high?155:90);}}
+    parts['flare-window'].visible=state.layers?.flares!==false;parts['driver-slider'].visible=state.layers?.windows!==false;nightFloor.visible=!!state.night;for(const [id,g] of Object.entries(beams)){g.visible=id!=='lightbar'||state.layers?.rack!==false;for(const o of g.children){if(!o.isSpotLight)continue;const high=id==='headlights'&&state[id]===2;o.intensity=state[id]?(id==='lightbar'?(o.userData.indirect?4:8):high?1800:1100):0;if(id!=='lightbar'){o.angle=id==='foglights'?.7:high?.31:.42;o.target.position.y=o.position.y-(id==='foglights'?55:high?155:90);}}}
+
     root.updateMatrixWorld(true);
   }
-  return {parts,extras,materials,lamps,apply,spec:INTERACTION_SPEC};
+  return {parts,extras,materials,lamps,beams,hitTargets,cabin,cassette,wash,apply,spec:INTERACTION_SPEC};
 }

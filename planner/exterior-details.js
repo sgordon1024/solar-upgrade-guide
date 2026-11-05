@@ -16,7 +16,7 @@ export const EXTERIOR_DETAILS_SPEC={
 };
 
 export function buildExteriorDetails(shell){
-  const group=new T.Group(),spare=new T.Group(),hatch=new T.Group();group.name='Photo-estimated exterior accessories';spare.name='Rear-door spare and mount';hatch.name='Cassette toilet access door';group.add(spare,hatch);
+  const group=new T.Group(),spare=new T.Group(),hatch=new T.Group(),hatchLid=new T.Group();group.name='Photo-estimated exterior accessories';spare.name='Rear-door spare and mount';hatch.name='Cassette toilet access frame';hatchLid.name='Cassette toilet moving lid';group.add(spare,hatch,hatchLid);
   const materials={},buckets=new Map(),V=(...p)=>new T.Vector3(...p),spec=EXTERIOR_DETAILS_SPEC,s=spec.spare,h=spec.cassetteHatch;
   const mat=(name,color,metalness,roughness)=>materials[name]=new T.MeshStandardMaterial({name,color,metalness,roughness,side:T.DoubleSide});
   const rubber=mat('Spare all-terrain rubber','#202426',0,.92),alloy=mat('Spare charcoal alloy','#505458',.62,.36),black=mat('Accessory seal and recess','#141a1d',.1,.68),mount=mat('Spare mount coating','#262b2e',.4,.53),metal=mat('Accessory fasteners','#c2c4c3',.35,.45),paint=mat('Hatch blue-gray molded bezel','#7094b1',.12,.5);
@@ -62,14 +62,15 @@ export function buildExteriorDetails(shell){
   function ring(rows,m){const p=[],ids=[],n=64;for(const [w,hh,rr,d] of rows)for(const [y,z] of contour(w,hh,rr))p.push(bodyX(y,z)-d,y,z);for(let j=0;j<rows.length-1;j++)for(let k=0;k<n;k++){const a=j*n+k,b=j*n+(k+1)%n;ids.push(a,a+n,b,a+n,b+n,b);}surface(p,ids,m,hatch);}
   ring([[14,16,1.25,.035],[13.94,15.94,1.22,.26],[13.3,15.3,1.15,.65],[11.3,13.3,.7,.65],[10.9,12.9,.55,.25]],paint);
   ring([[10.93,12.93,.57,.28],[10.57,12.57,.5,.29]],black);
-  const points=contour(10.55,12.55,.5),p=[bodyX(h.centerY,h.centerZ)-.30,h.centerY,h.centerZ],ids=[];for(const [y,z] of points)p.push(bodyX(y,z)-.30,y,z);for(let k=0;k<points.length;k++)ids.push(0,k+1,(k+1)%points.length+1);surface(p,ids,lid,hatch);
+  const points=contour(10.55,12.55,.5),p=[bodyX(h.centerY,h.centerZ)-.30,h.centerY,h.centerZ],ids=[];for(const [y,z] of points)p.push(bodyX(y,z)-.30,y,z);for(let k=0;k<points.length;k++)ids.push(0,k+1,(k+1)%points.length+1);surface(p,ids,lid,hatchLid);
   const latchCenters=[];
   for(const z of [h.centerZ+5.1,h.centerZ-5.1]){
-    const y=h.centerY+5.35,x=bodyX(y,z)-.62;latchCenters.push([x,y,z]);const shape=new T.Shape();shape.moveTo(.7,-.95);shape.lineTo(-.05,-.95);shape.bezierCurveTo(-1.2,-.95,-1.2,.95,-.05,.95);shape.lineTo(.7,.95);shape.closePath();const g=new T.ExtrudeGeometry(shape,{depth:.17,bevelEnabled:true,bevelSize:.16,bevelThickness:.14,bevelSegments:3,curveSegments:10});const a=g.attributes.position;for(let j=0;j<a.count;j++){const u=a.getX(j),v=a.getY(j),d=a.getZ(j);a.setXYZ(j,x-d,y+u,z+v);}g.computeVertexNormals();add(g,paint,hatch);cyl([x-.32,y,z],[x-.38,y,z],.19,metal,12,hatch);
+    const y=h.centerY+5.35,x=bodyX(y,z)-.62;latchCenters.push([x,y,z]);const shape=new T.Shape();shape.moveTo(.7,-.95);shape.lineTo(-.05,-.95);shape.bezierCurveTo(-1.2,-.95,-1.2,.95,-.05,.95);shape.lineTo(.7,.95);shape.closePath();const g=new T.ExtrudeGeometry(shape,{depth:.17,bevelEnabled:true,bevelSize:.16,bevelThickness:.14,bevelSegments:3,curveSegments:10});const a=g.attributes.position;for(let j=0;j<a.count;j++){const u=a.getX(j),v=a.getY(j),d=a.getZ(j);a.setXYZ(j,x-d,y+u,z+v);}g.computeVertexNormals();add(g,paint,hatchLid);cyl([x-.32,y,z],[x-.38,y,z],.19,metal,12,hatchLid);
     const fy=h.centerY-6.15,fx=bodyX(fy,z)-.42;cyl([fx,fy,z-.6],[fx,fy,z+.6],.23,paint,10,hatch);
   }
   hostGeo.dispose();hostMat.dispose();
   for(const b of buckets.values()){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,b.m);mesh.name=b.m.name;mesh.castShadow=true;mesh.receiveShadow=false;b.target.add(mesh);}
   spare.userData={bounds:new T.Box3().setFromObject(spare),wheelCenter:s.center,hingeAnchors:anchors};hatch.userData={bounds:new T.Box3().setFromObject(hatch),latchCenters,hostSampleCount:cache.size};
-  group.userData={spec};return {group,spare,hatch,materials};
+  hatchLid.userData.hinge=[bodyX(h.centerY-6.15,h.centerZ)-.42,h.centerY-6.15,h.centerZ];
+  group.userData={spec};return {group,spare,hatch,hatchLid,materials};
 }
