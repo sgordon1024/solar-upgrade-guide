@@ -15,7 +15,7 @@ function advance(ms){const callbacks=[...pending.values()];pending.clear();for(c
 const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true}),emblems=buildBodyEmblems(shell.group),exterior=buildExteriorDetails(shell.group),rack=buildRoofRack(),installed=buildInstalledRoof(),body=new T.Group();body.add(shell.group,emblems.group,exterior.group,rack.group,installed.group);
 const canvas=new Emitter();canvas.getBoundingClientRect=()=>({left:0,top:0,width:800,height:600});
 const camera=new T.OrthographicCamera(-130,130,98,-98,.1,1000);camera.up.set(0,0,1);camera.position.set(-400,40,-40);camera.lookAt(30,40,-40);camera.updateMatrixWorld();
-let night=false,bagSelections=0,panelSelections=[];const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n,onSelectSnowboard:()=>bagSelections++,onSelectPanel:id=>panelSelections.push(id)});
+let driveAllowed=true;let night=false,bagSelections=0,panelSelections=[];const control=installInteractions({shell,emblems,exterior,rack,body,canvas,camera,requestRender(){},onState(){},onNight:n=>night=n,canDrive:()=>driveAllowed,onSelectSnowboard:()=>bagSelections++,onSelectPanel:id=>panelSelections.push(id)});
 control.activate('headlights');advance(performance.now()+20);assert.equal(control.state.headlights,1);control.activate('headlights');advance(performance.now()+40);assert.equal(control.state.headlights,2);control.activate('headlights');advance(performance.now()+60);assert.equal(control.state.headlights,0);
 control.activate('night');assert.equal(night,true);const floor=control.rig.extras.children.find(o=>o.material?.name==='Night preview ground');assert.equal(floor.visible,true);
 control.activate('wheels');advance(performance.now()+21000);assert.equal(control.target.wheels,0);assert.equal(pending.size,0);
@@ -75,3 +75,6 @@ const extraCount=panelSelections.length;extras.group.visible=false;tapWorld([48,
 
 // Recovery boards follow their door and can trigger it, but hidden boards cannot.
 control.reset();motion.matches=true;motion.fire('change');camera.position.set(54.9,400,-57);camera.lookAt(54.9,150,-57);camera.updateMatrixWorld();exterior.traction.visible=true;tapWorld([54.9,159,-57]);assert.equal(control.target['rear-doors'],1);control.reset();console.log('PASS actual traction board tap activates rear doors.');
+
+// Extended concepts stop active motion and block both direct and wheel-prefixed activation.
+control.reset();driveAllowed=true;control.activate('wheels');assert.equal(control.target.wheels,1);driveAllowed=false;control.enforceTravel();assert.equal(control.target.wheels,0);assert.equal(control.state.wheels,0);control.activate('wheel-front-driver');assert.equal(control.target.wheels,0);driveAllowed=true;control.activate('wheels');assert.equal(control.target.wheels,1);control.reset();control.activate('slideout-2');assert.equal(panelSelections.at(-1),'slideout-2');console.log('PASS slide-out travel inhibition, active-demo stop, tire activation guard and selectable slider routing.');

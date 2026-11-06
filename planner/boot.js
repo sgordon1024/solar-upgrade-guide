@@ -10,14 +10,14 @@
  retry.onclick=()=>{retry.disabled=true;detail.textContent='Reloading your van…';location.reload();};
  tools.onclick=()=>{screen.hidden=true;busy(false);phase='tools';if(window.rooflabInterface)window.rooflabInterface.openTools();else{document.body.classList.remove('immersive');document.body.classList.add('tools-fallback','planning-mode');document.querySelector('#open-roof-editor')?.focus();}};
  window.RooflabBoot={ready,fail,get phase(){return phase;}};
- window.addEventListener('error',e=>{const source=e.target?.src||e.filename||'';if(source.startsWith(location.origin)&&(/\/(app|roof-editor|solar-data|snowboard-data|roof-edit-data|upgrade-data)\.js/.test(source)))fail('A required planner file did not load correctly. Please retry.');},true);
+ window.addEventListener('error',e=>{const source=e.target?.src||e.filename||'';if(source.startsWith(location.origin)&&(/\/(app|retractable-ui|retractable-data|snapshot-data|roof-editor|solar-data|snowboard-data|roof-edit-data|upgrade-data)\.js/.test(source)))fail('A required planner file did not load correctly. Please retry.');},true);
  timer=setTimeout(()=>fail('Loading is taking longer than expected. You can retry or open your saved layout tools.'),45000);
  async function start(){if(phase!=='tools')busy(true);try{
    // Give the loading artwork a paint before constructing the geometry.
    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    if(!window.rooflabState)throw Error('Layout data unavailable');
-   const {mountInterface}=await import('./mobile-ui.js?v=landing1');window.rooflabInterface=mountInterface();
-   await import('./render3d.js?v=lower1');
+   const {mountInterface}=await import('./mobile-ui.js?v=slide1');window.rooflabInterface=mountInterface();
+   await import('./render3d.js?v=slide1');
   }catch(error){console.error(error);fail();}}
  // Deferred scripts run while readyState is interactive; wait for all later
  // deferred layout scripts, not just the parsed DOM.

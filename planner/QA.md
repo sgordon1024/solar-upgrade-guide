@@ -384,3 +384,10 @@ The owner approved publishing the reviewed side alignment, driver access, front-
 ## Lower-riser action
 
 `node planner/tests/lower-risers.test.mjs` checks consistent roof-relative targets, translated/hidden obstacles, actual panel/riser geometry, residual support contacts, height-only mutation and guarded undo, old-save migration without auto-lowering, export/import/reload and real editor handlers. Reference rear 2×2:Z18→14.50; plate height 12→8.50; panel bottom above crossbar top 11.50→8.00 inches. Full fan sweep and physical fit remain unverified.
+
+
+## Retractable concept and private snapshots
+- Eleven regression suites pass, including explicit stowed/current/swept collisions, hidden equipment, rotated travel, legacy/default preservation, exact layout round-trip, immutable snapshot/readback/quota handling, finite 3D buffers, connected three-stage tracks, interrupt/reverse/repeat motion, hidden-tab/reduced-motion settling and drive-demo guards.
+- Independent code review identified and resolved full-extension track disconnection, awning-envelope mismatch, stale undo after import/reset and asymmetric camera framing.
+- Native Chrome desktop and responsive390×844: white loading/landing, isolated real-file import, named snapshot+download, all-panel deploy/stow/reversal, keyboard partial extension, phone controls, disabled drive while extended, snapshot restore/undo, no JavaScript console errors observed. An actual private export was compared after browser import→snapshot→download; original fields were unchanged. Private files and exact personal fixtures are not published.
+- Physical phone Safari and real mechanical performance are untested. This is an illustrative concept; measured fit, engineering loads, complete actuation/mount/cable design and1600W electrical compatibility remain unresolved.
