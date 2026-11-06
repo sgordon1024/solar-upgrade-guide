@@ -155,3 +155,7 @@ Lower-riser target: the owner requested approximately 1 inch above the A/C and p
 
 ### R13 — Optional retractable solar concept (not installed)
 Measure underside clearance from one consistent roof/rack datum across every proposed cassette location, including fully open fan, A/C airflow/service and bag/clamp envelopes. Confirm usable slider stroke, complete stowed mechanism thickness, rail/bracket/actuator/cable paths and deployed width before selecting parts. Structural review must cover total loaded mass, per-rail interpretation, load paths, wind/cantilever and transport locks. No mechanism rating or travel permission is inferred from the visualization. Electrical review for eight house panels remains separate from the existing four-panel report.
+
+
+### E22 — Aluminum roof tracks and Owl upper mount
+When practical, take one close side/overhead photo of an upper ladder bracket showing the silver track, black rail and fastening points together. Then measure the track outside width/height and ladder bracket center from the front crossbar, one measurement at a time. Current silver profile 1.85 × 0.42 inches, channel endpoints and hidden bracket/fastener geometry are visual estimates; lower ladder placement and roof layout are preserved.

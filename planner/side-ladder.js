@@ -1,19 +1,21 @@
 import * as T from './vendor/three.module.js';
+import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=mount1';
 
 // Original geometry. Body coordinates in inches; owner photo proportions are estimates.
 export const LADDER_SPEC={
-  revision:'owl-side-ladder-1',side:'driver',brand:'Owl Vans',status:'photo-estimated',
+  revision:'owl-side-ladder-2-roof-channel',side:'driver',brand:'Owl Vans',status:'photo-estimated',
   productReference:'Explorer Sprinter Side Ladder',installedProductRevision:null,
   sources:['https://owlvans.com/products/sprinter-side-ladder-explorer','https://ready.owlvans.com/how-to-install-the-owl-ladder-for-sprinter-vans'],
   sourceScope:'Black aluminum side ladder, two joined sections, slotted steps, upper roof/rack and lower pinch-weld mounts. Published 13-inch wheel-opening-to-front clearance is not ladder width. Exact installed revision and dimensions remain unverified.',
   installation:{frontRailY:79,rearRailY:92,lowerRearRailY:89,topZ:2,bottomZ:-92,railDiameter:1.15,treadDepth:3.3,treadFractions:[.045,.181,.331,.479,.632,.811,.95]},
+  upperMount:{status:'estimated',channel:ROOF_MOUNT_SPEC,channelSide:'driver',bodyYs:[79,92],bracketPlate:[1.8,2.6,.16],armRadius:.4,description:'Bent arms terminate on estimated brackets seated on the roof-mounted aluminum channel, below the black rack rail. Concealed fasteners are illustrative.'},
   observations:'Seven tread levels: four narrow upper treads, two broad slotted/notched lower plates and one low narrow tread. Rear upright sweeps forward at the bottom, immediately ahead of rear wheel. Ladder straddles driver window/flare junction.',
   unresolved:['Overall height and width','Tread spacing, depth and rail section','Standoff at roof, flare and sill','Position relative to rear wheel opening and body seams','Exact top/bottom brackets and installed model'],
   limits:'Photo-estimated visual accessory, excluded from equipment box checks. No physical fit, climbing load, mounting or structural validation. Separate rear-door steps remain deferred.',
   geometryLicense:'Original MIT geometry; no product mesh, photo textures or reference imagery redistributed.'
 };
 
-export function buildSideLadder(){
+export function buildSideLadder({mounts=createRoofMounts()}={}){
   const group=new T.Group();group.name='Owl driver-side ladder · photo estimate';
   const materials={},buckets=new Map(),V=(...p)=>new T.Vector3(...p),i=LADDER_SPEC.installation;
   const mat=(name,color,metalness,roughness)=>materials[name]=new T.MeshStandardMaterial({name,color,metalness,roughness,side:T.DoubleSide});
@@ -33,12 +35,16 @@ export function buildSideLadder(){
     cyl([xAt(-35),y,-36.15],[xAt(-35),y,-33.85],.64,joint,12);
     cyl([xAt(-35)-.7,y,-35],[xAt(-35)-.56,y,-35],.16,bolt,6);
   }
-  // A short top bridge and bent upper arms connect to the rack's lower rail.
+  // Keep the ladder itself in place; only its upper arms/feet meet the roof channel.
   cyl([xAt(2),i.frontRailY,2],[xAt(2),i.rearRailY,2],.5,frame,12);
+  const upperMounts=[];
   for(const y of [i.frontRailY,i.rearRailY]){
-    const curve=new T.CatmullRomCurve3([V(-7,y,2),V(-5,y,2.8),V(-2,y,2.5),V(0,y,2)],false,'centripetal');
-    add(new T.TubeGeometry(curve,16,.47,10,false));box([-.05,y,2],[.2,2.6,2.4],joint);
-    cyl([-.2,y,2],[.2,y,2],.2,bolt,6);
+    const x=mounts.spec.centerXs[0],base=mounts.top(x,y),armZ=base+.16+.4;
+    const curve=new T.CatmullRomCurve3([V(-7,y,2),V(-4,y,2.65),V(0,y,2),V(2.4,y,armZ),V(3.4,y,armZ),V(x,y,armZ)],false,'centripetal');
+    add(new T.TubeGeometry(curve,36,.4,10,false));
+    box([x,y,base+.08],[1.8,2.6,.16],joint);
+    for(const yy of [y-.95,y+.95])cyl([x,yy,base+.16],[x,yy,base+.31],.18,bolt,6);
+    upperMounts.push({channelX:x,bodyY:y,channelTop:base,armEnd:[x,y,armZ],plateBottom:base,plateTop:base+.16});
     const by=y===i.frontRailY?y:i.lowerRearRailY-.4;
     box([-11.2,by,-90.8],[6.6,1.5,.22],joint);box([-8.4,by,-91.45],[.22,2.2,1.5],joint);
     cyl([-8.65,by,-91.45],[-8.1,by,-91.45],.18,bolt,6);
@@ -59,6 +65,6 @@ export function buildSideLadder(){
     for(const y of [front+.25,rear-.25])cyl([x-.17,y,z-.6],[x+.1,y,z-.6],.13,bolt,6);
   });
   for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,m);mesh.name=m.name;mesh.castShadow=true;mesh.receiveShadow=false;group.add(mesh);}
-  group.userData={spec:LADDER_SPEC,bounds:new T.Box3().setFromObject(group),treadCenters,railPaths:[railPoints(false),railPoints(true)]};
+  group.userData={spec:LADDER_SPEC,bounds:new T.Box3().setFromObject(group),treadCenters,upperMounts,railPaths:[railPoints(false),railPoints(true)]};
   return {group,materials};
 }

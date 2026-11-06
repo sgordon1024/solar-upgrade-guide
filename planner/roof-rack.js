@@ -1,20 +1,23 @@
 import * as T from './vendor/three.module.js';
+import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=mount1';
 import {buildRackWordmark} from './brand-emblems.js?v=close1';
 
 // Inches in the same body datum as the shell. Installation is a photo estimate;
 // owner observations are retained verbatim rather than silently joining datums.
 export const RACK_SPEC={
-  revision:'rack-4-rear-photo-boundary',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
+  revision:'rack-5-aluminum-roof-channels',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
   source:'https://www.entegracoach.com/models/previous-model-years/2024/launch/',
   sourceScope:'Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.',
   ownerReported:{planningLength:122,planningWidth:60,railOutsideWidthObservation:'just under 52 inches',railOutsideWidthUpperBound:52,frontRearCrossbarCenters:130,crossbarForeAftWidth:2,crossbarHeight:1,sideSlotCenterSpacing:3,roofToTopCrossbarObservation:6.5,lowerSideRailCenterToTopRailBottomObservation:4},
   unresolved:['Measured 130 in crossbar-center span is not reconciled with the photo-estimated 121 in visible span; do not infer support capacity or move the saved planning origin','Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed','Whether the 6.5-inch observation reaches the crossbar top, center or bottom','Identity of top rail in the separate 4-inch observation','Exact rail sections, hidden crossbars, mounting feet and light-bar model'],
   installation:{status:'estimated',planningOrigin:[0,26,0],firstCrossbarY:26,lastCrossbarY:147,sideRailFrontY:26,sideRailRearY:149,rearFairingLowerTipY:150,rearFairingUpperY:147,rearEndEvidence:'Driver and passenger photos show the rack ending over the roof. Rear beam, end caps and fairing are retracted to the final shell roof silhouette; exact offsets remain estimates. Front and intermediate stations, light bar and saved planning origin are unchanged.',railCenterXs:[4.7,55.3],crossbarCenterZ:6,crossbarStations:[0,29.9/121,87.1/121,1],sideRailCenterZs:[2,5],frontFairingTipY:19,lightBarCenter:[30,23,4.9],lightBarSize:[49,2.6,3.1]},
+  roofMountingChannels:ROOF_MOUNT_SPEC,
   panelSupports:{status:'estimated',count:4,bodyCenterYs:[33.5,49,83,99],centerZ:5.15,section:[1.25,1],span:52,evidence:'Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured.'},
   limits:'Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. The measured 130 in span is retained as an unregistered observation: the illustrated main-beam centers span 121 in after the rear correction. The side rails end at body Y149 (planning Y123), rear beam at body Y147, and fairing at Y150; all are photo estimates. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.'
 };
 
-export function buildRoofRack(){
+export function buildRoofRack({shellGroup}={}){
+  const mounts=createRoofMounts(shellGroup);
   const group=new T.Group();group.name='Roof rack and front LED bar · photo estimate';
   const materials={},buckets=new Map(),V=(...p)=>new T.Vector3(...p);
   function material(name,color,metalness,roughness){return materials[name]=new T.MeshStandardMaterial({name,color,metalness,roughness,side:T.DoubleSide});}
@@ -25,7 +28,24 @@ export function buildRoofRack(){
   function plate(points,m=frame){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(points.flat(),3));const idx=[];for(let j=1;j<points.length-1;j++)idx.push(0,j,j+1);g.setIndex(idx);g.computeVertexNormals();add(g,m);}
   function sidePlate(x,outline,thick=.16){const s=new T.Shape(outline.map(p=>new T.Vector2(...p))),g=new T.ExtrudeGeometry(s,{depth:thick,bevelEnabled:false});const a=g.attributes.position;for(let j=0;j<a.count;j++){const y=a.getX(j),z=a.getY(j),dx=a.getZ(j);a.setXYZ(j,x+dx-thick/2,y,z);}g.computeVertexNormals();add(g,frame);}
   const i=RACK_SPEC.installation,y0=i.firstCrossbarY,y1=i.lastCrossbarY,r0=i.sideRailFrontY,r1=i.sideRailRearY;
-  const roofApprox=(x,y)=>-9*Math.pow(Math.abs(x-30)/36,10)-.35*T.MathUtils.clamp((y-135)/14,0,1)-.08*(1-T.MathUtils.clamp((y-26)/10,0,1));
+  // Aluminum channels are distinct from the black rack extrusions. Their
+  // estimated section follows the completed shell, including raised roof ribs.
+  function channelStrip(x,left,right,low,high,m=metal){
+    const positions=[],indices=[],steps=Math.ceil((r1-r0)/2);
+    for(let j=0;j<=steps;j++){
+      const y=r0+(r1-r0)*j/steps,z=mounts.base(x,y);
+      for(const [dx,dz] of [[left,low],[right,low],[right,high],[left,high]])positions.push(x+dx,y,dz===null?mounts.surface(x+dx,y)+.005:z+dz);
+      if(j<steps)for(let k=0;k<4;k++){const a=j*4+k,b=j*4+(k+1)%4;indices.push(a,b,a+4,b,b+4,a+4);}
+    }
+    const e=steps*4;indices.push(0,2,1,0,3,2,e,e+1,e+2,e,e+2,e+3);
+    const g=new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(positions,3));g.setIndex(indices);g.computeVertexNormals();add(g,m);
+  }
+  const c=mounts.spec;
+  for(const x of c.centerXs){
+    channelStrip(x,-c.width/2,c.width/2,null,0,recess);
+    channelStrip(x,-c.width/2,c.width/2,0,c.baseThickness);
+    for(const side of [-1,1])channelStrip(x,side<0?-c.width/2:c.width/2-c.wallThickness,side<0?-c.width/2+c.wallThickness:c.width/2,c.baseThickness,c.height);
+  }
   // Longitudinal extrusions have open daylight between levels, not basket walls.
   for(const x of i.railCenterXs){
     for(const [z,h] of [[2,1.05],[5,1.2]]){
@@ -35,11 +55,11 @@ export function buildRoofRack(){
       for(const y of [r0-.035,r1+.035])box([x,y,z],[1.43,.1,h+.03],recess);
     }
     for(const y of [30,65,110,144]){
-      const base=roofApprox(x,y);
-      const g=new T.BoxGeometry(2.5,5.6,.16),p=g.attributes.position;for(let j=0;j<p.count;j++){const xx=x+p.getX(j),yy=y+p.getY(j);p.setXYZ(j,xx,yy,roofApprox(xx,yy)+.13+p.getZ(j));}g.computeVertexNormals();add(g,frame);
+      const base=mounts.top(x,y)+.02;
+      const g=new T.BoxGeometry(2.5,5.6,.16),p=g.attributes.position;for(let j=0;j<p.count;j++){const xx=x+p.getX(j),yy=y+p.getY(j);p.setXYZ(j,xx,yy,mounts.top(x,yy)+.10+p.getZ(j));}g.computeVertexNormals();add(g,frame);
       box([x,y,(base+1.5)/2],[.24,2.6,1.5-base]);
       sidePlate(x,[[y-1.35,1.5],[y+1.35,1.5],[y+.7,5.5],[y-.7,5.5]],.18);
-      for(const yy of [y-1.8,y+1.8])cyl([x,yy,roofApprox(x,yy)+.22],[x,yy,roofApprox(x,yy)+.37],.2,metal,6);
+      for(const yy of [y-1.8,y+1.8])cyl([x,yy,mounts.top(x,yy)+.19],[x,yy,mounts.top(x,yy)+.34],.2,metal,6);
       for(const z of [2,5])cyl([x-.85,y,z],[x+.85,y,z],.18,metal,6);
     }
   }
@@ -82,5 +102,5 @@ export function buildRoofRack(){
   for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,m);mesh.name=m.name;mesh.castShadow=true;mesh.receiveShadow=false;group.add(mesh);}
   const wordmark=buildRackWordmark();group.add(wordmark.group);Object.assign(materials,wordmark.materials);
   group.userData={spec:RACK_SPEC,bounds:new T.Box3().setFromObject(group),crossbarCenters:i.crossbarStations.map(t=>[30,y0+(y1-y0)*t,i.crossbarCenterZ]),panelSupportCenters:RACK_SPEC.panelSupports.bodyCenterYs.map(y=>[30,y,RACK_SPEC.panelSupports.centerZ])};
-  return {group,materials};
+  return {group,materials,mounts};
 }

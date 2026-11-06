@@ -391,3 +391,7 @@ The owner approved publishing the reviewed side alignment, driver access, front-
 - Independent code review identified and resolved full-extension track disconnection, awning-envelope mismatch, stale undo after import/reset and asymmetric camera framing.
 - Native Chrome desktop and responsive390×844: white loading/landing, isolated real-file import, named snapshot+download, all-panel deploy/stow/reversal, keyboard partial extension, phone controls, disabled drive while extended, snapshot restore/undo, no JavaScript console errors observed. An actual private export was compared after browser import→snapshot→download; original fields were unchanged. Private files and exact personal fixtures are not published.
 - Physical phone Safari and real mechanical performance are untested. This is an illustrative concept; measured fit, engineering loads, complete actuation/mount/cable design and1600W electrical compatibility remain unresolved.
+
+
+## Aluminum tracks / ladder mount revision
+Run `node planner/tests/ladder-mount.test.mjs` alongside rail-ends, retractable, geometry, controller and landing tests. Check both silver tracks under the black rails, roof/rib contact at front/middle/rear, two driver ladder upper brackets and unchanged lower treads. Compare top/driver/passenger oblique views at desktop and 390 × 844; retain saved layouts and slide-out behavior. No physical mounting or loading claim follows from a seated visualization.

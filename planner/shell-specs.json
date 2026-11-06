@@ -493,7 +493,7 @@
     "verification": "Private front-photo/render overlay with uniform scaling and translation; close-up inspected for surface contact. Camera perspective and dimensions uncalibrated."
   },
   "roofRack": {
-    "revision": "rack-4-rear-photo-boundary",
+    "revision": "rack-5-aluminum-roof-channels",
     "description": "Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar",
     "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "sourceScope": "Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.",
@@ -581,7 +581,7 @@
       "min": {
         "x": 3.450000047683716,
         "y": 19,
-        "z": -0.673413097858429
+        "z": -1.0690765380859375
       },
       "max": {
         "x": 56.54999923706055,
@@ -610,7 +610,24 @@
         147,
         6
       ]
-    ]
+    ],
+    "roofMountingChannels": {
+      "status": "owner-described, photo-positioned; section and brackets estimated",
+      "centerXs": [
+        4.7,
+        55.3
+      ],
+      "frontY": 26,
+      "rearY": 149,
+      "width": 1.85,
+      "height": 0.42,
+      "baseThickness": 0.12,
+      "wallThickness": 0.12,
+      "seatAllowance": 0.045,
+      "description": "Two silver aluminum roof mounting channels below the separate black rack rails. Ladder upper brackets land on the driver channel.",
+      "evidence": "Owner driver-side and overhead photos establish the ladder/rack relationship; owner identifies the silver mounting track. Upper hardware is partly concealed.",
+      "limits": "Channel section, endpoints, fasteners, roof attachment and load path are estimates. No physical fit, climbing load or structural approval."
+    }
   },
   "measurementChecklist": {
     "file": "measurements.md",
@@ -944,7 +961,7 @@
     }
   },
   "sideLadder": {
-    "revision": "owl-side-ladder-1",
+    "revision": "owl-side-ladder-2-roof-channel",
     "side": "driver",
     "brand": "Owl Vans",
     "status": "photo-estimated",
@@ -993,9 +1010,9 @@
         "z": -92.55000305175781
       },
       "max": {
-        "x": 0.20000000298023224,
+        "x": 5.599999904632568,
         "y": 93.30000305175781,
-        "z": 3.278898239135742
+        "z": 3.031468391418457
       }
     },
     "modeledTreadCenters": [
@@ -1036,7 +1053,65 @@
       ]
     ],
     "editableInRoofLayout": false,
-    "includedInEquipmentBoxChecks": false
+    "includedInEquipmentBoxChecks": false,
+    "upperMount": {
+      "status": "estimated",
+      "channel": {
+        "status": "owner-described, photo-positioned; section and brackets estimated",
+        "centerXs": [
+          4.7,
+          55.3
+        ],
+        "frontY": 26,
+        "rearY": 149,
+        "width": 1.85,
+        "height": 0.42,
+        "baseThickness": 0.12,
+        "wallThickness": 0.12,
+        "seatAllowance": 0.045,
+        "description": "Two silver aluminum roof mounting channels below the separate black rack rails. Ladder upper brackets land on the driver channel.",
+        "evidence": "Owner driver-side and overhead photos establish the ladder/rack relationship; owner identifies the silver mounting track. Upper hardware is partly concealed.",
+        "limits": "Channel section, endpoints, fasteners, roof attachment and load path are estimates. No physical fit, climbing load or structural approval."
+      },
+      "channelSide": "driver",
+      "bodyYs": [
+        79,
+        92
+      ],
+      "bracketPlate": [
+        1.8,
+        2.6,
+        0.16
+      ],
+      "armRadius": 0.4,
+      "description": "Bent arms terminate on estimated brackets seated on the roof-mounted aluminum channel, below the black rack rail. Concealed fasteners are illustrative."
+    },
+    "upperMounts": [
+      {
+        "channelX": 4.7,
+        "bodyY": 79,
+        "channelTop": 0.4833836362551777,
+        "armEnd": [
+          4.7,
+          79,
+          1.0433836362551778
+        ],
+        "plateBottom": 0.4833836362551777,
+        "plateTop": 0.6433836362551777
+      },
+      {
+        "channelX": 4.7,
+        "bodyY": 92,
+        "channelTop": 0.47719187006354397,
+        "armEnd": [
+          4.7,
+          92,
+          1.0371918700635439
+        ],
+        "plateBottom": 0.47719187006354397,
+        "plateTop": 0.6371918700635439
+      }
+    ]
   },
   "exteriorDetails": {
     "revision": "spare-hatch-1",
