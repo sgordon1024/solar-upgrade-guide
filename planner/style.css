@@ -71,3 +71,5 @@ body:not(.planning-mode) .workspace{grid-template-columns:1fr}body:not(.planning
 .is-loading .mobile-render-notice{display:none!important}
 
 #roof-edit-rear-preset{width:100%;min-height:48px;margin:8px 0;background:#284f3b;color:#fff}#roof-extra-size[hidden]{display:none}#roof-overhang input,#roof-extra-dimensions input{width:100%;min-height:44px}.roof-edit-controls #roof-edit-undo{position:sticky;bottom:0;background:#f7f6ec;box-shadow:0 2px 10px #18372c25}
+
+#roof-support-height[hidden]{display:none}#roof-support-height button{width:100%;min-height:48px;margin-top:8px}#roof-raise-supports:disabled{opacity:.65;cursor:default}#roof-undo-height[hidden]{display:none}

@@ -1,5 +1,5 @@
-import {buildRoofExtras} from './roof-extras.js?v=rear1';
-import {buildSolarUpgrade} from './solar-upgrade.js?v=rear1';
+import {buildRoofExtras} from './roof-extras.js?v=height1';
+import {buildSolarUpgrade} from './solar-upgrade.js?v=height1';
 import {buildEnvironment} from './environment.js?v=landing1';
 import {installInteractions} from './interactions.js?v=close1';
 import * as T from './vendor/three.module.js';

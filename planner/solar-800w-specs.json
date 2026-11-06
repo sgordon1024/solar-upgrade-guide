@@ -271,6 +271,10 @@
     "datum": "Origin: front driver-side corner of track planning rectangle. X passengerward, Y rearward, Z above illustrative roof datum. Body registration is estimated.",
     "supportEnvelopes": [
       {
+        "kind": "clamp",
+        "panelIndices": [
+          0
+        ],
         "name": "Panel 1 clamp",
         "x": 6.820078740157478,
         "y": 7.213779527559052,
@@ -280,6 +284,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          0
+        ],
         "name": "Panel 1 clamp",
         "x": 6.820078740157478,
         "y": 21.331889763779525,
@@ -289,6 +297,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          0
+        ],
         "name": "Panel 1 clamp",
         "x": 52.179921259842516,
         "y": 7.213779527559052,
@@ -298,6 +310,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          0
+        ],
         "name": "Panel 1 clamp",
         "x": 52.179921259842516,
         "y": 21.331889763779525,
@@ -307,6 +323,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          1
+        ],
         "name": "Panel 2 clamp",
         "x": 6.820078740157478,
         "y": 37.83188976377953,
@@ -316,6 +336,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          1
+        ],
         "name": "Panel 2 clamp",
         "x": 6.820078740157478,
         "y": 51.95,
@@ -325,6 +349,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          1
+        ],
         "name": "Panel 2 clamp",
         "x": 52.179921259842516,
         "y": 37.83188976377953,
@@ -334,6 +362,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          1
+        ],
         "name": "Panel 2 clamp",
         "x": 52.179921259842516,
         "y": 51.95,
@@ -343,6 +375,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          2
+        ],
         "name": "Panel 3 clamp",
         "x": 6.820078740157478,
         "y": 68.45,
@@ -352,6 +388,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          2
+        ],
         "name": "Panel 3 clamp",
         "x": 6.820078740157478,
         "y": 82.56811023622048,
@@ -361,6 +401,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          2
+        ],
         "name": "Panel 3 clamp",
         "x": 52.179921259842516,
         "y": 68.45,
@@ -370,6 +414,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          2
+        ],
         "name": "Panel 3 clamp",
         "x": 52.179921259842516,
         "y": 82.56811023622048,
@@ -379,6 +427,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          3
+        ],
         "name": "Panel 4 clamp",
         "x": 6.820078740157478,
         "y": 99.06811023622048,
@@ -388,6 +440,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          3
+        ],
         "name": "Panel 4 clamp",
         "x": 6.820078740157478,
         "y": 113.18622047244095,
@@ -397,6 +453,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          3
+        ],
         "name": "Panel 4 clamp",
         "x": 52.179921259842516,
         "y": 99.06811023622048,
@@ -406,6 +466,10 @@
         "height": 0.4
       },
       {
+        "kind": "clamp",
+        "panelIndices": [
+          3
+        ],
         "name": "Panel 4 clamp",
         "x": 52.179921259842516,
         "y": 113.18622047244095,
@@ -415,6 +479,10 @@
         "height": 0.4
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          0
+        ],
         "name": "Raised span 1",
         "x": 3.3000000000000003,
         "y": 7.013779527559052,
@@ -424,6 +492,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 driver",
         "x": 4.59,
         "y": 6.513779527559052,
@@ -433,6 +505,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 driver",
         "x": 3.3000000000000003,
         "y": 6.513779527559052,
@@ -442,6 +518,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 driver",
         "x": 3.9000000000000004,
         "y": 6.513779527559052,
@@ -451,6 +531,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 passenger",
         "x": 55.19,
         "y": 6.513779527559052,
@@ -460,6 +544,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 passenger",
         "x": 53.9,
         "y": 6.513779527559052,
@@ -469,6 +557,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 1 passenger",
         "x": 54.5,
         "y": 6.513779527559052,
@@ -478,6 +570,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          0
+        ],
         "name": "Raised span 2",
         "x": 3.3000000000000003,
         "y": 21.131889763779526,
@@ -487,6 +583,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 driver",
         "x": 4.59,
         "y": 20.631889763779526,
@@ -496,6 +596,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 driver",
         "x": 3.3000000000000003,
         "y": 20.631889763779526,
@@ -505,6 +609,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 driver",
         "x": 3.9000000000000004,
         "y": 20.631889763779526,
@@ -514,6 +622,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 passenger",
         "x": 55.19,
         "y": 20.631889763779526,
@@ -523,6 +635,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 passenger",
         "x": 53.9,
         "y": 20.631889763779526,
@@ -532,6 +648,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          0
+        ],
         "name": "Riser 2 passenger",
         "x": 54.5,
         "y": 20.631889763779526,
@@ -541,6 +661,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          1
+        ],
         "name": "Raised span 3",
         "x": 3.3000000000000003,
         "y": 37.631889763779526,
@@ -550,6 +674,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 driver",
         "x": 4.59,
         "y": 37.131889763779526,
@@ -559,6 +687,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 driver",
         "x": 3.3000000000000003,
         "y": 37.131889763779526,
@@ -568,6 +700,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 driver",
         "x": 3.9000000000000004,
         "y": 37.131889763779526,
@@ -577,6 +713,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 passenger",
         "x": 55.19,
         "y": 37.131889763779526,
@@ -586,6 +726,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 passenger",
         "x": 53.9,
         "y": 37.131889763779526,
@@ -595,6 +739,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 3 passenger",
         "x": 54.5,
         "y": 37.131889763779526,
@@ -604,6 +752,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          1
+        ],
         "name": "Raised span 4",
         "x": 3.3000000000000003,
         "y": 51.75,
@@ -613,6 +765,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 driver",
         "x": 4.59,
         "y": 51.25,
@@ -622,6 +778,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 driver",
         "x": 3.3000000000000003,
         "y": 51.25,
@@ -631,6 +791,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 driver",
         "x": 3.9000000000000004,
         "y": 51.25,
@@ -640,6 +804,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 passenger",
         "x": 55.19,
         "y": 51.25,
@@ -649,6 +817,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 passenger",
         "x": 53.9,
         "y": 51.25,
@@ -658,6 +830,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          1
+        ],
         "name": "Riser 4 passenger",
         "x": 54.5,
         "y": 51.25,
@@ -667,6 +843,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          2
+        ],
         "name": "Raised span 5",
         "x": 3.3000000000000003,
         "y": 68.25,
@@ -676,6 +856,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 driver",
         "x": 4.59,
         "y": 67.75,
@@ -685,6 +869,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 driver",
         "x": 3.3000000000000003,
         "y": 67.75,
@@ -694,6 +882,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 driver",
         "x": 3.9000000000000004,
         "y": 67.75,
@@ -703,6 +895,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 passenger",
         "x": 55.19,
         "y": 67.75,
@@ -712,6 +908,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 passenger",
         "x": 53.9,
         "y": 67.75,
@@ -721,6 +921,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 5 passenger",
         "x": 54.5,
         "y": 67.75,
@@ -730,6 +934,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          2
+        ],
         "name": "Raised span 6",
         "x": 3.3000000000000003,
         "y": 82.36811023622047,
@@ -739,6 +947,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 driver",
         "x": 4.59,
         "y": 81.86811023622047,
@@ -748,6 +960,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 driver",
         "x": 3.3000000000000003,
         "y": 81.86811023622047,
@@ -757,6 +973,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 driver",
         "x": 3.9000000000000004,
         "y": 81.86811023622047,
@@ -766,6 +986,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 passenger",
         "x": 55.19,
         "y": 81.86811023622047,
@@ -775,6 +999,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 passenger",
         "x": 53.9,
         "y": 81.86811023622047,
@@ -784,6 +1012,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          2
+        ],
         "name": "Riser 6 passenger",
         "x": 54.5,
         "y": 81.86811023622047,
@@ -793,6 +1025,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          3
+        ],
         "name": "Raised span 7",
         "x": 3.3000000000000003,
         "y": 98.86811023622047,
@@ -802,6 +1038,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 driver",
         "x": 4.59,
         "y": 98.36811023622047,
@@ -811,6 +1051,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 driver",
         "x": 3.3000000000000003,
         "y": 98.36811023622047,
@@ -820,6 +1064,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 driver",
         "x": 3.9000000000000004,
         "y": 98.36811023622047,
@@ -829,6 +1077,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 passenger",
         "x": 55.19,
         "y": 98.36811023622047,
@@ -838,6 +1090,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 passenger",
         "x": 53.9,
         "y": 98.36811023622047,
@@ -847,6 +1103,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 7 passenger",
         "x": 54.5,
         "y": 98.36811023622047,
@@ -856,6 +1116,10 @@
         "height": 0.3
       },
       {
+        "kind": "span",
+        "panelIndices": [
+          3
+        ],
         "name": "Raised span 8",
         "x": 3.3000000000000003,
         "y": 112.98622047244095,
@@ -865,6 +1129,10 @@
         "height": 1
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 driver",
         "x": 4.59,
         "y": 112.48622047244095,
@@ -874,6 +1142,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 driver",
         "x": 3.3000000000000003,
         "y": 112.48622047244095,
@@ -883,6 +1155,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 driver",
         "x": 3.9000000000000004,
         "y": 112.48622047244095,
@@ -892,6 +1168,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 passenger",
         "x": 55.19,
         "y": 112.48622047244095,
@@ -901,6 +1181,10 @@
         "height": 9.5
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 passenger",
         "x": 53.9,
         "y": 112.48622047244095,
@@ -910,6 +1194,10 @@
         "height": 0.3
       },
       {
+        "kind": "riser",
+        "panelIndices": [
+          3
+        ],
         "name": "Riser 8 passenger",
         "x": 54.5,
         "y": 112.48622047244095,
