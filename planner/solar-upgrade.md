@@ -56,3 +56,7 @@ The rack is just under 52 inches across its outside rails; first/rear crossbar c
 ## Selected-panel support correction · 6 November 2026
 
 Unequal panel heights can place one module underneath the neighboring module’s full-width support spans. The roof editor now detects that relationship from the generated support envelopes and offers a selected-panel-only raise to the highest crossing support top, rounded upward to 0.01 inch. It preserves every other saved position and has a guarded session undo. Support ownership and the new flags also appear in solar reports. Existing layouts, imports and presets are not automatically modified. The corrected height remains an estimated roof-datum coordinate, not a verified riser specification or installation clearance.
+
+## Rear rail boundary correction · 6 November 2026
+
+The rear rails and fairing were brought over the final shell roof without moving saved panels, risers, other equipment or the planning origin. Visible rail end is now planning Y123 (estimated); the recorded 130-inch crossbar-center span is unregistered and not a verified mounting envelope. The rear 2×2 example still reaches Y128.26, leaving 5.26 inches beyond the illustrated rail ends. Rear riser feet reach Y121.76; having a drawn footprint inside the rails does not establish attachment or capacity. Screening now flags full support-foot footprints that exceed the visible rail span; mounting, airflow, load and overhang questions remain open.

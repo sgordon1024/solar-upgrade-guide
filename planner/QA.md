@@ -372,3 +372,11 @@ The owner approved publishing the reviewed side alignment, driver access, front-
 - No new application console exception observed; the unrelated Chrome extension unload warning remains. The action adds no animation and preserves the existing reduced-motion behavior. Physical phone/Safari, measured mounting geometry and structural/airflow clearance are not verified.
 
 - Independent review found a stale height-undo record after undoing a preset. Preset undo now clears the nested height action; a regression executes the actual editor handlers and verifies the restored layout remains unchanged.
+
+## Rear rack ends · 6 November 2026
+
+- Privately inspected the reported side-view screenshot, both owner side photos and the overhead/rear roof crops. The body’s final roof boundary is near body Y150.46 at the rail centers; the older rack ended at Y156 with its fairing at159. Independent review confirmed that using the full body’s Y157.5 extent would be incorrect for the roof.
+- Rear rails now end at Y149 (caps149.085), rear beam at147 and fairing tip150. Rear beam plates extend to148.75 and stay on the illustrated rails. Front rack/light bar, intermediate beam centers55.9/113.1 and planning origin `[0,26,0]` are unchanged. The 130-inch owner measurement remains explicitly unregistered; the illustrated121-inch beam span is not promoted to measured geometry.
+- New rail-end tests verify the final shell surface below the rear fairing, finite geometry and unchanged rack budget, retained front/intermediate positions, separate measured/estimated datums, full-footprint support screening and unchanged saved equipment transforms/state. Solar, compact/rear layout, panel-height, controller, geometry and landing regression suites pass. No source images are published; exact mounting positions and physical capacity remain unverified.
+
+- Actual Chrome desktop driver/3D views and 390 × 844 phone driver/passenger views inspected against the private photos: rear rail/fairing overhang is removed; front rack and existing panel placements remain. No application console errors observed in the isolated verification window. Physical phone/Safari and exact as-built rack dimensions were not tested.

@@ -1,6 +1,6 @@
 import './snowboard-data.js?v=rear1';
 import * as T from './vendor/three.module.js';
-import {RACK_SPEC} from './roof-rack.js?v=rear1';
+import {RACK_SPEC} from './roof-rack.js?v=rail1';
 
 // Installed reference only. All positions are inches from the track rectangle's
 // front driver-side corner. Display registration remains a photo estimate.

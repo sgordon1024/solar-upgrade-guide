@@ -51,7 +51,7 @@
     "rearAxleY": 108,
     "roofDatumZ": 0
   },
-  "registration": "Owner 60 × 122-inch track-referenced planning rectangle has photo-estimated body origin [0, 26, 0]. First/last modeled crossbars align with its front/rear. Saved item coordinates remain relative to the planning origin. Physical endpoints and body registration are unverified.",
+  "registration": "Owner 60 × 122-inch planning rectangle retains body origin [0,26,0]. Rear rail ends are photo-estimated at body Y149 (planning Y123), rear beam at body Y147. The owner-reported 130-inch first/last-center span remains unregistered; illustrated main-beam span121 is not a corrected measurement. Saved equipment coordinates and geometry are unchanged.",
   "scope": "Exterior with sleeping flares, side/rear glazing, running gear, hood lip, roof rack/light bar, driver-side Owl ladder, installed A/C, driver-side Starlink, four solar panels, two front-crossbar antennas, Maxxair fan, bagged snowboard and two rear clamp carriers, receiver, HAUL-MASTER 57720 carrier and 2021 KTM 350 SX-F. Awning, separate rear-door steps, spare carrier and interior remain deferred in the installed reference; independently saved planning layouts may include them.",
   "uncertainty": "No dimensional tolerance established. All unmeasured contours, seams, glazing, tires, lamps and stance are estimates. Do not derive mounting positions or usable clearance from shell surfaces.",
   "license": "Original model geometry and code: MIT. Supplied reference imagery and manufacturer trademarks are not relicensed.",
@@ -493,7 +493,7 @@
     "verification": "Private front-photo/render overlay with uniform scaling and translation; close-up inspected for surface contact. Camera perspective and dimensions uncalibrated."
   },
   "roofRack": {
-    "revision": "rack-3-owner-span",
+    "revision": "rack-4-rear-photo-boundary",
     "description": "Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar",
     "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/",
     "sourceScope": "Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.",
@@ -510,6 +510,7 @@
       "lowerSideRailCenterToTopRailBottomObservation": 4
     },
     "unresolved": [
+      "Measured 130 in crossbar-center span is not reconciled with the photo-estimated 121 in visible span; do not infer support capacity or move the saved planning origin",
       "Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed",
       "Whether the 6.5-inch observation reaches the crossbar top, center or bottom",
       "Identity of top rail in the separate 4-inch observation",
@@ -523,7 +524,12 @@
         0
       ],
       "firstCrossbarY": 26,
-      "lastCrossbarY": 156,
+      "lastCrossbarY": 147,
+      "sideRailFrontY": 26,
+      "sideRailRearY": 149,
+      "rearFairingLowerTipY": 150,
+      "rearFairingUpperY": 147,
+      "rearEndEvidence": "Driver and passenger photos show the rack ending over the roof. Rear beam, end caps and fairing are retracted to the final shell roof silhouette; exact offsets remain estimates. Front and intermediate stations, light bar and saved planning origin are unchanged.",
       "railCenterXs": [
         4.7,
         55.3
@@ -531,8 +537,8 @@
       "crossbarCenterZ": 6,
       "crossbarStations": [
         0,
-        0.23,
-        0.67,
+        0.2471074380165289,
+        0.7198347107438016,
         1
       ],
       "sideRailCenterZs": [
@@ -568,7 +574,7 @@
       "span": 52,
       "evidence": "Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured."
     },
-    "limits": "Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.",
+    "limits": "Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. The measured 130 in span is retained as an unregistered observation: the illustrated main-beam centers span 121 in after the rear correction. The side rails end at body Y149 (planning Y123), rear beam at body Y147, and fairing at Y150; all are photo estimates. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.",
     "coordinateFrame": "Body coordinates: X passengerward, Y rearward, Z up; units inches.",
     "modeledBounds": {
       "isBox3": true,
@@ -579,7 +585,7 @@
       },
       "max": {
         "x": 56.54999923706055,
-        "y": 159,
+        "y": 150,
         "z": 6.650000095367432
       }
     },
@@ -591,17 +597,17 @@
       ],
       [
         30,
-        55.900000000000006,
+        55.9,
         6
       ],
       [
         30,
-        113.10000000000001,
+        113.1,
         6
       ],
       [
         30,
-        156,
+        147,
         6
       ]
     ]
@@ -1958,5 +1964,8 @@
     "rearDetails": "Original hinge recesses, fasteners and parking-sensor outlines; no identifying plate text or photographic textures.",
     "limits": "Photo references establish appearance and side assignment, not dimensions or physical clearance. Magnetic retention, load rating, door sweep and motorcycle/board gaps are not validated. Utility covers are closed visual features; no electrical operation modeled.",
     "geometryLicense": "Original MIT geometry. No private images or identifying metadata redistributed."
+  },
+  "visualValidation": {
+    "rearRailEnds": "Owner side/overhead photos and final shell roof boundary compared. Rear rack ends corrected within final roof silhouette; exact dimensions unverified. Front/intermediate rack and saved planning datum remain unchanged."
   }
 }

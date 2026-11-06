@@ -198,12 +198,15 @@
     "rack": {
       "outsideWidthUpperBound": 52,
       "crossbarCenterSpan": 130,
+      "visualRailFrontY": 0,
+      "visualRailRearY": 123,
+      "visualCrossbarCenterSpan": 121,
       "railSectionWidthEstimate": 1.4,
       "railCenterXs": [
         4.7,
         55.3
       ],
-      "status": "Owner: just under 52 in outside rails; 130 in first-to-last crossbar centers. Drawing uses the 52 in upper bound, assumed centered on the 60 in roof reference and front crossbar at Y0. Datum alignment and rail section are unverified."
+      "status": "Owner: just under 52 in outside rails; 130 in first-to-last crossbar centers. The visible rack uses a photo-estimated Y0–123 rail span and Y0–121 main-beam centers after correcting the rear roof boundary. The reported 130 in center span remains unregistered and is NOT a verified support envelope. Width uses the 52 in upper bound centered on the 60 in reference. Planning origin, all saved fixtures and proposed panels are unchanged. Datum alignment, rail section and attachment are unverified."
     },
     "parts": [],
     "envelopes": [],
@@ -1281,7 +1284,7 @@
       "Raised span 8: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
       "Riser 8 driver: enters the bag’s 2 in top / 1 in side planning allowance for straps and handling. Removal path is not validated.",
       "Saved bag extends beyond the panel block. Its clamps, access, restraints and independent rack load path still need verification; preset does not move it.",
-      "Rack evidence: <52 in outside side rails and 130 in first-to-last crossbar centers. These are separate from the 60 × 122 roof reference; centering, origin alignment, rail section and attachment points are estimates.",
+      "Rack evidence: <52 in outside rails; owner-reported 130 in crossbar-center span. The corrected rail illustration ends at planning Y123 and its beam centers span 121 in; the measured 130 in has NOT been reconciled with that drawing or the separate 60 × 122 reference. Confirm endpoints before using support positions; no saved equipment moved.",
       "Bag clamp stations remain photo estimates; they have not been aligned to measured crossbar stations. Verify all clamp-to-bar connections before treating the cargo support as usable.",
       "Passenger awning mounts outside the rail. Cassette/mount volumes are estimates; arm sweep, service space and passenger-side cargo access are not modeled.",
       "Raised spans and cargo feet are illustrative, not a hardware design. Verify wind/uplift, rack loads, clamps, overall height, fan opening, A/C ventilation/service and cargo restraint/access. Cargo needs its own rated rack support; do not rest it on panels or bare roof."

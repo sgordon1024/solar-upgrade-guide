@@ -1,5 +1,5 @@
-import {buildRoofExtras} from './roof-extras.js?v=height1';
-import {buildSolarUpgrade} from './solar-upgrade.js?v=height1';
+import {buildRoofExtras} from './roof-extras.js?v=rail1';
+import {buildSolarUpgrade} from './solar-upgrade.js?v=rail1';
 import {buildEnvironment} from './environment.js?v=landing1';
 import {installInteractions} from './interactions.js?v=close1';
 import * as T from './vendor/three.module.js';
@@ -11,8 +11,8 @@ import {buildUnderbodyUpgrades} from './underbody-upgrades.js?v=upgrades2';
 import {buildShell,SHELL_SPEC} from './shell-model.js?v=close1';
 import {buildRearCarrier,CARRIER_SPEC} from './rear-carrier.js?v=close1';
 import {buildDirtbike,BIKE_SPEC} from './dirtbike.js?v=bike1';
-import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=close1';
-import {buildInstalledRoof} from './roof-equipment.js?v=rear1';
+import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=rail1';
+import {buildInstalledRoof} from './roof-equipment.js?v=rail1';
 import {buildExteriorDetails} from './exterior-details.js?v=close1';
 import {buildSideLadder} from './side-ladder.js?v=ladder1';
 import {OrbitControls} from './vendor/OrbitControls.js';

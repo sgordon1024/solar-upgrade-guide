@@ -4,14 +4,14 @@ import {buildRackWordmark} from './brand-emblems.js?v=close1';
 // Inches in the same body datum as the shell. Installation is a photo estimate;
 // owner observations are retained verbatim rather than silently joining datums.
 export const RACK_SPEC={
-  revision:'rack-3-owner-span',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
+  revision:'rack-4-rear-photo-boundary',description:'Open two-level roof rack with four exposed main crossbars, four inferred panel supports, sloping fairings and front LED bar',
   source:'https://www.entegracoach.com/models/previous-model-years/2024/launch/',
   sourceScope:'Entegra lists double roof rack and front/rear wind deflectors with front LED light bar. This source does not establish dimensions or hardware manufacturer.',
   ownerReported:{planningLength:122,planningWidth:60,railOutsideWidthObservation:'just under 52 inches',railOutsideWidthUpperBound:52,frontRearCrossbarCenters:130,crossbarForeAftWidth:2,crossbarHeight:1,sideSlotCenterSpacing:3,roofToTopCrossbarObservation:6.5,lowerSideRailCenterToTopRailBottomObservation:4},
-  unresolved:['Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed','Whether the 6.5-inch observation reaches the crossbar top, center or bottom','Identity of top rail in the separate 4-inch observation','Exact rail sections, hidden crossbars, mounting feet and light-bar model'],
-  installation:{status:'estimated',planningOrigin:[0,26,0],firstCrossbarY:26,lastCrossbarY:156,railCenterXs:[4.7,55.3],crossbarCenterZ:6,crossbarStations:[0,.23,.67,1],sideRailCenterZs:[2,5],frontFairingTipY:19,lightBarCenter:[30,23,4.9],lightBarSize:[49,2.6,3.1]},
+  unresolved:['Measured 130 in crossbar-center span is not reconciled with the photo-estimated 121 in visible span; do not infer support capacity or move the saved planning origin','Alignment of the 130 in crossbar-center span with the separate 122 × 60 roof reference; 52 in is an outside-width upper bound and centering is assumed','Whether the 6.5-inch observation reaches the crossbar top, center or bottom','Identity of top rail in the separate 4-inch observation','Exact rail sections, hidden crossbars, mounting feet and light-bar model'],
+  installation:{status:'estimated',planningOrigin:[0,26,0],firstCrossbarY:26,lastCrossbarY:147,sideRailFrontY:26,sideRailRearY:149,rearFairingLowerTipY:150,rearFairingUpperY:147,rearEndEvidence:'Driver and passenger photos show the rack ending over the roof. Rear beam, end caps and fairing are retracted to the final shell roof silhouette; exact offsets remain estimates. Front and intermediate stations, light bar and saved planning origin are unchanged.',railCenterXs:[4.7,55.3],crossbarCenterZ:6,crossbarStations:[0,29.9/121,87.1/121,1],sideRailCenterZs:[2,5],frontFairingTipY:19,lightBarCenter:[30,23,4.9],lightBarSize:[49,2.6,3.1]},
   panelSupports:{status:'estimated',count:4,bodyCenterYs:[33.5,49,83,99],centerZ:5.15,section:[1.25,1],span:52,evidence:'Four rows of exposed edge stubs and center-gap fasteners in the overhead photo. Continuous spans beneath panels, sections and heights are inferred, not measured.'},
-  limits:'Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.'
+  limits:'Owner measured <52 in outside side rails and 130 in front/rear crossbar centers. Drawn at the 52 in upper bound, assumed centered on roof reference with front crossbar at Y0. The measured 130 in span is retained as an unregistered observation: the illustrated main-beam centers span 121 in after the rear correction. The side rails end at body Y149 (planning Y123), rear beam at body Y147, and fairing at Y150; all are photo estimates. Intermediate crossbars and sections remain estimates. Photo-estimated registration and hardware. 6.5 inches is used only as an illustrative crossbar-top elevation, not a resolved measurement datum. The separate 4-inch observation is not used to solve heights. Four main beams are visible; four lower panel-support spans are inferred from partly exposed hardware. No load, mounting or equipment-clearance validation.'
 };
 
 export function buildRoofRack(){
@@ -24,15 +24,15 @@ export function buildRoofRack(){
   function cyl(a,b,r,m=metal,n=12,r2=r){const av=V(...a),bv=V(...b),d=bv.clone().sub(av),g=new T.CylinderGeometry(r2,r,d.length(),n);g.applyQuaternion(new T.Quaternion().setFromUnitVectors(V(0,1,0),d.normalize()));g.translate(...av.add(bv).multiplyScalar(.5).toArray());add(g,m);}
   function plate(points,m=frame){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(points.flat(),3));const idx=[];for(let j=1;j<points.length-1;j++)idx.push(0,j,j+1);g.setIndex(idx);g.computeVertexNormals();add(g,m);}
   function sidePlate(x,outline,thick=.16){const s=new T.Shape(outline.map(p=>new T.Vector2(...p))),g=new T.ExtrudeGeometry(s,{depth:thick,bevelEnabled:false});const a=g.attributes.position;for(let j=0;j<a.count;j++){const y=a.getX(j),z=a.getY(j),dx=a.getZ(j);a.setXYZ(j,x+dx-thick/2,y,z);}g.computeVertexNormals();add(g,frame);}
-  const i=RACK_SPEC.installation,y0=i.firstCrossbarY,y1=i.lastCrossbarY;
+  const i=RACK_SPEC.installation,y0=i.firstCrossbarY,y1=i.lastCrossbarY,r0=i.sideRailFrontY,r1=i.sideRailRearY;
   const roofApprox=(x,y)=>-9*Math.pow(Math.abs(x-30)/36,10)-.35*T.MathUtils.clamp((y-135)/14,0,1)-.08*(1-T.MathUtils.clamp((y-26)/10,0,1));
   // Longitudinal extrusions have open daylight between levels, not basket walls.
   for(const x of i.railCenterXs){
     for(const [z,h] of [[2,1.05],[5,1.2]]){
-      box([x,(y0+y1)/2,z],[1.4,y1-y0,h]);
-      for(const s of [-1,1])box([x+s*.708,(y0+y1)/2,z],[.025,y1-y0-.5,.19],recess);
-      box([x,(y0+y1)/2,z+h/2+.012],[.34,y1-y0-.5,.03],recess);
-      for(const y of [y0-.035,y1+.035])box([x,y,z],[1.43,.1,h+.03],recess);
+      box([x,(r0+r1)/2,z],[1.4,r1-r0,h]);
+      for(const s of [-1,1])box([x+s*.708,(r0+r1)/2,z],[.025,r1-r0-.5,.19],recess);
+      box([x,(r0+r1)/2,z+h/2+.012],[.34,r1-r0-.5,.03],recess);
+      for(const y of [r0-.035,r1+.035])box([x,y,z],[1.43,.1,h+.03],recess);
     }
     for(const y of [30,65,110,144]){
       const base=roofApprox(x,y);
@@ -76,8 +76,9 @@ export function buildRoofRack(){
   for(const x of [6,22,30,38,54]){const z=x===6||x===54?2:2.55;cyl([x,fy(z)-.13,z],[x,fy(z)-.25,z],.25,amber,12);}
   // The photo-referenced serif fairing wordmark is added below as a separate mesh.
   // Rear fairing is partially obscured in the photo; retain an open center roof.
-  plate([[4,159,1.25],[56,159,1.25],[55.3,156,5.6],[4.7,156,5.6]]);
-  for(const x of i.railCenterXs)sidePlate(x,[[155,1.5],[159,1.25],[156,5.6],[154.8,5.6]],.2);
+  const rearTip=i.rearFairingLowerTipY,rearTop=i.rearFairingUpperY;
+  plate([[4,rearTip,1.25],[56,rearTip,1.25],[55.3,rearTop,5.6],[4.7,rearTop,5.6]]);
+  for(const x of i.railCenterXs)sidePlate(x,[[rearTop-1,1.5],[rearTip,1.25],[rearTop,5.6],[rearTop-1.2,5.6]],.2);
   for(const [m,b] of buckets){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(b.p,3));g.setAttribute('normal',new T.Float32BufferAttribute(b.n,3));g.setIndex(b.i);const mesh=new T.Mesh(g,m);mesh.name=m.name;mesh.castShadow=true;mesh.receiveShadow=false;group.add(mesh);}
   const wordmark=buildRackWordmark();group.add(wordmark.group);Object.assign(materials,wordmark.materials);
   group.userData={spec:RACK_SPEC,bounds:new T.Box3().setFromObject(group),crossbarCenters:i.crossbarStations.map(t=>[30,y0+(y1-y0)*t,i.crossbarCenterZ]),panelSupportCenters:RACK_SPEC.panelSupports.bodyCenterYs.map(y=>[30,y,RACK_SPEC.panelSupports.centerZ])};
