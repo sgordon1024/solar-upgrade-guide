@@ -1,4 +1,4 @@
-import {buildShell} from './shell-model.js?v=seam1';
+import {buildShell} from './shell-model.js?v=body16';
 
 // Original visual approximation, not an OEM channel section or mounting design.
 export const ROOF_MOUNT_SPEC={

@@ -3,7 +3,7 @@ import {buildDriverDetails} from './driver-details.js?v=driveraccess1';
 import {buildRearDifferential} from './rear-differential.js?v=housing1';
 // Original reference-informed reconstruction. Inches, X right, Y rear, Z up.
 // Reference images are not bundled. These surfaces are estimates, not factory CAD.
-export const SHELL_SPEC={revision:'shell-15-subtle-panel-gaps',units:'in',seamTreatment:{status:'photo-informed visual approximation',description:'Subtle matte dark joint ribbons; raised painted outline tubes removed from roof shoulders and upper side panels. Real stamped relief, metal door track, trim and moving seams retained.',physicalGapDimensionsVerified:false},wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,shoulderWidth:2.25,aftTopInset:2,passengerAftTopInset:4.5,passengerBottomRise:1,shoulderProfile:'convex quarter-round; no inset surround',driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:118.5,centerZ:-29.3,length:25,height:10.3,cornerRadius:3}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},slidingDoorTrack:{status:'photo-estimated',side:'passenger',frontY:81,rearY:136.5,centerZ:-46.8,height:2.1,maxProjection:.95,description:'Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only',measuredDimensions:null,measurementRequest:'E13'},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20,passengerAftUpperCornerRadius:.35},frontCorners:{status:'photo-estimated',description:'Monotone hood width and shared front/side bumper boundary; no pinched corner groove',measurementRequest:'E06'},mirrors:{status:'photo-estimated',centerXFromCenterline:42.5,centerY:-21.6,centerZ:-44,housingWidth:7.8,housingHeight:13.2,housingDepth:5.1,glass:'main pane and lower convex-pane appearance',indicator:'lower outboard vertical lens',measurementRequest:'E17'},passengerDoorHandles:{status:'photo-estimated',cabCenterY:9,slidingCenterY:29,centerZ:-52.8,housingLength:9.6,housingHeight:3.6,gripLength:7.4,gripDiameter:.9,measurementRequest:'E16'},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
+export const SHELL_SPEC={revision:'shell-16-shoulder-bumper-returns',units:'in',bodyRefinement:{status:'photo-informed visual approximation',shoulderBlendDepth:6,shoulderStartY:10,shoulderFullStartY:30,shoulderFullEndY:138,shoulderEndY:151,rearReturnFrontY:148.2,rearReturnBackY:157.45,rearReturnOuterHalfWidth:40.2,rearReturnTopZ:-86.15,rearReturnBottomZ:-91.45,limits:'Curvature, return section and hidden mounts are unmeasured. Roof loft, channel seating, central bumper, rear hinge positions and planning origin retained.'},seamTreatment:{status:'photo-informed visual approximation',description:'Subtle matte dark joint ribbons; raised painted outline tubes removed from roof shoulders and upper side panels. Real stamped relief, metal door track, trim and moving seams retained.',physicalGapDimensionsVerified:false},wheelbase:144,length:234,width:79.5,roofToGround:107.75,frontAxleY:-36,rearAxleY:108,frontY:-76.5,rearY:157.5,bodyStatus:'estimated',wheelbaseStatus:'owner-reported',referenceCount:33,hoodDeflector:{status:'photo-estimated',brand:null,measuredDimensions:null,description:'Black tapered hood leading-edge lip with shallow raised ridge, from owner front photo'},sleepingFlares:{status:'estimated',centerY:112.5,centerZ:-32.5,length:64,height:27.625,cornerRadius:3.2,shoulderWidth:2.25,aftTopInset:2,passengerAftTopInset:4.5,passengerBottomRise:1,shoulderProfile:'convex quarter-round; no inset surround',driverProjection:5.25,passengerProjection:3.25,driverFrontProjection:1.4,passengerFrontProjection:.8,driverWindow:{centerY:118.5,centerZ:-29.3,length:25,height:10.3,cornerRadius:3}},rearWindows:{status:'estimated',topZ:-17.4,bottomZ:-49.5,halfWidth:33.2,centerGap:.32},slidingDoorTrack:{status:'photo-estimated',side:'passenger',frontY:81,rearY:136.5,centerZ:-46.8,height:2.1,maxProjection:.95,description:'Bright upper/lower channel lips, recessed metal web and dark rear end stop; closed-door appearance only',measuredDimensions:null,measurementRequest:'E13'},camperWindows:{status:'estimated',frontY:24,rearY:79.8,topZ:-18.5,bottomZ:-49,driverVentCenterY:43,passengerVentCenterY:41.5,driverVentCenterZ:-32.5,passengerVentCenterZ:-32,ventLength:16,ventHeight:20,passengerAftUpperCornerRadius:.35},frontCorners:{status:'photo-estimated',description:'Monotone hood width and shared front/side bumper boundary; no pinched corner groove',measurementRequest:'E06'},mirrors:{status:'photo-estimated',centerXFromCenterline:42.5,centerY:-21.6,centerZ:-44,housingWidth:7.8,housingHeight:13.2,housingDepth:5.1,glass:'main pane and lower convex-pane appearance',indicator:'lower outboard vertical lens',measurementRequest:'E17'},passengerDoorHandles:{status:'photo-estimated',cabCenterY:9,slidingCenterY:29,centerZ:-52.8,housingLength:9.6,housingHeight:3.6,gripLength:7.4,gripDiameter:.9,measurementRequest:'E16'},runningGear:{status:'estimated',tireModel:'BFGoodrich All-Terrain T/A KO3',tireSize:'LT245/70R17 LR-E',tireSizeStatus:'owner-recorded',tireDiameter:30.5,tireSectionWidth:9.65,wheelDiameter:17,wheelOuterLipDiameter:18.5,wheelWidth:7.5,wheelStyle:'six forked spokes',wheelModel:null,trackWidth:72.2,axleZ:-92.5,referenceModelAxleZ:-87.8,modelStanceAdjustment:4.7,actualSuspensionLift:null,hubToArch:23,suspension:'Owl Arrow Trail 2500 / Falcon',groundZ:-107.75}};
 export function buildShell({includeFlares=false,includeCamperWindows=false,includeRunningGear=false}={}){
  const group=new T.Group();group.name='Sprinter 144 high-roof reference reconstruction';
  const mats={};const material=(name,color,metalness=0,roughness=.5)=>mats[name]=new (name.includes('glass')?T.MeshPhysicalMaterial:T.MeshStandardMaterial)({name,color,metalness,roughness,side:T.DoubleSide});
@@ -44,6 +44,15 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  function roundedRectDistance(x,y,cx,cy,w,h,r){const dx=Math.abs(x-cx)-(w/2-r),dy=Math.abs(y-cy)-(h/2-r);return Math.min(Math.max(dx,dy),0)+Math.hypot(Math.max(dx,0),Math.max(dy,0))-r;}
  const step=(a,b,x)=>{const t=T.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
  function sideWidth(y,z,relief=true){const upper=top(y)-edgeDrop(y),v=(z-upper)/(-91-upper);let w=topW(y)+(39.75-topW(y))*Math.sin(Math.min(1,v*1.25)*Math.PI/2);w-=1.1*step(-79,-91,z); // sill taper, below belt
+  // Photo-guided rounded shoulder: start tangent to the existing roof, then
+  // decay smoothly into the unchanged side within six inches. The roof and
+  // its track seating stay bit-identical. No new gutter or stamped outline.
+  const depth=upper-z,h=SHELL_SPEC.bodyRefinement.shoulderBlendDepth;
+  if(depth>=0&&depth<h){
+   const power=10+14*step(-49,-40,y)*(1-step(-12,30,y));
+   const roofRate=topW(y)/(edgeDrop(y)*power),sideRate=(39.75-topW(y))*1.25*Math.PI/2/(91+upper),t=depth/h;
+   w+=(roofRate-sideRate)*h*t*(1-t)**3*step(10,30,y)*(1-step(138,151,y));
+  }
   // Pinched nose and rounded rear corner.
   const noseT=T.MathUtils.clamp((y+76.5)/13.5,0,1);w-=3.4*(1-Math.sqrt(Math.max(0,1-(1-noseT)**2)))*step(-62,-89,z);
   if(relief&&y>19&&y<151){const d=roundedRectDistance(y,z,85,-34,127,32,4.2);w-=.62*(1-step(-.6,1.2,d))*(includeFlares?1-step(75,80,y):1); // Converted rear flare surround has no stock recessed-panel trough.
@@ -257,6 +266,15 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  box(rp(-16.5,-75.6,.4),[21.5,1.1,6.1],plastic,.6);box(rp(-16.5,-75.6,1),[19.7,.3,4.8],steel,.3);box(rp(-16.5,-71.9,1),[24,1.7,1.3],plastic,.5);
  motionPart='';
  box([30,156,-88.8],[78,3,5.3],plastic,2);
+ // Photo-observed plastic returns around each rear quarter. Keep the original
+ // transverse bumper/sensors and exact outer length; only fill the missing
+ // wrap, below the moving rear leaves. Section/return length are estimates.
+ for(const sign of [-1,1]){
+  const centerline=[[38.5,148.2],[39.1,150.5],[39.25,153.3],[39,155.1],[38.2,156],[35.3,156.55]];
+  const curve=new T.CatmullRomCurve3(centerline.map(([x,y])=>V(x,y,-88.8)),false,'catmullrom',.2);
+  const o=patch((u,v)=>{const p=curve.getPoint(u),a=v*Math.PI*2,tangent=curve.getTangent(u),nx=tangent.y,ny=-tangent.x,fade=.25+.75*step(0,.14,u),rad=.9*fade;return[30+sign*(p.x+nx*rad*Math.cos(a)),Math.min(157.45,p.y+ny*rad*Math.cos(a)),-88.8+2.65*Math.sin(a)];},40,24,plastic,'Rounded rear bumper corner return');
+  o.userData.stationaryBumperReturn=true;
+ }
  box([30,156.3,-1.55],[13,.5,1.2],red,.4);box([30,155.4,-.2],[3.4,3,2.4],plastic,.7);
  // Seven stamped roof ribs and the two longitudinal gutters, following roof crown.
  for(const x of [-26,-18,-9,0,9,18,26]){const segments=(Math.abs(x)<10)?[[26,48],[80,146]]:[[26,146]];for(const [a,b] of segments){patch((u,v)=>{const y=a+(b-a)*u,xx=x+(v*2-1)*1.05,fade=step(a,a+4,y)*(1-step(b-4,b,y));return [30+xx,y,roof(xx,y)+Math.sin(v*Math.PI)*.25*fade];},80,8,paint,'Stamped roof rib');}}
@@ -366,6 +384,22 @@ export function buildShell({includeFlares=false,includeCamperWindows=false,inclu
  let seamMax=0;for(let i=0;i<=64;i++)seamMax=Math.max(seamMax,distance(point(capMesh,8*65+i),roofEdge));
  for(let j=0;j<=128;j++)for(const [k,edge] of [[0,sideEdges[0]],[128,sideEdges[1]]])seamMax=Math.max(seamMax,distance(point(rearMesh,j*129+k),edge));
  group.userData.rearBoundaryMaxDistance=seamMax;
+ // Separate roof/side patches share positions but formerly lit like a hard edge.
+ // Match boundary normals after all deformations; retain geometric stamped lines.
+ const roofNormals=roofMesh.geometry.attributes.normal;
+ const shoulderNormalErrors=[];
+ for(let k=0;k<sideMeshes.length;k++){
+  const side=sideMeshes[k],a=side.geometry.attributes.position,n=side.geometry.attributes.normal,edgeI=k===0?0:56;
+  for(let i=0;i<=400;i++){
+   const id=60*401+i,p=point(side,id),weight=step(10,30,p.y)*(1-step(138,151,p.y));if(!weight)continue;
+   const f=i/2,j=Math.floor(f),t=f-j,one=new T.Vector3().fromBufferAttribute(roofNormals,j*57+edgeI),two=new T.Vector3().fromBufferAttribute(roofNormals,Math.min(200,j+1)*57+edgeI),target=one.lerp(two,t).normalize(),current=new T.Vector3().fromBufferAttribute(n,id);
+   if(current.dot(target)<0)target.negate();current.lerp(target,weight).normalize();n.setXYZ(id,current.x,current.y,current.z);
+   if(weight===1)shoulderNormalErrors.push(1-Math.abs(current.dot(target)));
+  }
+ }
+ group.userData.shoulderNormalMaxError=Math.max(0,...shoulderNormalErrors);
+ group.userData.rearBumperReturnBounds=new T.Box3();for(const o of group.children)if(o.userData.stationaryBumperReturn)group.userData.rearBumperReturnBounds.expandByObject(o);
+
  // Final mesh centerline for regression checks of the windshield-to-roof curvature.
  group.userData.cabRoofSections=[1,3,7,14,21,28,35,42,49,53,55].map(i=>Array.from({length:201},(_,j)=>point(roofMesh,j*57+i)).filter(p=>p.z>-19.5&&p.y<29).map(p=>({y:p.y,z:p.z})));
  group.userData.cabRoofCenterline=group.userData.cabRoofSections[5];

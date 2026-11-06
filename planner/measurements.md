@@ -159,3 +159,8 @@ Measure underside clearance from one consistent roof/rack datum across every pro
 
 ### E22 — Aluminum roof tracks and Owl upper mount
 When practical, take one close side/overhead photo of an upper ladder bracket showing the silver track, black rail and fastening points together. Then measure the track outside width/height and ladder bracket center from the front crossbar, one measurement at a time. Current silver profile 1.85 × 0.42 inches, channel endpoints and hidden bracket/fastener geometry are visual estimates; lower ladder placement and roof layout are preserved.
+
+### E23–E24 — Upper body shoulder and rear bumper
+
+- **E23 — Shoulder/track relationship:** When practical, take a straight rear/end view showing both roof shoulders and silver mounting tracks; include a ruler or known straightedge in the same plane. The six-inch blend region and sub-0.20-inch digital surface correction are visual estimates, not measured vehicle tolerances. Preserve the established roof-layout origin when recording coordinates.
+- **E24 — Rear bumper returns:** Measure how far each plastic return reaches forward from the closed rear-door plane, then its outward projection and upper/lower edges relative to the lower door edge. Current return profile, end taper and hidden fastening are estimated. Receiver, door sweep and carrier clearances need actual measurements before planning an attachment.

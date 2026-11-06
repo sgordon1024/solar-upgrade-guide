@@ -2047,5 +2047,33 @@
     "status": "photo-informed visual approximation",
     "description": "Subtle matte dark joint ribbons; raised painted outline tubes removed from roof shoulders and upper side panels. Real stamped relief, metal door track, trim and moving seams retained.",
     "physicalGapDimensionsVerified": false
+  },
+  "bodyRefinement": {
+    "revision": "shell-16-shoulder-bumper-returns",
+    "status": "photo-informed visual approximation",
+    "shoulderBlendDepth": 6,
+    "shoulderStartY": 10,
+    "shoulderFullStartY": 30,
+    "shoulderFullEndY": 138,
+    "shoulderEndY": 151,
+    "rearReturnFrontY": 148.2,
+    "rearReturnBackY": 157.45,
+    "rearReturnOuterHalfWidth": 40.2,
+    "rearReturnTopZ": -86.15,
+    "rearReturnBottomZ": -91.45,
+    "limits": "Curvature, return section and hidden mounts are unmeasured. Roof loft, channel seating, central bumper, rear hinge positions and planning origin retained.",
+    "evidence": "Owner front and side photographs show a continuous rounded upper shoulder. Rear close-ups show molded plastic returns around each rear quarter. Photos establish appearance, not exact curvature or section dimensions.",
+    "nominalReferences": {
+      "wheelbase": 144,
+      "exteriorLength": 234,
+      "manufacturerExteriorWidth": 82,
+      "bareBodyWidthEstablished": false,
+      "source": "https://www.entegracoach.com/models/previous-model-years/2024/launch/"
+    },
+    "preserved": "Roof surface and mounting-channel seating, planning origin, equipment transforms, central rear bumper and door pivots. No saved-layout migration.",
+    "measurementRequests": [
+      "E23",
+      "E24"
+    ]
   }
 }
