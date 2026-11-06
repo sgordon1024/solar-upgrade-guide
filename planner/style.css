@@ -79,3 +79,6 @@ body:not(.planning-mode) .workspace{grid-template-columns:1fr}body:not(.planning
 
 .is-loading .slide-dock{display:none!important}
 .concept-dialog>header,.concept-dialog>header h2,.concept-dialog>header p{color:#20372d}.concept-dialog>header p{opacity:1}
+
+/* Direct solar action keeps explicit editing one tap away on phones. */
+.slide-dock{width:min(390px,calc(100vw - 24px));box-sizing:border-box}.slide-dock div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.slide-dock button{min-width:0;padding:8px;font-size:12px}

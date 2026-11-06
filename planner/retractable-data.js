@@ -15,6 +15,16 @@
  const full=a.map(s=>({...s.panel,x:s.base.x+s.dx})),current=a.map(s=>s.panel),bounds=items=>items.reduce((b,p)=>b?union(b,p):{...p},null),fixed=root.RooflabSolar.envelopes(state.upgrades.solar),count=a.filter(s=>s.fraction===1).length,partial=a.filter(s=>s.fraction>0&&s.fraction<1).length;
  return {version:1,active,nominalHouseWatts:active?1600:(state.upgrades.solar.enabled?800:0),separateChassisWatts:state.upgrades.roofExtras.chassis.enabled?50:0,fullyExtended:count,partiallyExtended:partial,stowed:4-count-partial,currentFootprint:bounds([...fixed,...current]),deployedFootprint:bounds([...fixed,...full]),contacts,geometry:a,limits:'Concept only. Panel dimensions follow the selected HQST envelope; tracks, actuators, brackets, cable paths and attachment geometry are estimates. Swept boxes screen intersections, not engineering clearances. Hidden items still count. 1600 W is eight panel nameplates, not guaranteed output. Stowed lower panels are covered; partial shading cannot be converted to watts by area. Full extension does not establish sky exposure. The separate 50 W chassis circuit stays separate. Existing 800 W electrical calculations do not validate this 1600 W concept. MPPT input/output ratings, cold Voc, current, wiring/protection, battery acceptance and shading topology remain unresolved. Wider parked footprint, cantilever/wind loads and rack/roof structure are unverified. Stow before travel; the demo interlock is not a physical safety system.'};}
  function step(pose,target,dt,reduced=false){return target.map((v,i)=>reduced?v:pose[i]+Math.sign(v-pose[i])*Math.min(Math.abs(v-pose[i]),Math.max(0,Math.min(.05,dt))*.65));}
+ // Target-based toggling reverses an animation immediately and handles mixed
+ // partial settings deterministically: any nonzero target -> stow; otherwise deploy.
+ function tapPanel(state,id,editing=false){
+  if(!/^(proposal|slideout|existing)-[0-3]$/.test(id)&&id!=='roof-chassis')return {kind:'ignore'};
+  if(editing)return {kind:'edit',id:id.startsWith('slideout-')?'proposal-'+id.slice(9):id};
+  const d=validate(state.upgrades.retractable),enabledNow=!(state.upgrades.solar.enabled&&d.enabled),target=enabledNow||!d.extensions.some(n=>n>0)?1:0;
+  state.upgrades.solar.enabled=true;
+  state.upgrades.retractable={...d,enabled:true,extensions:[target,target,target,target]};
+  return {kind:target?'deploy':'stow',enabledNow};
+ }
  const travelBlocked=(state,pose)=>!!(state.upgrades.solar.enabled&&validate(state.upgrades.retractable).enabled&&[...validate(state.upgrades.retractable).extensions,...(pose||[])].some(n=>n>.0001));
- root.RooflabRetractable={defaults,validate,assemblies,report,rackBoxes,step,travelBlocked,hit};
+ root.RooflabRetractable={defaults,validate,assemblies,report,rackBoxes,step,travelBlocked,hit,tapPanel};
 })(globalThis);

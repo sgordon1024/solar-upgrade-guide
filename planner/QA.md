@@ -399,3 +399,5 @@ Run `node planner/tests/ladder-mount.test.mjs` alongside rail-ends, retractable,
 
 ## Panel-gap visual cleanup
 Compare the upper driver/passenger panels with the owner close-up: no bright raised line overlays across the roof shoulder or upper side. Preserve true vertical door gaps, stamped relief, sill/arch trim, bright sliding-door guide and silver roof tracks. Inspect oblique white/desert/rain lighting, phone layout and open/closed doors. Geometry/controller/body-details, ladder/rail, retractable and landing regression suites must pass.
+
+Direct-tap regression: verify every installed/fixed/sliding panel and the separate chassis panel can toggle; first enable preserves geometry; partial targets stow; rapid taps reverse; roof-editor selection/rotation does not deploy; orbit drag/multitouch/hidden/occluded parts do not toggle; undo/reload/export retain intended settings and snapshots; wheel demo stays blocked through retraction.

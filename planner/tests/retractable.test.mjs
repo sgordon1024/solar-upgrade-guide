@@ -23,3 +23,31 @@ const frames=new Map(),listeners={};let id=0;globalThis.requestAnimationFrame=fn
 const animState=structuredClone(state);animState.upgrades.retractable={...D.defaults(),enabled:true};const animated=buildRetractable();animated.update(animState);animState.upgrades.retractable.extensions.fill(1);animated.update(animState);const run=(count,start=performance.now())=>{for(let i=1;i<=count;i++){const f=[...frames.values()];frames.clear();for(const cb of f)cb(start+i*50);}};run(8);assert(animated.pose[0]>0&&animated.pose[0]<1);const halfway=animated.pose[0];animState.upgrades.retractable.extensions.fill(0);animated.update(animState);run(3);assert(animated.pose[0]<halfway);run(40);assert.deepEqual(animated.pose,[0,0,0,0]);assert.equal(frames.size,0);animState.upgrades.retractable.extensions=[1,.5,0,1];animated.update(animState);document.hidden=true;listeners.visibilitychange();assert.deepEqual(animated.pose,[1,.5,0,1]);assert.equal(frames.size,0);document.hidden=false;animState.upgrades.retractable.extensions.fill(0);animated.update(animState);media.matches=true;listeners['media-change']();assert.deepEqual(animated.pose,[0,0,0,0]);assert.equal(frames.size,0);
 for(const s of D.assemblies(animState,[1,1,1,1]))for(let j=0;j<2;j++){const t=s.tracks[j],mid=s.middle[j],moving=s.moving[j];assert(Math.min(t.x+t.width,mid.x+mid.width)>Math.max(t.x,mid.x),'Fixed/middle track overlap');assert(Math.min(moving.x+moving.width,mid.x+mid.width)>Math.max(moving.x,mid.x),'Middle/moving overlap');}
 console.log('PASS scheduled animation, interruption/reversal, repeat/finish idle, hidden-tab settle, reduced-motion change and connected full-stroke track stages.');
+
+// Direct taps use synthetic state only; private favorite data is never a fixture.
+const tapped=plain(fresh.ctx.api.get());tapped.upgrades.solar.enabled=false;
+const fixed=structuredClone(tapped.upgrades.solar.panels),installedBefore=structuredClone(tapped.installedRoof),extrasBefore=structuredClone(tapped.upgrades.roofExtras);
+for(const id of ['existing-0','existing-1','existing-2','existing-3','proposal-0','proposal-1','proposal-2','proposal-3','slideout-0','slideout-1','slideout-2','slideout-3','roof-chassis']){
+ tapped.upgrades.retractable=D.defaults();tapped.upgrades.solar.enabled=false;
+ assert.equal(D.tapPanel(tapped,id).kind,'deploy');assert(tapped.upgrades.solar.enabled);assert.deepEqual(tapped.upgrades.retractable.extensions,[1,1,1,1]);assert(D.travelBlocked(tapped));
+ assert.equal(D.tapPanel(tapped,id).kind,'stow');assert.deepEqual(tapped.upgrades.retractable.extensions,[0,0,0,0]);
+ assert(D.travelBlocked(tapped,[.2,0,0,0]));assert(!D.travelBlocked(tapped,[0,0,0,0]));
+ tapped.upgrades.retractable.extensions=[0,.15,1,0];assert.equal(D.tapPanel(tapped,id).kind,'stow');
+ for(let j=0;j<9;j++)D.tapPanel(tapped,id);assert.deepEqual(tapped.upgrades.retractable.extensions,[1,1,1,1]);
+ const unchanged=structuredClone(tapped);assert.equal(D.tapPanel(tapped,id,true).kind,'edit');assert.deepEqual(tapped,unchanged);
+ assert.deepEqual(tapped.upgrades.solar.panels,fixed);assert.deepEqual(tapped.installedRoof,installedBefore);assert.deepEqual(tapped.upgrades.roofExtras,extrasBefore);
+}
+assert.equal(D.tapPanel(tapped,'slideout-2',true).id,'proposal-2');
+const notSolar=structuredClone(tapped);assert.equal(D.tapPanel(tapped,'roof-cargo').kind,'ignore');assert.deepEqual(tapped,notSolar);
+const reopened=boot(tapped);assert.deepEqual(plain(reopened.ctx.api.get()),tapped);assert.deepEqual(plain(reopened.ctx.api.valid(tapped)),tapped);
+console.log('PASS every solar family toggle, first-enable, partial/rapid reversal, edit isolation, fixed/equipment preservation, separate chassis, travel completion and persistence.');
+
+// Exercise actual UI handlers with deterministic nodes and real state helpers.
+const nodes=new Map(),node=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,open:false,value:'',checked:false,textContent:'',innerHTML:'',showModal(){this.open=true},close(){this.open=false}});return nodes.get(id);};
+let solarRefresh=0,selected='',savedUI;const uiState=plain(fresh.ctx.api.get());uiState.upgrades.solar.enabled=false;
+const ui={RooflabRetractable:D,RooflabSnapshots:N,state:uiState,$:node,window:{rooflabSelectPanel:id=>selected=id},document:{querySelectorAll:()=>[]},structuredClone,save:()=>savedUI=structuredClone(uiState),draw(){},renderSolarControls(){solarRefresh++},esc:x=>x,toast(){}};vm.createContext(ui);vm.runInContext(fs.readFileSync(new URL('../retractable-ui.js',import.meta.url),'utf8'),ui);
+const beforeUI=structuredClone(uiState);ui.window.rooflabTapSolar('existing-2');assert(uiState.upgrades.solar.enabled);assert.equal(solarRefresh,1);node('#slide-dock-edit').onclick();assert.equal(selected,'proposal-2','edit follows the same numbered fixed panel after stock replacement');assert.equal(savedUI.upgrades.retractable.extensions[0],1);
+node('#slide-undo').onclick();assert.deepEqual(uiState,beforeUI);assert.equal(solarRefresh,2,'undo synchronizes solar controls');
+ui.window.rooflabRoofEditing=()=>true;ui.window.rooflabTapSolar('slideout-3');assert.equal(selected,'proposal-3');assert.deepEqual(uiState,beforeUI,'editing never deploys');
+ui.window.rooflabRoofEditing=()=>false;ui.window.rooflabTapSolar('roof-chassis');node('#slide-edit-roof').onclick();assert.equal(selected,'roof-chassis');
+console.log('PASS actual UI first-enable, same-panel edit shortcut, synchronized visibility controls, undo, editor isolation and chassis shortcut.');

@@ -78,3 +78,22 @@ control.reset();motion.matches=true;motion.fire('change');camera.position.set(54
 
 // Extended concepts stop active motion and block both direct and wheel-prefixed activation.
 control.reset();driveAllowed=true;control.activate('wheels');assert.equal(control.target.wheels,1);driveAllowed=false;control.enforceTravel();assert.equal(control.target.wheels,0);assert.equal(control.state.wheels,0);control.activate('wheel-front-driver');assert.equal(control.target.wheels,0);driveAllowed=true;control.activate('wheels');assert.equal(control.target.wheels,1);control.reset();control.activate('slideout-2');assert.equal(panelSelections.at(-1),'slideout-2');console.log('PASS slide-out travel inhibition, active-demo stop, tire activation guard and selectable slider routing.');
+
+// Solar surface picking uses the real meshes, including the installed references.
+proposal.group.visible=false;extras.group.visible=false;installed.group.visible=true;
+for(const part of installed.group.children)if(part.userData.installedSolar)part.visible=true;
+camera.position.set(30,80,400);camera.lookAt(30,80,0);camera.updateMatrixWorld();
+for(const part of installed.group.children.filter(o=>o.userData.installedSolar)){
+ const box=new T.Box3().setFromObject(part),center=box.getCenter(new T.Vector3());tapWorld([center.x,center.y,box.max.z]);assert.equal(panelSelections.at(-1),part.userData.selectable);
+}
+installed.group.visible=false;
+const {buildRetractable}=await import('../retractable-model.js');const sliders=buildRetractable();
+const sliderState={upgrades:{solar:layout,retractable:{...RooflabRetractable.defaults(),enabled:true,extensions:[1,1,1,1]}}};sliders.update(sliderState);body.add(sliders.group);
+for(const a of RooflabRetractable.assemblies(sliderState)){const p=a.panel,o=sliders.group.position;tapWorld([o.x+p.x+p.width/2,o.y+p.y+p.length/2,o.z+p.z+p.height]);assert.equal(panelSelections.at(-1),'slideout-'+a.i);}
+const a=RooflabRetractable.assemblies(sliderState)[0],o=sliders.group.position,screen=new T.Vector3(o.x+a.panel.x+a.panel.width/2,o.y+a.panel.y+a.panel.length/2,o.z+a.panel.z+a.panel.height).project(camera),ev={pointerId:11,button:0,clientX:(screen.x+1)*400,clientY:(1-screen.y)*300},beforeTap=panelSelections.length;
+canvas.fire('pointerdown',ev);canvas.fire('pointerup',{...ev,clientX:ev.clientX+20});assert.equal(panelSelections.length,beforeTap,'pointerup-only drag cannot deploy');
+canvas.fire('pointerdown',ev);canvas.fire('pointercancel',ev);canvas.fire('pointerup',ev);assert.equal(panelSelections.length,beforeTap,'cancel cannot deploy');
+canvas.fire('pointerdown',ev);canvas.fire('pointerdown',{...ev,pointerId:12});canvas.fire('pointerup',{...ev,pointerId:12});canvas.fire('pointerup',ev);assert.equal(panelSelections.length,beforeTap,'multi-touch cannot deploy');
+for(let i=0;i<4;i++){canvas.fire('pointerdown',ev);canvas.fire('pointerup',ev);}assert.equal(panelSelections.length,beforeTap+4,'rapid taps delivered once each');
+sliders.group.visible=false;canvas.fire('pointerdown',ev);canvas.fire('pointerup',ev);assert.equal(panelSelections.length,beforeTap+4,'hidden sliders not selectable');
+console.log('PASS stock and sliding mesh hits; cancelled, displaced-up, multi-touch and hidden suppression; rapid taps delivered once.');

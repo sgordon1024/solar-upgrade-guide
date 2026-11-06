@@ -16,9 +16,10 @@
  function commit(){$('#roof-edit-export-status').textContent='Layout updated. Export a fresh JSON file and attach it here for review. Nothing is shared automatically.';save();renderBagControls();renderSolarControls();draw();render();}
  function flush(){if(scheduled){cancelAnimationFrame(scheduled);scheduled=0;commit();}}
  function open(id){if(typeof id==='string')chosen=id;closeBagMover();$('#show-equipment').checked=false;$('#show-installed-roof').checked=true;window.rooflabView?.prepareRoofEdit?.();render();openedAt=performance.now();dialog.showModal();$('#roof-edit-object').focus();if(matchMedia('(max-width: 900px)').matches)$('#roof-edit-object').scrollIntoView({block:'start'});}
- function close(){flush();dialog.close();window.rooflabView?.prepareRoofEdit?.();$('#scene').focus();}
+ function close(){flush();dialog.close();if(state.upgrades.solar.enabled&&state.upgrades.retractable?.enabled)window.rooflabView?.showSlideouts?.();else window.rooflabView?.prepareRoofEdit?.();$('#scene').focus();}
  $('#open-roof-editor').onclick=open;$('#bag-open-roof-editor').onclick=open;$('#roof-edit-close').onclick=close;dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
  window.rooflabSelectPanel=id=>open(id);
+ window.rooflabRoofEditing=()=>dialog.open;
  $('#roof-edit-rotate').onclick=()=>{if(!R.rotate(state,chosen))toast('Rotation would exceed the movement range. Move the panel inward first.');commit();};
  $('#roof-raise-supports').onclick=()=>{const change=R.raiseToSupports(state,chosen);if(!change)return;lowerUndo=null;heightUndo=change;commit();};$('#roof-undo-height').onclick=()=>{if(R.undoSupportRaise(state,heightUndo)){heightUndo=null;commit();}};
  $('#roof-lower-array').onclick=()=>{const change=R.lowerArray(state);if(!change)return;lowerUndo=change;heightUndo=null;commit();};$('#roof-undo-lower').onclick=()=>{if(R.undoLower(state,lowerUndo)){lowerUndo=null;commit();}};

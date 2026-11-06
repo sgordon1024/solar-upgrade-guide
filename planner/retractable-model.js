@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import './retractable-data.js';
+import './retractable-data.js?v=tap1';
 import {RACK_SPEC} from './roof-rack.js?v=rail1';
 export function buildRetractable({requestRender=()=>{},onPose=()=>{}}={}){
  const D=globalThis.RooflabRetractable,group=new T.Group();group.position.set(...RACK_SPEC.installation.planningOrigin);group.name='Optional retractable solar concept';
