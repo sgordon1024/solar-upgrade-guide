@@ -45,7 +45,7 @@ function label(text,p,width=40,g=labels){const c=document.createElement('canvas'
 function torus(p,r,t,m=dark,axis='x',g=body){const o=mesh(new T.TorusGeometry(r,t,10,48),m,p,g);if(axis==='x')o.rotation.y=Math.PI/2;else if(axis==='y')o.rotation.x=Math.PI/2;return o;}
 function clear(g){while(g.children.length){const o=g.children[0];g.remove(o);o.traverse(n=>{n.geometry?.dispose();if(n.material&&!Object.values(mats).includes(n.material)){n.material.map?.dispose();n.material.dispose();}});}}
 function update(s,id){current=s;selected=id;clear(equipment);clear(labels);clear(boundary);
- for(const i of s.items){const w=i.rotation===90?i.length:i.width,l=i.rotation===90?i.width:i.length;const g=new T.Group();equipment.add(g);
+ for(const i of RooflabRoofEdit.planningItems(s)){if(i.hidden)continue;const w=i.rotation===90?i.length:i.width,l=i.rotation===90?i.width:i.length;const g=new T.Group();equipment.add(g);
   const m=i.kind==='solar'?solar:i.kind==='starlink'?white:i.kind==='custom'?bag:dark;
   if(['ac','starlink','fan'].includes(i.kind)){mesh(new T.ExtrudeGeometry(roundedShape(w,l,Math.min(w,l)*.12),{depth:i.height,bevelEnabled:false,curveSegments:12}),m,[i.x,i.y,i.z],g);}else if(i.kind==='custom'){const shell=mesh(new T.SphereGeometry(1,24,16),m,[i.x+w/2,i.y+l/2,i.z+i.height/2],g);shell.scale.set(w/2,l/2,i.height/2);}else box(i.x,i.y,i.z,w,l,i.height,m,g);
   if(i.kind==='solar'){for(const x of [i.x,i.x+w-.5])box(x,i.y,i.z+i.height,.5,l,.15,chrome,g);for(const y of [i.y,i.y+l-.5])box(i.x,y,i.z+i.height,w,.5,.15,chrome,g);for(let j=1;j<6;j++)box(i.x+j*w/6,i.y+.5,i.z+i.height+.1,.07,l-1,.04,chrome,g);for(let j=1;j<10;j++)box(i.x+.5,i.y+j*l/10,i.z+i.height+.1,w-1,.07,.04,chrome,g);}
