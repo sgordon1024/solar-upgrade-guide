@@ -72,7 +72,7 @@ export function buildInteractiveModel({shell,emblems,exterior,rack}) {
       if(sign>0)extract(o,sliderOutline,[1,2],side,parts['sliding-door']);
     }
     // The rear bumper, tail lights and hinge barrels stay on the body.
-    if(o.material.name.startsWith('Blue-gray paint')||['Panel seam','Recess','Textured bumper','Steel wheels','Bright metal'].includes(o.material.name)){
+    if(o.material.name.startsWith('Blue-gray paint')||['Panel seam','Panel gap shadow','Recess','Textured bumper','Steel wheels','Bright metal'].includes(o.material.name)){
       for(const sign of [-1,1]){const poly=[[0,-85.5],[30,-85.5],[33,-80],[34,-45],[32,-15],[29,-4],[0,-3]].map(([x,z])=>[30+sign*x,z]);extract(o,poly,[0,2],tri=>tri.every(p=>p[1]>146),parts[sign<0?'rear-driver-door':'rear-passenger-door']);}
     }
   }

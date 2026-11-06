@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=mount1';
+import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=seam1';
 
 // Original geometry. Body coordinates in inches; owner photo proportions are estimates.
 export const LADDER_SPEC={

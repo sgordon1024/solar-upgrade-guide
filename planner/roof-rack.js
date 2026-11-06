@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=mount1';
+import {createRoofMounts,ROOF_MOUNT_SPEC} from './roof-mounts.js?v=seam1';
 import {buildRackWordmark} from './brand-emblems.js?v=close1';
 
 // Inches in the same body datum as the shell. Installation is a photo estimate;

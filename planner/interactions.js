@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {buildInteractiveModel,INTERACTION_SPEC} from './interactive-model.js?v=close1';
+import {buildInteractiveModel,INTERACTION_SPEC} from './interactive-model.js?v=seam1';
 export {INTERACTION_SPEC};
 
 export function installInteractions({shell,emblems,exterior,rack,canvas,camera,body,requestRender,onState,onNight,environmentGround=false,onSelectSnowboard=()=>{},onSelectPanel=()=>{},canDrive=()=>true,visibility=()=>({})}) {

@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-shell",
   "version": 1,
-  "revision": "shell-14-cabin-lighting",
+  "revision": "shell-15-subtle-panel-gaps",
   "units": "in",
   "subject": "Sprinter 144-inch high-roof exterior with camper details, installed roof equipment including Maxxair fan and bagged snowboard, roof rack, Owl side ladder and 2021 KTM 350 SX-F on carrier",
   "method": "Original polygon reconstruction from supplied reference renders; not a scan or factory CAD",
@@ -2042,5 +2042,10 @@
   },
   "visualValidation": {
     "rearRailEnds": "Owner side/overhead photos and final shell roof boundary compared. Rear rack ends corrected within final roof silhouette; exact dimensions unverified. Front/intermediate rack and saved planning datum remain unchanged."
+  },
+  "seamTreatment": {
+    "status": "photo-informed visual approximation",
+    "description": "Subtle matte dark joint ribbons; raised painted outline tubes removed from roof shoulders and upper side panels. Real stamped relief, metal door track, trim and moving seams retained.",
+    "physicalGapDimensionsVerified": false
   }
 }

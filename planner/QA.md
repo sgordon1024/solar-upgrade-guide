@@ -395,3 +395,7 @@ The owner approved publishing the reviewed side alignment, driver access, front-
 
 ## Aluminum tracks / ladder mount revision
 Run `node planner/tests/ladder-mount.test.mjs` alongside rail-ends, retractable, geometry, controller and landing tests. Check both silver tracks under the black rails, roof/rib contact at front/middle/rear, two driver ladder upper brackets and unchanged lower treads. Compare top/driver/passenger oblique views at desktop and 390 × 844; retain saved layouts and slide-out behavior. No physical mounting or loading claim follows from a seated visualization.
+
+
+## Panel-gap visual cleanup
+Compare the upper driver/passenger panels with the owner close-up: no bright raised line overlays across the roof shoulder or upper side. Preserve true vertical door gaps, stamped relief, sill/arch trim, bright sliding-door guide and silver roof tracks. Inspect oblique white/desert/rain lighting, phone layout and open/closed doors. Geometry/controller/body-details, ladder/rail, retractable and landing regression suites must pass.

@@ -2,20 +2,20 @@ import {buildRetractable} from './retractable-model.js?v=slide1';
 import {buildRoofExtras} from './roof-extras.js?v=lower1';
 import {buildSolarUpgrade} from './solar-upgrade.js?v=lower1';
 import {buildEnvironment} from './environment.js?v=landing1';
-import {installInteractions} from './interactions.js?v=slide1';
+import {installInteractions} from './interactions.js?v=seam1';
 import * as T from './vendor/three.module.js';
 import {buildBodyEmblems,lightEmblems} from './brand-emblems.js?v=close1';
 import {buildRunningBoards} from './running-boards.js?v=boards1';
 import {buildRearContainer} from './rear-container.js?v=close1';
 import {buildAwning} from './awning.js?v=rear1';
 import {buildUnderbodyUpgrades} from './underbody-upgrades.js?v=upgrades2';
-import {buildShell,SHELL_SPEC} from './shell-model.js?v=close1';
+import {buildShell,SHELL_SPEC} from './shell-model.js?v=seam1';
 import {buildRearCarrier,CARRIER_SPEC} from './rear-carrier.js?v=close1';
 import {buildDirtbike,BIKE_SPEC} from './dirtbike.js?v=bike1';
-import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=mount1';
+import {buildRoofRack,RACK_SPEC} from './roof-rack.js?v=seam1';
 import {buildInstalledRoof} from './roof-equipment.js?v=rail1';
 import {buildExteriorDetails} from './exterior-details.js?v=close1';
-import {buildSideLadder} from './side-ladder.js?v=mount1';
+import {buildSideLadder} from './side-ladder.js?v=seam1';
 import {OrbitControls} from './vendor/OrbitControls.js';
 // Original geometry traced by visual reference, not a scan or a dimensional survey.
 // World units: inches; X passengerward, Y rearward, Z upward, roof datum Z=0.

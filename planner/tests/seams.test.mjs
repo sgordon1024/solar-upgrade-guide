@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import * as T from '../vendor/three.module.js';
+import {buildShell} from '../shell-model.js';
+import {buildBodyEmblems} from '../brand-emblems.js';
+import {buildExteriorDetails} from '../exterior-details.js';
+import {buildRoofRack} from '../roof-rack.js';
+import {buildInteractiveModel} from '../interactive-model.js';
+const shell=buildShell({includeFlares:true,includeCamperWindows:true,includeRunningGear:true});
+const material=shell.materials['Panel gap shadow'];assert(material);assert.equal(material.metalness,0);assert.equal(material.roughness,1);
+shell.group.updateMatrixWorld(true);
+// The actual door gap must remain visible across the raised plastic cladding.
+const hits=new T.Raycaster(new T.Vector3(90,20,-77),new T.Vector3(-1,0,0)).intersectObject(shell.group,true);
+const gapHit=hits.find(h=>h.object.material===material),cladding=hits.find(h=>h.object.material.name==='Textured bumper');assert(gapHit&&cladding);assert(gapHit.distance<cladding.distance);
+const rig=buildInteractiveModel({shell,emblems:buildBodyEmblems(shell.group),exterior:buildExteriorDetails(shell.group),rack:buildRoofRack({shellGroup:shell.group})});
+const closedState=Object.fromEntries(['cassette-door','driver-seat','passenger-seat','driver-door','passenger-door','sliding-door','rear-doors','driver-slider','flare-window','headlights','foglights','taillights','lightbar','porchlight','wheels'].map(id=>[id,0]));
+const leaves=['rear-driver-door','rear-passenger-door'];
+const gapMeshes=leaves.map(id=>{const meshes=[];rig.parts[id].traverse(o=>{if(o.isMesh&&o.material===material)meshes.push(o);});assert(meshes.length,id+' retains moving gap shadows');return meshes;}).flat();
+rig.apply(closedState);shell.group.updateMatrixWorld(true);const closed=gapMeshes.map(o=>o.matrixWorld.clone());
+rig.apply({...closedState,'rear-doors':1});shell.group.updateMatrixWorld(true);assert(gapMeshes.every((o,i)=>!o.matrixWorld.equals(closed[i])),'Both rear leaf gaps move with their leaf');
+rig.apply(closedState);shell.group.updateMatrixWorld(true);assert(gapMeshes.every((o,i)=>o.matrixWorld.elements.every((v,j)=>Math.abs(v-closed[i].elements[j])<1e-6)),'Rear gap shadows restore exactly');
+console.log('PASS matte shadow material, visible door gap over cladding, moving rear seam ownership and exact closed-pose restoration.');
