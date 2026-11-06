@@ -1,7 +1,7 @@
 {
   "schema": "rooflab-solar-mod",
   "version": 1,
-  "selection": "800 W · four HQST HSP200N-64L · 4S1P",
+  "selection": "800 W front-side nameplate · selected fixed panel envelopes",
   "installationStatus": "proposed-not-installed",
   "settings": {
     "version": 1,
@@ -54,6 +54,108 @@
     "dimensionStatus": "manufacturer",
     "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
   },
+  "selectedPanels": [
+    {
+      "model": "HQST HSP200N-64L",
+      "count": 4,
+      "watts": 200,
+      "length": 46.259842519685044,
+      "width": 30.118110236220474,
+      "height": 1.1811023622047245,
+      "weightKg": 9.15,
+      "voc": 22.4,
+      "isc": 11.04,
+      "vmp": 19.2,
+      "imp": 10.5,
+      "vocCoefficient": -0.0028,
+      "iscCoefficient": 0.00048,
+      "electricalTolerance": 0.03,
+      "maxSeriesFuseA": 20,
+      "leads": "14 AWG, 0.7 m",
+      "dimensionStatus": "manufacturer",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675",
+      "id": "mono",
+      "bifacial": false,
+      "weightLb": 20.17,
+      "pmaxCoefficient": -0.0037,
+      "verified": "2026-11-06"
+    },
+    {
+      "model": "HQST HSP200N-64L",
+      "count": 4,
+      "watts": 200,
+      "length": 46.259842519685044,
+      "width": 30.118110236220474,
+      "height": 1.1811023622047245,
+      "weightKg": 9.15,
+      "voc": 22.4,
+      "isc": 11.04,
+      "vmp": 19.2,
+      "imp": 10.5,
+      "vocCoefficient": -0.0028,
+      "iscCoefficient": 0.00048,
+      "electricalTolerance": 0.03,
+      "maxSeriesFuseA": 20,
+      "leads": "14 AWG, 0.7 m",
+      "dimensionStatus": "manufacturer",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675",
+      "id": "mono",
+      "bifacial": false,
+      "weightLb": 20.17,
+      "pmaxCoefficient": -0.0037,
+      "verified": "2026-11-06"
+    },
+    {
+      "model": "HQST HSP200N-64L",
+      "count": 4,
+      "watts": 200,
+      "length": 46.259842519685044,
+      "width": 30.118110236220474,
+      "height": 1.1811023622047245,
+      "weightKg": 9.15,
+      "voc": 22.4,
+      "isc": 11.04,
+      "vmp": 19.2,
+      "imp": 10.5,
+      "vocCoefficient": -0.0028,
+      "iscCoefficient": 0.00048,
+      "electricalTolerance": 0.03,
+      "maxSeriesFuseA": 20,
+      "leads": "14 AWG, 0.7 m",
+      "dimensionStatus": "manufacturer",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675",
+      "id": "mono",
+      "bifacial": false,
+      "weightLb": 20.17,
+      "pmaxCoefficient": -0.0037,
+      "verified": "2026-11-06"
+    },
+    {
+      "model": "HQST HSP200N-64L",
+      "count": 4,
+      "watts": 200,
+      "length": 46.259842519685044,
+      "width": 30.118110236220474,
+      "height": 1.1811023622047245,
+      "weightKg": 9.15,
+      "voc": 22.4,
+      "isc": 11.04,
+      "vmp": 19.2,
+      "imp": 10.5,
+      "vocCoefficient": -0.0028,
+      "iscCoefficient": 0.00048,
+      "electricalTolerance": 0.03,
+      "maxSeriesFuseA": 20,
+      "leads": "14 AWG, 0.7 m",
+      "dimensionStatus": "manufacturer",
+      "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675",
+      "id": "mono",
+      "bifacial": false,
+      "weightLb": 20.17,
+      "pmaxCoefficient": -0.0037,
+      "verified": "2026-11-06"
+    }
+  ],
   "controller": {
     "model": "Victron SmartSolar 150/35",
     "batteryVoltage": 48,
@@ -75,15 +177,16 @@
     "coldVoc": 103.91628799999998,
     "hotIsc": 11.69869056,
     "nominalBatteryCurrent": 16.666666666666668,
-    "twoSeriesVmp": 38.4
+    "twoSeriesVmp": 38.4,
+    "scope": "Legacy monofacial 4S1P fixed-bank arithmetic only; not a bifacial, mixed or slide-out design approval"
   },
   "parts": [
     {
-      "name": "HQST HSP200N-64L 200 W panels",
+      "name": "HQST HSP200N-64L · fixed 200 W panels",
       "quantity": "4",
-      "decision": "Selected · new",
+      "decision": "Comparison selection",
       "visible": true,
-      "detail": "800 W total; four in series. Each 1175 × 765 × 30 mm, 9.15 kg. Four weigh 36.6 kg / 80.7 lb before supports. Existing panels are replaced in this preview.",
+      "detail": "4 panels; 46.26 × 30.12 × 1.18 in each; 80.68 lb before hardware. Front-side nameplate only. ",
       "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
     },
     {
@@ -1254,7 +1357,11 @@
         "name": "Panel 1",
         "width": 46.259842519685044,
         "length": 30.118110236220474,
-        "height": 1.1811023622047245
+        "height": 1.1811023622047245,
+        "modelId": "mono",
+        "bifacial": false,
+        "weightLb": 20.17,
+        "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
       },
       {
         "x": 6.870078740157478,
@@ -1264,7 +1371,11 @@
         "name": "Panel 2",
         "width": 46.259842519685044,
         "length": 30.118110236220474,
-        "height": 1.1811023622047245
+        "height": 1.1811023622047245,
+        "modelId": "mono",
+        "bifacial": false,
+        "weightLb": 20.17,
+        "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
       },
       {
         "x": 6.870078740157478,
@@ -1274,7 +1385,11 @@
         "name": "Panel 3",
         "width": 46.259842519685044,
         "length": 30.118110236220474,
-        "height": 1.1811023622047245
+        "height": 1.1811023622047245,
+        "modelId": "mono",
+        "bifacial": false,
+        "weightLb": 20.17,
+        "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
       },
       {
         "x": 6.870078740157478,
@@ -1284,7 +1399,11 @@
         "name": "Panel 4",
         "width": 46.259842519685044,
         "length": 30.118110236220474,
-        "height": 1.1811023622047245
+        "height": 1.1811023622047245,
+        "modelId": "mono",
+        "bifacial": false,
+        "weightLb": 20.17,
+        "source": "https://cdn.shopify.com/s/files/1/0938/4627/4366/files/HSP200N-64L_-_Manual.pdf?v=1779096675"
       }
     ],
     "riserStatus": "generic unresolved mounting concept",

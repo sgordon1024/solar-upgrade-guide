@@ -1,6 +1,6 @@
-import {buildRetractable} from './retractable-model.js?v=tap1';
-import {buildRoofExtras} from './roof-extras.js?v=lower1';
-import {buildSolarUpgrade} from './solar-upgrade.js?v=lower1';
+import {buildRetractable} from './retractable-model.js?v=bi1';
+import {buildRoofExtras} from './roof-extras.js?v=bi1';
+import {buildSolarUpgrade} from './solar-upgrade.js?v=bi1';
 import {buildEnvironment} from './environment.js?v=landing1';
 import {installInteractions} from './interactions.js?v=tap1';
 import * as T from './vendor/three.module.js';
