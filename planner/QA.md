@@ -380,3 +380,7 @@ The owner approved publishing the reviewed side alignment, driver access, front-
 - New rail-end tests verify the final shell surface below the rear fairing, finite geometry and unchanged rack budget, retained front/intermediate positions, separate measured/estimated datums, full-footprint support screening and unchanged saved equipment transforms/state. Solar, compact/rear layout, panel-height, controller, geometry and landing regression suites pass. No source images are published; exact mounting positions and physical capacity remain unverified.
 
 - Actual Chrome desktop driver/3D views and 390 × 844 phone driver/passenger views inspected against the private photos: rear rail/fairing overhang is removed; front rack and existing panel placements remain. No application console errors observed in the isolated verification window. Physical phone/Safari and exact as-built rack dimensions were not tested.
+
+## Lower-riser action
+
+`node planner/tests/lower-risers.test.mjs` checks consistent roof-relative targets, translated/hidden obstacles, actual panel/riser geometry, residual support contacts, height-only mutation and guarded undo, old-save migration without auto-lowering, export/import/reload and real editor handlers. Reference rear 2×2:Z18→14.50; plate height 12→8.50; panel bottom above crossbar top 11.50→8.00 inches. Full fan sweep and physical fit remain unverified.

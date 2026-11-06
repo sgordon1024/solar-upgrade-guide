@@ -149,3 +149,5 @@ Request these one at a time when useful. The seven new owner close-ups establish
 ### Rear rack registration correction · 6 November 2026
 
 Next single measurement: with a straightedge marking the rear roof edge, measure **forward to the rear side-rail end**, parallel to the rail, and show both endpoints in a photo. Then separately measure to the rear main crossbar center. This will reconcile the reported 130-inch first/last-center span with the drawing without moving the saved planning origin. Current rail rear Y123 and beam-center span121 are photo-estimated model coordinates; the reported130 is preserved, not overwritten.
+
+Lower-riser target: the owner requested approximately 1 inch above the A/C and packed bag. This is a visual planning request, not a measured installation clearance. Verify roof-to-rail/crossbar datums, actual A/C top and required airflow/service space, open-fan swept footprint, cargo support/loading access and hardware thickness. The editor keeps these separate from its height-only illustration; hidden cargo still counts.

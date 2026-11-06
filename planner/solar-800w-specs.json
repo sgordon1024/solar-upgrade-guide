@@ -1210,6 +1210,39 @@
         "height": 0.3
       }
     ],
+    "lowerHeightPlanning": {
+      "targetZ": 14.5,
+      "clearance": 1,
+      "obstacles": [
+        {
+          "name": "A/C",
+          "top": 12.62
+        },
+        {
+          "name": "packed snowboard case",
+          "top": 13.1
+        },
+        {
+          "name": "snowboard clamp 1",
+          "top": 10.8
+        },
+        {
+          "name": "snowboard clamp 2",
+          "top": 10.8
+        },
+        {
+          "name": "fan opening planning allowance (swept footprint and roof datum unverified)",
+          "top": 13.5
+        }
+      ],
+      "canApply": true,
+      "atTarget": false,
+      "postHeight": 8.5,
+      "aboveCrossbarTop": 8,
+      "lowered": 4,
+      "raised": 0,
+      "limits": "One-inch panel-bottom visual gap only. One-inch-deep spans can consume that gap; check support contacts. Fan swept footprint, A/C airflow/service, cargo access and mounting remain unverified."
+    },
     "dimensionStatus": "manufacturer-panel-envelope",
     "positionStatus": "estimated",
     "panels": [

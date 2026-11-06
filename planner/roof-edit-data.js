@@ -20,5 +20,8 @@
  function canUndoSupportRaise(state,change){return !!change&&/^proposal-[0-3]$/.test(change.id)&&Number.isFinite(change.beforeZ)&&change.beforeZ>=6.5&&change.beforeZ<=40&&state.upgrades.solar.panels[Number(change.id.slice(9))]?.z===change.afterZ;}
  function undoSupportRaise(state,change){if(!canUndoSupportRaise(state,change))return false;state.upgrades.solar.panels[Number(change.id.slice(9))].z=change.beforeZ;return true;}
  function resize(state,id,values){if(!['roof-chassis','roof-cargo'].includes(id))throw Error('Only placeholders have editable sizes.');const v=E.validate(state.upgrades.roofExtras),key=id.slice(5);for(const k of ['width','length','height'])if(values[k]!==undefined)v[key][k]=values[k];state.upgrades.roofExtras=E.validate(v);}
- root.RooflabRoofEdit={catalogue,installedEnvelopes,objects,position,limits,move,rotate,resize,flags,supportLift,raiseToSupports,canUndoSupportRaise,undoSupportRaise};
+ function lowerArray(state){const plan=S.lowerHeightPlan(state.upgrades.solar,state.installedRoof);if(!plan.canApply)return null;const beforeZ=state.upgrades.solar.panels.map(p=>p.z);for(const p of state.upgrades.solar.panels)p.z=plan.targetZ;return {beforeZ,afterZ:plan.targetZ};}
+ function canUndoLower(state,change){return !!change&&Array.isArray(change.beforeZ)&&change.beforeZ.length===4&&change.beforeZ.every(z=>Number.isFinite(z)&&z>=6.5&&z<=40)&&Number.isFinite(change.afterZ)&&state.upgrades.solar.panels.every(p=>p.z===change.afterZ);}
+ function undoLower(state,change){if(!canUndoLower(state,change))return false;state.upgrades.solar.panels.forEach((p,i)=>p.z=change.beforeZ[i]);return true;}
+ root.RooflabRoofEdit={catalogue,installedEnvelopes,objects,position,limits,move,rotate,resize,flags,supportLift,raiseToSupports,canUndoSupportRaise,undoSupportRaise,lowerArray,canUndoLower,undoLower};
 })(globalThis);
