@@ -340,8 +340,8 @@ Links are limited to 32,000 fragment characters and 250 KB of decoded UTF-8. Mod
 
 Dependency-free sharing checks: `node planner/tests/share.test.mjs`.
 
-### Retro road-trip loading scene
+### Elastic line-art loading scene
 
-The first-frame loading illustration is now an original multicolor cartoon: a small animated Rooflab mark, a bouncing camper with independently rolling wheels and roof gear, drifting dust and desert scenery, and moving lane stripes on a dirt-road activity indicator. It uses inline SVG and local CSS, with no image downloads, external fonts or private reference images. It is an activity animation, not a fabricated percentage or added minimum wait.
+The loader is an unfilled van drawing on white, with multicolored contours, a traveling line accent and a small line-logo. No filled scenery, decorative slogans, external fonts or image downloads are used. The van stretches and rebounds; separate HTML wheel layers rotate asymmetric curved spokes and a colored rim mark so motion is visible even while JavaScript is busy building the 3D model. Thin moving road dashes remain an activity indicator, not a percentage or minimum wait.
 
 **Pause animation** stops every decorative animation and can resume it. The operating system's reduced-motion setting keeps the entire scene still and removes the unnecessary pause control. A loading failure freezes the artwork while **Try again** and **Open layout tools** retain their existing behavior. The 45-second timeout, first-ready handoff, saved layouts, sharing and white 3D landing are unchanged.

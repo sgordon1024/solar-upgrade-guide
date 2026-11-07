@@ -31,5 +31,10 @@ assert(loader.includes('aria-label="Rooflab"'));assert(loader.includes('class="l
 assert(!/https?:\/\//.test(loader),'artwork must not load or publish external references');
 assert(css.includes('.load-screen[data-motion=paused] *, .load-screen[data-phase=error] *'));
 assert(css.includes('.load-screen *, .load-screen *::before, .load-screen *::after { animation: none !important; transition: none !important; }'));
-for(const name of ['load-bump','load-wheel-spin','load-road','load-sun-turn','load-letter-bop'])assert(css.includes(`@keyframes ${name}`));
-console.log('PASS retro artwork semantics, pause/resume, all-motion reduced/error states, unchanged 45-second timeout, retry/fallback/focus and zero storage access.');
+for(const name of ['load-elastic','load-wheel-spin','load-road','load-line-flow','load-logo-line'])assert(css.includes(`@keyframes ${name}`));
+assert(!/fill="(?!none")/.test(loader),'all loader SVG art must be unfilled');
+assert.equal((loader.match(/class="load-wheel-rotor"/g)||[]).length,2,'both wheels use independent HTML rotation layers');
+assert.equal((loader.match(/class="load-rim-marker"/g)||[]).length,2,'asymmetric rim marks make rotation visible');
+assert(css.includes('will-change: transform; animation: load-wheel-spin'));
+assert(!/load-cactus|load-sunburst|load-kicker|load-dust/.test(loader),'no filled scenery or decorative slogans');
+console.log('PASS elastic line artwork semantics, pause/resume, all-motion reduced/error states, unchanged 45-second timeout, retry/fallback/focus and zero storage access.');
