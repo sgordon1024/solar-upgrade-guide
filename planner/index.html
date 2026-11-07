@@ -1,4 +1,70 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="description" content="An open, editable 3D roof layout planner for a Sprinter-based Entegra Launch. Download and share your own measurements."><title>Rooflab · Van layout planner</title><link rel="stylesheet" href="style.css?v=share1"><script defer src="boot.js?v=share1" onerror="window.addEventListener('DOMContentLoaded',()=>{document.querySelector('#load-detail').textContent='Loading failed. Reload to try again.';document.querySelector('#load-screen').dataset.phase='error';document.querySelector('.load-actions').hidden=false;document.querySelector('#load-retry').onclick=()=>location.reload();document.querySelector('#load-tools').hidden=true;})"></script><script defer src="snowboard-data.js?v=rear1"></script><script defer src="solar-data.js?v=bi1"></script><script defer src="roof-edit-data.js?v=star1"></script><script defer src="retractable-data.js?v=bi1"></script><script defer src="panel-comparison.js?v=bi1"></script><script defer src="snapshot-data.js?v=slide1"></script><script defer src="share-data.js?v=share1"></script><script defer src="upgrade-data.js?v=slide1"></script><script defer src="app.js?v=share1"></script><script defer src="roof-editor.js?v=star1"></script><script defer src="retractable-ui.js?v=bi1"></script><script defer src="panel-comparison-ui.js?v=bi1"></script><script defer src="share-ui.js?v=share1"></script></head><body class="immersive is-loading"><section id="load-screen" class="load-screen" aria-labelledby="load-title"><div class="load-card"><svg class="load-van" viewBox="0 0 160 80" aria-hidden="true"><path d="M14 58V23Q14 12 27 12h74l25 23h14q6 0 6 8v15H14Z"/><path d="M102 18v20h28M21 44h54"/><circle cx="40" cy="59" r="11"/><circle cx="121" cy="59" r="11"/></svg><div class="load-track" aria-hidden="true"><i></i></div><h1 id="load-title">Getting your van ready</h1><p id="load-detail" role="status" aria-live="polite">Building the model and preparing your saved layout.</p><div class="load-actions" hidden><button id="load-retry" type="button">Try again</button><button id="load-tools" type="button">Open layout tools</button></div><p class="load-foot">ROOFLAB · YOUR VAN, IN VIEW</p></div></section>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="description" content="An open, editable 3D roof layout planner for a Sprinter-based Entegra Launch. Download and share your own measurements."><title>Rooflab · Van layout planner</title><link rel="stylesheet" href="style.css?v=retro1"><link rel="stylesheet" href="loading.css?v=retro1"><script defer src="boot.js?v=retro1" onerror="window.addEventListener('DOMContentLoaded',()=>{document.querySelector('#load-detail').textContent='Loading failed. Reload to try again.';document.querySelector('#load-screen').dataset.phase='error';document.querySelector('.load-actions').hidden=false;document.querySelector('#load-retry').onclick=()=>location.reload();document.querySelector('#load-tools').hidden=true;})"></script><script defer src="snowboard-data.js?v=rear1"></script><script defer src="solar-data.js?v=bi1"></script><script defer src="roof-edit-data.js?v=star1"></script><script defer src="retractable-data.js?v=bi1"></script><script defer src="panel-comparison.js?v=bi1"></script><script defer src="snapshot-data.js?v=slide1"></script><script defer src="share-data.js?v=share1"></script><script defer src="upgrade-data.js?v=slide1"></script><script defer src="app.js?v=share1"></script><script defer src="roof-editor.js?v=star1"></script><script defer src="retractable-ui.js?v=bi1"></script><script defer src="panel-comparison-ui.js?v=bi1"></script><script defer src="share-ui.js?v=share1"></script></head><body class="immersive is-loading"><section id="load-screen" class="load-screen" aria-labelledby="load-title">
+  <div class="load-card">
+    <div class="load-brand" aria-label="Rooflab">
+      <svg class="load-emblem" viewBox="0 0 72 72" aria-hidden="true"><path class="load-sunburst" d="m36 3 6 10 11-5 1 12 12 1-5 11 10 6-10 6 5 11-12 1-1 12-11-5-6 10-6-10-11 5-1-12-12-1 5-11L1 38l10-6-5-11 12-1 1-12 11 5Z" fill="#ef7853"/><path d="m20 47 16-26 16 26H20Zm16-26v26m0-14-8 14" fill="none" stroke="#352f32" stroke-width="3" stroke-linejoin="round"/></svg>
+      <span class="load-wordmark" aria-hidden="true"><span>R</span><span>O</span><span>O</span><span>F</span><span>L</span><span>A</span><span>B</span></span>
+    </div>
+    <p class="load-kicker">A LITTLE DIRT. A LOT OF POSSIBILITY.</p>
+    <div class="load-scene" aria-hidden="true">
+      <svg class="load-art" viewBox="0 0 600 300" fill="none">
+        <defs>
+          <clipPath id="load-horizon"><path d="M30 230V150a270 145 0 0 1 540 0v80Z"/></clipPath>
+          <g id="load-cactus" stroke="#354c44" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0v-51q0-8 7-8t7 8v18h8v-15q0-6 5-6t5 6v18q0 9-9 9h-9V0Z" fill="#669a78"/><path d="M0-27h-8q-8 0-8-8v-11q0-5 5-5t5 5v10h6" fill="#669a78"/><path d="M7-48v43" opacity=".5"/></g>
+          <g id="load-stone"><path d="m0 0 6-7 9 2 5 5Z" fill="#d68c58" stroke="#916047" stroke-width="1.5" stroke-linejoin="round"/></g>
+        </defs>
+        <g clip-path="url(#load-horizon)">
+          <path d="M0 0h600v250H0Z" fill="#c2d9d5"/>
+          <circle cx="437" cy="91" r="59" fill="#f8d181"/>
+          <circle cx="437" cy="91" r="43" fill="#f1ae67"/>
+          <circle cx="437" cy="91" r="28" fill="#ed805a"/>
+          <g fill="#fff4d9" class="load-clouds"><path d="M94 75q-4-15 9-19 13-4 19 8 11-3 14 11Z"/><path d="M284 48q-3-12 10-15 11-3 15 9 13-5 18 6Z"/><path d="M489 141q-2-11 9-12 9-1 12 8 13-3 15 4Z"/></g>
+          <path d="m0 201 62-46 38 13 54-71 32 40 31 8 38 57 58-24 52-53 40 47 33-21 63 59 39-11v56H0Z" fill="#b6a2bc"/>
+          <path d="m112 152 42-55 32 40 31 8 38 57-54-32-28-20-22-22Z" fill="#8f819b"/>
+          <path d="m296 194 69-69 40 47 33-21 63 59-68-9-48-37-19-18Z" fill="#8f819b"/>
+          <path d="M0 203q85-41 170 6t170-1 157-4 103 8v56H0Z" fill="#edaf73"/>
+          <path d="M0 233q95-29 207 0t209-5 184 0v50H0Z" fill="#d8895d"/>
+          <g class="load-landscape"><use href="#load-cactus" x="81" y="232"/><use href="#load-cactus" transform="translate(520 232) scale(.7)"/><use href="#load-cactus" x="681" y="232"/><use href="#load-cactus" transform="translate(1120 232) scale(.7)"/></g>
+          <path d="M38 231q22-4 38 0m396-7 35 2m-297-6 24 3" stroke="#a96348" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="load-dust" fill="#f8dba4" stroke="#a56e4e" stroke-width="2"><path d="M166 241q-17-4-24 4-7-18-21-8-14-11-20 4-16-7-24 7h89Z"/><circle cx="81" cy="226" r="6"/><circle cx="110" cy="219" r="4"/></g>
+        <ellipse class="load-shadow" cx="309" cy="250" rx="142" ry="9" fill="#784b3e" opacity=".19"/>
+        <g class="load-van" stroke="#352f32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <g class="load-chassis">
+            <path d="m180 225 13 15h211l20-14" fill="#53505a"/>
+            <path d="M169 222v-94q0-23 25-26l151-5q24 0 37 19l31 48 25 15q10 5 10 18v26q0 12-13 12h-18q-4-28-29-28t-29 28H236q-4-28-30-28-23 0-28 23Z" fill="#f6dfad"/>
+            <path d="M170 161h229l14 3 25 15q10 5 10 18v7H169Z" fill="#6caaa2" stroke="none"/>
+            <path d="M170 181h238l40 16v10l-43-14H170Z" fill="#ef8158" stroke="none"/>
+            <path d="M170 194h235l43 13v9l-44-11H170Z" fill="#e9b75f" stroke="none"/>
+            <path d="M169 222v-94q0-23 25-26l151-5q24 0 37 19l31 48 25 15q10 5 10 18v26q0 12-13 12h-18q-4-28-29-28t-29 28H236q-4-28-30-28-23 0-28 23Z"/>
+            <path d="m331 115 17-1q12 0 20 12l21 32h-58Z" fill="#627485"/>
+            <path d="m341 121 17 30m-3-30 17 30" stroke="#b5d6d0" stroke-width="5"/>
+            <path d="M189 121h111v37H187v-31q0-5 2-5Z" fill="#627485"/>
+            <path d="m208 126 12 24m6-24 12 24" stroke="#b5d6d0" stroke-width="5"/>
+            <path d="M250 121v37m64-47v104m16-49v50m-25-43h-8m39 0h10" stroke-width="3"/>
+            <path d="m324 92 29-1-2-12-28 1Z" fill="#f6dfad"/>
+            <g class="load-roof-kit"><path d="m183 95 155-5m-142 4-1-13m129 8-1-13"/><path d="m189 79 125-5 13 10-128 5Z" fill="#658e92"/><path d="m215 78 10 9m20-10 10 8m20-9 10 9" stroke="#d6e6d9" stroke-width="2"/><path d="m259 67 31-2q8 0 9 8l-41 2Z" fill="#db8b5b"/><path d="m267 67 1 7m18-8 1 7" stroke-width="2"/></g>
+            <path d="m409 165 9-7v-16h-13l-1 12" fill="#53505a"/>
+            <path d="m429 187 13 6v10l-13-4Z" fill="#ffe9a0" stroke-width="2.5"/>
+            <path d="M171 180h7v14h-7" fill="#e36b50" stroke-width="2.5"/>
+            <path d="M439 218h13v11h-21m-263-10h10v11h-13" fill="#53505a"/>
+            <path d="m185 214-5 8m56 2h118" stroke-width="3"/>
+            <path d="m269 173 6-11 6 11h-12Z" fill="#f8e6bc" stroke-width="1.5"/>
+            <path d="m169 115-10 4m0 10v84m0-65h11m-11 17h11m-11 17h11m-11 17h11" stroke-width="3"/>
+          </g>
+          <g class="load-wheel load-wheel-rear"><circle cx="207" cy="235" r="25" fill="#444047"/><circle cx="207" cy="235" r="16" fill="#f5dfb1" stroke-width="3"/><g class="load-spokes"><path d="m207 222 0 26m-13-13h26m-22-9 18 18m-18 0 18-18" stroke="#aa8066" stroke-width="3"/><circle cx="207" cy="235" r="5" fill="#746370" stroke-width="2"/></g><path d="m189 227 3-6m27 28 4-5" stroke="#73636b" stroke-width="2"/></g>
+          <g class="load-wheel load-wheel-front"><circle cx="388" cy="235" r="25" fill="#444047"/><circle cx="388" cy="235" r="16" fill="#f5dfb1" stroke-width="3"/><g class="load-spokes"><path d="m388 222 0 26m-13-13h26m-22-9 18 18m-18 0 18-18" stroke="#aa8066" stroke-width="3"/><circle cx="388" cy="235" r="5" fill="#746370" stroke-width="2"/></g><path d="m370 227 3-6m27 28 4-5" stroke="#73636b" stroke-width="2"/></g>
+        </g>
+        <g class="load-speed-lines" stroke="#a56e4e" stroke-width="3" stroke-linecap="round"><path d="M116 162h27m-41 15h35m-7 16h12"/></g>
+        <g class="load-pebbles"><use href="#load-stone" x="100" y="262"/><use href="#load-stone" x="410" y="262"/><use href="#load-stone" x="700" y="262"/><use href="#load-stone" x="1010" y="262"/></g>
+      </svg>
+      <div class="load-track"><i></i></div>
+    </div>
+    <h1 id="load-title">Getting your van ready</h1>
+    <p id="load-detail" role="status" aria-live="polite">Building the model and preparing your saved layout.</p>
+    <div class="load-actions" hidden><button id="load-retry" type="button">Try again</button><button id="load-tools" type="button">Open layout tools</button></div>
+    <div class="load-footer"><p class="load-foot">YOUR VAN. YOUR NEXT CHAPTER.</p><button id="load-motion" class="load-motion" type="button" aria-pressed="false">Pause animation</button></div>
+  </div>
+</section>
 <header><a href="../" class="brand"><svg class="brandmark" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="12" fill="none" stroke="currentColor"/><path d="M9 28 20 10 31 28H9Zm11-18v18m0-9-5 9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg> ROOFLAB <span>THE VAN FIELD STUDIO</span></a><a href="https://github.com/sgordon1024/solar-upgrade-guide/tree/main/planner">Open source ↗</a></header>
 <main aria-busy="true" inert><div class="intro"><div class="intro-copy"><p class="trail-label"><span></span> BUILT FOR THE WAY OUT THERE</p><p class="eyebrow">2024 ENTEGRA LAUNCH 19Y / 2023 SPRINTER 2500</p><h1>Every adventure<br>starts with <em>a shell.</em></h1><p>Explore the Sprinter, installed roof equipment and the KTM on its carrier. Inspect every angle. Add one detail at a time.</p></div><div class="actions"><button id="export">↓ Export specs</button><label class="button import-button">↑ Import specs<input id="import" type="file" accept="application/json,.json" aria-label="Import specs"></label></div></div>
 <p class="notice"><strong>Reference reconstruction · dimensions still need verification.</strong> Original shell modeled from 33 supplied images. Unmeasured contours are estimates; this is not factory CAD or a scan.</p>

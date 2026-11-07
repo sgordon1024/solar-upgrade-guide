@@ -339,3 +339,9 @@ The setup is compressed into the URL fragment, not uploaded to a server. Anyone 
 Links are limited to 32,000 fragment characters and 250 KB of decoded UTF-8. Modern browsers support compressed links; plain encoding is used when compression is unavailable. Invalid, oversized or unsupported links leave the current layout intact and show a visible message. If a layout fits the 250 KB file limit but is too large for a link, **Download setup** creates a portable file that **Import specs** opens as a preview. Browser-local saves remain local; this is sharing, not account/cloud synchronization.
 
 Dependency-free sharing checks: `node planner/tests/share.test.mjs`.
+
+### Retro road-trip loading scene
+
+The first-frame loading illustration is now an original multicolor cartoon: a small animated Rooflab mark, a bouncing camper with independently rolling wheels and roof gear, drifting dust and desert scenery, and moving lane stripes on a dirt-road activity indicator. It uses inline SVG and local CSS, with no image downloads, external fonts or private reference images. It is an activity animation, not a fabricated percentage or added minimum wait.
+
+**Pause animation** stops every decorative animation and can resume it. The operating system's reduced-motion setting keeps the entire scene still and removes the unnecessary pause control. A loading failure freezes the artwork while **Try again** and **Open layout tools** retain their existing behavior. The 45-second timeout, first-ready handoff, saved layouts, sharing and white 3D landing are unchanged.

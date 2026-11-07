@@ -1,6 +1,8 @@
 // First-frame loading boundary. Retry reloads code without clearing any saved data.
 (function(){
  const screen=document.querySelector('#load-screen'),title=document.querySelector('#load-title'),detail=document.querySelector('#load-detail'),actions=document.querySelector('.load-actions'),main=document.querySelector('main'),retry=document.querySelector('#load-retry'),tools=document.querySelector('#load-tools');
+ const motion=document.querySelector('#load-motion');
+ if(motion)motion.onclick=()=>{const paused=screen.dataset.motion!=='paused';screen.dataset.motion=paused?'paused':'playing';motion.setAttribute('aria-pressed',String(paused));motion.textContent=paused?'Resume animation':'Pause animation';};
  let phase='loading',timer;
  function busy(value){main.inert=value;main.setAttribute('aria-busy',String(value));document.body.classList.toggle('is-loading',value);}
  function fail(message='The model could not load. Check your connection, then try again.'){

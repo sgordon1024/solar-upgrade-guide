@@ -1,0 +1,134 @@
+/* Original vector road-trip cartoon. No remote assets or loading estimates. */
+.load-screen {
+  --load-ink: #352f32;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 32px 20px;
+  background: #fbf1d9;
+  background-image: radial-gradient(#bba98729 .7px, transparent .7px);
+  background-size: 5px 5px;
+  color: var(--load-ink);
+  text-align: center;
+}
+.load-screen[hidden] { display: none; }
+.load-card { width: min(580px, 100%); margin: auto; }
+.load-brand { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.load-emblem { flex: 0 0 auto; width: 56px; height: 56px; overflow: visible; }
+.load-sunburst { transform-origin: 36px 38px; animation: load-sun-turn 18s linear infinite; }
+.load-wordmark {
+  display: flex;
+  font: 950 clamp(38px, 8vw, 58px)/1 Georgia, 'Times New Roman', serif;
+  letter-spacing: -3px;
+  text-shadow: 0 2px 0 var(--load-ink);
+}
+.load-wordmark span { display: inline-block; animation: load-letter-bop 3.2s ease-in-out infinite; }
+.load-wordmark span:nth-child(1) { color: #bd533d; }
+.load-wordmark span:nth-child(2) { color: #b7802c; animation-delay: .08s; }
+.load-wordmark span:nth-child(3) { color: #508779; animation-delay: .16s; }
+.load-wordmark span:nth-child(4) { color: #7a6c91; animation-delay: .24s; }
+.load-wordmark span:nth-child(5) { color: #bd533d; animation-delay: .32s; }
+.load-wordmark span:nth-child(6) { color: #b7802c; animation-delay: .4s; }
+.load-wordmark span:nth-child(7) { color: #508779; animation-delay: .48s; }
+.load-card .load-kicker { margin: 17px 0 8px; color: #78614e; font: 700 9px/1.6 system-ui, sans-serif; letter-spacing: 2.2px; }
+.load-scene { overflow: hidden; position: relative; margin: 0 auto 10px; width: 100%; isolation: isolate; }
+.load-art { position: relative; z-index: 1; display: block; width: 100%; overflow: visible; }
+.load-track {
+  position: absolute;
+  z-index: 0;
+  left: 3%;
+  right: 3%;
+  bottom: 4%;
+  height: 13%;
+  overflow: hidden;
+  border: 3px solid #a76e50;
+  border-radius: 50% 8% 45% 12% / 35% 25% 30% 20%;
+  background: #bd8259;
+  transform: rotate(-1deg);
+}
+.load-track::before, .load-track::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: #e8b97f; }
+.load-track::before { top: 6px; }
+.load-track::after { bottom: 6px; }
+.load-track i { position: absolute; top: 50%; left: 0; width: calc(100% + 64px); height: 4px; margin-top: -2px; background: repeating-linear-gradient(90deg, #ffe7ae 0 32px, transparent 32px 64px); animation: load-road .7s linear infinite; }
+.load-chassis { transform-origin: 300px 222px; animation: load-bump 1.05s ease-in-out infinite; }
+.load-wheel-rear { animation: load-tire-hop .52s ease-in-out infinite; }
+.load-wheel-front { animation: load-tire-hop .52s -.26s ease-in-out infinite; }
+.load-spokes { transform-box: fill-box; transform-origin: center; animation: load-wheel-spin .8s linear infinite; }
+.load-roof-kit { transform-origin: 260px 88px; animation: load-luggage 1.05s ease-in-out infinite; }
+.load-shadow { transform-origin: 310px 250px; animation: load-shadow-pulse 1.05s ease-in-out infinite; }
+.load-dust { transform-origin: 150px 242px; animation: load-dust-puff 1.4s ease-out infinite; }
+.load-clouds { animation: load-cloud-drift 6s ease-in-out infinite alternate; }
+.load-landscape { animation: load-landscape-pass 8s linear infinite; }
+.load-pebbles { animation: load-landscape-pass 2s linear infinite; }
+.load-speed-lines { animation: load-speed-dash .7s ease-in-out infinite alternate; }
+.load-card h1 { margin: 0 0 9px; color: var(--load-ink); font: 750 clamp(22px, 5vw, 29px)/1.2 Georgia, 'Times New Roman', serif; letter-spacing: -.7px; }
+.load-card #load-detail { max-width: 350px; margin: 0 auto; color: #6b5c50; font: 400 13px/1.65 system-ui, sans-serif; }
+.load-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0 0; }
+.load-actions[hidden] { display: none; }
+.load-actions button { min-height: 48px; border: 2px solid var(--load-ink); border-radius: 12px; background: #f9e6bf; color: var(--load-ink); box-shadow: 0 3px 0 var(--load-ink); font: 650 13px/1.3 system-ui, sans-serif; }
+.load-actions #load-retry { background: #44786e; color: #fff9e8; }
+.load-actions button:hover { background: #efca92; }
+.load-actions #load-retry:hover { background: #365f57; }
+.load-actions button:disabled { opacity: .6; }
+.load-footer { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 28px; }
+.load-card .load-foot { margin: 0; color: #78614e; font: 700 8px/1.5 system-ui, sans-serif; letter-spacing: 2px; }
+.load-motion { min-height: 32px; padding: 6px 12px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: #78614e; font: 500 10px/1.5 system-ui, sans-serif; text-decoration: underline; text-underline-offset: 3px; }
+.load-motion:hover { background: #ecddbf; color: #352f32; }
+.load-screen button:focus-visible { outline: 3px solid #365f57; outline-offset: 5px; }
+.load-screen[data-motion=paused] *, .load-screen[data-phase=error] * { animation-play-state: paused !important; }
+.load-screen[data-phase=error] .load-motion { display: none; }
+@keyframes load-sun-turn { to { transform: rotate(360deg); } }
+@keyframes load-letter-bop { 0%, 12%, 100% { transform: translateY(0) rotate(0); } 5% { transform: translateY(-4px) rotate(-5deg); } 9% { transform: translateY(1px) rotate(2deg); } }
+@keyframes load-road { to { transform: translateX(-64px); } }
+@keyframes load-bump { 0%, 100% { transform: translateY(0) rotate(-1deg); } 25% { transform: translateY(-5px) rotate(1deg); } 45% { transform: translateY(1px) rotate(-.4deg); } 68% { transform: translateY(-3px) rotate(-1.3deg); } 85% { transform: translateY(1px) rotate(.6deg); } }
+@keyframes load-tire-hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-2px); } 70% { transform: translateY(1px); } }
+@keyframes load-wheel-spin { to { transform: rotate(360deg); } }
+@keyframes load-luggage { 0%, 100% { transform: rotate(0); } 30% { transform: translateY(-2px) rotate(-1.5deg); } 55% { transform: rotate(1deg); } }
+@keyframes load-shadow-pulse { 0%, 100% { transform: scaleX(1); opacity: .19; } 25%, 68% { transform: scaleX(.94); opacity: .12; } }
+@keyframes load-dust-puff { 0% { transform: translate(12px, -2px) scale(.7); opacity: 0; } 25% { opacity: .85; } 100% { transform: translate(-28px, -6px) scale(1.15); opacity: 0; } }
+@keyframes load-cloud-drift { to { transform: translateX(-15px); } }
+@keyframes load-landscape-pass { to { transform: translateX(-600px); } }
+@keyframes load-speed-dash { to { transform: translateX(-8px); opacity: .45; } }
+@media (max-width: 480px) {
+  .load-screen { padding: 28px 16px; }
+  .load-brand { gap: 8px; }
+  .load-emblem { width: 44px; height: 44px; }
+  .load-card .load-kicker { font-size: 7px; letter-spacing: 1.6px; }
+  .load-scene { width: calc(100% + 16px); margin-left: -8px; margin-top: 16px; margin-bottom: 22px; }
+  .load-card #load-detail { max-width: 280px; font-size: 12px; }
+  .load-footer { margin-top: 26px; }
+  .load-motion { min-height: 44px; }
+  .load-track { border-width: 2px; }
+  .load-track i { height: 3px; }
+  .load-track::before { top: 3px; }
+  .load-track::after { bottom: 3px; }
+}
+@media (max-height: 600px) and (min-width: 481px) {
+  .load-screen { padding: 20px; }
+  .load-card { max-width: 440px; }
+  .load-emblem { width: 38px; height: 38px; }
+  .load-wordmark { font-size: 38px; }
+  .load-card .load-kicker { margin: 10px 0 0; }
+  .load-scene { max-width: 400px; margin-bottom: 4px; }
+  .load-card h1 { font-size: 23px; }
+  .load-footer { margin-top: 14px; gap: 4px; }
+}
+@media (max-height: 400px) and (min-width: 481px) {
+  .load-screen { padding: 14px 20px; }
+  .load-wordmark { font-size: 32px; }
+  .load-emblem { width: 32px; height: 32px; }
+  .load-card .load-kicker, .load-card .load-foot { display: none; }
+  .load-scene { max-width: 260px; margin: 0 auto 4px; }
+  .load-card h1 { font-size: 20px; margin-bottom: 6px; }
+  .load-card #load-detail { max-width: 430px; font-size: 12px; }
+  .load-footer { margin-top: 4px; }
+  .load-actions { margin-top: 12px; }
+  .load-screen[data-phase=error] .load-scene { max-width: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .load-screen *, .load-screen *::before, .load-screen *::after { animation: none !important; transition: none !important; }
+  .load-motion { display: none; }
+}

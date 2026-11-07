@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync(new URL('../boot.js',import.meta.url),'utf8');
+function harness({legacyMarkup=false}={}){
+ const nodes=new Map(), timers=[];
+ const get=id=>{if(legacyMarkup&&id==='#load-motion')return null;if(!nodes.has(id))nodes.set(id,{hidden:false,inert:false,disabled:false,textContent:'',dataset:{},classList:{toggle(){},add(){},remove(){}},setAttribute(k,v){this[k]=v;},contains(){return false;},focus(){this.focused=true;}});return nodes.get(id);};
+ const events={};let reloads=0;
+ const window={rooflabState:{},addEventListener(k,fn){events[k]=fn;}};
+ const context={window,console,document:{readyState:'loading',querySelector:get,body:get('body'),addEventListener(k,fn){events[k]=fn;}},location:{origin:'https://example.test',reload(){reloads++;}},setTimeout(fn,ms){timers.push({fn,ms});return timers.length;},clearTimeout(){},requestAnimationFrame(){},localStorage:{getItem(){throw Error('Loader cannot read saved data');},setItem(){throw Error('Loader cannot write saved data');},removeItem(){throw Error('Loader cannot clear saved data');}}};
+ vm.runInNewContext(source,context);
+ return {get,window,timers,events,reloads:()=>reloads};
+}
+const legacy=harness({legacyMarkup:true});legacy.window.RooflabBoot.ready();assert.equal(legacy.window.RooflabBoot.phase,'ready','cached older HTML must still boot without the new motion button');
+const h=harness(), screen=h.get('#load-screen'), motion=h.get('#load-motion');
+assert.equal(h.window.RooflabBoot.phase,'loading');
+assert.equal(h.timers.length,1);
+assert.equal(h.timers[0].ms,45000,'existing timeout must not be shortened or delayed');
+motion.onclick();assert.equal(screen.dataset.motion,'paused');assert.equal(motion['aria-pressed'],'true');assert.equal(motion.textContent,'Resume animation');
+motion.onclick();assert.equal(screen.dataset.motion,'playing');assert.equal(motion['aria-pressed'],'false');assert.equal(motion.textContent,'Pause animation');
+h.timers[0].fn();assert.equal(h.window.RooflabBoot.phase,'error');assert.equal(screen.dataset.phase,'error');assert.equal(h.get('main').inert,true);assert.equal(h.get('main')['aria-busy'],'false');assert.equal(h.get('.load-actions').hidden,false);assert.match(h.get('#load-detail').textContent,/longer than expected/);
+h.get('#load-retry').onclick();assert.equal(h.reloads(),1);assert.equal(h.get('#load-retry').disabled,true);
+h.get('#load-tools').onclick();assert.equal(h.window.RooflabBoot.phase,'tools');assert.equal(screen.hidden,true);assert.equal(h.get('main').inert,false);assert.equal(h.get('#open-roof-editor').focused,true);
+h.window.RooflabBoot.fail('Late failure');assert.equal(h.window.RooflabBoot.phase,'tools');
+const missing=harness();delete missing.window.rooflabState;missing.window.RooflabBoot.fail();assert.equal(missing.get('#load-tools').hidden,true);
+const focused=harness();focused.get('#load-screen').contains=()=>true;focused.window.RooflabBoot.ready();assert.equal(focused.get('#scene').focused,true);
+const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8'),css=fs.readFileSync(new URL('../loading.css',import.meta.url),'utf8');
+const loader=html.slice(html.indexOf('<section id="load-screen"'),html.indexOf('\n<header>'));
+for(const id of ['load-screen','load-title','load-detail','load-retry','load-tools','load-motion']) assert.equal([...html.matchAll(new RegExp(`id="${id}"`,'g'))].length,1,`${id} must be unique`);
+assert(loader.includes('aria-label="Rooflab"'));assert(loader.includes('class="load-scene" aria-hidden="true"'));assert(loader.includes('role="status" aria-live="polite"'));assert(loader.includes('aria-pressed="false"'));assert(!loader.includes('role="progressbar"'),'activity is not a fake percentage');
+assert(!/https?:\/\//.test(loader),'artwork must not load or publish external references');
+assert(css.includes('.load-screen[data-motion=paused] *, .load-screen[data-phase=error] *'));
+assert(css.includes('.load-screen *, .load-screen *::before, .load-screen *::after { animation: none !important; transition: none !important; }'));
+for(const name of ['load-bump','load-wheel-spin','load-road','load-sun-turn','load-letter-bop'])assert(css.includes(`@keyframes ${name}`));
+console.log('PASS retro artwork semantics, pause/resume, all-motion reduced/error states, unchanged 45-second timeout, retry/fallback/focus and zero storage access.');
